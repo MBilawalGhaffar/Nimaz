@@ -147,19 +147,12 @@ internal fun updateAppWidget(
     val prayerTimes = PrayerTimes(coordinates , calcdate , parameters)
 
     // show data
-    // prayer times in string format used to start a timer to the next prayer
-    val fajr_value = prayerTimes.fajr.toString()
-    val zuhar_value = prayerTimes.dhuhr.toString()
-    val asar_value = prayerTimes.asr.toString()
-    val maghrib_value = prayerTimes.maghrib.toString()
-    val ishaa_value = prayerTimes.isha.toString()
-
     // print times
-    views.setTextViewText(R.id.Fajr_time , formatter.format(fajr_value))
-    views.setTextViewText(R.id.Zuhar_time , formatter.format(zuhar_value))
-    views.setTextViewText(R.id.Asar_time , formatter.format(asar_value))
-    views.setTextViewText(R.id.Maghrib_time , formatter.format(maghrib_value))
-    views.setTextViewText(R.id.Ishaa_time , formatter.format(ishaa_value))
+    views.setTextViewText(R.id.Fajr_time , formatter.format(prayerTimes.fajr!!))
+    views.setTextViewText(R.id.Zuhar_time , formatter.format(prayerTimes.dhuhr!!))
+    views.setTextViewText(R.id.Asar_time , formatter.format(prayerTimes.asr!!))
+    views.setTextViewText(R.id.Maghrib_time , formatter.format(prayerTimes.maghrib!!))
+    views.setTextViewText(R.id.Ishaa_time , formatter.format( prayerTimes.isha!!))
 
     // Instruct the widget manager to update the widget
     appWidgetManager.updateAppWidget(appWidgetId , views)
