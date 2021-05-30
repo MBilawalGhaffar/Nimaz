@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+                                                   xmlns:app = "http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools = "http://schemas.android.com/tools"
+                                                   android:layout_width = "match_parent"
+                                                   android:layout_height = "match_parent"
+                                                   android:background = "@color/background"
+                                                   tools:context = ".fragments.Tasbeeh">
+
+    <LinearLayout
+        android:id = "@+id/linearLayout"
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:background = "@drawable/headingcard"
+        android:orientation = "vertical"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width = "match_parent"
+            android:layout_height = "match_parent">
+
+            <TextView
+                android:id = "@+id/Name"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:fontFamily = "@font/nunito"
+                android:gravity = "center|center_horizontal"
+                android:text = "@string/tasbeeh"
+                android:textAlignment = "center"
+                android:textColor = "@color/text"
+                android:textSize = "40sp"
+                android:textStyle = "bold"
+                android:visibility = "visible"
+                app:layout_constraintBottom_toBottomOf = "parent"
+                app:layout_constraintEnd_toEndOf = "parent"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toTopOf = "parent"
+                app:layout_constraintVertical_bias = "0.0"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:background = "@drawable/finecontrol"
+                app:layout_constraintBottom_toBottomOf = "parent"
+                app:layout_constraintEnd_toEndOf = "parent"
+                app:layout_constraintStart_toEndOf = "@+id/Name"
+                app:layout_constraintTop_toTopOf = "parent">
+
+                <ImageButton
+                    android:id = "@+id/vibrate"
+                    android:layout_width = "48dp"
+                    android:layout_height = "48dp"
+                    android:contentDescription = "@string/todo"
+                    android:tooltipText = "Enable Vibration"
+                    app:layout_constraintBottom_toBottomOf = "parent"
+                    app:layout_constraintEnd_toEndOf = "parent"
+                    app:layout_constraintStart_toStartOf = "parent"
+                    app:layout_constraintTop_toTopOf = "parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id = "@+id/linearLayout2"
+        android:layout_width = "0dp"
+        android:layout_height = "0dp"
+        android:layout_marginStart = "8dp"
+        android:layout_marginEnd = "8dp"
+        android:layout_marginBottom = "8dp"
+        android:background = "@drawable/aboutcard"
+        android:elevation = "3dp"
+        android:orientation = "vertical"
+        app:layout_constraintBottom_toBottomOf = "parent"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintHorizontal_bias = "0.0"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toBottomOf = "@+id/linearLayout"
+        tools:targetApi = "lollipop">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width = "match_parent"
+            android:layout_height = "match_parent"
+            android:layout_gravity = "center">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id = "@+id/constraintLayout8"
+                android:layout_width = "match_parent"
+                android:layout_height = "wrap_content"
+                app:layout_constraintBottom_toBottomOf = "parent"
+                app:layout_constraintEnd_toEndOf = "parent"
+                app:layout_constraintStart_toStartOf = "parent">
+
+                <Button
+                    android:id = "@+id/plus"
+                    android:layout_width = "0dp"
+                    android:layout_height = "0dp"
+                    android:background = "@drawable/finecontrol"
+                    android:fontFamily = "@font/nunito"
+                    android:text = "@string/add"
+                    android:textSize = "100sp"
+                    android:textStyle = "bold"
+                    android:tooltipText = "Add"
+                    app:cornerRadius = "10dp"
+                    app:layout_constraintBottom_toBottomOf = "parent"
+                    app:layout_constraintEnd_toEndOf = "parent"
+                    app:layout_constraintStart_toEndOf = "@+id/minus"
+                    app:layout_constraintTop_toTopOf = "parent"
+                    app:rippleColor = "@color/nav_background_selected"/>
+
+                <Button
+                    android:id = "@+id/minus"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:background = "@drawable/finecontrol"
+                    android:fontFamily = "@font/nunito"
+                    android:text = "@string/takAway"
+                    android:textSize = "100sp"
+                    android:tooltipText = "Remove"
+                    app:layout_constraintBottom_toBottomOf = "parent"
+                    app:layout_constraintStart_toStartOf = "parent"
+                    app:layout_constraintTop_toTopOf = "parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id = "@+id/linearLayout4"
+                android:layout_width = "wrap_content"
+                android:layout_height = "59dp"
+                android:layout_marginStart = "24dp"
+                android:layout_marginBottom = "32dp"
+                android:orientation = "horizontal"
+                app:layout_constraintBottom_toTopOf = "@+id/constraintLayout8"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toBottomOf = "@+id/Display">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width = "match_parent"
+                    android:layout_height = "match_parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id = "@+id/constraintLayout6"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:layout_marginStart = "8dp"
+                        android:background = "@drawable/finecontrol"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintEnd_toEndOf = "parent"
+                        app:layout_constraintStart_toEndOf = "@+id/amount"
+                        app:layout_constraintTop_toTopOf = "parent">
+
+                        <ImageButton
+                            android:id = "@+id/edit_button"
+                            android:layout_width = "48dp"
+                            android:layout_height = "48dp"
+                            android:contentDescription = "TODO"
+                            android:tint = "#000000"
+                            android:tooltipText = "Edit Tasbeeh Objective"
+                            app:layout_constraintBottom_toBottomOf = "parent"
+                            app:layout_constraintEnd_toEndOf = "parent"
+                            app:layout_constraintStart_toStartOf = "parent"
+                            app:layout_constraintTop_toTopOf = "parent"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <TextView
+                        android:id = "@+id/amount"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:layout_marginStart = "8dp"
+                        android:fontFamily = "@font/nunito"
+                        android:text = "@string/_33"
+                        android:textColor = "@color/text"
+                        android:textSize = "36sp"
+                        android:textStyle = "bold"
+                        android:visibility = "visible"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintStart_toStartOf = "parent"
+                        app:layout_constraintTop_toTopOf = "parent"
+                        tools:text = "1000"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id = "@+id/constraintLayout7"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:layout_marginTop = "16dp"
+                app:layout_constraintBottom_toTopOf = "@+id/Display"
+                app:layout_constraintEnd_toEndOf = "parent"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toTopOf = "parent">
+
+                <TextView
+                    android:id = "@+id/lap"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:layout_marginStart = "4dp"
+                    android:fontFamily = "@font/nunito"
+                    android:text = "@string/lap"
+                    android:textColor = "#000000"
+                    android:textSize = "24sp"
+                    android:textStyle = "bold"
+                    app:layout_constraintBottom_toBottomOf = "parent"
+                    app:layout_constraintStart_toStartOf = "parent"
+                    app:layout_constraintTop_toTopOf = "parent"/>
+
+                <TextView
+                    android:id = "@+id/lapnumber"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:layout_marginEnd = "1dp"
+                    android:fontFamily = "@font/nunito"
+                    android:padding = "5sp"
+                    android:text = "@string/_1"
+                    android:textColor = "#000000"
+                    android:textSize = "24sp"
+                    android:textStyle = "bold"
+                    app:layout_constraintBottom_toBottomOf = "parent"
+                    app:layout_constraintEnd_toEndOf = "parent"
+                    app:layout_constraintStart_toEndOf = "@+id/lap"
+                    app:layout_constraintTop_toTopOf = "parent"
+                    tools:text = "1"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id = "@+id/Display"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:fontFamily = "@font/nunito"
+                android:gravity = "center"
+                android:text = "@string/_0"
+                android:textColor = "@color/text"
+                android:textSize = "120sp"
+                android:textStyle = "bold"
+                app:layout_constraintBottom_toTopOf = "@+id/constraintLayout8"
+                app:layout_constraintEnd_toEndOf = "parent"
+                app:layout_constraintHorizontal_bias = "0.493"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toTopOf = "parent"
+                tools:text = "1000"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id = "@+id/constraintLayout4"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:layout_marginEnd = "16dp"
+                android:layout_marginBottom = "32dp"
+                android:background = "@drawable/finecontrol"
+                app:layout_constraintBottom_toTopOf = "@+id/constraintLayout8"
+                app:layout_constraintEnd_toEndOf = "parent"
+                app:layout_constraintTop_toBottomOf = "@+id/Display">
+
+                <ImageButton
+                    android:id = "@+id/reset"
+                    android:layout_width = "48dp"
+                    android:layout_height = "48dp"
+                    android:contentDescription = "TODO"
+                    android:tooltipText = "Reset Tasbeeh Counter"
+                    app:layout_constraintBottom_toBottomOf = "parent"
+                    app:layout_constraintEnd_toEndOf = "parent"
+                    app:layout_constraintStart_toStartOf = "parent"
+                    app:layout_constraintTop_toTopOf = "parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

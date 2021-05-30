@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+                                                   xmlns:app = "http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools = "http://schemas.android.com/tools"
+                                                   android:id = "@+id/home"
+                                                   android:layout_width = "match_parent"
+                                                   android:layout_height = "match_parent"
+                                                   android:background = "@color/background"
+                                                   android:keepScreenOn = "true"
+                                                   android:tag = "home_Fragment">
+
+    <ScrollView
+        android:id = "@+id/scrollView2"
+        android:layout_width = "match_parent"
+        android:layout_height = "match_parent"
+        app:layout_constraintBottom_toBottomOf = "parent"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent">
+
+        <LinearLayout
+            android:layout_width = "match_parent"
+            android:layout_height = "wrap_content"
+            android:orientation = "vertical">
+
+            <LinearLayout
+                android:layout_width = "match_parent"
+                android:layout_height = "wrap_content"
+                android:background = "@drawable/headingcard"
+                android:fadingEdge = "horizontal"
+                android:orientation = "vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width = "match_parent"
+                    android:layout_height = "match_parent">
+
+                    <TextView
+                        android:id = "@+id/Name"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:fontFamily = "@font/nunito"
+                        android:gravity = "center_horizontal"
+                        android:text = "@string/prayer_times"
+                        android:textAlignment = "center"
+                        android:textColor = "@color/text"
+                        android:textSize = "36sp"
+                        android:textStyle = "bold"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintEnd_toEndOf = "parent"
+                        app:layout_constraintStart_toStartOf = "parent"
+                        app:layout_constraintTop_toTopOf = "parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width = "match_parent"
+                android:layout_height = "wrap_content"
+                android:layout_marginStart = "10dp"
+                android:layout_marginLeft = "10dp"
+                android:layout_marginTop = "10dp"
+                android:layout_marginEnd = "10dp"
+                android:layout_marginRight = "10dp"
+                android:orientation = "vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width = "match_parent"
+                    android:layout_height = "wrap_content"
+                    android:background = "@drawable/datecard">
+
+                    <TextView
+                        android:id = "@+id/editTextDate"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:fontFamily = "@font/nunito"
+                        android:padding = "5dp"
+                        android:textColor = "@color/text"
+                        android:textSize = "16sp"
+                        android:textStyle = "bold"
+                        android:tooltipText = "Current Date"
+                        app:layout_constraintEnd_toEndOf = "parent"
+                        app:layout_constraintStart_toStartOf = "parent"
+                        app:layout_constraintTop_toTopOf = "parent"
+                        tools:text = "date"/>
+
+                    <TextView
+                        android:id = "@+id/hijri_date"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:fontFamily = "@font/nunito"
+                        android:padding = "5dp"
+                        android:textColor = "@color/text"
+                        android:textSize = "16sp"
+                        android:textStyle = "bold"
+                        android:tooltipText = "Current Hijri Date"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintEnd_toEndOf = "parent"
+                        app:layout_constraintStart_toStartOf = "parent"
+                        app:layout_constraintTop_toBottomOf = "@+id/editTextDate"
+                        app:layout_constraintVertical_bias = "0.0"
+                        tools:text = "Hijri Date"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <!--            gregorian date , hijri date and current time         -->
+
+            <LinearLayout
+                android:layout_width = "match_parent"
+                android:layout_height = "match_parent"
+                android:layout_marginStart = "10dp"
+                android:layout_marginLeft = "10dp"
+                android:layout_marginTop = "10dp"
+                android:layout_marginEnd = "10dp"
+                android:layout_marginRight = "10dp"
+                android:orientation = "vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width = "match_parent"
+                    android:layout_height = "match_parent"
+                    android:background = "@drawable/timeandplace"
+                    android:padding = "20dp">
+
+                    <TextView
+                        android:id = "@+id/cityName"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:layout_marginStart = "8dp"
+                        android:fontFamily = "@font/nunito"
+                        android:gravity = "center"
+                        android:text = "@string/city"
+                        android:textColor = "@color/text"
+                        android:textSize = "20sp"
+                        android:textStyle = "bold"
+                        android:tooltipText = "Current Location"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintStart_toStartOf = "parent"
+                        app:layout_constraintTop_toTopOf = "parent"/>
+
+
+                    <TextClock
+                        android:layout_width = "0dp"
+                        android:layout_height = "wrap_content"
+                        android:fontFamily = "@font/nunito"
+                        android:format12Hour = " hh : mm : ss aa "
+                        android:format24Hour = " H : mm : ss "
+                        android:gravity = "center"
+                        android:textColor = "@color/text"
+                        android:textSize = "16sp"
+                        android:textStyle = "bold"
+                        android:tooltipText = "Current Time"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintEnd_toEndOf = "parent"
+                        app:layout_constraintTop_toTopOf = "parent"
+                        tools:targetApi = "jelly_bean_mr1"
+                        tools:text = "01 : 01 : 01 am"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+            <!--            end of date time        -->
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id = "@+id/refresh"
+                android:layout_width = "match_parent"
+                android:layout_height = "match_parent"
+                android:layout_marginStart = "10dp"
+                android:layout_marginLeft = "10dp"
+                android:layout_marginTop = "10dp"
+                android:layout_marginEnd = "10dp"
+                android:layout_marginRight = "10dp"
+                android:layout_marginBottom = "10dp"
+                android:background = "@drawable/prayertimecard"
+                android:columnCount = "1"
+                android:rowCount = "6">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id = "@+id/fajrhighlight"
+                    android:layout_width = "0dp"
+                    android:layout_height = "wrap_content"
+                    android:layout_marginTop = "8dp"
+                    android:padding = "10dp"
+                    app:layout_constraintEnd_toEndOf = "parent"
+                    app:layout_constraintStart_toStartOf = "parent"
+                    app:layout_constraintTop_toTopOf = "parent">
+
+                    <TextView
+                        android:id = "@+id/textView6"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:fontFamily = "@font/nunito"
+                        android:gravity = "center"
+                        android:text = "@string/fajr"
+                        android:textColor = "@color/text"
+                        android:textSize = "16sp"
+                        android:textStyle = "bold"
+                        android:typeface = "normal"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintStart_toStartOf = "parent"
+                        app:layout_constraintTop_toTopOf = "parent"/>
+
+                    <TextView
+                        android:id = "@+id/Fajr_time"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:layout_marginEnd = "8dp"
+                        android:fontFamily = "@font/nunito"
+                        android:gravity = "center_horizontal"
+                        android:text = "@string/fajr_time"
+                        android:textAlignment = "center"
+                        android:textColor = "@color/text"
+                        android:textSize = "16sp"
+                        android:textStyle = "bold"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintEnd_toStartOf = "@+id/fajrSound"
+                        app:layout_constraintTop_toTopOf = "parent"/>
+
+                    <ImageView
+                        android:id = "@+id/fajrSound"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintEnd_toEndOf = "parent"
+                        app:layout_constraintTop_toTopOf = "parent"
+                        app:srcCompat = "@drawable/notifications"
+                        tools:srcCompat = "@drawable/notifications"/>
+
+                    <TextView
+                        android:id = "@+id/Tofajr"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:fontFamily = "@font/nunito"
+                        android:text = "@string/_00_00_00"
+                        android:textAllCaps = "false"
+                        android:textColor = "@color/text"
+                        android:textSize = "14sp"
+                        android:textStyle = "bold"
+                        android:visibility = "gone"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintEnd_toStartOf = "@+id/Fajr_time"
+                        app:layout_constraintStart_toEndOf = "@+id/textView6"
+                        app:layout_constraintTop_toTopOf = "parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id = "@+id/sunrisehighlight"
+                    android:layout_width = "0dp"
+                    android:layout_height = "wrap_content"
+                    android:layout_marginTop = "8dp"
+                    android:padding = "10dp"
+                    android:visibility = "visible"
+                    app:layout_constraintEnd_toEndOf = "parent"
+                    app:layout_constraintStart_toStartOf = "parent"
+                    app:layout_constraintTop_toBottomOf = "@+id/fajrhighlight">
+
+                    <TextView
+                        android:id = "@+id/sunrise_text"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:fontFamily = "@font/nunito"
+                        android:text = "@string/sunrise"
+                        android:textColor = "@color/text"
+                        android:textSize = "16sp"
+                        android:textStyle = "bold"
+                        android:visibility = "visible"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintStart_toStartOf = "parent"
+                        app:layout_constraintTop_toTopOf = "parent"
+                        app:layout_constraintVertical_bias = "0.0"/>
+
+                    <ImageView
+                        android:id = "@+id/sunriseSound"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintEnd_toEndOf = "parent"
+                        app:layout_constraintTop_toTopOf = "parent"
+                        app:srcCompat = "@drawable/notifications"
+                        tools:srcCompat = "@drawable/notifications"/>
+
+                    <TextView
+                        android:id = "@+id/sunrise_time"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:layout_marginEnd = "8dp"
+                        android:fontFamily = "@font/nunito"
+                        android:gravity = "center|center_horizontal"
+                        android:text = "@string/sunrise_time"
+                        android:textAlignment = "center"
+                        android:textColor = "@color/text"
+                        android:textSize = "16sp"
+                        android:textStyle = "bold"
+                        android:visibility = "visible"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintEnd_toStartOf = "@+id/sunriseSound"
+                        app:layout_constraintTop_toTopOf = "parent"
+                        app:layout_constraintVertical_bias = "0.0"/>
+
+                    <TextView
+                        android:id = "@+id/Tosunrise"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:fontFamily = "@font/nunito"
+                        android:text = "@string/_00_00_00"
+                        android:textAllCaps = "false"
+                        android:textColor = "@color/text"
+                        android:textSize = "14sp"
+                        android:textStyle = "bold"
+                        android:visibility = "gone"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintEnd_toStartOf = "@+id/sunrise_time"
+                        app:layout_constraintHorizontal_bias = "0.456"
+                        app:layout_constraintStart_toEndOf = "@+id/sunrise_text"
+                        app:layout_constraintTop_toTopOf = "parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id = "@+id/zuharhighlight"
+                    android:layout_width = "0dp"
+                    android:layout_height = "wrap_content"
+                    android:layout_marginTop = "8dp"
+                    android:padding = "10dp"
+                    app:layout_constraintEnd_toEndOf = "parent"
+                    app:layout_constraintStart_toStartOf = "parent"
+                    app:layout_constraintTop_toBottomOf = "@+id/sunrisehighlight">
+
+                    <TextView
+                        android:id = "@+id/textView10"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:fontFamily = "@font/nunito"
+                        android:text = "@string/zuhar"
+                        android:textColor = "@color/text"
+                        android:textSize = "16sp"
+                        android:textStyle = "bold"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintStart_toStartOf = "parent"
+                        app:layout_constraintTop_toTopOf = "parent"
+                        app:layout_constraintVertical_bias = "0.0"/>
+
+                    <TextView
+                        android:id = "@+id/Zuhar_time"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:layout_marginEnd = "8dp"
+                        android:fontFamily = "@font/nunito"
+                        android:gravity = "center_horizontal"
+                        android:text = "@string/Zuhar_time"
+                        android:textAlignment = "center"
+                        android:textColor = "@color/text"
+                        android:textSize = "16sp"
+                        android:textStyle = "bold"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintEnd_toStartOf = "@+id/zuharSound"
+                        app:layout_constraintTop_toTopOf = "parent"
+                        app:layout_constraintVertical_bias = "0.0"/>
+
+                    <ImageView
+                        android:id = "@+id/zuharSound"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintEnd_toEndOf = "parent"
+                        app:layout_constraintTop_toTopOf = "parent"
+                        app:srcCompat = "@drawable/notifications"
+                        tools:srcCompat = "@drawable/notifications"/>
+
+                    <TextView
+                        android:id = "@+id/ToZuhar"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:fontFamily = "@font/nunito"
+                        android:text = "@string/_00_00_00"
+                        android:textAllCaps = "false"
+                        android:textColor = "@color/text"
+                        android:textSize = "14sp"
+                        android:textStyle = "bold"
+                        android:visibility = "gone"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintEnd_toStartOf = "@+id/Zuhar_time"
+                        app:layout_constraintStart_toEndOf = "@+id/textView10"
+                        app:layout_constraintTop_toTopOf = "parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id = "@+id/asarhighlight"
+                    android:layout_width = "0dp"
+                    android:layout_height = "wrap_content"
+                    android:layout_marginTop = "8dp"
+                    android:padding = "10dp"
+                    app:layout_constraintEnd_toEndOf = "parent"
+                    app:layout_constraintStart_toStartOf = "parent"
+                    app:layout_constraintTop_toBottomOf = "@+id/zuharhighlight">
+
+                    <TextView
+                        android:id = "@+id/textView11"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:fontFamily = "@font/nunito"
+                        android:text = "@string/asar"
+                        android:textColor = "@color/text"
+                        android:textSize = "16sp"
+                        android:textStyle = "bold"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintStart_toStartOf = "parent"
+                        app:layout_constraintTop_toTopOf = "parent"
+                        app:layout_constraintVertical_bias = "0.0"/>
+
+                    <ImageView
+                        android:id = "@+id/asarSound"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintEnd_toEndOf = "parent"
+                        app:layout_constraintTop_toTopOf = "parent"
+                        app:srcCompat = "@drawable/notifications"
+                        tools:srcCompat = "@drawable/notifications"/>
+
+                    <TextView
+                        android:id = "@+id/Asar_time"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:layout_marginEnd = "8dp"
+                        android:fontFamily = "@font/nunito"
+                        android:gravity = "center_horizontal"
+                        android:text = "@string/Asar_time"
+                        android:textAlignment = "center"
+                        android:textColor = "@color/text"
+                        android:textSize = "16sp"
+                        android:textStyle = "bold"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintEnd_toStartOf = "@+id/asarSound"
+                        app:layout_constraintTop_toTopOf = "parent"
+                        app:layout_constraintVertical_bias = "0.0"/>
+
+                    <TextView
+                        android:id = "@+id/ToAsar"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:fontFamily = "@font/nunito"
+                        android:text = "@string/_00_00_00"
+                        android:textAllCaps = "false"
+                        android:textColor = "@color/text"
+                        android:textSize = "14sp"
+                        android:textStyle = "bold"
+                        android:visibility = "gone"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintEnd_toStartOf = "@+id/Asar_time"
+                        app:layout_constraintStart_toEndOf = "@+id/textView11"
+                        app:layout_constraintTop_toTopOf = "parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id = "@+id/maghribhighlight"
+                    android:layout_width = "0dp"
+                    android:layout_height = "wrap_content"
+                    android:layout_marginTop = "8dp"
+                    android:padding = "10dp"
+                    app:layout_constraintEnd_toEndOf = "parent"
+                    app:layout_constraintStart_toStartOf = "parent"
+                    app:layout_constraintTop_toBottomOf = "@+id/asarhighlight">
+
+                    <TextView
+                        android:id = "@+id/textView14"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:fontFamily = "@font/nunito"
+                        android:text = "@string/maghrib"
+                        android:textColor = "@color/text"
+                        android:textSize = "16sp"
+                        android:textStyle = "bold"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintStart_toStartOf = "parent"
+                        app:layout_constraintTop_toTopOf = "parent"
+                        app:layout_constraintVertical_bias = "0.0"/>
+
+                    <ImageView
+                        android:id = "@+id/maghribSound"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintEnd_toEndOf = "parent"
+                        app:layout_constraintTop_toTopOf = "parent"
+                        app:srcCompat = "@drawable/notifications"
+                        tools:srcCompat = "@drawable/notifications"/>
+
+                    <TextView
+                        android:id = "@+id/Maghrib_time"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:layout_marginEnd = "8dp"
+                        android:fontFamily = "@font/nunito"
+                        android:gravity = "center_horizontal"
+                        android:text = "@string/Maghrib_time"
+                        android:textAlignment = "center"
+                        android:textColor = "@color/text"
+                        android:textSize = "16sp"
+                        android:textStyle = "bold"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintEnd_toStartOf = "@+id/maghribSound"
+                        app:layout_constraintTop_toTopOf = "parent"
+                        app:layout_constraintVertical_bias = "0.0"/>
+
+                    <TextView
+                        android:id = "@+id/ToMaghrib"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:fontFamily = "@font/nunito"
+                        android:text = "@string/_00_00_00"
+                        android:textAllCaps = "false"
+                        android:textColor = "@color/text"
+                        android:textSize = "14sp"
+                        android:textStyle = "bold"
+                        android:typeface = "normal"
+                        android:visibility = "gone"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintEnd_toStartOf = "@+id/Maghrib_time"
+                        app:layout_constraintStart_toEndOf = "@+id/textView14"
+                        app:layout_constraintTop_toTopOf = "parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id = "@+id/ishaahighlight"
+                    android:layout_width = "0dp"
+                    android:layout_height = "wrap_content"
+                    android:layout_marginTop = "8dp"
+                    android:layout_marginBottom = "8dp"
+                    android:padding = "10dp"
+                    app:layout_constraintBottom_toBottomOf = "parent"
+                    app:layout_constraintEnd_toEndOf = "parent"
+                    app:layout_constraintStart_toStartOf = "parent"
+                    app:layout_constraintTop_toBottomOf = "@+id/maghribhighlight">
+
+                    <ImageView
+                        android:id = "@+id/ishaaSound"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintEnd_toEndOf = "parent"
+                        app:layout_constraintTop_toTopOf = "parent"
+                        app:srcCompat = "@drawable/notifications"
+                        tools:srcCompat = "@drawable/notifications"/>
+
+                    <TextView
+                        android:id = "@+id/textView17"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:fontFamily = "@font/nunito"
+                        android:text = "@string/ishaa"
+                        android:textColor = "@color/text"
+                        android:textSize = "16sp"
+                        android:textStyle = "bold"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintStart_toStartOf = "parent"
+                        app:layout_constraintTop_toTopOf = "parent"
+                        app:layout_constraintVertical_bias = "0.0"/>
+
+                    <TextView
+                        android:id = "@+id/Ishaa_time"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:layout_marginEnd = "8dp"
+                        android:fontFamily = "@font/nunito"
+                        android:gravity = "center_horizontal"
+                        android:text = "@string/Ishaa_time"
+                        android:textAlignment = "center"
+                        android:textColor = "@color/text"
+                        android:textSize = "16sp"
+                        android:textStyle = "bold"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintEnd_toStartOf = "@+id/ishaaSound"
+                        app:layout_constraintTop_toTopOf = "parent"
+                        app:layout_constraintVertical_bias = "0.0"/>
+
+                    <TextView
+                        android:id = "@+id/ToIshaa"
+                        android:layout_width = "wrap_content"
+                        android:layout_height = "wrap_content"
+                        android:fontFamily = "@font/nunito"
+                        android:text = "@string/_00_00_00"
+                        android:textAllCaps = "false"
+                        android:textColor = "@color/text"
+                        android:textSize = "14sp"
+                        android:textStyle = "bold"
+                        android:visibility = "gone"
+                        app:layout_constraintBottom_toBottomOf = "parent"
+                        app:layout_constraintEnd_toStartOf = "@+id/Ishaa_time"
+                        app:layout_constraintStart_toEndOf = "@+id/textView17"
+                        app:layout_constraintTop_toTopOf = "parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

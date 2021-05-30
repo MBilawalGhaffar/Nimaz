@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android = "http://schemas.android.com/apk/res/android"
+            xmlns:app = "http://schemas.android.com/apk/res-auto"
+            xmlns:tools = "http://schemas.android.com/tools"
+            android:layout_width = "match_parent"
+            android:layout_height = "match_parent"
+            app:startDestination = "@id/navigation_home">
+
+    <fragment
+        android:id = "@+id/navigation_home"
+        android:name = "com.arshadshah.nimaz.fragments.HomeFragment"
+        android:label = "@string/title_home"
+        tools:layout = "@layout/fragment_home"/>
+    <fragment
+        android:id = "@+id/navigation_tasbeeh"
+        android:name = "com.arshadshah.nimaz.fragments.Tasbeeh"
+        android:label = "fragment_tasbeeh"
+        tools:layout = "@layout/fragment_tasbeeh"/>
+    <activity
+        android:id = "@+id/navigation_setting"
+        android:name = "com.arshadshah.nimaz.SettingsActivity"
+        android:label = "SettingsActivity"/>
+    <fragment
+        android:id = "@+id/navigation_names"
+        android:name = "com.arshadshah.nimaz.fragments.NamesFragment"
+        android:label = "fragment_names"
+        tools:layout = "@layout/fragment_names"/>
+    <fragment
+        android:id = "@+id/navigation_compass"
+        android:name = "com.arshadshah.nimaz.fragments.CompassFragment"
+        android:label = "fragment_compass"
+        tools:layout = "@layout/fragment_compass"/>
+
+
+</navigation>

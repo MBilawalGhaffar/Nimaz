@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android = "http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id = "@id/navigation_home"
+        android:icon = "@drawable/time"
+        android:title = "@string/title_home"/>
+
+    <item
+        android:id = "@id/navigation_tasbeeh"
+        android:title = "@string/title_tasbeeh"
+        android:icon = "@drawable/ic_tasbih"/>
+
+    <item
+        android:id = "@id/navigation_compass"
+        android:title = "@string/compass"
+        android:icon = "@drawable/compass"/>
+
+    <item
+        android:id = "@id/navigation_names"
+        android:title = "@string/holy_names"
+        android:icon = "@drawable/ic__9"/>
+
+    <item
+        android:id = "@id/navigation_setting"
+        android:title = "@string/settings"
+        android:icon = "@drawable/ic_baseline_settings_24"/>
+</menu>

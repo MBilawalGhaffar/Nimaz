@@ -1,0 +1,165 @@
+<PreferenceScreen xmlns:android = "http://schemas.android.com/apk/res/android"
+                  xmlns:app = "http://schemas.android.com/apk/res-auto">
+
+    <Preference
+        android:id = "@+id/preference5"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:icon = "@drawable/help"
+        app:title = "If you are not sure which Calculation method to select please take a look at the help section in settings."/>
+    <ListPreference
+        android:defaultValue = "IRELAND"
+        android:entries = "@array/calcMethod"
+        android:entryValues = "@array/calcMethodValues"
+        android:key = "calcMethod"
+        android:persistent = "true"
+        android:title = "Calculation Method"
+        app:allowDividerAbove = "true"
+        app:allowDividerBelow = "true"
+        app:iconSpaceReserved = "false"
+        app:isPreferenceVisible = "true"
+        app:useSimpleSummaryProvider = "true"/>
+
+    <PreferenceCategory
+        android:gravity = "center"
+        android:key = "custom_cat"
+        android:title = "Adjustments"
+        app:isPreferenceVisible = "true">
+
+        <ListPreference
+            android:defaultValue = "TWILIGHT_ANGLE"
+            android:entries = "@array/highLatitudeRule"
+            android:entryValues = "@array/highLatValues"
+            android:key = "highlatrule"
+            android:persistent = "true"
+            app:iconSpaceReserved = "false"
+            app:title = "HighLatitude Rule"
+            app:useSimpleSummaryProvider = "true"/>
+        <PreferenceCategory
+            android:title = "Madhab"
+            app:allowDividerBelow = "true">
+            <SwitchPreference
+                android:defaultValue = "true"
+                android:key = "madhab"
+                android:persistent = "true"
+                android:title = "Shafi,Maliki,Hanbali"
+                app:iconSpaceReserved = "false"/>
+        </PreferenceCategory>
+        <PreferenceCategory
+            android:key = "angle_cat"
+            android:title = "Angle"
+            app:allowDividerAbove = "true"
+            app:allowDividerBelow = "true"
+            app:isPreferenceVisible = "true">
+
+            <ListPreference
+                android:defaultValue = "14.0"
+                android:entries = "@array/angleValues"
+                android:entryValues = "@array/angleValues"
+                android:key = "fajrAngle"
+                android:persistent = "true"
+                android:title = "Fajr Angle"
+                app:dialogMessage = "Select the angle for Fajr Twilight"
+                app:iconSpaceReserved = "false"
+                app:useSimpleSummaryProvider = "true"/>
+            <ListPreference
+                android:defaultValue = "13.0"
+                android:entries = "@array/angleValues"
+                android:entryValues = "@array/angleValues"
+                android:key = "ishaaAngle"
+                android:persistent = "true"
+                android:title = "Ishaa Angle"
+                app:allowDividerAbove = "false"
+                app:allowDividerBelow = "true"
+                app:dialogMessage = "Select angle for Ishaa Twilght"
+                app:iconSpaceReserved = "false"
+                app:useSimpleSummaryProvider = "true"/>
+        </PreferenceCategory>
+        <PreferenceCategory
+            android:key = "timeOffset_cat"
+            android:title = "Time"
+            app:allowDividerAbove = "true"
+            app:allowDividerBelow = "true"
+            app:isPreferenceVisible = "true">
+
+            <ListPreference
+                android:defaultValue = "2"
+                android:entries = "@array/minuteslabel"
+                android:entryValues = "@array/minutes"
+                android:key = "fajr"
+                android:persistent = "true"
+                android:title = "Fajr Offset"
+                app:allowDividerAbove = "false"
+                app:allowDividerBelow = "true"
+                app:iconSpaceReserved = "false"
+                app:useSimpleSummaryProvider = "true"/>
+            <ListPreference
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:defaultValue = "1"
+                android:entries = "@array/minuteslabel"
+                android:entryValues = "@array/minutes"
+                android:key = "sunrise"
+                android:persistent = "true"
+                android:title = "Sunrise Offset"
+                app:allowDividerAbove = "true"
+                app:allowDividerBelow = "true"
+                app:iconSpaceReserved = "false"
+                app:useSimpleSummaryProvider = "true"/>
+            <ListPreference
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:defaultValue = "2"
+                android:entries = "@array/minuteslabel"
+                android:entryValues = "@array/minutes"
+                android:key = "zuhar"
+                android:persistent = "true"
+                android:title = "Zuhar Offset"
+                app:allowDividerAbove = "true"
+                app:allowDividerBelow = "true"
+                app:iconSpaceReserved = "false"
+                app:useSimpleSummaryProvider = "true"/>
+            <ListPreference
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:defaultValue = "2"
+                android:entries = "@array/minuteslabel"
+                android:entryValues = "@array/minutes"
+                android:key = "asar"
+                android:persistent = "true"
+                android:title = "Asar Offset"
+                app:allowDividerAbove = "true"
+                app:allowDividerBelow = "true"
+                app:iconSpaceReserved = "false"
+                app:useSimpleSummaryProvider = "true"/>
+            <ListPreference
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:defaultValue = "1"
+                android:entries = "@array/minuteslabel"
+                android:entryValues = "@array/minutes"
+                android:key = "maghrib"
+                android:persistent = "true"
+                android:title = "Maghrib Offset"
+                app:allowDividerAbove = "true"
+                app:allowDividerBelow = "true"
+                app:iconSpaceReserved = "false"
+                app:useSimpleSummaryProvider = "true"/>
+            <ListPreference
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:defaultValue = "2"
+                android:entries = "@array/minuteslabel"
+                android:entryValues = "@array/minutes"
+                android:key = "ishaa"
+                android:persistent = "true"
+                android:title = "Ishaa Offset"
+                app:allowDividerAbove = "true"
+                app:allowDividerBelow = "true"
+                app:iconSpaceReserved = "false"
+                app:useSimpleSummaryProvider = "true"/>
+
+        </PreferenceCategory>
+    </PreferenceCategory>
+
+</PreferenceScreen>

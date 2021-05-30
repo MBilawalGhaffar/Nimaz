@@ -1,0 +1,125 @@
+<PreferenceScreen xmlns:android = "http://schemas.android.com/apk/res/android"
+                  xmlns:app = "http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title = "Current Location">
+
+        <EditTextPreference
+            android:defaultValue = "Portlaoise"
+            android:dialogIcon = "@drawable/edit_location"
+            android:focusable = "auto"
+            android:hint = "Enter City Name"
+            android:icon = "@drawable/edit_location"
+            android:key = "location_input"
+            android:persistent = "true"
+            android:singleLine = "true"
+            android:title = "Location"
+            android:tooltipText = "Location for Prayer times"
+            android:visibility = "visible"
+            app:icon = "@drawable/edit_location"
+            app:useSimpleSummaryProvider = "true"/>
+
+        <EditTextPreference
+            android:defaultValue = "0.0"
+            android:enabled = "true"
+            android:key = "latitude"
+            android:selectAllOnFocus = "true"
+            android:singleLine = "true"
+            android:title = "Latitude"
+            app:iconSpaceReserved = "true"
+            app:useSimpleSummaryProvider = "true"/>
+        <EditTextPreference
+            android:defaultValue = "0.0"
+            android:enabled = "true"
+            android:key = "longitude"
+            android:selectAllOnFocus = "true"
+            android:singleLine = "true"
+            android:title = "Longitude"
+            app:iconSpaceReserved = "true"
+            app:useSimpleSummaryProvider = "true"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title = "Calculation">
+
+        <Preference
+            android:fragment = "com.arshadshah.nimaz.SettingsActivity$prayerTimeAdjust"
+            android:tooltipText = "Prayet time calculation Adjustments Section"
+            app:icon = "@drawable/time"
+            app:key = "time_calc"
+            app:title = "Prayer time Adjustments"/>
+    </PreferenceCategory>
+    <!--        opens any fragment in the app-->
+    <!--        android:fragment="com.arshadshah.nimaz.fragments.HomeFragment"-->
+
+    <PreferenceCategory android:title = "Alarms">
+
+        <Preference
+            android:id = "@+id/AdhanNotifications"
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:icon = "@drawable/notifications"
+            android:tooltipText = "Go to Notification settings"
+            app:key = "NotificationSound"
+            app:title = "Notifications Settings"/>
+        <Preference
+            android:id = "@+id/preference6"
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:icon = "@drawable/resetblack"
+            android:tooltipText = "Reset Notifications"
+            app:key = "ForceReset"
+            app:title = "Force Reset Notifications"/>
+        <Preference
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:icon = "@drawable/alarm"
+            android:tooltipText = "Test Alarm in 10 Seconds"
+            app:key = "setAlarmIn10"
+            app:title = "Set Alarm in 10 seconds"/>
+        <Preference
+            android:id = "@+id/preference"
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:clickable = "true"
+            app:icon = "@drawable/battery"
+            app:key = "opBattery"
+            app:title = "Battery Optimization"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:background = "#FFFFFF"
+        android:title = "Legal"
+        android:visibility = "visible">
+
+        <Preference
+            android:id = "@+id/preference2"
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:fragment = "com.arshadshah.nimaz.fragments.TandC"
+            app:icon = "@drawable/outline_article"
+            app:key = "tandc"
+            app:title = "@string/terms_amp_conditions"/>
+        <Preference
+            android:id = "@+id/preference4"
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:fragment = "com.arshadshah.nimaz.fragments.Privacypolicy"
+            app:icon = "@drawable/privacy"
+            app:key = "privacy"
+            app:title = "@string/privacy_policy"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title = "Other">
+
+        <Preference
+            android:id = "@+id/preference3"
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:fragment = "com.arshadshah.nimaz.fragments.HelpFragment"
+            app:icon = "@drawable/help"
+            app:key = "help"
+            app:title = "help"/>
+        <Preference
+            android:fragment = "com.arshadshah.nimaz.fragments.About"
+            app:icon = "@drawable/info"
+            app:key = "about"
+            app:title = "About"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

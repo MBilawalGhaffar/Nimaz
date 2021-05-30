@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name = "Widget.Theme.Nimaz.MyView" parent = "">
+        <item name = "android:background">@color/textwhite</item>
+    </style>
+</resources>
+

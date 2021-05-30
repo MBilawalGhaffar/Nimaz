@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name = "app_name">Nimaz</string>
+    <string name = "fajr">فجر</string>
+    <string name = "zuhar">ظہر</string>
+    <string name = "asar">عصر</string>
+    <string name = "maghrib">مغرب</string>
+    <string name = "ishaa">عشاء</string>
+    <string name = "sunrise">شروق</string>
+</resources>
