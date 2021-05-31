@@ -6,7 +6,6 @@ import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.os.CountDownTimer
 import android.widget.RemoteViews
 import androidx.annotation.RequiresApi
 import androidx.preference.PreferenceManager
@@ -21,9 +20,7 @@ import kotlin.properties.Delegates
 /**
  * Widget that displays the Prayer times in a grid layout Updates every 24 hours
  * @author Arshad Shah
- */    // countdown timer for prayers
-
-private lateinit var countDownTimer : CountDownTimer
+ */
 
 class Nimaz : AppWidgetProvider()
 {
