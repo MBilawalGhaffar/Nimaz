@@ -159,14 +159,21 @@ class NotificationHelper
         val notificationPendingIntent : PendingIntent =
             PendingIntent.getActivity(context , 8 , notificationIntent , 0)
 
-        if (title == "Test Adhan")
-        {
 
             val builder =
                 NotificationCompat.Builder(context , channel_id).apply {
                     setSmallIcon(R.drawable.ic_prayer)
                     setContentTitle(title)
-                    setContentText("This is a test alarm notification")
+                    if (title == "Test Adhan"){
+                        setContentText("This is a test Adhan")
+                    }
+                    else if(title == "Sunrise" || title == "شروق"){
+                        setContentText("The sun has risen!!")
+                    }
+                    else
+                    {
+                        setContentText("Time to Offer $title salat")
+                    }
                     priority = NotificationCompat.PRIORITY_HIGH
                     setContentIntent(notificationPendingIntent)
                     setAutoCancel(true)
@@ -174,25 +181,6 @@ class NotificationHelper
             with(NotificationManagerCompat.from(context)) {
                 notify(notification_id , builder.build())
             }
-
-        }
-        else
-        {
-
-            val builder =
-                NotificationCompat.Builder(context , channel_id).apply {
-                    setSmallIcon(R.drawable.ic_prayer)
-                    setContentTitle(title)
-                    setContentText("Time to Offer $title salat")
-                    priority = NotificationCompat.PRIORITY_HIGH
-                    setContentIntent(notificationPendingIntent)
-                    setAutoCancel(true)
-                }
-            with(NotificationManagerCompat.from(context)) {
-                notify(notification_id , builder.build())
-            }
-
-        }
         Log.i("Notifications" , "Notification $title Successfully Displayed")
     }
 }

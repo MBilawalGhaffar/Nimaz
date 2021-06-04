@@ -7,6 +7,7 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +15,6 @@ import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
@@ -65,11 +65,11 @@ open class CompassFragment : Fragment() , SensorEventListener
         image = root.findViewById(R.id.compass)
         if (! packageManager.hasSystemFeature(PackageManager.FEATURE_SENSOR_COMPASS))
         {
-            Toast.makeText(
-                requireContext() ,
-                "Your Device does not have a compass" ,
-                Toast.LENGTH_LONG
-                          ).show()
+            Snackbar.make(
+                compassLayout ,
+                "Your Device does not have a compass!" ,
+                BaseTransientBottomBar.LENGTH_SHORT
+                         ).show()
         }
         else
         {
@@ -118,11 +118,7 @@ open class CompassFragment : Fragment() , SensorEventListener
         super.onResume()
         if (! packageManager.hasSystemFeature(PackageManager.FEATURE_SENSOR_COMPASS))
         {
-            Snackbar.make(
-                compassLayout ,
-                "Your Device does not have a compass!" ,
-                BaseTransientBottomBar.LENGTH_SHORT
-                         ).show()
+            Log.e("Compass error", "Device doesnot have compass feature")
         }
         else
         {
@@ -136,11 +132,7 @@ open class CompassFragment : Fragment() , SensorEventListener
         super.onPause()
         if (! packageManager.hasSystemFeature(PackageManager.FEATURE_SENSOR_COMPASS))
         {
-            Snackbar.make(
-                compassLayout ,
-                "Your Device does not have a compass!" ,
-                BaseTransientBottomBar.LENGTH_SHORT
-                         ).show()
+            Log.e("Compass error", "Device doesnot have compass feature")
         }
         else
         {
