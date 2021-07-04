@@ -21,7 +21,9 @@
         <EditTextPreference
             android:defaultValue = "0.0"
             android:enabled = "true"
+            android:hint = "Enter the latitude"
             android:key = "latitude"
+            android:persistent = "true"
             android:selectAllOnFocus = "true"
             android:singleLine = "true"
             android:title = "Latitude"
@@ -30,7 +32,9 @@
         <EditTextPreference
             android:defaultValue = "0.0"
             android:enabled = "true"
+            android:hint = "Enter the Longitude"
             android:key = "longitude"
+            android:persistent = "true"
             android:selectAllOnFocus = "true"
             android:singleLine = "true"
             android:title = "Longitude"

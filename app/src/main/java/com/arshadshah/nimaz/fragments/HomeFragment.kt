@@ -139,7 +139,7 @@ class HomeFragment : Fragment()
                 putString("location_input" , "No Network")
                 apply()
             }
-            cityName.text = sharedPreferences.getString("location_input" , "Portlaoise").toString()
+            cityName.text = sharedPreferences.getString("location_input" , "Portlaoise")
             latitude = sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
             longitude = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()
         }
