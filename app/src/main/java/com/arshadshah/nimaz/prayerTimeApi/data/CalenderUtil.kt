@@ -1,6 +1,7 @@
 package com.arshadshah.nimaz.prayerTimeApi.data
 
 import java.util.*
+import kotlin.math.roundToInt
 
 object CalendarUtil
 {
@@ -27,7 +28,7 @@ object CalendarUtil
         calendar.time = `when`
         val minute = calendar[Calendar.MINUTE].toDouble()
         val second = calendar[Calendar.SECOND].toDouble()
-        calendar[Calendar.MINUTE] = (minute + Math.round(second / 60)).toInt()
+        calendar[Calendar.MINUTE] = (minute + (second / 60).roundToInt()).toInt()
         calendar[Calendar.SECOND] = 0
         return calendar.time
     }
