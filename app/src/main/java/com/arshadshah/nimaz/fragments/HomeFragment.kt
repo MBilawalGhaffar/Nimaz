@@ -1,22 +1,17 @@
 package com.arshadshah.nimaz.fragments
 
 import android.annotation.SuppressLint
-import android.app.NotificationManager
-import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.Nullable
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
@@ -294,81 +289,6 @@ class HomeFragment : Fragment()
             openNotificationChannel(CHANNEL_ID5)
         }
 
-//        //checks if notification channel is enabled and changes the icon to appropriate value
-//        val fajrEnabled = isNotificationChannelEnabled(requireContext() , CHANNEL_ID)
-//        val sunriseEnabled = isNotificationChannelEnabled(requireContext() , CHANNEL_ID1)
-//        val zuharEnabled = isNotificationChannelEnabled(requireContext() , CHANNEL_ID2)
-//        val asarEnabled = isNotificationChannelEnabled(requireContext() , CHANNEL_ID3)
-//        val maghribEnabled = isNotificationChannelEnabled(requireContext() , CHANNEL_ID4)
-//        val ishaaEnabled = isNotificationChannelEnabled(requireContext() , CHANNEL_ID5)
-//
-//        if (! fajrEnabled)
-//        {
-//            fajrSound.setBackgroundResource(0)
-//            fajrSound.setBackgroundResource(R.drawable.notificationoff)
-//        }
-//        else
-//        {
-//            fajrSound.setBackgroundResource(0)
-//            fajrSound.setBackgroundResource(R.drawable.notifications)
-//        }
-//
-//
-//        if (! sunriseEnabled)
-//        {
-//            sunriseSound.setBackgroundResource(0)
-//            sunriseSound.setBackgroundResource(R.drawable.notificationoff)
-//        }
-//        else
-//        {
-//            sunriseSound.setBackgroundResource(0)
-//            sunriseSound.setBackgroundResource(R.drawable.notifications)
-//        }
-//
-//        if (! zuharEnabled)
-//        {
-//            zuharSound.setBackgroundResource(0)
-//            zuharSound.setBackgroundResource(R.drawable.notificationoff)
-//        }
-//        else
-//        {
-//            zuharSound.setBackgroundResource(0)
-//            zuharSound.setBackgroundResource(R.drawable.notifications)
-//        }
-//
-//        if (! asarEnabled)
-//        {
-//            asarSound.setBackgroundResource(0)
-//            asarSound.setBackgroundResource(R.drawable.notificationoff)
-//        }
-//        else
-//        {
-//            asarSound.setBackgroundResource(0)
-//            asarSound.setBackgroundResource(R.drawable.notifications)
-//        }
-//
-//        if (! maghribEnabled)
-//        {
-//            maghribSound.setBackgroundResource(0)
-//            maghribSound.setBackgroundResource(R.drawable.notificationoff)
-//        }
-//        else
-//        {
-//            maghribSound.setBackgroundResource(0)
-//            maghribSound.setBackgroundResource(R.drawable.notifications)
-//        }
-//
-//        if (! ishaaEnabled)
-//        {
-//            ishaaSound.setBackgroundResource(0)
-//            ishaaSound.setBackgroundResource(R.drawable.notificationoff)
-//        }
-//        else
-//        {
-//            ishaaSound.setBackgroundResource(0)
-//            ishaaSound.setBackgroundResource(R.drawable.notifications)
-//        }
-
 //        // end of main code
         return root
     }
@@ -382,27 +302,5 @@ class HomeFragment : Fragment()
             .putExtra(Settings.EXTRA_CHANNEL_ID , channelId)
         startActivity(intent)
     }
-
-
-    private fun isNotificationChannelEnabled(
-        context : Context ,
-        @Nullable channelId : String?
-                                            ) : Boolean
-    {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-        {
-            if (! TextUtils.isEmpty(channelId))
-            {
-                val manager =
-                    context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-                val channel = manager.getNotificationChannel(channelId)
-                return channel.importance != NotificationManager.IMPORTANCE_NONE
-            }
-            false
-        }
-        else
-        {
-            NotificationManagerCompat.from(context).areNotificationsEnabled()
-        }
-    }
+    
 } // end of home fragment
