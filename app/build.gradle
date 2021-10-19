@@ -2,16 +2,6 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
 }
-
-android {
-    signingConfigs {
-        'version1.0' {
-            keyAlias 'key0'
-            keyPassword 'Hassaanis140%cute'
-            storePassword 'Hassaanis140%cute'
-            storeFile file('C:\\Users\\shaha\\OneDrive - Technological University Dublin\\practice programs\\android app\\keystore\\upload-keystore.jks')
-        }
-    }
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
@@ -21,14 +11,12 @@ android {
         targetSdkVersion 30
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.'version1.0'
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.'version1.0'
         }
     }
     compileOptions {
