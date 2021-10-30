@@ -50,8 +50,8 @@ class Tasbeeh : Fragment()
 
         // variables for the counter
         val main_display : TextView = root.findViewById(R.id.Display)
-        val Add_button : Button = root.findViewById(R.id.plus)
-        val remove_button : Button = root.findViewById(R.id.minus)
+        val Add_button : ImageView = root.findViewById(R.id.plus)
+        val remove_button : ImageView = root.findViewById(R.id.minus)
         val reset_button : ImageButton = root.findViewById(R.id.reset)
         val Vibrate_button : ImageButton = root.findViewById(R.id.vibrate)
         val edit_button : ImageView = root.findViewById(R.id.edit_button)
@@ -270,7 +270,7 @@ class Tasbeeh : Fragment()
                 }
             }
         }
-        reset_button.setBackgroundResource(R.drawable.resetblack)
+        reset_button.setBackgroundResource(R.drawable.reset)
         // reset button listener
         reset_button.setOnClickListener {
             val shouldVibrate = sharedPreferences.getBoolean("shouldvibrate" , true)

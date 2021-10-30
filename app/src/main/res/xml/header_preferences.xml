@@ -67,7 +67,7 @@
             android:id = "@+id/preference6"
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
-            android:icon = "@drawable/resetblack"
+            android:icon = "@drawable/reset"
             android:tooltipText = "Reset Notifications"
             app:key = "ForceReset"
             app:title = "Force Reset Notifications"/>
@@ -97,7 +97,7 @@
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
             android:fragment = "com.arshadshah.nimaz.fragments.TandC"
-            app:icon = "@drawable/outline_article"
+            app:icon = "@drawable/filetext"
             app:key = "tandc"
             app:title = "@string/terms_amp_conditions"/>
         <Preference

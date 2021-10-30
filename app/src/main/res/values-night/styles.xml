@@ -1,6 +1,6 @@
 <resources>
 
     <style name = "Widget.Theme.Nimaz.MyView" parent = "">
-        <item name = "android:background">@color/text</item>
+        <item name = "android:background">?attr/colorOnSecondary</item>
     </style>
 </resources>

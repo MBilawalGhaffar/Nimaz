@@ -3,7 +3,7 @@
 
 
     <style name = "Widget.Theme.Nimaz.MyView" parent = "">
-        <item name = "android:background">@color/textwhite</item>
+        <item name = "android:background">?attr/colorSecondaryVariant</item>
     </style>
 </resources>
 

@@ -83,12 +83,16 @@
     <item>
         <shape
             android:shape = "rectangle"
-            android:tint = "@color/card">
+            android:tint = "?attr/cardBackground">
             <size
                 android:height = "200dp"
                 android:width = "200dp"/>
-            <corners android:radius = "10dp"/>
-            <padding android:padding = "20dp"/>
+            <corners android:radius = "15dp"/>
+            <padding
+                android:bottom = "10dp"
+                android:left = "10dp"
+                android:right = "10dp"
+                android:top = "10dp"/>
         </shape>
     </item>
 

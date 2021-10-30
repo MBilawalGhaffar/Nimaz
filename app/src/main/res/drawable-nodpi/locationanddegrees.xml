@@ -83,7 +83,7 @@
     <item>
         <shape
             android:shape = "rectangle"
-            android:tint = "@color/background">
+            android:tint = "?attr/arabicName">
             <size
                 android:height = "50dp"
                 android:width = "200dp"/>
@@ -98,7 +98,7 @@
         android:width = "2dp"
         android:gravity = "center">
         <shape android:shape = "rectangle">
-            <solid android:color = "@color/card"/>
+            <solid android:color = "?attr/whiteLinesCompass"/>
             <corners android:radius = "10dp"/>
         </shape>
     </item>

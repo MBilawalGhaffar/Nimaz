@@ -4,8 +4,7 @@
 
     <item>
         <shape
-            android:shape = "rectangle"
-            android:tint = "@color/card">
+            android:shape = "rectangle">
             <size
                 android:height = "100dp"
                 android:width = "200dp"/>
@@ -18,7 +17,7 @@
         android:height = "2dp"
         android:gravity = "bottom">
         <shape android:shape = "rectangle">
-            <solid android:color = "@color/background"/>
+            <solid android:color = "?attr/lines"/>
             <corners android:radius = "10dp"/>
         </shape>
     </item>

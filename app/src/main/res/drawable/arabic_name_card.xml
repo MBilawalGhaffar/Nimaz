@@ -83,7 +83,7 @@
     <item>
         <shape
             android:shape = "rectangle"
-            android:tint = "?attr/colorSecondaryVariant">
+            android:tint = "?attr/arabicName">
             <size
                 android:height = "50dp"
                 android:width = "50dp"/>

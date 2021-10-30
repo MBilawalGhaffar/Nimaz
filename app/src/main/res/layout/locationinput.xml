@@ -47,8 +47,7 @@
             android:importantForAutofill = "no"
             android:inputType = "text"
             android:padding = "10dp"
-            android:singleLine = "true"
-            android:textColor = "@color/text"/>
+            android:singleLine = "true"/>
 
         <LinearLayout
             android:layout_width = "240dp"

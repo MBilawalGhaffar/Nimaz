@@ -33,7 +33,7 @@
     <string name = "menuOptionreference2" translatable = "false">Main Icon, icon for compass for app taken from: </string>
     <string name = "mainIconLink" translatable = "false"><a href = "https://www.freepik.com">https://www.freepik.com/</a></string>
 
-    <string name = "menuOptionreference3" translatable = "false">Code for calculation of prayer times taken from: </string>
+    <string name = "menuOptionreference3" translatable = "false">Code for calculation of prayer times based on : </string>
     <string name = "codeforcalculation" translatable = "false"><a href = "https://www.github.com/batoulapps/adhan-java">https://github.com/batoulapps/adhan-java</a></string>
 
 
@@ -65,11 +65,6 @@
     <string name = "reply_title" translatable = "false">Default reply action</string>
 
     <!-- Sync Preferences -->
-    <string name = "sync_title" translatable = "false">Sync email periodically</string>
-    <string name = "attachment_title" translatable = "false">Download incoming attachments</string>
-    <string name = "attachment_summary_on" translatable = "false">Automatically download attachments for incoming emails
-    </string>
-    <string name = "attachment_summary_off" translatable = "false">Only download attachments when manually requested</string>
 
     <string name = "time_left" translatable = "false">Time Left:</string>
     <string name = "_00_00_00" translatable = "false">00.00.00</string>

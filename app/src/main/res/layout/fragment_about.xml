@@ -9,7 +9,6 @@
     <ScrollView
         android:layout_width = "match_parent"
         android:layout_height = "match_parent"
-        android:background = "@color/background"
         app:layout_constraintBottom_toBottomOf = "parent"
         app:layout_constraintEnd_toEndOf = "parent"
         app:layout_constraintStart_toStartOf = "parent"
@@ -39,7 +38,6 @@
                         android:fontFamily = "@font/nunito"
                         android:padding = "5dp"
                         android:text = "@string/version"
-                        android:textColor = "@color/text"
                         android:textSize = "24sp"
                         android:textStyle = "bold"
                         app:layout_constraintBottom_toBottomOf = "parent"
@@ -57,7 +55,6 @@
                         android:fontFamily = "@font/nunito"
                         android:padding = "5dp"
                         android:text = "@string/_0_0"
-                        android:textColor = "@color/text"
                         android:textSize = "24sp"
                         android:textStyle = "bold"
                         app:layout_constraintBottom_toBottomOf = "parent"
@@ -85,7 +82,7 @@
                     android:fontFamily = "@font/nunito"
                     android:padding = "10dp"
                     android:text = "@string/about_author"
-                    android:textColor = "@color/text"
+                    android:textAlignment = "center"
                     android:textSize = "24sp"
                     android:textStyle = "bold"/>
 
@@ -97,7 +94,6 @@
                     android:gravity = "center"
                     android:padding = "5dp"
                     android:text = "@string/author"
-                    android:textColor = "@color/text"
                     android:textSize = "24sp"
                     android:textStyle = "bold"/>
 
@@ -108,7 +104,7 @@
                     android:fontFamily = "@font/nunito"
                     android:padding = "8dp"
                     android:text = "@string/occupation"
-                    android:textColor = "@color/text"
+                    android:textAlignment = "center"
                     android:textSize = "18sp"/>
 
                 <TextView
@@ -118,7 +114,6 @@
                     android:fontFamily = "@font/nunito"
                     android:padding = "8dp"
                     android:text = "@string/developement_flag"
-                    android:textColor = "@color/text"
                     android:textSize = "18sp"/>
 
                 <TextView
@@ -128,14 +123,12 @@
                     android:fontFamily = "@font/nunito"
                     android:padding = "8dp"
                     android:text = "Nimaz is created with the help of Allah for the sake of Allah."
-                    android:textColor = "#000000"
                     android:textSize = "18sp"/>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width = "match_parent"
                     android:layout_height = "match_parent"
                     android:layout_margin = "10dp"
-                    app:cardBackgroundColor = "@color/background"
                     app:cardCornerRadius = "10dp"
                     app:cardElevation = "5dp">
 
@@ -150,7 +143,6 @@
                             android:fontFamily = "@font/nunito"
                             android:padding = "8dp"
                             android:text = "Github"
-                            android:textColor = "#000000"
                             android:textSize = "20sp"
                             android:textStyle = "bold"
                             app:layout_constraintEnd_toEndOf = "parent"
@@ -162,12 +154,10 @@
                             android:layout_width = "match_parent"
                             android:layout_height = "48dp"
                             android:autoLink = "web"
-                            android:background = "#000000"
                             android:fontFamily = "@font/nunito"
                             android:gravity = "center"
                             android:padding = "10dp"
                             android:text = "https://github.com/arshad-shah"
-                            android:textColor = "#FFFFFF"
                             android:textSize = "16sp"
                             android:textStyle = "bold"
                             app:layout_constraintBottom_toBottomOf = "parent"
@@ -182,7 +172,6 @@
                     android:layout_width = "match_parent"
                     android:layout_height = "match_parent"
                     android:layout_margin = "10dp"
-                    app:cardBackgroundColor = "@color/background"
                     app:cardCornerRadius = "10dp"
                     app:cardElevation = "5dp">
 
@@ -197,7 +186,6 @@
                             android:fontFamily = "@font/nunito"
                             android:padding = "8dp"
                             android:text = "Email"
-                            android:textColor = "#000000"
                             android:textSize = "20sp"
                             android:textStyle = "bold"
                             app:layout_constraintEnd_toEndOf = "parent"
@@ -209,12 +197,10 @@
                             android:layout_width = "match_parent"
                             android:layout_height = "48dp"
                             android:autoLink = "email"
-                            android:background = "@color/text"
                             android:fontFamily = "@font/nunito"
                             android:gravity = "center"
                             android:padding = "10dp"
                             android:text = "shaharshad57@gmail.com"
-                            android:textColor = "@color/card"
                             android:textSize = "16sp"
                             android:textStyle = "bold"
                             app:layout_constraintBottom_toBottomOf = "parent"
@@ -241,7 +227,6 @@
                     android:fontFamily = "@font/nunito"
                     android:padding = "10dp"
                     android:text = "@string/references"
-                    android:textColor = "@color/text"
                     android:textSize = "30sp"
                     android:textStyle = "bold"/>
 
@@ -249,7 +234,6 @@
                     android:layout_width = "match_parent"
                     android:layout_height = "match_parent"
                     android:layout_margin = "10dp"
-                    app:cardBackgroundColor = "@color/background"
                     app:cardCornerRadius = "10dp"
                     app:cardElevation = "5dp">
 
@@ -264,7 +248,6 @@
                             android:fontFamily = "@font/nunito"
                             android:padding = "8dp"
                             android:text = "@string/menuOptionreference3"
-                            android:textColor = "@color/text"
                             android:textSize = "18sp"
                             app:layout_constraintEnd_toEndOf = "parent"
                             app:layout_constraintStart_toStartOf = "parent"
@@ -275,12 +258,10 @@
                             android:layout_width = "wrap_content"
                             android:layout_height = "wrap_content"
                             android:autoLink = "web"
-                            android:background = "@color/text"
                             android:fontFamily = "@font/nunito"
                             android:gravity = "center"
                             android:padding = "8dp"
                             android:text = "@string/codeforcalculation"
-                            android:textColor = "@color/text"
                             android:textSize = "16sp"
                             android:textStyle = "bold"
                             app:layout_constraintBottom_toBottomOf = "parent"
@@ -295,7 +276,6 @@
                     android:layout_width = "match_parent"
                     android:layout_height = "match_parent"
                     android:layout_margin = "10dp"
-                    app:cardBackgroundColor = "@color/background"
                     app:cardCornerRadius = "10dp"
                     app:cardElevation = "5dp">
 
@@ -310,7 +290,6 @@
                             android:fontFamily = "@font/nunito"
                             android:padding = "8dp"
                             android:text = "@string/menuOptionreference1"
-                            android:textColor = "@color/text"
                             android:textSize = "18sp"
                             app:layout_constraintEnd_toEndOf = "parent"
                             app:layout_constraintStart_toStartOf = "parent"
@@ -321,12 +300,10 @@
                             android:layout_width = "match_parent"
                             android:layout_height = "wrap_content"
                             android:autoLink = "web"
-                            android:background = "@color/text"
                             android:fontFamily = "@font/nunito"
                             android:gravity = "center"
                             android:padding = "8dp"
                             android:text = "@string/menuOptinTasbeehLink"
-                            android:textColor = "@color/text"
                             android:textSize = "16sp"
                             android:textStyle = "bold"
                             app:layout_constraintBottom_toBottomOf = "parent"
@@ -341,7 +318,6 @@
                     android:layout_width = "match_parent"
                     android:layout_height = "match_parent"
                     android:layout_margin = "10dp"
-                    app:cardBackgroundColor = "@color/background"
                     app:cardCornerRadius = "10dp"
                     app:cardElevation = "5dp">
 
@@ -356,7 +332,6 @@
                             android:fontFamily = "@font/nunito"
                             android:padding = "8dp"
                             android:text = "@string/menuOptionreference2"
-                            android:textColor = "@color/text"
                             android:textSize = "18sp"
                             app:layout_constraintEnd_toEndOf = "parent"
                             app:layout_constraintStart_toStartOf = "parent"
@@ -367,12 +342,10 @@
                             android:layout_width = "match_parent"
                             android:layout_height = "48dp"
                             android:autoLink = "web"
-                            android:background = "@color/text"
                             android:fontFamily = "@font/nunito"
                             android:gravity = "center"
                             android:padding = "8dp"
                             android:text = "@string/mainIconLink"
-                            android:textColor = "@color/text"
                             android:textSize = "16sp"
                             android:textStyle = "bold"
                             app:layout_constraintBottom_toBottomOf = "parent"

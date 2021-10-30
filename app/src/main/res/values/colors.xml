@@ -1,29 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!--//main colors used-->
-    <color name = "background">#FFECB3</color>
-    <color name = "backgroundstart">#FFECB3</color>
-    <color name = "nav_background">#FFFFFF</color>
-    <color name = "card">#FFFFFF</color>
-
-    <color name = "text">#000000</color>
-    <color name = "textwhite">#FFFFFF</color>
-
-    <!--    selected and not selected-->
-    <color name = "nav_background_selected">#050609</color>
-    <color name = "nav_background_notselected">#B5932E</color>
-
-    <!--   a darker variant of the primary color, used for
-    the status bar (on Android 5.0+) and contextual app bars -->
-    <color name = "colorPrimaryDark">#000000</color>
-
-    <!--   a secondary color for controls like checkboxes and text fields -->
-    <color name = "colorAccent">#000000</color>
-    <color name = "light_blue_50">#FFE1F5FE</color>
-    <color name = "light_blue_200">#FF81D4FA</color>
-    <color name = "light_blue_600">#FF039BE5</color>
-    <color name = "light_blue_900">#FF01579B</color>
-
-
+    <color name="primaryColor">#ffc818</color>
+    <color name="primaryLightColor">#fffb58</color>
+    <color name="primaryDarkColor">#c79800</color>
+    <color name="secondaryColor">#c19c0b</color>
+    <color name="secondaryLightColor">#f7cd49</color>
+    <color name="secondaryDarkColor">#8c6e00</color>
+    <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#000000</color>
+    <color name="background">#FFECB3</color>
+<color name="white">#FFFFFF</color>
+    <color name="cardBackground">#FFFFFF</color>
+    <color name="highlight">#F3F3F3</color>
+    <color name="highlightDark">#959595</color>
+<color name="black">#000000</color>
 </resources>

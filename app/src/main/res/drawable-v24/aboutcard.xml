@@ -83,7 +83,7 @@
     <item>
         <shape
             android:shape = "rectangle"
-            android:tint = "@color/card">
+            android:tint = "?attr/cardBackground">
             <size
                 android:height = "200dp"
                 android:width = "200dp"/>

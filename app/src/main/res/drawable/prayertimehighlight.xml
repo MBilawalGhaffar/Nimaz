@@ -5,7 +5,7 @@
     <item>
         <shape
             android:shape = "rectangle"
-            android:tint = "#DFDFDF">
+            android:tint = "?attr/highlight">
             <size
                 android:height = "100dp"
                 android:width = "200dp"/>

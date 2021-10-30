@@ -31,7 +31,7 @@
             android:layout_marginBottom = "10dp"
             android:fontFamily = "@font/nunito"
             android:text = "@string/fajr"
-            android:textColor = "@color/text"
+            android:textColor = "?attr/appWidgetTextColor"
             android:textSize = "16sp"
             android:textStyle = "bold"/>
 
@@ -43,7 +43,6 @@
             android:layout_margin = "5dp"
             android:fontFamily = "@font/nunito"
             android:text = "@string/fajr_time"
-            android:textColor = "@color/text"
             android:textSize = "14sp"
             android:textStyle = "bold"
             tools:text = "3:46 am"/>
@@ -56,7 +55,6 @@
         android:layout_row = "0"
         android:layout_column = "1"
         android:layout_marginStart = "2dp"
-        android:background = "@drawable/widgethighlight"
         android:orientation = "vertical"
         android:visibility = "visible">
 
@@ -68,7 +66,6 @@
             android:layout_marginBottom = "10dp"
             android:fontFamily = "@font/nunito"
             android:text = "@string/zuhar"
-            android:textColor = "@color/text"
             android:textSize = "16sp"
             android:textStyle = "bold"/>
 
@@ -80,7 +77,6 @@
             android:layout_margin = "5dp"
             android:fontFamily = "@font/nunito"
             android:text = "@string/Zuhar_time"
-            android:textColor = "@color/text"
             android:textSize = "14sp"
             android:textStyle = "bold"
             tools:text = "3:46 am"/>
@@ -93,7 +89,6 @@
         android:layout_row = "0"
         android:layout_column = "2"
         android:layout_marginStart = "2dp"
-        android:background = "@drawable/widgethighlight"
         android:orientation = "vertical"
         android:visibility = "visible">
 
@@ -105,7 +100,6 @@
             android:layout_marginBottom = "10dp"
             android:fontFamily = "@font/nunito"
             android:text = "@string/asar"
-            android:textColor = "@color/text"
             android:textSize = "16sp"
             android:textStyle = "bold"/>
 
@@ -117,7 +111,6 @@
             android:layout_margin = "5dp"
             android:fontFamily = "@font/nunito"
             android:text = "@string/Asar_time"
-            android:textColor = "@color/text"
             android:textSize = "14sp"
             android:textStyle = "bold"
             tools:text = "3:46 am"/>
@@ -130,7 +123,6 @@
         android:layout_row = "0"
         android:layout_column = "3"
         android:layout_marginStart = "2dp"
-        android:background = "@drawable/widgethighlight"
         android:orientation = "vertical"
         android:visibility = "visible">
 
@@ -142,7 +134,6 @@
             android:layout_marginBottom = "10dp"
             android:fontFamily = "@font/nunito"
             android:text = "@string/maghrib"
-            android:textColor = "@color/text"
             android:textSize = "16sp"
             android:textStyle = "bold"/>
 
@@ -154,7 +145,6 @@
             android:layout_margin = "5dp"
             android:fontFamily = "@font/nunito"
             android:text = "@string/Maghrib_time"
-            android:textColor = "@color/text"
             android:textSize = "14sp"
             android:textStyle = "bold"
             tools:text = "3:46 am"/>
@@ -168,7 +158,6 @@
         android:layout_row = "0"
         android:layout_column = "4"
         android:layout_marginStart = "2dp"
-        android:background = "@drawable/widgethighlight"
         android:orientation = "vertical"
         android:visibility = "visible">
 
@@ -180,7 +169,6 @@
             android:layout_marginBottom = "10dp"
             android:fontFamily = "@font/nunito"
             android:text = "@string/ishaa"
-            android:textColor = "@color/text"
             android:textSize = "16sp"
             android:textStyle = "bold"/>
 
@@ -192,7 +180,6 @@
             android:layout_margin = "5dp"
             android:fontFamily = "@font/nunito"
             android:text = "@string/Ishaa_time"
-            android:textColor = "@color/text"
             android:textSize = "14sp"
             android:textStyle = "bold"
             tools:text = "10:46 am"/>

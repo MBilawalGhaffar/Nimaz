@@ -1,22 +1,30 @@
-<resources xmlns:tools = "http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name = "Theme.Nimaz" parent = "Theme.MaterialComponents.Light">
-        <!-- Primary brand color. -->
-        <item name = "colorPrimary">#E4B423</item>
-        <item name = "colorPrimaryVariant">@color/nav_background_notselected</item>
-        <item name = "colorOnPrimary">@color/text</item>
-        <!-- Secondary brand color. -->
-        <item name = "colorSecondary">#E4B423</item>
-        <item name = "colorSecondaryVariant">@color/nav_background_notselected</item>
-        <item name = "colorOnSecondary">@color/text</item>
-        <!-- Status bar color. -->
-        <item name = "android:statusBarColor" tools:targetApi = "l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
-    </style>
+<resources xmlns:tools="http://schemas.android.com/tools">
+<!-- Base application theme. -->
+<style name="Theme.Nimaz" parent="Theme.MaterialComponents.Light">
+    <!-- Primary brand color. -->
+    <item name="colorPrimary">@color/primaryColor</item>
+    <item name="colorPrimaryVariant">@color/primaryLightColor</item>
+    <item name="colorOnPrimary">@color/primaryTextColor</item>
+    <!-- Secondary brand color. -->
+    <item name="colorSecondary">@color/secondaryColor</item>
+    <item name="colorSecondaryVariant">@color/secondaryLightColor</item>
+    <item name="colorOnSecondary">@color/black</item>
+    <!-- Status bar color. -->
+    <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+    <item name="android:windowLightStatusBar">true</item>
+    <!-- Customize your theme here. -->
+    <item name="android:textColor">?attr/colorOnPrimary</item>
+    <item name="android:windowBackground">@color/background</item>
+    <item name="cardBackground">@color/cardBackground</item>
+    <item name="lines">@color/background</item>
+    <item name="whiteLines">@color/white</item>
+    <item name="whiteLinesCompass">@color/white</item>
+    <item name="highlight">@color/highlight</item>
+    <item name="arabicName">@color/background</item>
+</style>
 
-
-    <style name = "ThemeOverlay.Nimaz.AppWidgetContainer" parent = "Theme.AppCompat.DayNight">
-        <item name = "appWidgetBackgroundColor">@color/background</item>
-        <item name = "appWidgetTextColor">@color/text</item>
-    </style>
+<style name = "ThemeOverlay.Nimaz.AppWidgetContainer" parent = "Theme.AppCompat.DayNight">
+    <item name = "appWidgetBackgroundColor">@color/background</item>
+    <item name = "appWidgetTextColor">?attr/colorOnPrimary</item>
+</style>
 </resources>

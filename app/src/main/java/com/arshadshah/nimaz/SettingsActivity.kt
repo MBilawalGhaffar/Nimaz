@@ -4,22 +4,24 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.PendingIntent
 import android.content.Intent
-import android.os.*
+import android.os.Build
+import android.os.Bundle
+import android.os.PowerManager
 import android.provider.Settings
 import android.text.InputType
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.Toast
-import androidx.activity.addCallback
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
 import androidx.preference.*
-import com.arshadshah.nimaz.helperClasses.*
-import com.arshadshah.nimaz.prayerTimeApi.*
+import com.arshadshah.nimaz.helperClasses.Alarms
+import com.arshadshah.nimaz.helperClasses.NetworkChecker
+import com.arshadshah.nimaz.helperClasses.NotificationHelper
+import com.arshadshah.nimaz.helperClasses.prayerTimeThread
 import com.arshadshah.nimaz.recievers.ReminderReciever
-import java.util.*
 
 /**
  * Settings for the application.
@@ -36,14 +38,6 @@ class SettingsActivity :
     {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_activity)
-
-        // This callback will only be called when MyFragment is at least Started.
-        val callback = this.onBackPressedDispatcher.addCallback(this) {
-            // Handle the back button event
-            val intent = Intent(this@SettingsActivity , homeActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
 
         if (savedInstanceState == null)
         {
@@ -80,8 +74,6 @@ class SettingsActivity :
         }
         else
         {
-            val intent = Intent(this@SettingsActivity , homeActivity::class.java)
-            startActivity(intent)
             finish()
         }
         return super.onSupportNavigateUp()

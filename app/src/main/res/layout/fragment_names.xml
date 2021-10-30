@@ -4,7 +4,6 @@
                                                    xmlns:tools = "http://schemas.android.com/tools"
                                                    android:layout_width = "match_parent"
                                                    android:layout_height = "match_parent"
-                                                   android:background = "@color/background"
                                                    tools:context = ".fragments.NamesFragment">
 
     <LinearLayout
@@ -30,7 +29,6 @@
                 android:gravity = "center_horizontal"
                 android:text = "@string/allah"
                 android:textAlignment = "center"
-                android:textColor = "@color/text"
                 android:textSize = "36sp"
                 android:textStyle = "bold"
                 app:layout_constraintBottom_toBottomOf = "parent"
@@ -56,7 +54,6 @@
             android:layout_width = "match_parent"
             android:layout_height = "match_parent"
             android:background = "@drawable/nameslist"
-            android:divider = "#000"
             android:dividerHeight = "1dp"
             android:keepScreenOn = "true">
 

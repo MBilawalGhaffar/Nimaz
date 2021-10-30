@@ -55,21 +55,24 @@ internal class CustomAdapter(
         return false
     }
 
-    override fun getView(position : Int , convertView : View? , parent : ViewGroup) : View
+    override fun getView(position : Int , ConvertView : View? , parent : ViewGroup) : View?
     {
-        val convertView : View
+        var convertView : View? = ConvertView
         val subjectData = arrayList[position]
-        val layoutInflater = LayoutInflater.from(context)
-        convertView = layoutInflater.inflate(R.layout.row_item , null)
-        val number = convertView.findViewById<TextView>(R.id.number)
-        val EnglishName = convertView.findViewById<TextView>(R.id.EnglishName)
-        val ArabicName = convertView.findViewById<TextView>(R.id.ArabicName)
-        val Translation = convertView.findViewById<TextView>(R.id.Translation)
 
-        number.text = subjectData.number
-        EnglishName.text = subjectData.englishName
-        ArabicName.text = subjectData.arabicName
-        Translation.text = subjectData.translation
+        if(convertView == null){
+            val layoutInflater = LayoutInflater.from(context)
+            convertView = layoutInflater.inflate(R.layout.row_item , null)
+        }
+        val number = convertView?.findViewById<TextView>(R.id.number)
+        val EnglishName = convertView?.findViewById<TextView>(R.id.EnglishName)
+        val ArabicName = convertView?.findViewById<TextView>(R.id.ArabicName)
+        val Translation = convertView?.findViewById<TextView>(R.id.Translation)
+
+        number?.text = subjectData.number
+        EnglishName?.text = subjectData.englishName
+        ArabicName?.text = subjectData.arabicName
+        Translation?.text = subjectData.translation
         return convertView
     }
 
