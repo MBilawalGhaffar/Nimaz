@@ -23,8 +23,15 @@
     <item name="arabicName">@color/background</item>
 </style>
 
-<style name = "ThemeOverlay.Nimaz.AppWidgetContainer" parent = "Theme.AppCompat.DayNight">
+<style name = "ThemeOverlay.Nimaz.AppWidgetContainer" parent = "Theme.AppCompat.Light">
     <item name = "appWidgetBackgroundColor">@color/background</item>
     <item name = "appWidgetTextColor">?attr/colorOnPrimary</item>
 </style>
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="colorPrimary">?attr/colorPrimary</item>
+        <item name="colorPrimaryDark">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+    </style>
 </resources>

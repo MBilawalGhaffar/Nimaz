@@ -120,6 +120,7 @@
     <string name = "app_is_already_on_battery_optimization_list" translatable = "false">Nimaz is Ignoring battery Optimization</string>
     <string name = "okay" translatable = "false">Okay</string>
     <string name = "todo" translatable = "false">TODO</string>
+    <string name="app_widget_description">This is an app widget description</string>
 
     <!--    location-->
 

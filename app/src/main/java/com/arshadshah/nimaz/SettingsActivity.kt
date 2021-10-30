@@ -74,6 +74,12 @@ class SettingsActivity :
         }
         else
         {
+            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+            val isFirstInstall = sharedPreferences.getBoolean("isFirstInstall" , true)
+            if(isFirstInstall){
+                val intent = Intent(this@SettingsActivity , homeActivity::class.java)
+                startActivity(intent)
+            }
             finish()
         }
         return super.onSupportNavigateUp()

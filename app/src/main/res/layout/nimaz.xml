@@ -1,188 +1,192 @@
-<GridLayout xmlns:android = "http://schemas.android.com/apk/res/android"
-            xmlns:tools = "http://schemas.android.com/tools"
-            android:id = "@+id/widget"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:background = "@drawable/widgetbackground"
-            android:clickable = "true"
-            android:columnCount = "6"
-            android:focusable = "true"
-            android:orientation = "horizontal"
-            android:padding = "3dp"
-            android:rowCount = "1"
-            android:theme = "@style/ThemeOverlay.Nimaz.AppWidgetContainer">
-
+<androidx.gridlayout.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/widgetbackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:padding="3dp"
+    android:theme="@style/ThemeOverlay.Nimaz.AppWidgetContainer"
+    app:columnCount="6"
+    app:orientation="horizontal"
+    app:rowCount="1">
 
     <LinearLayout
-        android:id = "@+id/fajrwidgethighlight"
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:layout_row = "0"
-        android:layout_column = "0"
-        android:background = "@drawable/widgethighlight"
-        android:orientation = "vertical"
-        android:visibility = "visible">
+        android:id="@+id/fajrwidgethighlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/widgethighlight"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_column="0"
+        app:layout_row="0">
 
         <TextView
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:layout_gravity = "center"
-            android:layout_marginTop = "5dp"
-            android:layout_marginBottom = "10dp"
-            android:fontFamily = "@font/nunito"
-            android:text = "@string/fajr"
-            android:textColor = "?attr/appWidgetTextColor"
-            android:textSize = "16sp"
-            android:textStyle = "bold"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/fajr"
+            android:textColor="?attr/appWidgetTextColor"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id = "@+id/Fajr_time"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:layout_gravity = "center"
-            android:layout_margin = "5dp"
-            android:fontFamily = "@font/nunito"
-            android:text = "@string/fajr_time"
-            android:textSize = "14sp"
-            android:textStyle = "bold"
-            tools:text = "3:46 am"/>
+            android:id="@+id/Fajr_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/fajr_time"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:text="3:46 am" />
     </LinearLayout>
 
     <LinearLayout
-        android:id = "@+id/zuharwidgethighlight"
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:layout_row = "0"
-        android:layout_column = "1"
-        android:layout_marginStart = "2dp"
-        android:orientation = "vertical"
-        android:visibility = "visible">
+        android:id="@+id/zuharwidgethighlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:background="@drawable/widgethighlight"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_row="0"
+        app:layout_column="1">
 
         <TextView
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:layout_gravity = "center"
-            android:layout_marginTop = "5dp"
-            android:layout_marginBottom = "10dp"
-            android:fontFamily = "@font/nunito"
-            android:text = "@string/zuhar"
-            android:textSize = "16sp"
-            android:textStyle = "bold"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/zuhar"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id = "@+id/Zuhar_time"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:layout_gravity = "center"
-            android:layout_margin = "5dp"
-            android:fontFamily = "@font/nunito"
-            android:text = "@string/Zuhar_time"
-            android:textSize = "14sp"
-            android:textStyle = "bold"
-            tools:text = "3:46 am"/>
+            android:id="@+id/Zuhar_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/Zuhar_time"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:text="3:46 am" />
     </LinearLayout>
 
     <LinearLayout
-        android:id = "@+id/asarwidgethighlight"
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:layout_row = "0"
-        android:layout_column = "2"
-        android:layout_marginStart = "2dp"
-        android:orientation = "vertical"
-        android:visibility = "visible">
+        android:id="@+id/asarwidgethighlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:background="@drawable/widgethighlight"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_row="0"
+        app:layout_column="2">
 
         <TextView
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:layout_gravity = "center"
-            android:layout_marginTop = "5dp"
-            android:layout_marginBottom = "10dp"
-            android:fontFamily = "@font/nunito"
-            android:text = "@string/asar"
-            android:textSize = "16sp"
-            android:textStyle = "bold"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/asar"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id = "@+id/Asar_time"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:layout_gravity = "center"
-            android:layout_margin = "5dp"
-            android:fontFamily = "@font/nunito"
-            android:text = "@string/Asar_time"
-            android:textSize = "14sp"
-            android:textStyle = "bold"
-            tools:text = "3:46 am"/>
+            android:id="@+id/Asar_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/Asar_time"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:text="3:46 am" />
     </LinearLayout>
 
     <LinearLayout
-        android:id = "@+id/maghribwidgethighlight"
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:layout_row = "0"
-        android:layout_column = "3"
-        android:layout_marginStart = "2dp"
-        android:orientation = "vertical"
-        android:visibility = "visible">
+        android:id="@+id/maghribwidgethighlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:background="@drawable/widgethighlight"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_row="0"
+        app:layout_column="3">
 
         <TextView
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:layout_gravity = "center"
-            android:layout_marginTop = "5dp"
-            android:layout_marginBottom = "10dp"
-            android:fontFamily = "@font/nunito"
-            android:text = "@string/maghrib"
-            android:textSize = "16sp"
-            android:textStyle = "bold"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/maghrib"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id = "@+id/Maghrib_time"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:layout_gravity = "center"
-            android:layout_margin = "5dp"
-            android:fontFamily = "@font/nunito"
-            android:text = "@string/Maghrib_time"
-            android:textSize = "14sp"
-            android:textStyle = "bold"
-            tools:text = "3:46 am"/>
+            android:id="@+id/Maghrib_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/Maghrib_time"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:text="3:46 am" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:id = "@+id/ishaawidgethighlight"
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:layout_row = "0"
-        android:layout_column = "4"
-        android:layout_marginStart = "2dp"
-        android:orientation = "vertical"
-        android:visibility = "visible">
+        android:id="@+id/ishaawidgethighlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:background="@drawable/widgethighlight"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_row="0"
+        app:layout_column="4">
 
         <TextView
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:layout_gravity = "center"
-            android:layout_marginTop = "5dp"
-            android:layout_marginBottom = "10dp"
-            android:fontFamily = "@font/nunito"
-            android:text = "@string/ishaa"
-            android:textSize = "16sp"
-            android:textStyle = "bold"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/ishaa"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id = "@+id/Ishaa_time"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:layout_gravity = "center"
-            android:layout_margin = "5dp"
-            android:fontFamily = "@font/nunito"
-            android:text = "@string/Ishaa_time"
-            android:textSize = "14sp"
-            android:textStyle = "bold"
-            tools:text = "10:46 am"/>
+            android:id="@+id/Ishaa_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/Ishaa_time"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:text="10:46 am" />
     </LinearLayout>
 
-</GridLayout>
+</androidx.gridlayout.widget.GridLayout>

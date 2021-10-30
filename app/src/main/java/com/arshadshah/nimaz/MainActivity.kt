@@ -24,10 +24,8 @@ class MainActivity : AppCompatActivity()
     override fun onCreate(savedInstanceState : Bundle?)
     {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         // we used the postDelayed(Runnable, time) method
         // to send a message with a delayed time.
-        supportActionBar?.hide()
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val isFirstInstall = sharedPreferences.getBoolean("isFirstInstall" , true)
 
@@ -45,29 +43,15 @@ class MainActivity : AppCompatActivity()
 
         if (! isFirstInstall)
         {
-            Handler()
-                .postDelayed(
-                    {
-                        val intent = Intent(this , homeActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    } ,
-                    1000
-                            ) // 1000 is the delayed time in milliseconds.
-            supportActionBar?.hide()
+            val intent = Intent(this , homeActivity::class.java)
+            startActivity(intent)
+            finish()
         }
         else
         {
-            Handler()
-                .postDelayed(
-                    {
-                        val intent = Intent(this , IntroductionActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    } ,
-                    1000
-                            ) // 1000 is the delayed time in milliseconds.
-            supportActionBar?.hide()
+            val intent = Intent(this , IntroductionActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
     // end of oncreate

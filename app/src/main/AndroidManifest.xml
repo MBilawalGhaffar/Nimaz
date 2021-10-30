@@ -1,79 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android = "http://schemas.android.com/apk/res/android"
-          package = "com.arshadshah.nimaz"
-          android:versionCode = "34"
-          android:versionName = "1.4.56">
-    <!-- Permissions -->
-    <uses-permission android:name = "android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name = "android.permission.ACCESS_NOTIFICATION_POLICY"/>
-    <uses-permission android:name = "android.permission.SET_ALARM"/>
-    <uses-permission android:name = "android.permission.INTERNET"/>
-    <uses-permission android:name = "android.permission.VIBRATE"/>
-    <uses-permission android:name = "android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name = "android.permission.WAKE_LOCK"/>
-    <uses-permission android:name = "android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.arshadshah.nimaz"
+    android:versionCode="37"
+    android:versionName="1.4.60" >
 
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+    <uses-permission android:name="android.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
     <application
-        android:allowBackup = "false"
-        android:icon = "@mipmap/ic_launcher"
-        android:label = "@string/app_name"
-        android:roundIcon = "@mipmap/ic_launcher_round"
-        android:screenOrientation = "portrait"
-        android:supportsRtl = "true"
-        android:theme = "@style/Theme.Nimaz">
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Nimaz" >
 
-
-        <activity android:name = ".IntroductionActivity"/>
+        <activity android:name=".IntroductionActivity" />
 
         <receiver
-            android:name = ".recievers.AlarmResetReceiver"
-            android:enabled = "true"
-            android:exported = "true"
-            android:permission = "android.permission.SET_ALARM"/> <!-- Main activity that launches app -->
+            android:name=".recievers.AlarmResetReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.SET_ALARM" /> <!-- Main activity that launches app -->
         <activity
-            android:name = ".MainActivity"
-            android:screenOrientation = "portrait"
-            android:exported = "false">
+            android:name=".MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
             <intent-filter>
-                <action android:name = "android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name = "android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity> <!-- Home activity that runs the code base -->
         <activity
-            android:name = ".homeActivity"
-            android:label = "Home"
-            android:screenOrientation = "portrait"/>
-        <!-- Settings activity for app settings -->
+            android:name=".homeActivity"
+            android:label="Home"
+            android:screenOrientation="portrait" /> <!-- Settings activity for app settings -->
         <activity
-            android:name = ".SettingsActivity"
-            android:label = "@string/title_activity_settings"/>
-        <!-- Widget receiver -->
-        <receiver android:name = ".Nimaz"
-                  android:exported = "false">
-            <intent-filter>
-                <action android:name = "android.appwidget.action.APPWIDGET_UPDATE"/>
-            </intent-filter>
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" /> <!-- Widget receiver -->
+<!--        <receiver-->
+<!--            android:name=".Nimaz"-->
+<!--            android:enabled="true"-->
+<!--            android:exported="true" >-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />-->
+<!--            </intent-filter>-->
 
-            <meta-data
-                android:name = "android.appwidget.provider"
-                android:resource = "@xml/nimaz_info"/>
-        </receiver>
-
+<!--            <meta-data-->
+<!--                android:name="android.appwidget.provider"-->
+<!--                android:resource="@xml/nimaz_info" />-->
+<!--        </receiver>-->
         <receiver
-            android:name = ".recievers.ReminderReciever"
-            android:enabled = "true"
-            android:exported = "true"
-            android:permission = "android.permission.SET_ALARM"/> <!-- Boot complete receiver that resets the alarms on device reboot -->
+            android:name=".recievers.ReminderReciever"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.SET_ALARM" /> <!-- Boot complete receiver that resets the alarms on device reboot -->
         <receiver
-            android:name = ".recievers.bootReceiver"
-            android:enabled = "true"
-            android:exported = "true"
-            android:permission = "android.permission.RECEIVE_BOOT_COMPLETED">
+            android:name=".recievers.bootReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" >
             <intent-filter>
-                <action android:name = "android.intent.action.LOCKED_BOOT_COMPLETED"/>
-                <action android:name = "android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
     </application>
