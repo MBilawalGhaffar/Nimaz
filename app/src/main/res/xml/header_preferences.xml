@@ -44,11 +44,11 @@
     <PreferenceCategory android:title = "Calculation">
 
         <Preference
-            android:fragment = "com.arshadshah.nimaz.SettingsActivity$prayerTimeAdjust"
-            android:tooltipText = "Prayet time calculation Adjustments Section"
-            app:icon = "@drawable/time"
-            app:key = "time_calc"
-            app:title = "Prayer time Adjustments"/>
+            android:id="@+id/prayerTimeAdjust"
+            android:tooltipText="Prayer time calculation Adjustments Section"
+            app:icon="@drawable/time"
+            app:key="time_calc"
+            app:title="Prayer time Adjustments" />
     </PreferenceCategory>
     <!--        opens any fragment in the app-->
     <!--        android:fragment="com.arshadshah.nimaz.fragments.HomeFragment"-->
@@ -93,18 +93,16 @@
         android:visibility = "visible">
 
         <Preference
-            android:id = "@+id/preference2"
+            android:id = "@+id/tandc"
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
-            android:fragment = "com.arshadshah.nimaz.fragments.TandC"
             app:icon = "@drawable/filetext"
             app:key = "tandc"
             app:title = "@string/terms_amp_conditions"/>
         <Preference
-            android:id = "@+id/preference4"
+            android:id = "@+id/pp"
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
-            android:fragment = "com.arshadshah.nimaz.fragments.Privacypolicy"
             app:icon = "@drawable/privacy"
             app:key = "privacy"
             app:title = "@string/privacy_policy"/>
@@ -112,15 +110,13 @@
     <PreferenceCategory android:title = "Other">
 
         <Preference
-            android:id = "@+id/preference3"
+            android:id = "@+id/help"
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
-            android:fragment = "com.arshadshah.nimaz.fragments.HelpFragment"
             app:icon = "@drawable/help"
             app:key = "help"
             app:title = "help"/>
         <Preference
-            android:fragment = "com.arshadshah.nimaz.fragments.About"
             app:icon = "@drawable/info"
             app:key = "about"
             app:title = "About"/>

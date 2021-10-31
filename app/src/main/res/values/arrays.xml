@@ -1,6 +1,6 @@
 <resources>
 
-    <string-array name = "tasbeehvalues">
+    <string-array name="tasbeehvalues">
         <item> سُبْحَانَ اللَّه </item>
         <item>اَلْحَمْدُلِلَّه </item>
         <item>لَا إِلَهَ إِلَّااللَّه </item>
@@ -8,7 +8,7 @@
         <item>اَسْتَغْفِرُاللَّه </item>
     </string-array>
 
-    <string-array name = "minutes">
+    <string-array name="minutes">
         <item>	-60	</item>
         <item>	-59	</item>
         <item>	-58	</item>
@@ -133,7 +133,7 @@
 
     </string-array>
 
-    <string-array name = "minuteslabel">
+    <string-array name="minuteslabel">
         <item>	-60	minutes	</item>
         <item>	-59	minutes	</item>
         <item>	-58	minutes	</item>
@@ -260,7 +260,7 @@
     </string-array>
 
 
-    <string-array name = "angleValues">
+    <string-array name="angleValues">
         <item>10.0</item>
         <item>10.5</item>
         <item>11.0</item>
@@ -286,7 +286,7 @@
     </string-array>
 
     <!--    calculation method-->
-    <string-array name = "calcMethodValues">
+    <string-array name="calcMethodValues">
         <item>MUSLIM_WORLD_LEAGUE</item>
         <item>EGYPTIAN</item>
         <item>KARACHI</item>
@@ -303,7 +303,7 @@
         <item>OTHER</item>
     </string-array>
 
-    <string-array name = "calcMethod">
+    <string-array name="calcMethod">
         <item>Muslim World League (fajr: 18.0/ ishaa: 17.0)</item>
         <item>Egyptian (fajr: 19.5/ ishaa: 17.5)</item>
         <item>Karachi (fajr: 18.0/ ishaa: 18.0)</item>
@@ -320,19 +320,19 @@
         <item>Custom Method</item>
     </string-array>
 
-    <string-array name = "highLatitudeRule">
+    <string-array name="highLatitudeRule">
         <item>Twilight Angle Based (Standard)</item>
         <item>Middle of Night</item>
         <item>Seventh of Night</item>
     </string-array>
 
-    <string-array name = "highLatValues">
+    <string-array name="highLatValues">
         <item>TWILIGHT_ANGLE</item>
         <item>MIDDLE_OF_THE_NIGHT</item>
         <item>SEVENTH_OF_THE_NIGHT</item>
     </string-array>
 
-    <string-array name = "English">
+    <string-array name="English">
 
 
         <item>Ar Rahmaan</item>
@@ -628,7 +628,7 @@
     </string-array>
 
 
-    <string-array name = "Arabic">
+    <string-array name="Arabic">
         <item>اَلرَّحْمَنُ</item>
         <item> اَلرَّحِيْمُ</item>
         <item>اَلْمَلِكُ</item>
@@ -730,7 +730,7 @@
         <item>اَلصَّبُوْرُ</item>
     </string-array>
 
-    <string-array name = "translation">
+    <string-array name="translation">
         <item>The Beneficent</item>
         <item>The All-Merciful</item>
         <item>The Eternal Lord</item>
@@ -832,12 +832,12 @@
         <item>The Patient One</item>
     </string-array>
     <!-- Reply Preference -->
-    <string-array name = "reply_entries">
+    <string-array name="reply_entries">
         <item>Reply</item>
         <item>Reply to all</item>
     </string-array>
 
-    <string-array name = "reply_values">
+    <string-array name="reply_values">
         <item>reply</item>
         <item>reply_all</item>
     </string-array>

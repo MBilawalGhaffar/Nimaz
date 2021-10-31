@@ -4,7 +4,7 @@
     <item>
         <shape
             android:shape = "rectangle"
-            android:tint = "?android:attr/windowBackground">
+            android:tint = "?attr/lines">
             <size
                 android:height = "50dp"
                 android:width = "100dp"/>

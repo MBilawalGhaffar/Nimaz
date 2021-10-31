@@ -1,126 +1,133 @@
 <resources>
-    <string name = "app_name">Nimaz</string>
-    <string name = "title_home" translatable = "false">Prayer Times</string>
-    <string name = "title_tasbeeh" translatable = "false">Tasbeeh</string>
-    <string name = "title_about" translatable = "false">About</string>
+    <string name="app_name">Nimaz</string>
+    <string name="title_home" translatable="false">Prayer Times</string>
+    <string name="title_tasbeeh" translatable="false">Tasbeeh</string>
+    <string name="title_about" translatable="false">About</string>
 
     <!--    prayer times page   -->
-    <string name = "prayer_times" translatable = "false">Prayer Times</string>
-    <string name = "city" translatable = "false">city</string>
-    <string name = "fajr">Fajr</string>
-    <string name = "sunrise">Sunrise</string>
-    <string name = "zuhar">Zuhar</string>
-    <string name = "asar">Asar</string>
-    <string name = "maghrib">Maghrib</string>
-    <string name = "ishaa">Isha</string>
-    <string name = "fajr_time" translatable = "false">00.00</string>
-    <string name = "Zuhar_time" translatable = "false">00.00</string>
-    <string name = "Asar_time" translatable = "false">00.00</string>
-    <string name = "Maghrib_time" translatable = "false">00.00</string>
-    <string name = "Ishaa_time" translatable = "false">00.00</string>
-    <string name = "sunrise_time" translatable = "false">00.00</string>
-    <string name = "_0" translatable = "false">0</string>
-    <string name = "add" translatable = "false">+</string>
-    <string name = "takAway" translatable = "false"> - </string>
-    <string name = "_33" translatable = "false">33</string>
-    <string name = "limit" translatable = "false"> / </string>
-    <string name = "tasbeeh" translatable = "false">Tasbeeh</string>
-    <string name = "references" translatable = "false">References: </string>
+    <string name="prayer_times" translatable="false">Prayer Times</string>
+    <string name="city" translatable="false">city</string>
+    <string name="fajr">Fajr</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="zuhar">Zuhar</string>
+    <string name="asar">Asar</string>
+    <string name="maghrib">Maghrib</string>
+    <string name="ishaa">Isha</string>
+    <string name="fajr_time" translatable="false">00.00</string>
+    <string name="Zuhar_time" translatable="false">00.00</string>
+    <string name="Asar_time" translatable="false">00.00</string>
+    <string name="Maghrib_time" translatable="false">00.00</string>
+    <string name="Ishaa_time" translatable="false">00.00</string>
+    <string name="sunrise_time" translatable="false">00.00</string>
+    <string name="_0" translatable="false">0</string>
+    <string name="add" translatable="false">+</string>
+    <string name="takAway" translatable="false"> - </string>
+    <string name="_33" translatable="false">33</string>
+    <string name="limit" translatable="false"> / </string>
+    <string name="tasbeeh" translatable="false">Tasbeeh</string>
+    <string name="references" translatable="false">References: </string>
 
-    <string name = "menuOptionreference1" translatable = "false">Menu icon for Tasbeeh taken from: </string>
-    <string name = "menuOptinTasbeehLink" translatable = "false"><a href = "https://www.flaticon.com/authors/dinosoftlabs">https://www.flaticon.com/authors/dinosoftlabs</a></string>
+    <string name="menuOptionreference1" translatable="false">Menu icon for Tasbeeh taken from: </string>
+    <string name="menuOptinTasbeehLink" translatable="false"><a href="https://www.flaticon.com/authors/dinosoftlabs">https://www.flaticon.com/authors/dinosoftlabs</a></string>
 
-    <string name = "menuOptionreference2" translatable = "false">Main Icon, icon for compass for app taken from: </string>
-    <string name = "mainIconLink" translatable = "false"><a href = "https://www.freepik.com">https://www.freepik.com/</a></string>
+    <string name="menuOptionreference2" translatable="false">Main Icon, icon for compass for app taken from: </string>
+    <string name="mainIconLink" translatable="false"><a href="https://www.freepik.com">https://www.freepik.com/</a></string>
 
-    <string name = "menuOptionreference3" translatable = "false">Code for calculation of prayer times based on : </string>
-    <string name = "codeforcalculation" translatable = "false"><a href = "https://www.github.com/batoulapps/adhan-java">https://github.com/batoulapps/adhan-java</a></string>
-
-
-    <string name = "about_author" translatable = "false">Designed and Created By:</string>
-    <string name = "author" translatable = "false"> <strong>Arshad Shah</strong></string>
-    <string name = "occupation" translatable = "false">BSc Student in Computer Science</string>
-    <string name = "developement_flag" translatable = "false">Loves to program, and learn new things</string>
-    <string name = "settings" translatable = "false">Settings</string>
-
-    <string name = "title_activity_settings" translatable = "false">Settings</string>
+    <string name="menuOptionreference3" translatable="false">Code for calculation of prayer times based on : </string>
+    <string name="codeforcalculation" translatable="false"><a href="https://www.github.com/batoulapps/adhan-java">https://github.com/batoulapps/adhan-java</a></string>
 
 
-    <string name = "location" translatable = "false">Location</string>
-    <string name = "vibrate" translatable = "false">Vibrate</string>
-    <string name = "silent" translatable = "false">Silent</string>
-    <string name = "amount" translatable = "false">Amount</string>
-    <string name = "appwidget_text" translatable = "false">EXAMPLE</string>
-    <string name = "add_widget" translatable = "false">Add widget</string>
-    <string name = "email" translatable = "false">Contact:<a href = "mailto:shaharshad57@gmail.com">shaharshad57@gmail.com</a></string>
-    <string name = "version" translatable = "false">Version: </string>
-    <string name = "_0_0" translatable = "false">0.0</string>
-    <string name = "configure" translatable = "false">Configure</string>
+    <string name="about_author" translatable="false">Designed and Created By:</string>
+    <string name="author" translatable="false"> <strong>Arshad Shah</strong></string>
+    <string name="occupation" translatable="false">BSc Student in Computer Science</string>
+    <string name="developement_flag" translatable="false">Loves to program, and learn new things</string>
+    <string name="settings" translatable="false">Settings</string>
+
+    <string name="title_activity_settings" translatable="false">Settings</string>
+
+
+    <string name="location" translatable="false">Location</string>
+    <string name="vibrate" translatable="false">Vibrate</string>
+    <string name="silent" translatable="false">Silent</string>
+    <string name="amount" translatable="false">Amount</string>
+    <string name="appwidget_text" translatable="false">EXAMPLE</string>
+    <string name="add_widget" translatable="false">Add widget</string>
+    <string name="email" translatable="false">Contact:<a href="mailto:shaharshad57@gmail.com">shaharshad57@gmail.com</a></string>
+    <string name="version" translatable="false">Version: </string>
+    <string name="_0_0" translatable="false">0.0</string>
+    <string name="configure" translatable="false">Configure</string>
     <!-- Preference Titles -->
-    <string name = "messages_header" translatable = "false">Messages</string>
-    <string name = "sync_header" translatable = "false">Sync</string>
+    <string name="messages_header" translatable="false">Messages</string>
+    <string name="sync_header" translatable="false">Sync</string>
 
     <!-- Messages Preferences -->
-    <string name = "signature_title" translatable = "false">Your signature</string>
-    <string name = "reply_title" translatable = "false">Default reply action</string>
+    <string name="signature_title" translatable="false">Your signature</string>
+    <string name="reply_title" translatable="false">Default reply action</string>
 
     <!-- Sync Preferences -->
 
-    <string name = "time_left" translatable = "false">Time Left:</string>
-    <string name = "_00_00_00" translatable = "false">00.00.00</string>
+    <string name="time_left" translatable="false">Time Left:</string>
+    <string name="_00_00_00" translatable="false">00.00.00</string>
 
     <!--    terms and conditions-->
-    <string name = "terms_amp_conditions" translatable = "false"><![CDATA[Terms & Conditions]]></string>
-    <string name = "privacy_policy" translatable = "false">Privacy Policy</string>
-    <string name = "about_me" translatable = "false">About Me</string>
+    <string name="terms_amp_conditions" translatable="false"><![CDATA[Terms & Conditions]]></string>
+    <string name="privacy_policy" translatable="false">Privacy Policy</string>
+    <string name="about_me" translatable="false">About Me</string>
 
 
     <!--    compass-->
-    <string name = "compass" translatable = "false">Qibla</string>
-    <string name = "qibla_compass" translatable = "false">Qibla</string>
-    <string name = "current_location" translatable = "false">Current Location</string>
-    <string name = "personpraying" translatable = "false">personpraying</string>
-    <string name = "current_location_label" translatable = "false">Current Location</string>
-    <string name = "qibla_direction" translatable = "false">Qibla Direction</string>
-    <string name = "degree" translatable = "false">degree</string>
-    <string name = "degrees_label" translatable = "false">Degrees</string>
-    <string name = "hello_blank_fragment" translatable = "false">Hello blank fragment</string>
-    <string name = "allah" translatable = "false">Allah</string>
-    <string name = "holy_names" translatable = "false">Holy Names</string>
-    <string name = "english_name" translatable = "false">English Name</string>
-    <string name = "translation" translatable = "false">Translation</string>
-    <string name = "arabic_name" translatable = "false">Arabic Name</string>
-    <string name = "limitText" translatable = "false"> Limit: </string>
-    <string name = "limitdailog" translatable = "false">Limit</string>
-    <string name = "submit" translatable = "false">Submit</string>
-    <string name = "cancel" translatable = "false">Cancel</string>
-    <string name = "tasbeeh_limit" translatable = "false">Tasbeeh Limit</string>
-    <string name = "please_enter_tasbeeh_objective" translatable = "false">Please enter Tasbeeh Objective</string>
-    <string name = "the_count_will_be_reset_to_0" translatable = "false">The count will be Reset to 0</string>
-    <string name = "are_you_sure_you_want_to_continue" translatable = "false">Are you sure you want to Continue?</string>
-    <string name = "no" translatable = "false">No</string>
-    <string name = "yes" translatable = "false">Yes</string>
-    <string name = "lap" translatable = "false">Lap:</string>
-    <string name = "_1" translatable = "false">1</string>
-    <string name = "please_enter_your_city_name" translatable = "false">Please enter your City name</string>
-    <string name = "angle_adjustment" translatable = "false">Angle Adjustment</string>
-    <string name = "fajr_angle_value" translatable = "false">Fajr Angle</string>
-    <string name = "_18_0" translatable = "false">18.0</string>
-    <string name = "ishaa_angle_value" translatable = "false">Ishaa Angle</string>
-    <string name = "_17_0" translatable = "false">17.0</string>
-    <string name = "edit_icon" translatable = "false">edit icon</string>
-    <string name = "_1point" translatable = "false">1.</string>
-    <string name = "reset" translatable = "false">Reset</string>
-    <string name = "mute" translatable = "false">Mute</string>
-    <string name = "alarms_reset_button" translatable = "false">Alarms reset button</string>
-    <string name = "alarm_mute_button" translatable = "false">Alarm mute button</string>
-    <string name = "creator" translatable = "false">The One God</string>
-    <string name = "adhan" translatable = "false">Notifications</string>
-    <string name = "silent1" translatable = "false">Silent</string>
-    <string name = "app_is_already_on_battery_optimization_list" translatable = "false">Nimaz is Ignoring battery Optimization</string>
-    <string name = "okay" translatable = "false">Okay</string>
-    <string name = "todo" translatable = "false">TODO</string>
+    <string name="compass" translatable="false">Qibla</string>
+    <string name="qibla_compass" translatable="false">Qibla</string>
+    <string name="current_location" translatable="false">Current Location</string>
+    <string name="personpraying" translatable="false">personpraying</string>
+    <string name="current_location_label" translatable="false">Current Location</string>
+    <string name="qibla_direction" translatable="false">Qibla Direction</string>
+    <string name="degree" translatable="false">degree</string>
+    <string name="degrees_label" translatable="false">Degrees</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="allah" translatable="false">Allah</string>
+    <string name="holy_names" translatable="false">Holy Names</string>
+    <string name="english_name" translatable="false">English Name</string>
+    <string name="translation" translatable="false">Translation</string>
+    <string name="arabic_name" translatable="false">Arabic Name</string>
+    <string name="limitText" translatable="false"> Limit: </string>
+    <string name="limitdailog" translatable="false">Limit</string>
+    <string name="submit" translatable="false">Submit</string>
+    <string name="cancel" translatable="false">Cancel</string>
+    <string name="tasbeeh_limit" translatable="false">Tasbeeh Limit</string>
+    <string name="please_enter_tasbeeh_objective" translatable="false">Please enter Tasbeeh Objective</string>
+    <string name="the_count_will_be_reset_to_0" translatable="false">The count will be Reset to 0</string>
+    <string name="are_you_sure_you_want_to_continue" translatable="false">Are you sure you want to Continue?</string>
+    <string name="no" translatable="false">No</string>
+    <string name="yes" translatable="false">Yes</string>
+    <string name="lap" translatable="false">Lap:</string>
+    <string name="_1" translatable="false">1</string>
+    <string name="please_enter_your_city_name" translatable="false">Please enter your City name</string>
+    <string name="angle_adjustment" translatable="false">Angle Adjustment</string>
+    <string name="fajr_angle_value" translatable="false">Fajr Angle</string>
+    <string name="_18_0" translatable="false">18.0</string>
+    <string name="ishaa_angle_value" translatable="false">Ishaa Angle</string>
+    <string name="_17_0" translatable="false">17.0</string>
+    <string name="edit_icon" translatable="false">edit icon</string>
+    <string name="_1point" translatable="false">1.</string>
+    <string name="reset" translatable="false">Reset</string>
+    <string name="mute" translatable="false">Mute</string>
+    <string name="alarms_reset_button" translatable="false">Alarms reset button</string>
+    <string name="alarm_mute_button" translatable="false">Alarm mute button</string>
+    <string name="creator" translatable="false">The One God</string>
+    <string name="adhan" translatable="false">Notifications</string>
+    <string name="silent1" translatable="false">Silent</string>
+    <string name="app_is_already_on_battery_optimization_list" translatable="false">Nimaz is Ignoring battery Optimization</string>
+    <string name="okay" translatable="false">Okay</string>
+    <string name="todo" translatable="false">TODO</string>
     <string name="app_widget_description">This is an app widget description</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
     <!--    location-->
 

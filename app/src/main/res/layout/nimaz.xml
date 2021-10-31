@@ -1,4 +1,4 @@
-<androidx.gridlayout.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/widget"
@@ -8,10 +8,7 @@
     android:clickable="true"
     android:focusable="true"
     android:padding="3dp"
-    android:theme="@style/ThemeOverlay.Nimaz.AppWidgetContainer"
-    app:columnCount="6"
-    app:orientation="horizontal"
-    app:rowCount="1">
+    android:theme="@style/Theme.Nimaz">
 
     <LinearLayout
         android:id="@+id/fajrwidgethighlight"
@@ -19,9 +16,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/widgethighlight"
         android:orientation="vertical"
-        android:visibility="visible"
-        app:layout_column="0"
-        app:layout_row="0">
+        android:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"
@@ -31,7 +26,6 @@
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/nunito"
             android:text="@string/fajr"
-            android:textColor="?attr/appWidgetTextColor"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -55,9 +49,7 @@
         android:layout_marginStart="2dp"
         android:background="@drawable/widgethighlight"
         android:orientation="vertical"
-        android:visibility="visible"
-        app:layout_row="0"
-        app:layout_column="1">
+        android:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"
@@ -90,9 +82,7 @@
         android:layout_marginStart="2dp"
         android:background="@drawable/widgethighlight"
         android:orientation="vertical"
-        android:visibility="visible"
-        app:layout_row="0"
-        app:layout_column="2">
+        android:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"
@@ -125,9 +115,7 @@
         android:layout_marginStart="2dp"
         android:background="@drawable/widgethighlight"
         android:orientation="vertical"
-        android:visibility="visible"
-        app:layout_row="0"
-        app:layout_column="3">
+        android:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"
@@ -161,9 +149,7 @@
         android:layout_marginStart="2dp"
         android:background="@drawable/widgethighlight"
         android:orientation="vertical"
-        android:visibility="visible"
-        app:layout_row="0"
-        app:layout_column="4">
+        android:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"
@@ -189,4 +175,4 @@
             tools:text="10:46 am" />
     </LinearLayout>
 
-</androidx.gridlayout.widget.GridLayout>
+</LinearLayout>
