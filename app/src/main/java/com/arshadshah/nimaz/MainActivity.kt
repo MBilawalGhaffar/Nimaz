@@ -6,7 +6,6 @@ import android.content.ComponentName
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
@@ -18,14 +17,12 @@ import androidx.preference.PreferenceManager
  */
 class MainActivity : AppCompatActivity()
 {
-
     @SuppressLint("NewApi")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState : Bundle?)
     {
         super.onCreate(savedInstanceState)
-        // we used the postDelayed(Runnable, time) method
-        // to send a message with a delayed time.
+
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val isFirstInstall = sharedPreferences.getBoolean("isFirstInstall" , true)
 
@@ -43,7 +40,7 @@ class MainActivity : AppCompatActivity()
 
         if (! isFirstInstall)
         {
-            val intent = Intent(this , homeActivity::class.java)
+            val intent = Intent(this , HomeActivity::class.java)
             startActivity(intent)
             finish()
         }

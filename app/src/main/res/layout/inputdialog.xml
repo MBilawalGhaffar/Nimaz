@@ -36,21 +36,22 @@
             android:textSize = "16sp"/>
 
         <EditText
-            android:id = "@+id/tasbeehLimit"
-            android:layout_width = "wrap_content"
-            android:layout_height = "48dp"
-            android:layout_gravity = "center"
-            android:background = "@drawable/inputfield"
-            android:fontFamily = "@font/nunito"
-            android:hint = "@string/limitdailog"
-            android:importantForAutofill = "no"
-            android:inputType = "number"
-            android:padding = "10dp"
-            android:selectAllOnFocus = "true"
-            android:singleLine = "true"
-            android:text = "@string/_33"
-            android:textSize = "20sp"
-            android:textStyle = "bold"/>
+            android:id="@+id/tasbeehLimit"
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_gravity="center"
+            android:background="@drawable/inputfield"
+            android:fontFamily="@font/nunito"
+            android:hint="@string/limitdailog"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:padding="10dp"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:text="@string/_33"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width = "match_parent"
@@ -65,38 +66,38 @@
                 android:layout_height = "match_parent">
 
                 <Button
-                    android:id = "@+id/dialogCancel"
-                    style = "@style/Base.Widget.AppCompat.Button.Colored"
-                    android:layout_width = "wrap_content"
-                    android:layout_height = "48dp"
-                    android:layout_margin = "5dp"
-                    android:layout_marginTop = "3dp"
-                    android:layout_marginBottom = "1dp"
-                    android:fontFamily = "@font/nunito"
-                    android:text = "@string/cancel"
-                    android:textAllCaps = "true"
-                    android:textStyle = "bold"
-                    app:cornerRadius = "5dp"
-                    app:layout_constraintBottom_toBottomOf = "parent"
-                    app:layout_constraintStart_toStartOf = "parent"
-                    app:layout_constraintTop_toTopOf = "parent"/>
+                    android:id="@+id/dialogCancel"
+                    style="@style/Base.Widget.AppCompat.Button.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="58dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="1dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/cancel"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    app:cornerRadius="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id = "@+id/dialogSubmit"
-                    style = "@style/Base.Widget.AppCompat.Button.Colored"
-                    android:layout_width = "wrap_content"
-                    android:layout_height = "48dp"
-                    android:layout_margin = "5sp"
-                    android:layout_marginTop = "2dp"
-                    android:layout_marginBottom = "6dp"
-                    android:fontFamily = "@font/nunito"
-                    android:text = "@string/submit"
-                    android:textAllCaps = "true"
-                    android:textStyle = "bold"
-                    app:cornerRadius = "5dp"
-                    app:layout_constraintBottom_toBottomOf = "parent"
-                    app:layout_constraintEnd_toEndOf = "parent"
-                    app:layout_constraintTop_toTopOf = "parent"/>
+                    android:id="@+id/dialogSubmit"
+                    style="@style/Base.Widget.AppCompat.Button.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="58dp"
+                    android:layout_margin="5sp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="6dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/submit"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    app:cornerRadius="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

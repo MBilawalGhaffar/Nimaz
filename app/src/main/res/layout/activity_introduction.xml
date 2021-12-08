@@ -29,41 +29,59 @@
                 android:paddingStart = "15dp"
                 android:paddingEnd = "15dp">
 
-                <ImageView
-                    android:id = "@+id/imageView"
-                    android:layout_width = "363dp"
-                    android:layout_height = "48dp"
-                    android:layout_marginTop = "16dp"
-                    android:visibility = "visible"
-                    app:layout_constraintEnd_toEndOf = "parent"
-                    app:layout_constraintStart_toStartOf = "parent"
-                    app:layout_constraintTop_toTopOf = "parent"
-                    app:srcCompat = "@drawable/bismillah"/>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#ffffff"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
+                    app:contentPadding="5dp"
+                    app:layout_constraintBottom_toTopOf="@+id/IntroductoryText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:id = "@+id/imageView3"
-                    android:layout_width = "350dp"
-                    android:layout_height = "30dp"
-                    android:layout_marginTop = "8dp"
-                    android:visibility = "visible"
-                    app:layout_constraintEnd_toEndOf = "parent"
-                    app:layout_constraintStart_toStartOf = "parent"
-                    app:layout_constraintTop_toBottomOf = "@+id/imageView"
-                    app:srcCompat = "@drawable/salam"/>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="363dp"
+                            android:layout_height="48dp"
+                            android:visibility="visible"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/bismillah" />
+
+                        <ImageView
+                            android:id="@+id/imageView3"
+                            android:layout_width="350dp"
+                            android:layout_height="30dp"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView"
+                            app:srcCompat="@drawable/salam" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
 
                 <TextView
-                    android:id = "@+id/IntroductoryText"
-                    android:layout_width = "wrap_content"
-                    android:layout_height = "wrap_content"
-                    android:layout_marginTop = "8dp"
-                    android:fontFamily = "@font/nunito"
-                    android:text = "TextView"
-                    android:textColor = "#000000"
-                    android:textSize = "16sp"
-                    android:visibility = "visible"
-                    app:layout_constraintEnd_toEndOf = "parent"
-                    app:layout_constraintStart_toStartOf = "parent"
-                    app:layout_constraintTop_toBottomOf = "@+id/imageView3"/>
+                    android:id="@+id/IntroductoryText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="TextView"
+                    android:textSize="16sp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -73,34 +91,32 @@
                 android:padding = "10dp">
 
                 <Button
-                    android:id = "@+id/gotoHome"
-                    android:layout_width = "wrap_content"
-                    android:layout_height = "48dp"
-                    android:layout_marginStart = "16dp"
-                    android:fontFamily = "@font/nunito"
-                    android:text = "SKIP"
-                    android:textColor = "#000000"
-                    android:textSize = "18sp"
-                    android:textStyle = "bold"
-                    android:visibility = "visible"
-                    app:layout_constraintBottom_toBottomOf = "parent"
-                    app:layout_constraintStart_toStartOf = "parent"
-                    app:layout_constraintTop_toTopOf = "parent"/>
+                    android:id="@+id/gotoHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="58dp"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="SKIP"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id = "@+id/locationYes"
-                    android:layout_width = "wrap_content"
-                    android:layout_height = "48dp"
-                    android:layout_marginEnd = "16dp"
-                    android:fontFamily = "@font/nunito"
-                    android:text = "Continue"
-                    android:textColor = "#000000"
-                    android:textSize = "18sp"
-                    android:textStyle = "bold"
-                    android:visibility = "visible"
-                    app:layout_constraintBottom_toBottomOf = "parent"
-                    app:layout_constraintEnd_toEndOf = "parent"
-                    app:layout_constraintTop_toTopOf = "parent"/>
+                    android:id="@+id/locationYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="58dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="Continue"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

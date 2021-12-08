@@ -58,10 +58,14 @@ class SettingsActivity :
         else
         {
             val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-            val isFirstInstall = sharedPreferences.getBoolean("isFirstInstall" , true)
-            if(isFirstInstall){
-                val intent = Intent(this@SettingsActivity , homeActivity::class.java)
+            val navigateToHome = sharedPreferences.getBoolean("navigateToHome" , true)
+            if(navigateToHome){
+                val intent = Intent(this@SettingsActivity , HomeActivity::class.java)
                 startActivity(intent)
+                with(sharedPreferences.edit()) {
+                    putBoolean("navigateToHome", false)
+                    apply()
+                }
             }
             finish()
         }

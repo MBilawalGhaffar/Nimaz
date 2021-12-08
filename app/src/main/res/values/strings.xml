@@ -30,10 +30,10 @@
     <string name="menuOptionreference1" translatable="false">Menu icon for Tasbeeh taken from: </string>
     <string name="menuOptinTasbeehLink" translatable="false"><a href="https://www.flaticon.com/authors/dinosoftlabs">https://www.flaticon.com/authors/dinosoftlabs</a></string>
 
-    <string name="menuOptionreference2" translatable="false">Main Icon, icon for compass for app taken from: </string>
+    <string name="menuOptionreference2" translatable="false">Main ,compass Icon taken from: </string>
     <string name="mainIconLink" translatable="false"><a href="https://www.freepik.com">https://www.freepik.com/</a></string>
 
-    <string name="menuOptionreference3" translatable="false">Code for calculation of prayer times based on : </string>
+    <string name="menuOptionreference3" translatable="false">Calculation of prayer times: </string>
     <string name="codeforcalculation" translatable="false"><a href="https://www.github.com/batoulapps/adhan-java">https://github.com/batoulapps/adhan-java</a></string>
 
 
@@ -83,7 +83,7 @@
     <string name="current_location_label" translatable="false">Current Location</string>
     <string name="qibla_direction" translatable="false">Qibla Direction</string>
     <string name="degree" translatable="false">degree</string>
-    <string name="degrees_label" translatable="false">Degrees</string>
+    <string name="degrees_label" translatable="false">%1$s Degrees</string>
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="allah" translatable="false">Allah</string>
     <string name="holy_names" translatable="false">Holy Names</string>
@@ -120,14 +120,16 @@
     <string name="app_is_already_on_battery_optimization_list" translatable="false">Nimaz is Ignoring battery Optimization</string>
     <string name="okay" translatable="false">Okay</string>
     <string name="todo" translatable="false">TODO</string>
-    <string name="app_widget_description">This is an app widget description</string>
-
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="app_widget_description" translatable="false">This is an app widget description</string>
+    <string name="nimaz_is_created_with_the_help_of_allah_for_the_sake_of_allah" translatable="false">Nimaz is created with the help of Allah for the sake of Allah.</string>
+    <string name="link_to_website" translatable="false">Link to website</string>
+    <string name="email_account_of_arshad_shah" translatable="false">email account of arshad shah</string>
+    <string name="github_account_of_arshad_shah" translatable="false">Github account of arshad shah</string>
+    <string name="linkedin_account_of_arshad_shah" translatable="false">linkedin account of arshad shah</string>
+    <string name="timer" translatable="false"> - %1$s <b>:</b> %2$s <b>:</b> %3$s </string>
+    <string name="permissionRational" translatable="false">Location is needed to calculate prayer times</string>
+    <string name="ok">OK</string>
+    <string name="permission_denied_explanation">L,ocation permission denied, to calculate prayer times please go to Nimaz settings and use manual location</string>
 
     <!--    location-->
 

@@ -60,6 +60,7 @@ class IntroductionActivity : AppCompatActivity()
         enterLocation.setOnClickListener {
             with(sharedPreferences.edit()) {
                 putBoolean("isFirstInstall" , false)
+                putBoolean("navigateToHome", true)
                 putBoolean("channelLock" , false)
                 apply()
             }
@@ -74,7 +75,7 @@ class IntroductionActivity : AppCompatActivity()
                 putBoolean("channelLock" , false)
                 apply()
             }
-            val intent = Intent(this , homeActivity::class.java)
+            val intent = Intent(this , HomeActivity::class.java)
             startActivity(intent)
             finish()
         }

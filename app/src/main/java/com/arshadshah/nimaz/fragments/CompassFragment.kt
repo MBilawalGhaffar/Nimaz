@@ -2,6 +2,7 @@ package com.arshadshah.nimaz.fragments
 
 import android.content.Context.SENSOR_SERVICE
 import android.content.pm.PackageManager
+import android.content.res.Resources
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -15,9 +16,9 @@ import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.NetworkChecker
@@ -29,6 +30,12 @@ import kotlin.math.ceil
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.properties.Delegates
+import com.arshadshah.nimaz.prayerTimeApi.Qibla
+
+import com.arshadshah.nimaz.prayerTimeApi.Coordinates
+
+
+
 
 open class CompassFragment : Fragment() , SensorEventListener
 {
@@ -69,8 +76,7 @@ open class CompassFragment : Fragment() , SensorEventListener
             Snackbar.make(
                 compassLayout ,
                 "Your Device does not have a compass!" ,
-                BaseTransientBottomBar.LENGTH_SHORT
-                         ).show()
+                Snackbar.LENGTH_LONG).show()
         }
         else
         {
@@ -106,8 +112,12 @@ open class CompassFragment : Fragment() , SensorEventListener
             longitude = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()
         }
 
-        val directionToQibla = ceil(bearing(latitude , longitude)).toInt()
-        degrees.text = directionToQibla.toString()
+        val coordinates = Coordinates(latitude, longitude)
+        val qibla = Qibla(coordinates)
+        val directionToQibla = qibla.direction
+        val res: Resources = resources
+        val text = res.getString(R.string.degrees_label, (ceil(directionToQibla)).toString())
+        degrees.text = text
 
         compassLayout = root.findViewById(R.id.compassLayout)
 
@@ -119,7 +129,8 @@ open class CompassFragment : Fragment() , SensorEventListener
         super.onResume()
         if (! packageManager.hasSystemFeature(PackageManager.FEATURE_SENSOR_COMPASS))
         {
-            Log.e("Compass error", "Device doesnot have compass feature")
+            Log.e("Compass error", "Device does not have compass feature")
+            Toast.makeText(requireContext() , "Device does not have compass feature" , Toast.LENGTH_SHORT).show()
         }
         else
         {
@@ -133,7 +144,8 @@ open class CompassFragment : Fragment() , SensorEventListener
         super.onPause()
         if (! packageManager.hasSystemFeature(PackageManager.FEATURE_SENSOR_COMPASS))
         {
-            Log.e("Compass error", "Device doesnot have compass feature")
+            Log.e("Compass error", "Device does not have compass feature")
+            Toast.makeText(requireContext() , "Device does not have compass feature" , Toast.LENGTH_SHORT).show()
         }
         else
         {
@@ -175,8 +187,9 @@ open class CompassFragment : Fragment() , SensorEventListener
                 val latitude = sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
                 val longitude = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()
 
-
-                degree -= ceil(bearing(latitude , longitude)).toFloat()
+                val coordinates = Coordinates(latitude, longitude)
+                val qibla = Qibla(coordinates)
+                degree -= qibla.direction.toFloat()
                 val rotateAnimation =
                     RotateAnimation(
                         currentDegree ,
@@ -198,7 +211,7 @@ open class CompassFragment : Fragment() , SensorEventListener
 
     private fun lowPass(input : FloatArray , output : FloatArray)
     {
-        val alpha = 0.03f
+        val alpha = 0.05f
 
         for (i in input.indices)
         {
@@ -210,26 +223,6 @@ open class CompassFragment : Fragment() , SensorEventListener
     override fun onAccuracyChanged(sensor : Sensor? , accuracy : Int)
     {
     }
-
-    /**
-     * Finds the bearing from given Coordinates to Qibla Using Spherical trigonometry
-     * @author Arshad Shah
-     * @param startLat The start latitude
-     * @param startLng The start longitude
-     * @return bearing in Degrees
-     */
-    protected open fun bearing(startLat : Double , startLng : Double) : Double
-    {
-
-        val endLat = 21.4225241
-        val endLng = 39.8261818
-        val latitude1 = Math.toRadians(startLat)
-        val latitude2 = Math.toRadians(endLat)
-        val longDiff = Math.toRadians(endLng - startLng)
-        val y = sin(longDiff) * cos(latitude2)
-        val x = cos(latitude1) * sin(latitude2) - sin(latitude1) * cos(latitude2) * cos(longDiff)
-        return (Math.toDegrees(atan2(y , x)) + 360) % 360
-    } // end of spherical trigonometry function to find Qibla
 
 //    private fun vibrate(amount : Long) {
 //        val vibrator = requireContext().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator

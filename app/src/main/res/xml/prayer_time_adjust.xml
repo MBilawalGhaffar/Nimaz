@@ -53,27 +53,25 @@
             app:isPreferenceVisible = "true">
 
             <ListPreference
-                android:defaultValue = "14.0"
-                android:entries = "@array/angleValues"
-                android:entryValues = "@array/angleValues"
-                android:key = "fajrAngle"
-                android:persistent = "true"
-                android:title = "Fajr Angle"
-                app:dialogMessage = "Select the angle for Fajr Twilight"
-                app:iconSpaceReserved = "false"
-                app:useSimpleSummaryProvider = "true"/>
+                android:defaultValue="14.0"
+                android:entries="@array/angleValues"
+                android:entryValues="@array/angleValues"
+                android:key="fajrAngle"
+                android:persistent="true"
+                android:title="Fajr Angle"
+                app:iconSpaceReserved="false"
+                app:useSimpleSummaryProvider="true" />
             <ListPreference
-                android:defaultValue = "13.0"
-                android:entries = "@array/angleValues"
-                android:entryValues = "@array/angleValues"
-                android:key = "ishaaAngle"
-                android:persistent = "true"
-                android:title = "Ishaa Angle"
-                app:allowDividerAbove = "false"
-                app:allowDividerBelow = "true"
-                app:dialogMessage = "Select angle for Ishaa Twilght"
-                app:iconSpaceReserved = "false"
-                app:useSimpleSummaryProvider = "true"/>
+                android:defaultValue="13.0"
+                android:entries="@array/angleValues"
+                android:entryValues="@array/angleValues"
+                android:key="ishaaAngle"
+                android:persistent="true"
+                android:title="Ishaa Angle"
+                app:allowDividerAbove="false"
+                app:allowDividerBelow="true"
+                app:iconSpaceReserved="false"
+                app:useSimpleSummaryProvider="true" />
         </PreferenceCategory>
         <PreferenceCategory
             android:key = "timeOffset_cat"

@@ -1,20 +1,25 @@
 package com.arshadshah.nimaz.fragments
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.preference.PreferenceManager
+import com.arshadshah.nimaz.HomeActivity
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.DateConvertor
 import com.arshadshah.nimaz.helperClasses.NetworkChecker
@@ -27,6 +32,7 @@ import java.time.LocalDate
 import java.time.chrono.HijrahDate
 import java.time.format.DateTimeFormatter
 import java.util.*
+import java.util.prefs.Preferences
 import kotlin.properties.Delegates
 
 
@@ -96,7 +102,7 @@ class HomeFragment : Fragment()
 
         // Retrieve values given in the settings activity
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        val name = sharedPreferences.getString("location_input" , "Portlaoise")
+        val name = sharedPreferences.getString("location_input" , " ")
         val calcMethod = sharedPreferences.getString("calcMethod" , "IRELAND")
 
         // madhab adjustments
@@ -121,13 +127,12 @@ class HomeFragment : Fragment()
         val isNetworkAvailable = NetworkChecker().networkCheck(requireContext())
         if (isNetworkAvailable)
         {
-            //location finder class
-            //location finder class
-            val lonAndLat = locationFinder()
-            lonAndLat.findLongAndLan(requireContext() , name !!)
-            cityName.text = sharedPreferences.getString("location_input" , "Portlaoise").toString()
-            latitude = sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
-            longitude = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()
+                //location finder class
+                val lonAndLat = locationFinder()
+                lonAndLat.findLongAndLan(requireContext() , name !!)
+                cityName.text = sharedPreferences.getString("location_input" , "Portlaoise").toString()
+                latitude = sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
+                longitude = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()
         }
         else
         {
@@ -267,26 +272,50 @@ class HomeFragment : Fragment()
 
         //mute functions
         fajrSound.setOnClickListener {
+            val expandIn : Animation =
+                AnimationUtils.loadAnimation(requireContext() , R.anim.expand_in)
+            fajrSound.startAnimation(expandIn)
+            vibrate(30)
             openNotificationChannel(CHANNEL_ID)
         }
 
         sunriseSound.setOnClickListener {
+            val expandIn : Animation =
+                AnimationUtils.loadAnimation(requireContext() , R.anim.expand_in)
+            sunriseSound.startAnimation(expandIn)
+            vibrate(30)
             openNotificationChannel(CHANNEL_ID1)
         }
 
         zuharSound.setOnClickListener {
+            val expandIn : Animation =
+                AnimationUtils.loadAnimation(requireContext() , R.anim.expand_in)
+            zuharSound.startAnimation(expandIn)
+            vibrate(30)
             openNotificationChannel(CHANNEL_ID2)
         }
 
         asarSound.setOnClickListener {
+            val expandIn : Animation =
+                AnimationUtils.loadAnimation(requireContext() , R.anim.expand_in)
+            asarSound.startAnimation(expandIn)
+            vibrate(30)
             openNotificationChannel(CHANNEL_ID3)
         }
 
         maghribSound.setOnClickListener {
+            val expandIn : Animation =
+                AnimationUtils.loadAnimation(requireContext() , R.anim.expand_in)
+            maghribSound.startAnimation(expandIn)
+            vibrate(30)
             openNotificationChannel(CHANNEL_ID4)
         }
 
         ishaaSound.setOnClickListener {
+            val expandIn : Animation =
+                AnimationUtils.loadAnimation(requireContext() , R.anim.expand_in)
+            ishaaSound.startAnimation(expandIn)
+            vibrate(30)
             openNotificationChannel(CHANNEL_ID5)
         }
 
@@ -302,6 +331,22 @@ class HomeFragment : Fragment()
             .putExtra(Settings.EXTRA_APP_PACKAGE , requireContext().packageName)
             .putExtra(Settings.EXTRA_CHANNEL_ID , channelId)
         startActivity(intent)
+    }
+
+    private fun vibrate(amount : Long)
+    {
+        val vibrator = requireContext().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        {
+
+            vibrator.vibrate(
+                VibrationEffect.createOneShot(amount , VibrationEffect.DEFAULT_AMPLITUDE)
+            )
+        }
+        else
+        {
+            vibrator.vibrate(amount)
+        }
     }
     
 } // end of home fragment

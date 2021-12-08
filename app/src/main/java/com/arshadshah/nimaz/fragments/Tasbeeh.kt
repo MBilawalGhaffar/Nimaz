@@ -80,7 +80,6 @@ class Tasbeeh : Fragment()
         val vibrate20 = 20L
         val vibrate60 = 60L
 
-        edit_button.setBackgroundResource(R.drawable.editor)
         edit_button.setOnClickListener {
             val shouldVibrate = sharedPreferences.getBoolean("shouldvibrate" , true)
             val expandIn : Animation =
@@ -143,7 +142,7 @@ class Tasbeeh : Fragment()
 
         if (shouldVibrate)
         {
-            Vibrate_button.setBackgroundResource(R.drawable.vibration)
+            Vibrate_button.setImageResource(R.drawable.vibration)
             shouldVibrate = true
             with(sharedPreferences.edit()) {
                 putBoolean("shouldvibrate" , shouldVibrate)
@@ -152,7 +151,7 @@ class Tasbeeh : Fragment()
         }
         else
         {
-            Vibrate_button.setBackgroundResource(R.drawable.cancel)
+            Vibrate_button.setImageResource(R.drawable.cancel)
             shouldVibrate = false
             with(sharedPreferences.edit()) {
                 putBoolean("shouldvibrate" , shouldVibrate)
@@ -169,7 +168,7 @@ class Tasbeeh : Fragment()
             var shouldVibrate = sharedPreferences.getBoolean("shouldvibrate" , false)
             if (! shouldVibrate)
             {
-                Vibrate_button.setBackgroundResource(R.drawable.vibration)
+                Vibrate_button.setImageResource(R.drawable.vibration)
                 vibrate(vibrate60)
                 shouldVibrate = true
                 with(sharedPreferences.edit()) {
@@ -180,7 +179,7 @@ class Tasbeeh : Fragment()
             }
             else
             {
-                Vibrate_button.setBackgroundResource(R.drawable.cancel)
+                Vibrate_button.setImageResource(R.drawable.cancel)
                 vibrator.cancel()
                 shouldVibrate = false
                 with(sharedPreferences.edit()) {
@@ -270,7 +269,6 @@ class Tasbeeh : Fragment()
                 }
             }
         }
-        reset_button.setBackgroundResource(R.drawable.reset)
         // reset button listener
         reset_button.setOnClickListener {
             val shouldVibrate = sharedPreferences.getBoolean("shouldvibrate" , true)

@@ -1,27 +1,27 @@
 <resources>
 
-    <declare-styleable name = "DoubleText">
-        <attr name = "topText" format = "string"/>
-        <attr name = "bottomText" format = "string"/>
-        <attr name = "android:ems"/>
+    <declare-styleable name="DoubleText">
+        <attr name="topText" format="string" />
+        <attr name="bottomText" format="string" />
+        <attr name="android:ems" />
 
     </declare-styleable>
 
-    <declare-styleable name = "customDrawablesAttr">
-        <attr name = "cardBackground" format = "color"/>
+    <declare-styleable name="customDrawablesAttr">
+        <attr name="cardBackground" format="color" />
     </declare-styleable>
-    <declare-styleable name = "customDrawableLinesAttr">
-        <attr name = "lines" format = "color"/>
-        <attr name = "whiteLines" format = "color"/>
-        <attr name = "whiteLinesCompass" format = "color"/>
-    </declare-styleable>
-
-    <declare-styleable name = "customDrawablesHighlightAttr">
-        <attr name = "highlight" format = "color"/>
+    <declare-styleable name="customDrawableLinesAttr">
+        <attr name="lines" format="color" />
+        <attr name="whiteLines" format="color" />
+        <attr name="whiteLinesCompass" format="color" />
     </declare-styleable>
 
-    <declare-styleable name = "customDrawablesArabicNameAttr">
-        <attr name = "arabicName" format = "color"/>
+    <declare-styleable name="customDrawablesHighlightAttr">
+        <attr name="highlight" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="customDrawablesArabicNameAttr">
+        <attr name="arabicName" format="color" />
     </declare-styleable>
 
 </resources>

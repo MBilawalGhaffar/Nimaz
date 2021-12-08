@@ -1,30 +1,39 @@
 package com.arshadshah.nimaz
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
+import android.util.Log
+import android.view.View
 import androidx.activity.addCallback
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.PermissionChecker.PERMISSION_GRANTED
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.helperClasses.CreateAlarms
+import com.arshadshah.nimaz.helperClasses.locationFinder
 import com.arshadshah.nimaz.helperClasses.prayerTimeThread
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlin.properties.Delegates
+import com.google.android.material.snackbar.Snackbar
 
 
 /**
  * The main activity that contains the code base for Alarms, and navigation
  * @author Arshad shah
  */
-class homeActivity : AppCompatActivity()
+class HomeActivity : AppCompatActivity()
 {
-
-    var latitude by Delegates.notNull<Double>()
-    var longitude by Delegates.notNull<Double>()
-
-
     override fun onResume()
     {
         super.onResume()
@@ -38,8 +47,10 @@ class homeActivity : AppCompatActivity()
     {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        val navView : BottomNavigationView = findViewById(R.id.nav_view)
 
+        // Retrieve values given in the settings activity
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val navView : BottomNavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
 
         navView.setupWithNavController(navController)
@@ -79,8 +90,6 @@ class homeActivity : AppCompatActivity()
                 }
                 R.id.navigation_setting -> {
                     navController.navigate(R.id.navigation_setting)
-//                    val i = Intent(this , SettingsActivity::class.java)
-//                    startActivity(i)
                     true
                 }
 
@@ -89,9 +98,6 @@ class homeActivity : AppCompatActivity()
         }
 
         supportActionBar?.hide()
-
-        //shared preferences
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
         //create channels
         CreateAlarms().createChannel(this)
@@ -105,7 +111,4 @@ class homeActivity : AppCompatActivity()
         }
 
     } // end of oncreate
-
-
-
 } // end of class

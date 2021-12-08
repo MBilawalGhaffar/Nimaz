@@ -122,93 +122,75 @@
                     android:layout_height = "wrap_content"
                     android:fontFamily = "@font/nunito"
                     android:padding = "8dp"
-                    android:text = "Nimaz is created with the help of Allah for the sake of Allah."
+                    android:text = "@string/nimaz_is_created_with_the_help_of_allah_for_the_sake_of_allah"
                     android:textSize = "18sp"/>
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width = "match_parent"
-                    android:layout_height = "match_parent"
-                    android:layout_margin = "10dp"
-                    app:cardCornerRadius = "10dp"
-                    app:cardElevation = "5dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width = "match_parent"
-                        android:layout_height = "match_parent">
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:alignContent="center"
+                        app:alignItems="center"
+                        app:flexWrap="wrap"
+                        app:justifyContent="space_between">
 
-                        <TextView
-                            android:id = "@+id/textView29"
-                            android:layout_width = "wrap_content"
-                            android:layout_height = "wrap_content"
-                            android:fontFamily = "@font/nunito"
-                            android:padding = "8dp"
-                            android:text = "Github"
-                            android:textSize = "20sp"
-                            android:textStyle = "bold"
-                            app:layout_constraintEnd_toEndOf = "parent"
-                            app:layout_constraintStart_toStartOf = "parent"
-                            app:layout_constraintTop_toTopOf = "parent"/>
 
-                        <TextView
-                            android:id = "@+id/textView28"
-                            android:layout_width = "match_parent"
-                            android:layout_height = "48dp"
-                            android:autoLink = "web"
-                            android:fontFamily = "@font/nunito"
-                            android:gravity = "center"
-                            android:padding = "10dp"
-                            android:text = "https://github.com/arshad-shah"
-                            android:textSize = "16sp"
-                            android:textStyle = "bold"
-                            app:layout_constraintBottom_toBottomOf = "parent"
-                            app:layout_constraintEnd_toEndOf = "parent"
-                            app:layout_constraintStart_toStartOf = "parent"
-                            app:layout_constraintTop_toBottomOf = "@+id/textView29"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        <ImageButton
+                            android:id="@+id/website"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/finecontrol"
+                            android:contentDescription="@string/link_to_website"
+                            android:src="@drawable/ic_external_link"
+                            android:tooltipText="Website"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                </androidx.cardview.widget.CardView>
+                        <ImageButton
+                            android:id="@+id/mail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/finecontrol"
+                            android:contentDescription="@string/email_account_of_arshad_shah"
+                            android:src="@drawable/ic_mail"
+                            android:tooltipText="Email Me"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/website"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width = "match_parent"
-                    android:layout_height = "match_parent"
-                    android:layout_margin = "10dp"
-                    app:cardCornerRadius = "10dp"
-                    app:cardElevation = "5dp">
+                        <ImageButton
+                            android:id="@+id/github"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/finecontrol"
+                            android:contentDescription="@string/github_account_of_arshad_shah"
+                            android:src="@drawable/ic_github"
+                            android:tooltipText="Check out my github"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/mail"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width = "match_parent"
-                        android:layout_height = "match_parent">
-
-                        <TextView
-                            android:id = "@+id/textView30"
-                            android:layout_width = "wrap_content"
-                            android:layout_height = "wrap_content"
-                            android:fontFamily = "@font/nunito"
-                            android:padding = "8dp"
-                            android:text = "Email"
-                            android:textSize = "20sp"
-                            android:textStyle = "bold"
-                            app:layout_constraintEnd_toEndOf = "parent"
-                            app:layout_constraintStart_toStartOf = "parent"
-                            app:layout_constraintTop_toTopOf = "parent"/>
-
-                        <TextView
-                            android:id = "@+id/textView8"
-                            android:layout_width = "match_parent"
-                            android:layout_height = "48dp"
-                            android:autoLink = "email"
-                            android:fontFamily = "@font/nunito"
-                            android:gravity = "center"
-                            android:padding = "10dp"
-                            android:text = "shaharshad57@gmail.com"
-                            android:textSize = "16sp"
-                            android:textStyle = "bold"
-                            app:layout_constraintBottom_toBottomOf = "parent"
-                            app:layout_constraintEnd_toEndOf = "parent"
-                            app:layout_constraintStart_toStartOf = "parent"
-                            app:layout_constraintTop_toBottomOf = "@+id/textView30"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
+                        <ImageButton
+                            android:id="@+id/linkedin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/finecontrol"
+                            android:contentDescription="@string/linkedin_account_of_arshad_shah"
+                            android:src="@drawable/ic_linkedin"
+                            android:tooltipText="check out my linkedin"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/github"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </com.google.android.flexbox.FlexboxLayout>
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
@@ -221,138 +203,135 @@
                 android:orientation = "vertical">
 
                 <TextView
-                    android:id = "@+id/references"
-                    android:layout_width = "match_parent"
-                    android:layout_height = "wrap_content"
-                    android:fontFamily = "@font/nunito"
-                    android:padding = "10dp"
-                    android:text = "@string/references"
-                    android:textSize = "30sp"
-                    android:textStyle = "bold"/>
+                    android:id="@+id/references"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    android:padding="10dp"
+                    android:text="@string/references"
+                    android:textAlignment="center"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width = "match_parent"
-                    android:layout_height = "match_parent"
-                    android:layout_margin = "10dp"
-                    app:cardCornerRadius = "10dp"
-                    app:cardElevation = "5dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
+                    app:contentPadding="5dp">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width = "match_parent"
-                        android:layout_height = "match_parent">
-
-                        <TextView
-                            android:id = "@+id/textView18"
-                            android:layout_width = "match_parent"
-                            android:layout_height = "wrap_content"
-                            android:fontFamily = "@font/nunito"
-                            android:padding = "8dp"
-                            android:text = "@string/menuOptionreference3"
-                            android:textSize = "18sp"
-                            app:layout_constraintEnd_toEndOf = "parent"
-                            app:layout_constraintStart_toStartOf = "parent"
-                            app:layout_constraintTop_toTopOf = "parent"/>
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:alignContent="center"
+                        app:alignItems="center"
+                        app:flexDirection="row"
+                        app:flexWrap="nowrap"
+                        app:justifyContent="space_between">
 
                         <TextView
-                            android:id = "@+id/textView19"
-                            android:layout_width = "wrap_content"
-                            android:layout_height = "wrap_content"
-                            android:autoLink = "web"
-                            android:fontFamily = "@font/nunito"
-                            android:gravity = "center"
-                            android:padding = "8dp"
-                            android:text = "@string/codeforcalculation"
-                            android:textSize = "16sp"
-                            android:textStyle = "bold"
-                            app:layout_constraintBottom_toBottomOf = "parent"
-                            app:layout_constraintEnd_toEndOf = "parent"
-                            app:layout_constraintStart_toStartOf = "parent"
-                            app:layout_constraintTop_toBottomOf = "@+id/textView18"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                            android:id="@+id/textView18"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:breakStrategy="simple"
+                            android:fontFamily="@font/nunito"
+                            android:padding="8dp"
+                            android:text="@string/menuOptionreference3"
+                            android:textSize="14sp" />
+
+                        <ImageButton
+                            android:id="@+id/ref1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/finecontrol"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_external_link" />
+
+                    </com.google.android.flexbox.FlexboxLayout>
 
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width = "match_parent"
-                    android:layout_height = "match_parent"
-                    android:layout_margin = "10dp"
-                    app:cardCornerRadius = "10dp"
-                    app:cardElevation = "5dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
+                    app:contentPadding="5dp">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width = "match_parent"
-                        android:layout_height = "match_parent">
-
-                        <TextView
-                            android:id = "@+id/textView12"
-                            android:layout_width = "match_parent"
-                            android:layout_height = "wrap_content"
-                            android:fontFamily = "@font/nunito"
-                            android:padding = "8dp"
-                            android:text = "@string/menuOptionreference1"
-                            android:textSize = "18sp"
-                            app:layout_constraintEnd_toEndOf = "parent"
-                            app:layout_constraintStart_toStartOf = "parent"
-                            app:layout_constraintTop_toTopOf = "parent"/>
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:alignContent="center"
+                        app:alignItems="center"
+                        app:flexDirection="row"
+                        app:flexWrap="nowrap"
+                        app:justifyContent="space_between">
 
                         <TextView
-                            android:id = "@+id/textView13"
-                            android:layout_width = "match_parent"
-                            android:layout_height = "wrap_content"
-                            android:autoLink = "web"
-                            android:fontFamily = "@font/nunito"
-                            android:gravity = "center"
-                            android:padding = "8dp"
-                            android:text = "@string/menuOptinTasbeehLink"
-                            android:textSize = "16sp"
-                            android:textStyle = "bold"
-                            app:layout_constraintBottom_toBottomOf = "parent"
-                            app:layout_constraintEnd_toEndOf = "parent"
-                            app:layout_constraintStart_toStartOf = "parent"
-                            app:layout_constraintTop_toBottomOf = "@+id/textView12"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                            android:id="@+id/textView12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:breakStrategy="simple"
+                            android:fontFamily="@font/nunito"
+                            android:padding="8dp"
+                            android:text="@string/menuOptionreference1"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageButton
+                            android:id="@+id/ref2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/finecontrol"
+                            android:src="@drawable/ic_external_link" />
+
+                    </com.google.android.flexbox.FlexboxLayout>
+
 
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width = "match_parent"
-                    android:layout_height = "match_parent"
-                    android:layout_margin = "10dp"
-                    app:cardCornerRadius = "10dp"
-                    app:cardElevation = "5dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
+                    app:contentPadding="5dp">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width = "match_parent"
-                        android:layout_height = "match_parent">
-
-                        <TextView
-                            android:id = "@+id/textView15"
-                            android:layout_width = "match_parent"
-                            android:layout_height = "wrap_content"
-                            android:fontFamily = "@font/nunito"
-                            android:padding = "8dp"
-                            android:text = "@string/menuOptionreference2"
-                            android:textSize = "18sp"
-                            app:layout_constraintEnd_toEndOf = "parent"
-                            app:layout_constraintStart_toStartOf = "parent"
-                            app:layout_constraintTop_toTopOf = "parent"/>
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:alignContent="center"
+                        app:alignItems="center"
+                        app:flexDirection="row"
+                        app:flexWrap="nowrap"
+                        app:justifyContent="space_between">
 
                         <TextView
-                            android:id = "@+id/textView16"
-                            android:layout_width = "match_parent"
-                            android:layout_height = "48dp"
-                            android:autoLink = "web"
-                            android:fontFamily = "@font/nunito"
-                            android:gravity = "center"
-                            android:padding = "8dp"
-                            android:text = "@string/mainIconLink"
-                            android:textSize = "16sp"
-                            android:textStyle = "bold"
-                            app:layout_constraintBottom_toBottomOf = "parent"
-                            app:layout_constraintEnd_toEndOf = "parent"
-                            app:layout_constraintStart_toStartOf = "parent"
-                            app:layout_constraintTop_toBottomOf = "@+id/textView15"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                            android:id="@+id/textView15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:breakStrategy="simple"
+                            android:fontFamily="@font/nunito"
+                            android:padding="8dp"
+                            android:text="@string/menuOptionreference2"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageButton
+                            android:id="@+id/ref3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/finecontrol"
+                            android:src="@drawable/ic_external_link" />
+
+                    </com.google.android.flexbox.FlexboxLayout>
 
                 </androidx.cardview.widget.CardView>
 

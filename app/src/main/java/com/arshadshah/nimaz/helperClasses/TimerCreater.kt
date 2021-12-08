@@ -1,6 +1,7 @@
 package com.arshadshah.nimaz.helperClasses
 
 import android.content.Context
+import android.content.res.Resources
 import android.os.Build
 import android.os.CountDownTimer
 import android.util.Log
@@ -272,9 +273,10 @@ class TimerCreater
                     // elapsed seconds
                     val elapsedSeconds = diff / secondsInMilli
                     diff %= secondsInMilli
-
-                    timeTeller.text =
-                        " - $elapsedHours : $elapsedMinutes : $elapsedSeconds "
+                    val res: Resources = context.resources
+                    val text = res.getString(R.string.timer)
+                    val filledText = String.format(text,elapsedHours,elapsedMinutes,elapsedSeconds)
+                    timeTeller.text = filledText
                 }
 
                 override fun onFinish()

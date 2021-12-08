@@ -8,16 +8,33 @@
         <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/drawable-nodpi/widgetbackground.xml" value="0.3175925925925926" />
         <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/drawable-nodpi/widgethighlight.xml" value="0.37037037037037035" />
         <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/drawable-v21/app_widget_background.xml" value="0.23072916666666668" />
+        <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/drawable/battery.xml" value="0.34270833333333334" />
         <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/drawable/bg_gradient.xml" value="0.3175925925925926" />
+        <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/drawable/cancel.xml" value="0.34270833333333334" />
         <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/drawable/edit_location.xml" value="0.3175925925925926" />
+        <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/drawable/ic__9.xml" value="0.3111111111111111" />
+        <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/drawable/ic_external_link.xml" value="0.3111111111111111" />
+        <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/drawable/ic_github.xml" value="0.3111111111111111" />
+        <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/drawable/ic_linkedin.xml" value="0.3111111111111111" />
+        <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/drawable/ic_mail.xml" value="0.3111111111111111" />
         <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/drawable/ic_prayer.xml" value="0.23072916666666668" />
         <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/drawable/splash_background.xml" value="0.3175925925925926" />
-        <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/layout/activity_introduction.xml" value="0.3875" />
+        <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/layout/activity_home.xml" value="0.18854166666666666" />
+        <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/layout/activity_introduction.xml" value="0.22" />
         <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/layout/activity_main.xml" value="0.3802083333333333" />
+        <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/layout/fragment_about.xml" value="0.3515625" />
+        <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/layout/fragment_compass.xml" value="0.22" />
+        <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/layout/fragment_home.xml" value="0.396875" />
+        <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/layout/fragment_tasbeeh.xml" value="0.3223958333333333" />
+        <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/layout/inputdialog.xml" value="0.6" />
         <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/layout/nimaz.xml" value="0.3802083333333333" />
         <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/layout/nimaz_full.xml" value="0.3802083333333333" />
         <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/layout/nimaz_single_line.xml" value="0.3875" />
+        <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/layout/optimizebattery.xml" value="0.5" />
+        <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/layout/prayer_time_adjust.xml" value="0.34427083333333336" />
+        <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/layout/row_item.xml" value="0.6" />
         <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/layout/settings_activity.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/layout/tasbeehreset.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3175925925925926" />
         <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3175925925925926" />
         <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/xml/header_preferences.xml" value="0.3515625" />
