@@ -223,16 +223,4 @@ open class CompassFragment : Fragment() , SensorEventListener
     override fun onAccuracyChanged(sensor : Sensor? , accuracy : Int)
     {
     }
-
-//    private fun vibrate(amount : Long) {
-//        val vibrator = requireContext().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//
-//            vibrator.vibrate(
-//                VibrationEffect.createOneShot(amount, VibrationEffect.DEFAULT_AMPLITUDE))
-//        } else {
-//            vibrator.vibrate(amount)
-//        }
-//    }
-
 }

@@ -70,6 +70,17 @@
             tools:layout_editor_absoluteY="15dp">
 
             <TextView
+                android:id="@+id/location2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/nunito"
+                android:text="@string/location"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="300dp"
+                tools:layout_editor_absoluteY="20dp" />
+
+            <TextView
                 android:id="@+id/location"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -79,17 +90,6 @@
                 android:textStyle="bold"
                 android:tooltipText="Current location"
                 tools:layout_editor_absoluteX="20dp"
-                tools:layout_editor_absoluteY="20dp" />
-
-            <TextView
-                android:id="@+id/location2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/nunito"
-                android:text="@string/location"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:layout_editor_absoluteX="300dp"
                 tools:layout_editor_absoluteY="20dp" />
         </com.google.android.flexbox.FlexboxLayout>
 

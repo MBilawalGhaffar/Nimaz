@@ -14,4 +14,5 @@
     <color name="highlight">#F3F3F3</color>
     <color name="highlightDark">#959595</color>
     <color name="black">#000000</color>
+    <color name="cardDark">#545454</color>
 </resources>

@@ -106,7 +106,7 @@ class HomeActivity : AppCompatActivity()
         val alarmLock = sharedPreferences.getBoolean("alarmLock" , false)
         if (! alarmLock)
         {
-            val prayerThread = prayerTimeThread(this)
+            val prayerThread = prayerTimeThread(this.applicationContext)
             prayerThread.start()
         }
 

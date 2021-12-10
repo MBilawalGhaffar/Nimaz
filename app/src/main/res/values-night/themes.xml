@@ -15,7 +15,7 @@
     <!-- Customize your theme here. -->
     <item name="android:textColor">?attr/colorOnSecondary</item>
     <item name="android:windowBackground">?attr/colorOnPrimary</item>
-    <item name="cardBackground">?attr/colorOnPrimary</item>
+    <item name="cardBackground">@color/cardDark</item>
     <item name="lines">?attr/colorOnSecondary</item>
     <item name="whiteLines">@color/black</item>
     <item name="whiteLinesCompass">@color/white</item>

@@ -148,12 +148,7 @@ class HomeFragment : Fragment()
         // calculation
         val coordinates = Coordinates(latitude , longitude)
         val calcdate = DateComponents.from(Date())
-        /*
-         * This if statement makes sure that the correct data is taken from the api
-         * and it is controlled from the setting
-         * True means custom calculation method
-         * False means a list of preset methods from selected regions
-         * */
+
         /*
         * calculate the the time with the parameters
         * supplied to the API
@@ -319,7 +314,7 @@ class HomeFragment : Fragment()
             openNotificationChannel(CHANNEL_ID5)
         }
 
-//        // end of main code
+        // end of main code
         return root
     }
     // end of oncreate
