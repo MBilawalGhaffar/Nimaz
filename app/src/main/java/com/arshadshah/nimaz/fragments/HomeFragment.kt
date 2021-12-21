@@ -212,22 +212,6 @@ class HomeFragment : Fragment()
             }
         }
 
-        // prayer times in string format used to start a timer to the next prayer
-        val fajr_value = prayerTimes.fajr.toString()
-        val Sunrise_value = prayerTimes.sunrise.toString()
-        val zuhar_value = prayerTimes.dhuhr.toString()
-        val asar_value = prayerTimes.asr.toString()
-        val maghrib_value = prayerTimes.maghrib.toString()
-        val ishaa_value = prayerTimes.isha.toString()
-
-
-        /*
-        * Prayer times in Long format used to create a range to ensure correct
-        * timer is started
-        *
-        * extra values for fajr time as timer stops at midnight (12 : 00 or 24 : 00)
-        * so to ensure that the timer goes to completion a second timer is needed
-        */
         // Display the countdown timers
         val Tofajr : TextView = root.findViewById(R.id.Tofajr)
         val Tosunrise : TextView = root.findViewById(R.id.Tosunrise)
@@ -247,7 +231,7 @@ class HomeFragment : Fragment()
         //create timers
         TimerCreater().createTimer(
             requireContext() ,
-            fajr_value , Sunrise_value , zuhar_value , asar_value , maghrib_value , ishaa_value ,
+            prayerTimes,
             Tofajr , fajrhighlight ,
             Tosunrise , sunrisehighlight ,
             ToZuhar , zuharhighlight ,

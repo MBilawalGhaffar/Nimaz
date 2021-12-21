@@ -64,7 +64,7 @@ class PrayerTimes(
 
             else ->
             {
-                Prayer.NONE
+                Prayer.FAJR
             }
         }
     }
@@ -77,7 +77,7 @@ class PrayerTimes(
         {
             isha !!.time - `when` <= 0 ->
             {
-                Prayer.NONE
+                Prayer.FAJR
             }
 
             maghrib !!.time - `when` <= 0 ->
