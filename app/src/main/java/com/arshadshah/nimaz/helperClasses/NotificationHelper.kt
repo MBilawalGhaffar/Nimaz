@@ -51,14 +51,8 @@ class NotificationHelper
             context.getSystemService(NOTIFICATION_SERVICE) as
                     NotificationManager
 
-        val Adhan : Uri = if (sound != null)
-        {
-            Uri.parse(sound)
-        }
-        else
-        {
-            Uri.parse("android.resource://" + context.packageName + "/" + R.raw.adhan)
-        }
+        val Adhan : Uri = Uri.parse(sound)
+
         val attributes =
             AudioAttributes.Builder()
                 .setContentType(
@@ -68,22 +62,19 @@ class NotificationHelper
                 .setUsage(AudioAttributes.USAGE_NOTIFICATION)
                 .build()
         // 1
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-        {
-            // 2
-            val channel = NotificationChannel(channel_id , name , importance)
-            channel.description = description
-            channel.setShowBadge(showBadge)
-            channel.enableLights(true)
-            channel.lightColor = GREEN
-            channel.setSound(Adhan , attributes)
-            channel.lockscreenVisibility = VISIBILITY_PUBLIC
-            channel.enableVibration(true)
-            channel.vibrationPattern =
-                longArrayOf(100 , 200 , 300 , 400 , 500 , 400 , 300 , 200 , 400)
-            // 3
-            notificationManager.createNotificationChannel(channel)
-        }
+        // 2
+        val channel = NotificationChannel(channel_id , name , importance)
+        channel.description = description
+        channel.setShowBadge(showBadge)
+        channel.enableLights(true)
+        channel.lightColor = GREEN
+        channel.setSound(Adhan , attributes)
+        channel.lockscreenVisibility = VISIBILITY_PUBLIC
+        channel.enableVibration(true)
+        channel.vibrationPattern =
+            longArrayOf(100 , 200 , 300 , 400 , 500 , 400 , 300 , 200 , 400)
+        // 3
+        notificationManager.createNotificationChannel(channel)
         Log.i("Notifications" , "Notification Channel $name Successfully created")
     }
 
@@ -111,21 +102,18 @@ class NotificationHelper
             context.getSystemService(NOTIFICATION_SERVICE) as
                     NotificationManager
         // 1
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-        {
-            // 2
-            val channel = NotificationChannel(channel_id , name , importance)
-            channel.description = description
-            channel.setShowBadge(showBadge)
-            channel.enableLights(true)
-            channel.lightColor = GREEN
-            channel.lockscreenVisibility = VISIBILITY_PUBLIC
-            channel.enableVibration(true)
-            channel.vibrationPattern =
-                longArrayOf(100 , 200 , 300 , 400 , 500 , 400 , 300 , 200 , 400)
-            // 3
-            notificationManager.createNotificationChannel(channel)
-        }
+        // 2
+        val channel = NotificationChannel(channel_id , name , importance)
+        channel.description = description
+        channel.setShowBadge(showBadge)
+        channel.enableLights(true)
+        channel.lightColor = GREEN
+        channel.lockscreenVisibility = VISIBILITY_PUBLIC
+        channel.enableVibration(true)
+        channel.vibrationPattern =
+            longArrayOf(100 , 200 , 300 , 400 , 500 , 400 , 300 , 200 , 400)
+        // 3
+        notificationManager.createNotificationChannel(channel)
         Log.i("Notifications" , "Notification Channel $name Successfully created")
     }
 
@@ -158,7 +146,6 @@ class NotificationHelper
             }
         val notificationPendingIntent : PendingIntent =
             PendingIntent.getActivity(context , 8 , notificationIntent , 0)
-
 
             val builder =
                 NotificationCompat.Builder(context , channel_id).apply {

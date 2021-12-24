@@ -53,8 +53,6 @@ class HomeActivity : AppCompatActivity()
         val navView : BottomNavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
 
-        navView.setupWithNavController(navController)
-
         this.onBackPressedDispatcher.addCallback(this) {
             // Handle the back button event
             if(navController.currentDestination?.id == R.id.navigation_home){
@@ -62,14 +60,12 @@ class HomeActivity : AppCompatActivity()
             }
             else{
                 navController.navigate(R.id.navigation_home)
+                navView.selectedItemId = R.id.navigation_home
             }
         }
-        navView.menu.getItem(0).isCheckable = true
 
-        navView.setOnNavigationItemSelectedListener {menu ->
-
+        navView.setOnItemSelectedListener {menu ->
             when(menu.itemId){
-
                 R.id.navigation_home -> {
                     navController.navigate(R.id.navigation_home)
                     true
