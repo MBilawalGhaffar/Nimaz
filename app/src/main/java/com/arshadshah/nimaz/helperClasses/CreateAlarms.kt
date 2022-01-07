@@ -243,70 +243,67 @@ class CreateAlarms
             val maghribAdhan = "android.resource://" + context.packageName + "/" + R.raw.maghrib
             val ishaaAdhan = "android.resource://" + context.packageName + "/" + R.raw.ishaa
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-            {
-                NotificationHelper()
-                    .createNotificationChannel(
-                        context ,
-                        NotificationManagerCompat.IMPORTANCE_MAX ,
-                        true ,
-                        channelFajr ,
-                        descFajr ,
-                        CHANNEL_ID ,
-                        fajrAdhan
-                                              )
+            NotificationHelper()
+                .createNotificationChannel(
+                    context ,
+                    NotificationManagerCompat.IMPORTANCE_MAX ,
+                    true ,
+                    channelFajr ,
+                    descFajr ,
+                    CHANNEL_ID ,
+                    fajrAdhan
+                                          )
 
-                NotificationHelper()
-                    .NotificationChannelSilent(
-                        context ,
-                        NotificationManagerCompat.IMPORTANCE_DEFAULT ,
-                        false ,
-                        channelSunrise ,
-                        descSunrise ,
-                        CHANNEL_ID1 )
+            NotificationHelper()
+                .NotificationChannelSilent(
+                    context ,
+                    NotificationManagerCompat.IMPORTANCE_DEFAULT ,
+                    false ,
+                    channelSunrise ,
+                    descSunrise ,
+                    CHANNEL_ID1 )
 
 
-                NotificationHelper()
-                    .createNotificationChannel(
-                        context ,
-                        NotificationManagerCompat.IMPORTANCE_MAX ,
-                        true ,
-                        channelZuhar ,
-                        descZuhar ,
-                        CHANNEL_ID2 ,
-                        zuharAdhan
-                                              )
-                NotificationHelper()
-                    .createNotificationChannel(
-                        context ,
-                        NotificationManagerCompat.IMPORTANCE_MAX ,
-                        true ,
-                        channelAsar ,
-                        descAsar ,
-                        CHANNEL_ID3 ,
-                        asarAdhan
-                                              )
-                NotificationHelper()
-                    .createNotificationChannel(
-                        context ,
-                        NotificationManagerCompat.IMPORTANCE_MAX ,
-                        true ,
-                        channelMaghrib ,
-                        descMaghrib ,
-                        CHANNEL_ID4 ,
-                        maghribAdhan
-                                              )
-                NotificationHelper()
-                    .createNotificationChannel(
-                        context ,
-                        NotificationManagerCompat.IMPORTANCE_MAX ,
-                        true ,
-                        channelIshaa ,
-                        descIshaa ,
-                        CHANNEL_ID5 ,
-                        ishaaAdhan
-                                              )
-            }
+            NotificationHelper()
+                .createNotificationChannel(
+                    context ,
+                    NotificationManagerCompat.IMPORTANCE_MAX ,
+                    true ,
+                    channelZuhar ,
+                    descZuhar ,
+                    CHANNEL_ID2 ,
+                    zuharAdhan
+                                          )
+            NotificationHelper()
+                .createNotificationChannel(
+                    context ,
+                    NotificationManagerCompat.IMPORTANCE_MAX ,
+                    true ,
+                    channelAsar ,
+                    descAsar ,
+                    CHANNEL_ID3 ,
+                    asarAdhan
+                                          )
+            NotificationHelper()
+                .createNotificationChannel(
+                    context ,
+                    NotificationManagerCompat.IMPORTANCE_MAX ,
+                    true ,
+                    channelMaghrib ,
+                    descMaghrib ,
+                    CHANNEL_ID4 ,
+                    maghribAdhan
+                                          )
+            NotificationHelper()
+                .createNotificationChannel(
+                    context ,
+                    NotificationManagerCompat.IMPORTANCE_MAX ,
+                    true ,
+                    channelIshaa ,
+                    descIshaa ,
+                    CHANNEL_ID5 ,
+                    ishaaAdhan
+                                          )
 
             //write lock to storage
             with(sharedPreferences.edit()) {
