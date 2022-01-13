@@ -1,6 +1,7 @@
 package com.arshadshah.nimaz
 
 import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_IMMUTABLE
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
@@ -62,7 +63,7 @@ internal fun updateAppWidget(
 {
     // Construct the RemoteViews object
     val intent = Intent(context , MainActivity::class.java)
-    val pendingIntent = PendingIntent.getActivity(context , 9 , intent , 0)
+    val pendingIntent = PendingIntent.getActivity(context , 9 , intent , FLAG_IMMUTABLE)
 
 
     var latitude by Delegates.notNull<Double>()

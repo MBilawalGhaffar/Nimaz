@@ -3,6 +3,7 @@ package com.arshadshah.nimaz.fragments
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_IMMUTABLE
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -121,7 +122,7 @@ class MainPage : PreferenceFragmentCompat()
                     putExtra("notifyid" , 2005)
                     putExtra("time" , current_timePlus10)
                 }
-            val PendingIntent = PendingIntent.getBroadcast(context , 8 , ishaaIntent , 0)
+            val PendingIntent = PendingIntent.getBroadcast(context , 8 , ishaaIntent , FLAG_IMMUTABLE)
             Alarms().setExactAlarm(requireContext() , current_timePlus10 , PendingIntent)
             Toast.makeText(
                 requireContext() ,

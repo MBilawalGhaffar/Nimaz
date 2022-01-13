@@ -1,6 +1,7 @@
 package com.arshadshah.nimaz.helperClasses
 
 import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_IMMUTABLE
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -76,7 +77,7 @@ class CreateAlarms
                     putExtra("notifyid" , 2000)
                     putExtra("time" , fajrAlarm)
                 }
-            val fajrPendingIntent = PendingIntent.getBroadcast(context , 1 , fajrIntent , 0)
+            val fajrPendingIntent = PendingIntent.getBroadcast(context , 1 , fajrIntent , FLAG_IMMUTABLE)
             Alarms().setExactAlarm(context , fajrAlarm , fajrPendingIntent)
 
             // fajr alarm
@@ -87,7 +88,7 @@ class CreateAlarms
                     putExtra("notifyid" , 2001)
                     putExtra("time" , sunriseAlarm)
                 }
-            val sunrisePendingIntent = PendingIntent.getBroadcast(context , 2 , sunriseIntent , 0)
+            val sunrisePendingIntent = PendingIntent.getBroadcast(context , 2 , sunriseIntent , FLAG_IMMUTABLE)
             Alarms().setExactAlarm(context , sunriseAlarm , sunrisePendingIntent)
 
             // zuhar
@@ -98,7 +99,7 @@ class CreateAlarms
                     putExtra("notifyid" , 2002)
                     putExtra("time" , zuharAlarm)
                 }
-            val zuharPendingIntent = PendingIntent.getBroadcast(context , 3 , zuharIntent , 0)
+            val zuharPendingIntent = PendingIntent.getBroadcast(context , 3 , zuharIntent , FLAG_IMMUTABLE)
             Alarms().setExactAlarm(context , zuharAlarm , zuharPendingIntent)
 
             // asar
@@ -109,7 +110,7 @@ class CreateAlarms
                     putExtra("notifyid" , 2003)
                     putExtra("time" , asarAlarm)
                 }
-            val asarPendingIntent = PendingIntent.getBroadcast(context , 4 , asarintent , 0)
+            val asarPendingIntent = PendingIntent.getBroadcast(context , 4 , asarintent , FLAG_IMMUTABLE)
             Alarms().setExactAlarm(context , asarAlarm , asarPendingIntent)
 
             // maghrib
@@ -120,7 +121,7 @@ class CreateAlarms
                     putExtra("notifyid" , 2004)
                     putExtra("time" , maghribAlarm)
                 }
-            val maghribPendingIntent = PendingIntent.getBroadcast(context , 5 , maghribIntent , 0)
+            val maghribPendingIntent = PendingIntent.getBroadcast(context , 5 , maghribIntent , FLAG_IMMUTABLE)
             Alarms().setExactAlarm(context , maghribAlarm , maghribPendingIntent)
 
             //ishaa alarm
@@ -136,7 +137,7 @@ class CreateAlarms
                         putExtra("notifyid" , 2005)
                         putExtra("time" , ishaaAlarm)
                     }
-                val ishaaPendingIntent = PendingIntent.getBroadcast(context , 6 , ishaaIntent , 0)
+                val ishaaPendingIntent = PendingIntent.getBroadcast(context , 6 , ishaaIntent , FLAG_IMMUTABLE)
                 Alarms().setExactAlarm(context , ishaaAlarm , ishaaPendingIntent)
             }
             else
@@ -150,7 +151,7 @@ class CreateAlarms
                         putExtra("notifyid" , 2005)
                         putExtra("time" , MaghribPlusBuffer)
                     }
-                val ishaaPendingIntent = PendingIntent.getBroadcast(context , 6 , ishaaIntent , 0)
+                val ishaaPendingIntent = PendingIntent.getBroadcast(context , 6 , ishaaIntent , FLAG_IMMUTABLE)
                 Alarms().setExactAlarm(context , MaghribPlusBuffer , ishaaPendingIntent)
             }
             Log.i("Alarms for Adhan" , "All alarms Alarms are scheduled successfully.")
@@ -194,7 +195,7 @@ class CreateAlarms
                 putExtra("maghribTime" , maghribAlarm)
                 putExtra("ishaaTime" , ishaaAlarm)
             }
-        val resetPendingIntent = PendingIntent.getBroadcast(context , 7 , resetIntent , 0)
+        val resetPendingIntent = PendingIntent.getBroadcast(context , 7 , resetIntent , FLAG_IMMUTABLE)
         Alarms().setAlarm(context , resetPendingIntent)
     }
 

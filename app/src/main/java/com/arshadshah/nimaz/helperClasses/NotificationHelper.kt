@@ -4,6 +4,7 @@ import android.app.Notification.VISIBILITY_PUBLIC
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_IMMUTABLE
 import android.content.Context
 import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
@@ -145,7 +146,7 @@ class NotificationHelper
                                 .FLAG_ACTIVITY_CLEAR_TASK
             }
         val notificationPendingIntent : PendingIntent =
-            PendingIntent.getActivity(context , 8 , notificationIntent , 0)
+            PendingIntent.getActivity(context , 8 , notificationIntent , FLAG_IMMUTABLE)
 
             val builder =
                 NotificationCompat.Builder(context , channel_id).apply {

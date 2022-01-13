@@ -1,6 +1,8 @@
 package com.arshadshah.nimaz.fragments
 
 import android.annotation.SuppressLint
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -306,26 +308,24 @@ class HomeFragment : Fragment()
 
     private fun openNotificationChannel(channelId : String)
     {
-        val intent : Intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+        //retrieve notification channel by id
+        val notificationManager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationChannel = notificationManager.getNotificationChannel(channelId)
+
+        val openChannelSettings = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
             .putExtra(Settings.EXTRA_APP_PACKAGE , requireContext().packageName)
-            .putExtra(Settings.EXTRA_CHANNEL_ID , channelId)
-        startActivity(intent)
+
+
+        startActivity(openChannelSettings)
     }
 
     private fun vibrate(amount : Long)
     {
         val vibrator = requireContext().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-        {
 
-            vibrator.vibrate(
-                VibrationEffect.createOneShot(amount , VibrationEffect.DEFAULT_AMPLITUDE)
-            )
-        }
-        else
-        {
-            vibrator.vibrate(amount)
-        }
+        vibrator.vibrate(
+            VibrationEffect.createOneShot(amount , VibrationEffect.DEFAULT_AMPLITUDE)
+        )
     }
     
 } // end of home fragment
