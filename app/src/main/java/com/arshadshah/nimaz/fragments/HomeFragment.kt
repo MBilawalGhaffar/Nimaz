@@ -308,15 +308,11 @@ class HomeFragment : Fragment()
 
     private fun openNotificationChannel(channelId : String)
     {
-        //retrieve notification channel by id
-        val notificationManager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val notificationChannel = notificationManager.getNotificationChannel(channelId)
-
-        val openChannelSettings = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
-            .putExtra(Settings.EXTRA_APP_PACKAGE , requireContext().packageName)
-
-
-        startActivity(openChannelSettings)
+        //open notification settings based on channel id
+        val intent = Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS)
+        intent.putExtra(Settings.EXTRA_CHANNEL_ID , channelId)
+        intent.putExtra(Settings.EXTRA_APP_PACKAGE , requireContext().packageName)
+        startActivity(intent)
     }
 
     private fun vibrate(amount : Long)
