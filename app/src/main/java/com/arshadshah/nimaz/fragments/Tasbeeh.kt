@@ -2,6 +2,7 @@ package com.arshadshah.nimaz.fragments
 
 import android.app.AlertDialog
 import android.content.Context.VIBRATOR_SERVICE
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
@@ -15,7 +16,9 @@ import android.view.animation.RotateAnimation
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
+import com.arshadshah.nimaz.DikhrListActivity
 import com.arshadshah.nimaz.R
+import com.arshadshah.nimaz.SettingsActivity
 
 
 /**
@@ -58,6 +61,13 @@ class Tasbeeh : Fragment()
         val amount : TextView = root.findViewById(R.id.amount)
 
         val lapnumber : TextView = root.findViewById(R.id.lapnumber)
+
+        val dhikrListButton: Button = root.findViewById(R.id.dhikrListButton)
+
+        dhikrListButton.setOnClickListener {
+            val intent = Intent(requireContext(), DikhrListActivity::class.java)
+            startActivity(intent)
+        }
 
         var shouldVibrate = sharedPreferences.getBoolean("shouldvibrate" , true)
 
@@ -280,8 +290,8 @@ class Tasbeeh : Fragment()
 
             val rotateAnimation =
                 RotateAnimation(
-                    360F ,
                     0F ,
+                    360F ,
                     Animation.RELATIVE_TO_SELF ,
                     0.5f ,
                     Animation.RELATIVE_TO_SELF ,

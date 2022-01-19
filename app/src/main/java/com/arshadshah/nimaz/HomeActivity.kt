@@ -37,8 +37,20 @@ class HomeActivity : AppCompatActivity()
     override fun onResume()
     {
         super.onResume()
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val menuSelected = sharedPreferences.getInt("menuSelected", R.id.navigation_home)
         val navView : BottomNavigationView = findViewById(R.id.nav_view)
-        navView.selectedItemId = R.id.navigation_home
+        navView.selectedItemId = menuSelected
+    }
+
+    override fun onPause() {
+        super.onPause()
+        val navView : BottomNavigationView = findViewById(R.id.nav_view)
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        with(sharedPreferences.edit()) {
+            putInt("menuSelected" , navView.selectedItemId)
+            apply()
+        }
     }
 
 
@@ -84,11 +96,6 @@ class HomeActivity : AppCompatActivity()
                     navController.navigate(R.id.navigation_names)
                     true
                 }
-                R.id.navigation_setting -> {
-                    navController.navigate(R.id.navigation_setting)
-                    true
-                }
-
                 else -> false
             }
         }

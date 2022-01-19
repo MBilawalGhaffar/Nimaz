@@ -16,10 +16,6 @@
         android:name = "com.arshadshah.nimaz.fragments.Tasbeeh"
         android:label = "fragment_tasbeeh"
         tools:layout = "@layout/fragment_tasbeeh"/>
-    <activity
-        android:id = "@+id/navigation_setting"
-        android:name = "com.arshadshah.nimaz.SettingsActivity"
-        android:label = "SettingsActivity"/>
     <fragment
         android:id = "@+id/navigation_names"
         android:name = "com.arshadshah.nimaz.fragments.NamesFragment"
