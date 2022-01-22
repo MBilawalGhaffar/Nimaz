@@ -77,6 +77,23 @@ class Tasbeeh : Fragment()
             dikhrCard.isVisible = true
         }
 
+        val dihkrDelete: ImageButton = root.findViewById(R.id.dihkrDelete)
+        dihkrDelete.setOnClickListener {
+            with(sharedPreferences.edit()) {
+                putString("tasbeehEnglish" , null)
+                putString("tasbeehArabic" , null)
+                putString("tasbeehTranslation" ,null)
+                apply()
+            }
+            Toast.makeText(context,"tasbeeh deleted",Toast.LENGTH_SHORT).show()
+            val fragment = TasbeehFragment()
+            val fragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.nav_host_fragment , fragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
+
         val tasbeehEnglish : TextView = root.findViewById(R.id.tasbeehEnglish)
         val tasbeehArabic : TextView = root.findViewById(R.id.tasbeehArabic)
         val tasbeehTranslation : TextView = root.findViewById(R.id.tasbeehTranslation)
