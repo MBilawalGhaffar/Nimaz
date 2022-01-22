@@ -33,7 +33,7 @@ import java.util.ArrayList
  * Display.
  * @author Arshad Shah
  * */
-class Tasbeeh : Fragment()
+class TasbeehFragment : Fragment()
 {
 
     private var count = 0
@@ -45,10 +45,10 @@ class Tasbeeh : Fragment()
         inflater : LayoutInflater ,
         container : ViewGroup? ,
         savedInstanceState : Bundle?
-                             ) : View?
+    ) : View?
     {
         // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.fragment_tasbeeh , container , false)
+        val root = inflater.inflate(R.layout.fragment_tasbeeh2 , container , false)
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
         //************************************************************************
@@ -58,32 +58,19 @@ class Tasbeeh : Fragment()
             startActivity(intent)
         }
 
-        val dikhrCard: CardView = root.findViewById(R.id.dikhrCard)
+        val tasbeehEnglish = sharedPreferences.getString("tasbeehEnglish" , null)
+        val tasbeehArabic = sharedPreferences.getString("tasbeehArabic" , null)
+        val tasbeehTranslation = sharedPreferences.getString("tasbeehTranslation" , null)
 
-        val tasbeehEnglishValue = sharedPreferences.getString("tasbeehEnglish" , null)
-        val tasbeehArabicValue = sharedPreferences.getString("tasbeehArabic" , null)
-        val tasbeehTranslationValue = sharedPreferences.getString("tasbeehTranslation" , null)
-
-        if(tasbeehEnglishValue == null || tasbeehArabicValue == null || tasbeehTranslationValue == null){
-           //replace the current fragment layout with
-            val fragment = TasbeehFragment()
+        if(tasbeehEnglish != null || tasbeehArabic != null || tasbeehTranslation != null){
+            //replace the current fragment with TasbeehFragment
+            val fragment = Tasbeeh()
             val fragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.nav_host_fragment , fragment)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
-        else{
-            dikhrCard.isVisible = true
-        }
-
-        val tasbeehEnglish : TextView = root.findViewById(R.id.tasbeehEnglish)
-        val tasbeehArabic : TextView = root.findViewById(R.id.tasbeehArabic)
-        val tasbeehTranslation : TextView = root.findViewById(R.id.tasbeehTranslation)
-
-        tasbeehEnglish.text = tasbeehEnglishValue
-        tasbeehArabic.text = tasbeehArabicValue
-        tasbeehTranslation.text = tasbeehTranslationValue
         //****************************************************************
         val vibrator = requireContext().getSystemService(VIBRATOR_SERVICE) as Vibrator
 
@@ -171,7 +158,7 @@ class Tasbeeh : Fragment()
                     requireContext() ,
                     "Tasbeeh Session, Reset to Proceed" ,
                     Toast.LENGTH_SHORT
-                              ).show()
+                ).show()
             }
 
         }
@@ -252,7 +239,7 @@ class Tasbeeh : Fragment()
                     requireContext() ,
                     "Limit $currentAmount is Reached" ,
                     Toast.LENGTH_SHORT
-                              ).show()
+                ).show()
             }
             val countString = count.toString()
             main_display.text = countString
@@ -322,7 +309,7 @@ class Tasbeeh : Fragment()
                     0.5f ,
                     Animation.RELATIVE_TO_SELF ,
                     0.5f
-                               )
+                )
             rotateAnimation.duration = 500
             rotateAnimation.fillAfter = true
             reset_button.startAnimation(rotateAnimation)
@@ -377,7 +364,7 @@ class Tasbeeh : Fragment()
 
             vibrator.vibrate(
                 VibrationEffect.createOneShot(amount , VibrationEffect.DEFAULT_AMPLITUDE)
-                            )
+            )
         }
         else
         {

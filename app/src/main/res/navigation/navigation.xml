@@ -26,6 +26,11 @@
         android:name = "com.arshadshah.nimaz.fragments.CompassFragment"
         android:label = "fragment_compass"
         tools:layout = "@layout/fragment_compass"/>
+    <fragment
+        android:id="@+id/navigation_tasbeeh2"
+        android:name="com.arshadshah.nimaz.fragments.TasbeehFragment"
+        android:label="fragment_tasbeeh2"
+        tools:layout="@layout/fragment_tasbeeh2" />
 
 
 </navigation>
