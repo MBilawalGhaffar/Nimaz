@@ -1,5 +1,6 @@
 package com.arshadshah.nimaz.fragments
 
+import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
 import android.content.Context.VIBRATOR_SERVICE
 import android.content.Intent
@@ -7,6 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,11 +16,16 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.RotateAnimation
 import android.widget.*
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.DikhrListActivity
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.SettingsActivity
+import com.arshadshah.nimaz.helperClasses.TasbeehFragmentCustomAdapter
+import com.arshadshah.nimaz.helperClasses.TasbeehListCustomAdapter
+import com.arshadshah.nimaz.helperClasses.TasbeehObject
+import java.util.ArrayList
 
 
 /**
@@ -45,11 +52,31 @@ class Tasbeeh : Fragment()
     {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_tasbeeh , container , false)
-
-
-        val vibrator = requireContext().getSystemService(VIBRATOR_SERVICE) as Vibrator
-
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+
+        //************************************************************************
+        val dhikrListButton: Button = root.findViewById(R.id.dhikrListButton)
+        dhikrListButton.setOnClickListener {
+            val intent = Intent(requireContext(), DikhrListActivity::class.java)
+            startActivity(intent)
+        }
+
+        val tasbeehEnglish = sharedPreferences.getString("tasbeehEnglish" , "")
+        val tasbeehArabic = sharedPreferences.getString("tasbeehArabic" , "")
+        val tasbeehTranslation = sharedPreferences.getString("tasbeehTranslation" , "")
+
+        //create the list of tasbeeh
+        val tasbeehList = ArrayList<TasbeehObject>()
+        tasbeehList.add(TasbeehObject(tasbeehEnglish.toString(), tasbeehArabic.toString(), tasbeehTranslation.toString()))
+
+        //create the adapter
+        val adapter = TasbeehFragmentCustomAdapter(requireContext(), tasbeehList)
+
+        //set the adapter
+        val listView: ListView = root.findViewById(R.id.dhikr)
+        listView.adapter = adapter
+        //****************************************************************
+        val vibrator = requireContext().getSystemService(VIBRATOR_SERVICE) as Vibrator
 
         // variables for the counter
         val main_display : TextView = root.findViewById(R.id.Display)
@@ -57,17 +84,10 @@ class Tasbeeh : Fragment()
         val remove_button : ImageView = root.findViewById(R.id.minus)
         val reset_button : ImageButton = root.findViewById(R.id.reset)
         val Vibrate_button : ImageButton = root.findViewById(R.id.vibrate)
-        val edit_button : ImageView = root.findViewById(R.id.edit_button)
+        val edit_button : ConstraintLayout = root.findViewById(R.id.edit_button)
         val amount : TextView = root.findViewById(R.id.amount)
 
         val lapnumber : TextView = root.findViewById(R.id.lapnumber)
-
-        val dhikrListButton: Button = root.findViewById(R.id.dhikrListButton)
-
-        dhikrListButton.setOnClickListener {
-            val intent = Intent(requireContext(), DikhrListActivity::class.java)
-            startActivity(intent)
-        }
 
         var shouldVibrate = sharedPreferences.getBoolean("shouldvibrate" , true)
 
@@ -92,9 +112,6 @@ class Tasbeeh : Fragment()
 
         edit_button.setOnClickListener {
             val shouldVibrate = sharedPreferences.getBoolean("shouldvibrate" , true)
-            val expandIn : Animation =
-                AnimationUtils.loadAnimation(requireContext() , R.anim.expand_in)
-            edit_button.startAnimation(expandIn)
             if (count == 0)
             {
                 if (shouldVibrate)

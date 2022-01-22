@@ -5,8 +5,7 @@ import android.widget.ImageView
 import android.widget.ListView
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import com.arshadshah.nimaz.fragments.Tasbeeh
+import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.helperClasses.TasbeehListCustomAdapter
 import com.arshadshah.nimaz.helperClasses.TasbeehObject
 
@@ -15,6 +14,8 @@ class DikhrListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dikhr_list)
         supportActionBar?.hide()
+
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
 
         val backButton: ImageView = findViewById(R.id.backButton)
@@ -46,6 +47,16 @@ class DikhrListActivity : AppCompatActivity() {
         }
         val TasbeehListCustomAdapter = TasbeehListCustomAdapter(this , arrayList)
         list.adapter = TasbeehListCustomAdapter
+
+        list.setOnItemClickListener { parent, view, position, id ->
+            with(sharedPreferences.edit()) {
+                putString("tasbeehEnglish" , arrayList[position].english)
+                putString("tasbeehArabic" , arrayList[position].arabic)
+                putString("tasbeehTranslation" , arrayList[position].translation)
+                apply()
+            }
+            finish()
+        }
     }
 
     private fun english(indexNo : Int) : String
