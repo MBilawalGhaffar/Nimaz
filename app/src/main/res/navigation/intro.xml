@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/intro"
+    app:startDestination="@id/introFragment">
+
+    <fragment
+        android:id="@+id/introFragment"
+        android:name="com.arshadshah.nimaz.fragments.IntroFragment"
+        android:label="fragment_intro"
+        tools:layout="@layout/fragment_intro" />
+    <fragment
+        android:id="@+id/introTandCFragment"
+        android:name="com.arshadshah.nimaz.fragments.IntroTandCFragment"
+        android:label="fragment_intro_tand_c"
+        tools:layout="@layout/fragment_intro_tand_c" />
+    <fragment
+        android:id="@+id/introPrivacyPolicyFragment"
+        android:name="com.arshadshah.nimaz.fragments.IntroPrivacyPolicyFragment"
+        android:label="fragment_intro_privacy_policy"
+        tools:layout="@layout/fragment_intro_privacy_policy" />
+    <fragment
+        android:id="@+id/locationInputFragment"
+        android:name="com.arshadshah.nimaz.fragments.LocationInputFragment"
+        android:label="fragment_location_input"
+        tools:layout="@layout/fragment_location_input" />
+</navigation>

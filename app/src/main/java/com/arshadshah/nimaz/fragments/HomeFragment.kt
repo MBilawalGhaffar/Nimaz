@@ -118,7 +118,7 @@ class HomeFragment : Fragment()
 
         // Retrieve values given in the settings activity
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        val name = sharedPreferences.getString("location_input" , " ")
+        val name = sharedPreferences.getString("location_input" , "Portlaoise")
         val calcMethod = sharedPreferences.getString("calcMethod" , "IRELAND")
 
         // madhab adjustments
