@@ -15,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -23,6 +24,7 @@ import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.HomeActivity
 import com.arshadshah.nimaz.R
+import com.arshadshah.nimaz.SettingsActivity
 import com.arshadshah.nimaz.helperClasses.DateConvertor
 import com.arshadshah.nimaz.helperClasses.NetworkChecker
 import com.arshadshah.nimaz.helperClasses.TimerCreater
@@ -68,6 +70,18 @@ class HomeFragment : Fragment()
     {
         val root = inflater.inflate(R.layout.fragment_home , container , false)
 
+        //settings buttons
+        val settingsButton: ImageButton = root.findViewById(R.id.settingsButton)
+
+        settingsButton.setOnClickListener {
+            val expandIn : Animation =
+                AnimationUtils.loadAnimation(requireContext() , R.anim.expand_in)
+            settingsButton.startAnimation(expandIn)
+            //intent for activity
+            val intent = Intent(requireContext(), SettingsActivity::class.java)
+            startActivity(intent)
+        }
+
 
         // Gregorian Date
         val date : TextView = root.findViewById(R.id.editTextDate)
@@ -104,7 +118,7 @@ class HomeFragment : Fragment()
 
         // Retrieve values given in the settings activity
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        val name = sharedPreferences.getString("location_input" , " ")
+        val name = sharedPreferences.getString("location_input" , "Portlaoise")
         val calcMethod = sharedPreferences.getString("calcMethod" , "IRELAND")
 
         // madhab adjustments

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.arshadshah.nimaz"
-    android:versionCode="45"
-    android:versionName="1.4.68" >
-
+    android:versionCode="47"
+    android:versionName="1.4.70">
     <!-- Permissions -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
@@ -14,6 +13,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
@@ -21,8 +21,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Nimaz" >
-
+        android:theme="@style/Theme.Nimaz">
+        <activity
+            android:name=".DikhrListActivity"
+            android:exported="true" />
         <activity android:name=".IntroductionActivity" />
 
         <receiver
@@ -34,7 +36,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme" >
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,11 +49,11 @@
             android:screenOrientation="portrait" /> <!-- Settings activity for app settings -->
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"/> <!-- Widget receiver -->
+            android:label="@string/title_activity_settings" /> <!-- Widget receiver -->
         <receiver
             android:name=".Nimaz"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -69,7 +71,7 @@
             android:name=".recievers.bootReceiver"
             android:enabled="true"
             android:exported="true"
-            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" >
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
             <intent-filter>
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

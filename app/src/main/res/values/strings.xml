@@ -49,7 +49,7 @@
     <string name="location" translatable="false">Location</string>
     <string name="vibrate" translatable="false">Vibrate</string>
     <string name="silent" translatable="false">Silent</string>
-    <string name="amount" translatable="false">Amount</string>
+    <string name="amount" translatable="false">Amount: </string>
     <string name="appwidget_text" translatable="false">EXAMPLE</string>
     <string name="add_widget" translatable="false">Add widget</string>
     <string name="email" translatable="false">Contact:<a href="mailto:shaharshad57@gmail.com">shaharshad57@gmail.com</a></string>
@@ -128,8 +128,8 @@
     <string name="linkedin_account_of_arshad_shah" translatable="false">linkedin account of arshad shah</string>
     <string name="timer" translatable="false"> - %1$s <b>:</b> %2$s <b>:</b> %3$s </string>
     <string name="permissionRational" translatable="false">Location is needed to calculate prayer times</string>
-    <string name="ok">OK</string>
-    <string name="permission_denied_explanation">L,ocation permission denied, to calculate prayer times please go to Nimaz settings and use manual location</string>
+    <string name="ok" translatable="false">OK</string>
+    <string name="permission_denied_explanation" translatable="false">Location permission denied, to calculate prayer times please go to Nimaz settings and use manual location</string>
 
     <!--    location-->
 

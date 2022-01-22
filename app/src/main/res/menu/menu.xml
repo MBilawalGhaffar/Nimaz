@@ -7,7 +7,7 @@
         android:title = "@string/title_home"/>
 
     <item
-        android:id = "@id/navigation_tasbeeh"
+        android:id = "@id/navigation_tasbeeh2"
         android:title = "@string/title_tasbeeh"
         android:icon = "@drawable/ic_tasbih"/>
 
@@ -20,9 +20,4 @@
         android:id = "@id/navigation_names"
         android:title = "@string/holy_names"
         android:icon = "@drawable/ic__9"/>
-
-    <item
-        android:id = "@id/navigation_setting"
-        android:title = "@string/settings"
-        android:icon = "@drawable/settings"/>
 </menu>

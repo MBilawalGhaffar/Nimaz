@@ -1,31 +1,15 @@
 package com.arshadshah.nimaz
 
-import android.Manifest
-import android.annotation.SuppressLint
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.location.Location
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.provider.Settings
-import android.util.Log
-import android.view.View
 import androidx.activity.addCallback
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.PermissionChecker.PERMISSION_GRANTED
 import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.helperClasses.CreateAlarms
-import com.arshadshah.nimaz.helperClasses.locationFinder
 import com.arshadshah.nimaz.helperClasses.prayerTimeThread
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.snackbar.Snackbar
 
 
 /**
@@ -37,8 +21,20 @@ class HomeActivity : AppCompatActivity()
     override fun onResume()
     {
         super.onResume()
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val menuSelected = sharedPreferences.getInt("menuSelected", R.id.navigation_home)
         val navView : BottomNavigationView = findViewById(R.id.nav_view)
-        navView.selectedItemId = R.id.navigation_home
+        navView.selectedItemId = menuSelected
+    }
+
+    override fun onPause() {
+        super.onPause()
+        val navView : BottomNavigationView = findViewById(R.id.nav_view)
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        with(sharedPreferences.edit()) {
+            putInt("menuSelected" , navView.selectedItemId)
+            apply()
+        }
     }
 
 
@@ -71,8 +67,8 @@ class HomeActivity : AppCompatActivity()
                     true
                 }
 
-                R.id.navigation_tasbeeh -> {
-                    navController.navigate(R.id.navigation_tasbeeh)
+                R.id.navigation_tasbeeh2 -> {
+                    navController.navigate(R.id.navigation_tasbeeh2)
                     true
                 }
 
@@ -84,11 +80,6 @@ class HomeActivity : AppCompatActivity()
                     navController.navigate(R.id.navigation_names)
                     true
                 }
-                R.id.navigation_setting -> {
-                    navController.navigate(R.id.navigation_setting)
-                    true
-                }
-
                 else -> false
             }
         }

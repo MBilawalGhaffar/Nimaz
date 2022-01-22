@@ -1,7 +1,9 @@
 package com.arshadshah.nimaz.fragments
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Context.VIBRATOR_SERVICE
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
@@ -13,9 +15,14 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.RotateAnimation
 import android.widget.*
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
+import com.arshadshah.nimaz.DikhrListActivity
 import com.arshadshah.nimaz.R
+import java.util.ArrayList
 
 
 /**
@@ -42,11 +49,60 @@ class Tasbeeh : Fragment()
     {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_tasbeeh , container , false)
-
-
-        val vibrator = requireContext().getSystemService(VIBRATOR_SERVICE) as Vibrator
-
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+
+        //************************************************************************
+        val dhikrListButton: Button = root.findViewById(R.id.dhikrListButton)
+        dhikrListButton.setOnClickListener {
+            val intent = Intent(requireContext(), DikhrListActivity::class.java)
+            startActivity(intent)
+        }
+
+        val dikhrCard: CardView = root.findViewById(R.id.dikhrCard)
+
+        val tasbeehEnglishValue = sharedPreferences.getString("tasbeehEnglish" , null)
+        val tasbeehArabicValue = sharedPreferences.getString("tasbeehArabic" , null)
+        val tasbeehTranslationValue = sharedPreferences.getString("tasbeehTranslation" , null)
+
+        if(tasbeehEnglishValue == null || tasbeehArabicValue == null || tasbeehTranslationValue == null){
+           //replace the current fragment layout with
+            val fragment = TasbeehFragment()
+            val fragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.nav_host_fragment , fragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
+        else{
+            dikhrCard.isVisible = true
+        }
+
+        val dihkrDelete: ImageButton = root.findViewById(R.id.dihkrDelete)
+        dihkrDelete.setOnClickListener {
+            with(sharedPreferences.edit()) {
+                putString("tasbeehEnglish" , null)
+                putString("tasbeehArabic" , null)
+                putString("tasbeehTranslation" ,null)
+                apply()
+            }
+            Toast.makeText(context,"tasbeeh deleted",Toast.LENGTH_SHORT).show()
+            val fragment = TasbeehFragment()
+            val fragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.nav_host_fragment , fragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
+
+        val tasbeehEnglish : TextView = root.findViewById(R.id.tasbeehEnglish)
+        val tasbeehArabic : TextView = root.findViewById(R.id.tasbeehArabic)
+        val tasbeehTranslation : TextView = root.findViewById(R.id.tasbeehTranslation)
+
+        tasbeehEnglish.text = tasbeehEnglishValue
+        tasbeehArabic.text = tasbeehArabicValue
+        tasbeehTranslation.text = tasbeehTranslationValue
+        //****************************************************************
+        val vibrator = requireContext().getSystemService(VIBRATOR_SERVICE) as Vibrator
 
         // variables for the counter
         val main_display : TextView = root.findViewById(R.id.Display)
@@ -54,7 +110,7 @@ class Tasbeeh : Fragment()
         val remove_button : ImageView = root.findViewById(R.id.minus)
         val reset_button : ImageButton = root.findViewById(R.id.reset)
         val Vibrate_button : ImageButton = root.findViewById(R.id.vibrate)
-        val edit_button : ImageView = root.findViewById(R.id.edit_button)
+        val edit_button : ConstraintLayout = root.findViewById(R.id.edit_button)
         val amount : TextView = root.findViewById(R.id.amount)
 
         val lapnumber : TextView = root.findViewById(R.id.lapnumber)
@@ -82,9 +138,6 @@ class Tasbeeh : Fragment()
 
         edit_button.setOnClickListener {
             val shouldVibrate = sharedPreferences.getBoolean("shouldvibrate" , true)
-            val expandIn : Animation =
-                AnimationUtils.loadAnimation(requireContext() , R.anim.expand_in)
-            edit_button.startAnimation(expandIn)
             if (count == 0)
             {
                 if (shouldVibrate)
@@ -280,8 +333,8 @@ class Tasbeeh : Fragment()
 
             val rotateAnimation =
                 RotateAnimation(
-                    360F ,
                     0F ,
+                    360F ,
                     Animation.RELATIVE_TO_SELF ,
                     0.5f ,
                     Animation.RELATIVE_TO_SELF ,

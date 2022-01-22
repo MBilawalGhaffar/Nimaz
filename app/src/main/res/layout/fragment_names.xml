@@ -4,6 +4,7 @@
                                                    xmlns:tools = "http://schemas.android.com/tools"
                                                    android:layout_width = "match_parent"
                                                    android:layout_height = "match_parent"
+    android:background="?android:windowBackground"
                                                    tools:context = ".fragments.NamesFragment">
 
     <LinearLayout
@@ -22,19 +23,40 @@
             android:layout_height = "match_parent">
 
             <TextView
-                android:id = "@+id/Name"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                android:fontFamily = "@font/nunito"
-                android:gravity = "center_horizontal"
-                android:text = "@string/allah"
-                android:textAlignment = "center"
-                android:textSize = "36sp"
-                android:textStyle = "bold"
-                app:layout_constraintBottom_toBottomOf = "parent"
-                app:layout_constraintEnd_toEndOf = "parent"
-                app:layout_constraintStart_toStartOf = "parent"
-                app:layout_constraintTop_toTopOf = "parent"/>
+                android:id="@+id/Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                android:gravity="center_horizontal"
+                android:text="@string/allah"
+                android:textAlignment="center"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/namesOfAllahAudio"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/namesOfAllahAudio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/finecontrol"
+                android:src="@drawable/ic_play"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/pause"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <ImageButton
+                android:id="@+id/pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/finecontrol"
+                android:src="@drawable/ic_pause"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

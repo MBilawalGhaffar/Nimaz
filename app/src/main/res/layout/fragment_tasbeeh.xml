@@ -2,68 +2,82 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
                                                    xmlns:app = "http://schemas.android.com/apk/res-auto"
                                                    xmlns:tools = "http://schemas.android.com/tools"
+                                                    android:background="?android:windowBackground"
                                                    android:layout_width = "match_parent"
                                                    android:layout_height = "match_parent"
                                                    tools:context = ".fragments.Tasbeeh">
 
     <LinearLayout
-        android:id = "@+id/linearLayout"
-        android:layout_width = "match_parent"
-        android:layout_height = "wrap_content"
-        android:background = "@drawable/headingcard"
-        android:orientation = "vertical"
-        app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toTopOf = "parent">
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/headingcard"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width = "match_parent"
-            android:layout_height = "match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <TextView
-                android:id = "@+id/Name"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                android:fontFamily = "@font/nunito"
-                android:gravity = "center|center_horizontal"
-                android:text = "@string/tasbeeh"
-                android:textAlignment = "center"
-                android:textSize = "40sp"
-                android:textStyle = "bold"
-                android:visibility = "visible"
-                app:layout_constraintBottom_toBottomOf = "parent"
-                app:layout_constraintEnd_toEndOf = "parent"
-                app:layout_constraintStart_toStartOf = "parent"
-                app:layout_constraintTop_toTopOf = "parent"
-                app:layout_constraintVertical_bias = "0.0"/>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/Name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:layout_editor_absoluteX="271dp">
+                android:fontFamily="@font/nunito"
+                android:gravity="center|center_horizontal"
+                android:text="@string/tasbeeh"
+                android:textAlignment="center"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/reset"
+                app:layout_constraintStart_toEndOf="@+id/vibrate"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageButton
+                android:id="@+id/reset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/finecontrol"
+                android:contentDescription="TODO"
+                android:src="@drawable/reset"
+                android:tooltipText="Reset Tasbeeh Counter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/vibrate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/finecontrol"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/vibration"
+                android:tooltipText="Enable Vibration"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/display"
-        android:elevation="3dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="10dp"
+        app:contentPadding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:targetApi="lollipop">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -74,9 +88,10 @@
                 android:id="@+id/constraintLayout8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Display">
 
                 <ImageView
                     android:id="@+id/plus"
@@ -110,74 +125,15 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_minus" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <LinearLayout
-                android:id="@+id/linearLayout4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/constraintLayout8"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageButton
-                        android:id="@+id/edit_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/finecontrol"
-                        android:contentDescription="TODO"
-                        android:src="@drawable/editor"
-                        android:tooltipText="Edit Tasbeeh Objective"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/reset"
-                        app:layout_constraintHorizontal_bias="0.123"
-                        app:layout_constraintStart_toEndOf="@+id/amount"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/amount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:fontFamily="@font/nunito"
-                        android:text="@string/_33"
-                        android:textSize="36sp"
-                        android:textStyle="bold"
-                        android:visibility="visible"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="1000" />
-
-                    <ImageButton
-                        android:id="@+id/reset"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:background="@drawable/finecontrol"
-                        android:contentDescription="TODO"
-                        android:src="@drawable/reset"
-                        android:tooltipText="Reset Tasbeeh Counter"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintBottom_toTopOf="@+id/Display"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toStartOf="@+id/dhikrListButton"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -186,6 +142,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/lap"
                     android:textSize="24sp"
@@ -198,7 +156,8 @@
                     android:id="@+id/lapnumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="1dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
                     android:fontFamily="@font/nunito"
                     android:padding="5sp"
                     android:text="@string/_1"
@@ -209,42 +168,172 @@
                     app:layout_constraintStart_toEndOf="@+id/lap"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="1" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/Display"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/nunito"
                 android:gravity="center"
                 android:text="@string/_0"
-                android:textSize="120sp"
+                android:textSize="100sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.493"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.735"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout7"
                 tools:text="1000" />
 
-            <ImageButton
-                android:id="@+id/vibrate"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/edit_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/finecontrol"
-                android:contentDescription="@string/todo"
-                android:src="@drawable/vibration"
-                android:tooltipText="Enable Vibration"
-                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout7"
+                app:layout_constraintBottom_toBottomOf="@+id/Display"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout7"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
+
+                <TextView
+                    android:id="@+id/amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/_33"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:text="1000" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/editor"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/dhikrListButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:text="Dhikr List"
+                app:layout_constraintBottom_toTopOf="@+id/Display"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
-    </LinearLayout>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/dikhrCard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="16dp">
+
+                    <TextView
+                        android:id="@+id/tasbeehEnglish"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/nunito"
+                        android:text="TextView"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tasbeehArabic" />
+
+                    <TextView
+                        android:id="@+id/tasbeehArabic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/arabic_name_card"
+                        android:fontFamily="@font/nunito"
+                        android:padding="10dp"
+                        android:text="textview"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/dihkrDelete" />
+
+                    <TextView
+                        android:id="@+id/tasbeehTranslation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/nunito"
+                        android:text="TextView"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tasbeehEnglish" />
+
+                    <ImageButton
+                        android:id="@+id/dihkrDelete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_trash_2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

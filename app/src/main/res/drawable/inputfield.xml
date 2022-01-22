@@ -4,14 +4,14 @@
 
     <item android:state_enabled = "true" android:state_focused = "true">
         <shape android:shape = "rectangle">
-            <corners android:radius = "10dp"/>
+            <corners android:radius = "8dp"/>
             <stroke android:color = "?attr/colorPrimary" android:width = "2dp"/>
         </shape>
     </item>
 
     <item android:state_enabled = "false">
         <shape android:shape = "rectangle">
-            <corners android:radius = "10dp"/>
+            <corners android:radius = "8dp"/>
             <stroke android:color = "?attr/colorSecondary" android:width = "2dp"/>
         </shape>
     </item>

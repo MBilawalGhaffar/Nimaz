@@ -11,15 +11,7 @@
         android:name = "com.arshadshah.nimaz.fragments.HomeFragment"
         android:label = "@string/title_home"
         tools:layout = "@layout/fragment_home"/>
-    <fragment
-        android:id = "@+id/navigation_tasbeeh"
-        android:name = "com.arshadshah.nimaz.fragments.Tasbeeh"
-        android:label = "fragment_tasbeeh"
-        tools:layout = "@layout/fragment_tasbeeh"/>
-    <activity
-        android:id = "@+id/navigation_setting"
-        android:name = "com.arshadshah.nimaz.SettingsActivity"
-        android:label = "SettingsActivity"/>
+
     <fragment
         android:id = "@+id/navigation_names"
         android:name = "com.arshadshah.nimaz.fragments.NamesFragment"
@@ -30,6 +22,11 @@
         android:name = "com.arshadshah.nimaz.fragments.CompassFragment"
         android:label = "fragment_compass"
         tools:layout = "@layout/fragment_compass"/>
+    <fragment
+        android:id="@+id/navigation_tasbeeh2"
+        android:name="com.arshadshah.nimaz.fragments.TasbeehFragment"
+        android:label="fragment_tasbeeh2"
+        tools:layout="@layout/fragment_tasbeeh2" />
 
 
 </navigation>
