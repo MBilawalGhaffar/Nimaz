@@ -11,11 +11,7 @@
         android:name = "com.arshadshah.nimaz.fragments.HomeFragment"
         android:label = "@string/title_home"
         tools:layout = "@layout/fragment_home"/>
-    <fragment
-        android:id = "@+id/navigation_tasbeeh"
-        android:name = "com.arshadshah.nimaz.fragments.Tasbeeh"
-        android:label = "fragment_tasbeeh"
-        tools:layout = "@layout/fragment_tasbeeh"/>
+
     <fragment
         android:id = "@+id/navigation_names"
         android:name = "com.arshadshah.nimaz.fragments.NamesFragment"

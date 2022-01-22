@@ -67,8 +67,8 @@ class HomeActivity : AppCompatActivity()
                     true
                 }
 
-                R.id.navigation_tasbeeh -> {
-                    navController.navigate(R.id.navigation_tasbeeh)
+                R.id.navigation_tasbeeh2 -> {
+                    navController.navigate(R.id.navigation_tasbeeh2)
                     true
                 }
 
