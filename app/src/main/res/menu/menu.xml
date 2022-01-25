@@ -20,4 +20,9 @@
         android:id = "@id/navigation_names"
         android:title = "@string/holy_names"
         android:icon = "@drawable/ic__9"/>
+
+    <item
+        android:id = "@id/navigation_quran"
+        android:title = "@string/quran"
+        android:icon = "@drawable/ic_book_open"/>
 </menu>

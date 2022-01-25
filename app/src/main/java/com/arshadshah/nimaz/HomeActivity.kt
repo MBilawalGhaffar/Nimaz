@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.helperClasses.CreateAlarms
+import com.arshadshah.nimaz.helperClasses.DatabaseAccessHelper
 import com.arshadshah.nimaz.helperClasses.prayerTimeThread
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -31,9 +32,17 @@ class HomeActivity : AppCompatActivity()
         super.onPause()
         val navView : BottomNavigationView = findViewById(R.id.nav_view)
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        with(sharedPreferences.edit()) {
-            putInt("menuSelected" , navView.selectedItemId)
-            apply()
+        if(navView.selectedItemId == R.id.navigation_quran){
+            with(sharedPreferences.edit()) {
+                putInt("menuSelected" , R.id.navigation_home)
+                apply()
+            }
+        }
+        else{
+            with(sharedPreferences.edit()) {
+                putInt("menuSelected" , navView.selectedItemId)
+                apply()
+            }
         }
     }
 
@@ -80,6 +89,10 @@ class HomeActivity : AppCompatActivity()
                     navController.navigate(R.id.navigation_names)
                     true
                 }
+                R.id.navigation_quran -> {
+                    navController.navigate(R.id.navigation_quran)
+                    true
+                }
                 else -> false
             }
         }
@@ -96,6 +109,5 @@ class HomeActivity : AppCompatActivity()
             val prayerThread = prayerTimeThread(this.applicationContext)
             prayerThread.start()
         }
-
     } // end of oncreate
 } // end of class

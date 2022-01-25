@@ -130,6 +130,9 @@
     <string name="permissionRational" translatable="false">Location is needed to calculate prayer times</string>
     <string name="ok" translatable="false">OK</string>
     <string name="permission_denied_explanation" translatable="false">Location permission denied, to calculate prayer times please go to Nimaz settings and use manual location</string>
+    <string name="quran" translatable="false">Quran</string>
+    <string name="juz" translatable="false">Juz</string>
+    <string name="surah" translatable="false">Surah</string>
 
     <!--    location-->
 
