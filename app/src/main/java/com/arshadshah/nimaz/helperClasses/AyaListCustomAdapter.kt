@@ -9,6 +9,7 @@ import android.widget.ListAdapter
 import android.widget.TextView
 import androidx.core.view.isVisible
 import com.arshadshah.nimaz.R
+import com.arshadshah.nimaz.arabicReshaper.ArabicUtilities
 import java.lang.String
 import java.text.NumberFormat
 import java.util.*
@@ -81,7 +82,7 @@ internal class AyaListCustomAdapter(
         val unicodeWithNumber = unicodeAyaEndStart + endOfAyaWithNumber + unicodeAyaEndEnd
 
         EnglishName?.text = AyaObject.ayaEnglish
-        ArabicName?.text = AyaObject.ayaArabic + unicodeWithNumber
+        ArabicName?.text = ArabicUtilities.reshape(AyaObject.ayaArabic + unicodeWithNumber)
         return convertView
     }
 
