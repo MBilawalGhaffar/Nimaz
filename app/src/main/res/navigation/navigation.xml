@@ -27,6 +27,11 @@
         android:name="com.arshadshah.nimaz.fragments.TasbeehFragment"
         android:label="fragment_tasbeeh2"
         tools:layout="@layout/fragment_tasbeeh2" />
+    <activity
+        android:id="@+id/navigation_quran"
+        android:name="com.arshadshah.nimaz.QuranActivity"
+        android:label="activity_quran"
+        tools:layout="@layout/activity_quran" />
 
 
 </navigation>

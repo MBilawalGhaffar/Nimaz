@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.arshadshah.nimaz"
-    android:versionCode="47"
-    android:versionName="1.4.70">
+    android:versionCode="48"
+    android:versionName="1.4.71">
     <!-- Permissions -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="false"
@@ -22,6 +23,12 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nimaz">
+        <activity
+            android:name=".QuranMainList"
+            android:exported="true" />
+        <activity
+            android:name=".QuranActivity"
+            android:exported="true" />
         <activity
             android:name=".DikhrListActivity"
             android:exported="true" />

@@ -84,6 +84,12 @@ class About : Fragment()
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.freepik.com/")))
         }
 
+        //        website button
+        val ref: ImageButton = root.findViewById(R.id.ref)
+
+        ref.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://tanzil.net/updates/")))
+        }
         return root
     }
 }

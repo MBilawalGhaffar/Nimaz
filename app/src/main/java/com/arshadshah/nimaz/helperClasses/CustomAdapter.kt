@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ListAdapter
 import android.widget.TextView
 import com.arshadshah.nimaz.R
+import com.arshadshah.nimaz.arabicReshaper.ArabicUtilities
 import java.util.*
 
 internal class CustomAdapter(
@@ -71,7 +72,7 @@ internal class CustomAdapter(
 
         number?.text = subjectData.number
         EnglishName?.text = subjectData.englishName
-        ArabicName?.text = subjectData.arabicName
+        ArabicName?.text = ArabicUtilities.reshape(subjectData.arabicName)
         Translation?.text = subjectData.translation
         return convertView
     }
