@@ -27,6 +27,19 @@ class AyaListSurahFragment : Fragment() {
 
         val ayaForsurah = helper.getAllAyaForSurah(number+1)
 
+        //add the following object to index 0 of ayaForSurah without losing value of index 0 in ayaForSurah
+        val ayaNumberOfBismillah= "0"
+        val ayaEnglishOfBismillah = "In the name of Allah, the Entirely Merciful, the Especially Merciful."
+        val ayaArabicOfBismillah = "بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ"
+        val bismillah  = AyaObject(ayaNumberOfBismillah,ayaEnglishOfBismillah,ayaArabicOfBismillah)
+        //first check if an object like this is already in the list
+        //check all the attributes of the object bisimillah with the attributes of the object in the list at index 0
+        if(ayaForsurah[0]!!.ayaEnglish != bismillah.ayaEnglish && ayaForsurah[0]!!.ayaArabic != bismillah.ayaArabic){
+            if(number+1 != 9) {
+                ayaForsurah.add(0, bismillah)
+            }
+        }
+
         val ayaList: ListView = root.findViewById(R.id.ayaListSurah)
         
         //create a custom adapter

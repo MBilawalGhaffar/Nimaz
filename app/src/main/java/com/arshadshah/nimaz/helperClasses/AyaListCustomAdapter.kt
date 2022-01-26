@@ -7,7 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListAdapter
 import android.widget.TextView
+import androidx.core.view.isVisible
 import com.arshadshah.nimaz.R
+import java.lang.String
+import java.text.NumberFormat
+import java.util.*
 import kotlin.collections.ArrayList
 
 internal class AyaListCustomAdapter(
@@ -68,8 +72,16 @@ internal class AyaListCustomAdapter(
         val EnglishName = convertView?.findViewById<TextView>(R.id.TranslationAya)
         val ArabicName = convertView?.findViewById<TextView>(R.id.ArabicAya)
 
-        EnglishName?.text = AyaObject!!.ayaEnglish
-        ArabicName?.text = AyaObject.ayaArabic
+        //take AyaObject!!.ayaNumber and append it at the end of AyaObject.ayaArabic inside an ayat end unicode
+        val unicodeAyaEndEnd = "\uFD3E"
+        val unicodeAyaEndStart = "\uFD3F"
+        val nf: NumberFormat = NumberFormat.getInstance(Locale.forLanguageTag("AR"))
+        val endOfAyaWithNumber= String.valueOf(nf.format(AyaObject!!.ayaNumber.toInt())).toString()
+
+        val unicodeWithNumber = unicodeAyaEndStart + endOfAyaWithNumber + unicodeAyaEndEnd
+
+        EnglishName?.text = AyaObject.ayaEnglish
+        ArabicName?.text = AyaObject.ayaArabic + unicodeWithNumber
         return convertView
     }
 

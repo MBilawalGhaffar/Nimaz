@@ -114,7 +114,6 @@ class DatabaseAccessHelper(context: Context) {
         //array for ayaNumber
         val ayaNumber = ArrayList<String?>()
 
-
         //loop through the arabic text cursor and add the ayas to the arraylist
         if (cursorOfAyasFromArabic != null && cursorOfAyasFromArabic.moveToFirst()) {
             do {
@@ -140,8 +139,6 @@ class DatabaseAccessHelper(context: Context) {
         cursorOfAyasFromEnglish!!.close()
         return ayas
     }
-
-
 
     //function that returns all aya from quran_text for given surahNumberInQuran and returns it in an array
     fun getAllAyaFromQuranTextForSurah(surahNumberInQuran: Int): ArrayList<String?> {

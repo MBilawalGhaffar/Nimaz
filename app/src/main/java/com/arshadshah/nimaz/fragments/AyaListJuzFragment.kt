@@ -27,6 +27,28 @@ class AyaListJuzFragment : Fragment() {
 
         val ayaForJuz = helper.getAllAyaForJuz(number+1)
 
+        val ayaNumberOfBismillah= "0"
+        val ayaEnglishOfBismillah = "In the name of Allah, the Entirely Merciful, the Especially Merciful."
+        val ayaArabicOfBismillah = "بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ"
+        val bismillah  = AyaObject(ayaNumberOfBismillah,ayaEnglishOfBismillah,ayaArabicOfBismillah)
+        
+        //find all the objects in arraylist ayaForJuz where ayaForJuz[i]!!.ayaNumber = 1
+        //add object bismillah before it for every occurance of ayaForJuz[i]!!.ayaNumber = 1
+        var index = 0
+        while(index < ayaForJuz.size){
+            if(ayaForJuz[index]!!.ayaEnglish != bismillah.ayaEnglish && ayaForJuz[index]!!.ayaArabic != bismillah.ayaArabic){
+                //add bismillah before ayaForJuz[i]
+                if(ayaForJuz[index]!!.ayaNumber == "1"){
+                    if(number+1 != 10 && index != 36){
+                        ayaForJuz.add(index, bismillah)
+                        //skip the next iteration
+                        index++
+                    }
+                }
+            }
+            index++
+        }
+
         val ayaList: ListView = root.findViewById(R.id.ayaList)
 
         //create a custom adapter
