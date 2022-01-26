@@ -232,6 +232,43 @@
                         app:justifyContent="space_between">
 
                         <TextView
+                            android:id="@+id/textView21"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:breakStrategy="simple"
+                            android:fontFamily="@font/nunito"
+                            android:padding="8dp"
+                            android:text="Tanzil Quran:"
+                            android:textSize="14sp" />
+
+                        <ImageButton
+                            android:id="@+id/ref"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/finecontrol"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_external_link" />
+                    </com.google.android.flexbox.FlexboxLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
+                    app:contentPadding="5dp">
+
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:alignContent="center"
+                        app:alignItems="center"
+                        app:flexDirection="row"
+                        app:flexWrap="nowrap"
+                        app:justifyContent="space_between">
+
+                        <TextView
                             android:id="@+id/textView18"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

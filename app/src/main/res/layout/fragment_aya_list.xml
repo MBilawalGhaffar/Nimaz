@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout7"
     android:layout_width="match_parent"
+    android:background="?attr/cardBackground"
     android:layout_height="match_parent"
     tools:context=".fragments.AyaListJuzFragment">
 

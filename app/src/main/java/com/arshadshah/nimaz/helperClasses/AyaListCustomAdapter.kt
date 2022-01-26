@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ListAdapter
 import android.widget.TextView
 import androidx.core.view.isVisible
+import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.arabicReshaper.ArabicUtilities
 import java.lang.String
@@ -21,6 +22,7 @@ internal class AyaListCustomAdapter(
                             ) :
     ListAdapter
 {
+    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     override fun areAllItemsEnabled() : Boolean
     {
@@ -65,9 +67,16 @@ internal class AyaListCustomAdapter(
         var convertView : View? = ConvertView
         val AyaObject = arrayList[position]
 
+        val isEnglish = sharedPreferences.getBoolean("isEnglish", true)
+
         if(convertView == null){
             val layoutInflater = LayoutInflater.from(context)
-            convertView = layoutInflater.inflate(R.layout.aya_list_row_item, null)
+            if(isEnglish){
+                convertView = layoutInflater.inflate(R.layout.aya_list_row_item, null)
+            }
+            else{
+                convertView = layoutInflater.inflate(R.layout.aya_list_urdu_row_item, null)
+            }
         }
 
         val EnglishName = convertView?.findViewById<TextView>(R.id.TranslationAya)

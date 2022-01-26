@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.*
 import com.arshadshah.nimaz.helperClasses.AyaListCustomAdapter
@@ -25,16 +26,24 @@ class AyaListSurahFragment : Fragment() {
         //get the juzNumber from bundle
         val number = requireArguments().getInt("number")
 
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val isEnglish = sharedPreferences.getBoolean("isEnglish", true)
+
         val ayaForsurah = helper.getAllAyaForSurah(number+1)
 
         //add the following object to index 0 of ayaForSurah without losing value of index 0 in ayaForSurah
         val ayaNumberOfBismillah= "0"
-        val ayaEnglishOfBismillah = "In the name of Allah, the Entirely Merciful, the Especially Merciful."
+        var ayaOfBismillah =""
+        ayaOfBismillah = if(isEnglish){
+            "In the name of Allah, the Entirely Merciful, the Especially Merciful."
+        } else{
+            "اللہ کے نام سے جو رحمان و رحیم ہے"
+        }
         val ayaArabicOfBismillah = "بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ"
-        val bismillah  = AyaObject(ayaNumberOfBismillah,ayaEnglishOfBismillah,ayaArabicOfBismillah)
+        val bismillah  = AyaObject(ayaNumberOfBismillah,ayaOfBismillah,ayaArabicOfBismillah)
         //first check if an object like this is already in the list
         //check all the attributes of the object bisimillah with the attributes of the object in the list at index 0
-        if(ayaForsurah[0]!!.ayaEnglish != bismillah.ayaEnglish && ayaForsurah[0]!!.ayaArabic != bismillah.ayaArabic){
+        if(ayaForsurah[0]!!.ayaEnglish != bismillah.ayaEnglish && ayaForsurah[0]!!.ayaArabic != bismillah.ayaArabic || !isEnglish){
             if(number+1 != 9) {
                 ayaForsurah.add(0, bismillah)
             }

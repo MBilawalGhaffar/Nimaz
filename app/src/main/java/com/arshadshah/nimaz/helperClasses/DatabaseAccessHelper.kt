@@ -5,6 +5,7 @@ import android.database.Cursor
 import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
+import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.helperClasses.DatabaseHelper
 
 /**
@@ -13,7 +14,7 @@ import com.arshadshah.nimaz.helperClasses.DatabaseHelper
  * Created by Arshad Shah
  */
 class DatabaseAccessHelper(context: Context) {
-
+    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
     /**
      * The database helper
      */
@@ -86,6 +87,14 @@ class DatabaseAccessHelper(context: Context) {
         return cursor1
     }
 
+    //function to get all the ayas from quran_text between two numbers and return them as a cursor
+    fun getAyaFromUrduText(startAya: Int, endAya: Int): Cursor? {
+        //the cursor
+        val cursor1 = db!!.rawQuery("SELECT * FROM urdu_text WHERE ayaNumberInQuranUrdu BETWEEN $startAya AND $endAya", null)
+        //returns the juz object
+        return cursor1
+    }
+
     //function to get all the ayas from en_sahih between two numbers and return them as a cursor
     fun getAyaFromEnSahih(startAya: Int, endAya: Int): Cursor? {
         //the cursor
@@ -98,9 +107,16 @@ class DatabaseAccessHelper(context: Context) {
     fun getAllAyaForJuz(juzNumber: Int): ArrayList<AyaObject?> {
         val currentJuzStartAya = getJuzStartAyaInQuran(juzNumber)
         val nextJuzStartAya = getJuzStartAyaInQuran(juzNumber+1)
-        
-        val cursorOfAyasFromArabic = getAyaFromQuranText(currentJuzStartAya,nextJuzStartAya)
-        val cursorOfAyasFromEnglish = getAyaFromEnSahih(currentJuzStartAya,nextJuzStartAya)
+        val isEnglish = sharedPreferences.getBoolean("isEnglish", true)
+        var cursorOfAyasFromEnglish:Cursor? = null
+        var cursorOfAyasFromUrdu:Cursor? = null
+        if(isEnglish){
+            cursorOfAyasFromEnglish = getAyaFromEnSahih(currentJuzStartAya,nextJuzStartAya-1)
+        }
+        else{
+            cursorOfAyasFromUrdu = getAyaFromUrduText(currentJuzStartAya,nextJuzStartAya-1)
+        }
+        val cursorOfAyasFromArabic = getAyaFromQuranText(currentJuzStartAya,nextJuzStartAya-1)
 
         //arraylist of AyaObjects
         val ayas = ArrayList<AyaObject?>()
@@ -109,7 +125,7 @@ class DatabaseAccessHelper(context: Context) {
         val arabicText = ArrayList<String?>()
 
         //array for english text
-        val englishText = ArrayList<String?>()
+        val translationText = ArrayList<String?>()
 
         //array for ayaNumber
         val ayaNumber = ArrayList<String?>()
@@ -123,20 +139,37 @@ class DatabaseAccessHelper(context: Context) {
             } while (cursorOfAyasFromArabic.moveToNext())
         }
 
-        //loop through the english text cursor and add the ayas to the arraylist
-        if (cursorOfAyasFromEnglish != null && cursorOfAyasFromEnglish.moveToFirst()) {
-            do {
-                //add the english text at index 3 to the englishText array
-                englishText.add(cursorOfAyasFromEnglish.getString(3))
-            } while (cursorOfAyasFromEnglish.moveToNext())
+        if(isEnglish){
+            //loop through the english text cursor and add the ayas to the arraylist
+            if (cursorOfAyasFromEnglish != null && cursorOfAyasFromEnglish.moveToFirst()) {
+                do {
+                    //add the english text at index 3 to the englishText array
+                    translationText.add(cursorOfAyasFromEnglish.getString(3))
+                } while (cursorOfAyasFromEnglish.moveToNext())
+            }
         }
+        else{
+            //loop through the english text cursor and add the ayas to the arraylist
+            if (cursorOfAyasFromUrdu != null && cursorOfAyasFromUrdu.moveToFirst()) {
+                do {
+                    //add the english text at index 3 to the englishText array
+                    translationText.add(cursorOfAyasFromUrdu.getString(3))
+                } while (cursorOfAyasFromUrdu.moveToNext())
+            }
+        }
+
 
         //combine the arrays into an arraylist of ayaObjects
         for(i in 0 until arabicText.size){
-            ayas.add(AyaObject(ayaNumber[i]!!, englishText[i]!!,arabicText[i]!!))
+            ayas.add(AyaObject(ayaNumber[i]!!, translationText[i]!!,arabicText[i]!!))
         }
         cursorOfAyasFromArabic!!.close()
-        cursorOfAyasFromEnglish!!.close()
+        if(isEnglish){
+            cursorOfAyasFromEnglish!!.close()
+        }
+        else{
+            cursorOfAyasFromUrdu!!.close()
+        }
         return ayas
     }
 
@@ -172,6 +205,22 @@ class DatabaseAccessHelper(context: Context) {
         return englishText
     }
 
+    //function that returns all aya from en_sahih for given surahNumberInQuran and returns it in an array
+    fun getAllAyaFromUrdu_TextForSurah(surahNumberInQuran: Int): ArrayList<String?> {
+        //the cursor
+        val cursor = db!!.rawQuery("SELECT * FROM urdu_text WHERE suraNumberInQuranUrdu = $surahNumberInQuran", null)
+        //array for english text
+        val urduText = ArrayList<String?>()
+
+        while (cursor.moveToNext()) {
+            //add the english text at index 3 to the englishText array
+            urduText.add(cursor.getString(3))
+        }
+        cursor.close()
+
+        return urduText
+    }
+
     //function that returns all ayaNumberInSurah from quran_text for given surahNumberInQuran and returns it in an array
     fun getAllAyaNumberInSurahFromQuranText(surahNumberInQuran: Int): ArrayList<String?> {
         //the cursor
@@ -192,7 +241,15 @@ class DatabaseAccessHelper(context: Context) {
     fun getAllAyaForSurah(surahNumber: Int): ArrayList<AyaObject?> {
         //the cursor
         val arrayOfArabicText = getAllAyaFromQuranTextForSurah(surahNumber)
-        val arrayOfEnglishtext = getAllAyaFromEnSahihForSurah(surahNumber)
+
+        val isEnglish = sharedPreferences.getBoolean("isEnglish", true)
+
+        val arrayOfTranslationtext: ArrayList<String?> = if(isEnglish){
+            getAllAyaFromEnSahihForSurah(surahNumber)
+        } else{
+            getAllAyaFromUrdu_TextForSurah(surahNumber)
+        }
+
         val arrayOfAyaNumber = getAllAyaNumberInSurahFromQuranText(surahNumber)
 
         //arraylist of AyaObjects
@@ -200,7 +257,7 @@ class DatabaseAccessHelper(context: Context) {
 
         //combine the arrays into an arraylist of ayaObjects
         for(i in 0 until arrayOfArabicText.size){
-            ayas.add(AyaObject(arrayOfAyaNumber[i]!!, arrayOfEnglishtext[i]!!,arrayOfArabicText[i]!!))
+            ayas.add(AyaObject(arrayOfAyaNumber[i]!!, arrayOfTranslationtext[i]!!,arrayOfArabicText[i]!!))
         }
 
         return ayas
