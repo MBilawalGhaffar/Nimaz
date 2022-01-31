@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ListAdapter
 import android.widget.TextView
 import com.arshadshah.nimaz.R
+import com.arshadshah.nimaz.arabicReshaper.ArabicUtilities
 import java.util.*
 
 internal class JuzListCustomAdapter(
@@ -70,7 +71,7 @@ internal class JuzListCustomAdapter(
 
         JuzNumber?.text = JuzObject.JuzNumber
         EnglishName?.text = JuzObject.english
-        ArabicName?.text = JuzObject.arabic
+        ArabicName?.text = ArabicUtilities.reshape(JuzObject.arabic)
         return convertView
     }
 

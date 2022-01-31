@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ListAdapter
 import android.widget.TextView
 import com.arshadshah.nimaz.R
+import com.arshadshah.nimaz.arabicReshaper.ArabicUtilities
 import java.util.*
 
 internal class TasbeehListCustomAdapter(
@@ -69,7 +70,7 @@ internal class TasbeehListCustomAdapter(
         val Translation = convertView?.findViewById<TextView>(R.id.TasbeehTranslation)
 
         EnglishName?.text = TasbeehObject.english
-        ArabicName?.text = TasbeehObject.arabic
+        ArabicName?.text = ArabicUtilities.reshape(TasbeehObject.arabic)
         Translation?.text = TasbeehObject.translation
         return convertView
     }

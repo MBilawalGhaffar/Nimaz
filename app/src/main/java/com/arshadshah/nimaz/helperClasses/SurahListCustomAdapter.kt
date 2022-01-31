@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ListAdapter
 import android.widget.TextView
 import com.arshadshah.nimaz.R
+import com.arshadshah.nimaz.arabicReshaper.ArabicUtilities
 import java.util.*
 
 internal class SurahListCustomAdapter(
@@ -72,7 +73,7 @@ internal class SurahListCustomAdapter(
         val SurahRukus = convertView?.findViewById<TextView>(R.id.SurahRukus)
 
         surahNumber?.text = SurahObject.surahNumber
-        SurahArabicName?.text = SurahObject.arabic
+        SurahArabicName?.text = ArabicUtilities.reshape(SurahObject.arabic)
         SurahEnglishName?.text = SurahObject.english
         SurahType?.text = SurahObject.type
         SurahAyas?.text = SurahObject.ayas
