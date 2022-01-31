@@ -91,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/nunito"
-                android:padding="5dp"
+                android:padding="8dp"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:tooltipText="Current Date"
@@ -103,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito"
-                android:padding="5dp"
+                android:padding="8dp"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:tooltipText="Current Hijri Date"
@@ -111,6 +111,10 @@
                 tools:layout_editor_absoluteY="48dp" />
 
         </com.google.android.flexbox.FlexboxLayout>
+
+
+        <!--            end of date time        -->
+
 
         <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/constraintLayout9"
@@ -123,6 +127,7 @@
             app:flexDirection="row"
             app:justifyContent="space_between"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
 
@@ -132,6 +137,7 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/nunito"
                 android:gravity="center"
+                android:padding="8dp"
                 android:text="@string/city"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -155,10 +161,6 @@
                 tools:targetApi="jelly_bean_mr1" />
 
         </com.google.android.flexbox.FlexboxLayout>
-
-
-        <!--            end of date time        -->
-
 
         <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/flexboxLayout"
@@ -193,7 +195,7 @@
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_marginStart="8dp"
                     android:fontFamily="@font/nunito"
                     android:gravity="center"
                     android:text="@string/fajr"
@@ -267,7 +269,7 @@
                     android:id="@+id/sunrise_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_marginStart="8dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/sunrise"
                     android:textSize="18sp"
@@ -342,7 +344,7 @@
                     android:id="@+id/textView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_marginStart="8dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/zuhar"
                     android:textSize="18sp"
@@ -414,7 +416,7 @@
                     android:id="@+id/textView11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_marginStart="8dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/asar"
                     android:textSize="18sp"
@@ -486,7 +488,7 @@
                     android:id="@+id/textView14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_marginStart="8dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/maghrib"
                     android:textSize="18sp"
@@ -569,7 +571,7 @@
                     android:id="@+id/textView17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_marginStart="8dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/ishaa"
                     android:textSize="18sp"

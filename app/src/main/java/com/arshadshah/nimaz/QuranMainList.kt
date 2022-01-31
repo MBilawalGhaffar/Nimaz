@@ -1,6 +1,5 @@
 package com.arshadshah.nimaz
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +13,8 @@ import com.arshadshah.nimaz.fragments.AyaListSurahFragment
 
 class QuranMainList : AppCompatActivity() {
 
-
+    var nameOfPage: TextView? = null
+    var fragmentToUse = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quran_main_list)
@@ -29,8 +29,10 @@ class QuranMainList : AppCompatActivity() {
         //get the values from the intent
         val intent = intent
         val number = intent.getIntExtra("number", 0)
-        val fragmentToUse = intent.getStringExtra("fragment")
+        val name = intent.getStringExtra("name")
+        fragmentToUse = intent.getStringExtra("fragment").toString()
         val moreButton: ImageButton = findViewById(R.id.moreButton)
+        nameOfPage= findViewById(R.id.NameToChange)
 
         moreButton.setOnClickListener {
             // Create the object of
@@ -79,44 +81,14 @@ class QuranMainList : AppCompatActivity() {
                         putBoolean("isEnglish" , true)
                         apply()
                     }
-                    if(fragmentToUse == "juz"){
-                        val bundle = Bundle()
-                        bundle.putInt("number", number)
-                        supportFragmentManager.commit {
-                            setReorderingAllowed(true)
-                            add<AyaListJuzFragment>(R.id.fragmentContainerView3, args = bundle)
-                        }
-                    }
-                    else{
-                        val bundle = Bundle()
-                        bundle.putInt("number", number)
-                        supportFragmentManager.commit {
-                            setReorderingAllowed(true)
-                            add<AyaListSurahFragment>(R.id.fragmentContainerView3, args = bundle)
-                        }
-                    }
+                    fragmentSelecter(name!!,number)
                 }
                 else{
                     with(sharedPreferences.edit()) {
                         putBoolean("isEnglish" , false)
                         apply()
                     }
-                    if(fragmentToUse == "juz"){
-                        val bundle = Bundle()
-                        bundle.putInt("number", number)
-                        supportFragmentManager.commit {
-                            setReorderingAllowed(true)
-                            add<AyaListJuzFragment>(R.id.fragmentContainerView3, args = bundle)
-                        }
-                    }
-                    else{
-                        val bundle = Bundle()
-                        bundle.putInt("number", number)
-                        supportFragmentManager.commit {
-                            setReorderingAllowed(true)
-                            add<AyaListSurahFragment>(R.id.fragmentContainerView3, args = bundle)
-                        }
-                    }
+                    fragmentSelecter(name!!,number)
                 }
 
                 alertDialog.cancel()
@@ -127,7 +99,13 @@ class QuranMainList : AppCompatActivity() {
             }
         }
 
+        fragmentSelecter(name!!,number)
+    }
+
+
+    private fun fragmentSelecter(name: String, number:Int){
         if(fragmentToUse == "juz"){
+            nameOfPage!!.text = name
             val bundle = Bundle()
             bundle.putInt("number", number)
             supportFragmentManager.commit {
@@ -136,6 +114,7 @@ class QuranMainList : AppCompatActivity() {
             }
         }
         else{
+            nameOfPage!!.text = name
             val bundle = Bundle()
             bundle.putInt("number", number)
             supportFragmentManager.commit {

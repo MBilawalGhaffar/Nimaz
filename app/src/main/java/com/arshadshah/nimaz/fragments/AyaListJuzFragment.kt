@@ -61,6 +61,8 @@ class AyaListJuzFragment : Fragment() {
 
         val ayaList: ListView = root.findViewById(R.id.ayaList)
 
+        ayaList.divider = null
+
         //create a custom adapter
         val ayaListCustomAdapter = AyaListCustomAdapter(requireContext(), ayaForJuz)
 

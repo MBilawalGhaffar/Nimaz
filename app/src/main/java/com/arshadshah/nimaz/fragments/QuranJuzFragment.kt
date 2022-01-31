@@ -29,6 +29,7 @@ class QuranJuzFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_quran_juz, container, false)
 
         val juzList: ListView = root.findViewById(R.id.juzList)
+        juzList.divider = null
 
         val helper = DatabaseAccessHelper(requireContext())
         helper.open()
@@ -50,9 +51,11 @@ class QuranJuzFragment : Fragment() {
 
 
         juzList.setOnItemClickListener { parent, view, position, id ->
+            val juzClicked = juzObjects[position]
             val intent = Intent(requireContext() , QuranMainList::class.java)
             intent.putExtra("number",position)
             intent.putExtra("fragment","juz")
+            intent.putExtra("name",juzClicked.arabic)
             startActivity(intent)
         }
 

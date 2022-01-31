@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
                                                    xmlns:app = "http://schemas.android.com/apk/res-auto"
-                                                   android:layout_width = "match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width = "match_parent"
                                                    android:layout_height = "wrap_content"
                                                    android:orientation = "vertical"
                                                    android:padding = "10dp">
 
     <LinearLayout
-        android:layout_width = "0dp"
-        android:layout_height = "wrap_content"
-        android:orientation = "vertical"
-        app:layout_constraintBottom_toBottomOf = "parent"
-        app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toTopOf = "parent">
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView2"
@@ -35,75 +39,96 @@
             android:text="Select Prefered Translation"
             android:textSize="16sp" />
 
-        <RadioGroup
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
-            <RadioButton
-                android:id="@+id/englishTranslation"
+            <RadioGroup
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                android:text="English"
-                android:textSize="16sp" />
+                android:layout_height="match_parent"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <RadioButton
-                android:id="@+id/urduTranslation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                android:text="Urdu"
-                android:textSize="16sp" />
-        </RadioGroup>
-
-        <LinearLayout
-            android:layout_width = "match_parent"
-            android:layout_height = "wrap_content"
-            android:layout_gravity = "center"
-            android:layout_marginTop = "10dp"
-            android:gravity = "center"
-            android:orientation = "horizontal">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width = "match_parent"
-                android:layout_height = "match_parent">
-
-                <Button
-                    android:id="@+id/dialogCancel"
-                    style="@style/Base.Widget.AppCompat.Button.Colored"
-                    android:layout_width="wrap_content"
-                    android:layout_height="58dp"
-                    android:layout_margin="5dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginBottom="1dp"
+                <RadioButton
+                    android:id="@+id/englishTranslation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito"
-                    android:text="@string/cancel"
-                    android:textAllCaps="true"
-                    android:textStyle="bold"
-                    app:cornerRadius="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:padding="10dp"
+                    android:text="English"
+                    android:textSize="24sp" />
 
-                <Button
-                    android:id="@+id/dialogSubmit"
-                    style="@style/Base.Widget.AppCompat.Button.Colored"
-                    android:layout_width="wrap_content"
-                    android:layout_height="58dp"
-                    android:layout_margin="5sp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="6dp"
-                    android:fontFamily="@font/nunito"
-                    android:text="@string/submit"
-                    android:textAllCaps="true"
-                    android:textStyle="bold"
-                    app:cornerRadius="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <RadioButton
+                    android:id="@+id/urduTranslation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/urdu"
+                    android:padding="10dp"
+                    android:text="اُردو"
+                    android:textAlignment="viewStart"
+                    android:textSize="34sp" />
+            </RadioGroup>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/dialogCancel"
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="58dp"
+                android:layout_margin="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="1dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/cancel"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/dialogSubmit"
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="58dp"
+                android:layout_margin="5sp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="6dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/submit"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

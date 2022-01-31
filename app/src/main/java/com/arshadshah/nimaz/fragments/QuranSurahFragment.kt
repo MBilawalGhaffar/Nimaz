@@ -25,6 +25,8 @@ class QuranSurahFragment : Fragment() {
 
         val surahList: ListView = root.findViewById(R.id.surahList)
 
+        surahList.divider = null
+
         val helper = DatabaseAccessHelper(requireContext())
         helper.open()
 
@@ -47,9 +49,11 @@ class QuranSurahFragment : Fragment() {
         surahList.adapter = surahListCustomAdapter
 
         surahList.setOnItemClickListener { parent, view, position, id ->
+            val surahClicked= surahObjects[position]
             val intent = Intent(requireContext() , QuranMainList::class.java)
             intent.putExtra("number",position)
             intent.putExtra("fragment","surah")
+            intent.putExtra("name",surahClicked.arabic)
             startActivity(intent)
         }
 

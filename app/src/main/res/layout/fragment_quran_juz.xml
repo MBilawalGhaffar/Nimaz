@@ -5,6 +5,7 @@
     android:id="@+id/frameLayout5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/android:windowBackground"
     tools:context=".fragments.QuranJuzFragment" >
 
     <ListView

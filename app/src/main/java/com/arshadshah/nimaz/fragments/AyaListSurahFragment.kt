@@ -50,6 +50,7 @@ class AyaListSurahFragment : Fragment() {
         }
 
         val ayaList: ListView = root.findViewById(R.id.ayaListSurah)
+        ayaList.divider = null
         
         //create a custom adapter
         val ayaListCustomAdapter = AyaListCustomAdapter(requireContext(), ayaForsurah)

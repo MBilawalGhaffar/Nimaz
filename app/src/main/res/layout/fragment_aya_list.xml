@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout7"
     android:layout_width="match_parent"
-    android:background="?attr/cardBackground"
     android:layout_height="match_parent"
+    android:background="?attr/android:windowBackground"
     tools:context=".fragments.AyaListJuzFragment">
 
     <ListView
         android:id="@+id/ayaList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:dividerHeight="0dp"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
