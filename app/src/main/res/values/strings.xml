@@ -33,7 +33,7 @@
     <string name="menuOptionreference2" translatable="false">Main ,compass Icon taken from: </string>
     <string name="mainIconLink" translatable="false"><a href="https://www.freepik.com">https://www.freepik.com/</a></string>
 
-    <string name="menuOptionreference3" translatable="false">Calculation of prayer times: </string>
+    <string name="menuOptionreference3" translatable="false">Calculation of prayer times based on: </string>
     <string name="codeforcalculation" translatable="false"><a href="https://www.github.com/batoulapps/adhan-java">https://github.com/batoulapps/adhan-java</a></string>
 
 

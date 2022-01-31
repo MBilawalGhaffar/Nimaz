@@ -90,6 +90,13 @@ class About : Fragment()
         ref.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://tanzil.net/updates/")))
         }
+
+
+        val ref4: ImageButton = root.findViewById(R.id.ref4)
+
+        ref4.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/agawish/Better-Arabic-Reshaper")))
+        }
         return root
     }
 }
