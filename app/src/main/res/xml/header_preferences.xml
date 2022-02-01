@@ -3,6 +3,10 @@
 
     <PreferenceCategory android:title = "Current Location">
 
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="locationType"
+            android:title="Automatic" />
         <EditTextPreference
             android:defaultValue = "Portlaoise"
             android:dialogIcon = "@drawable/edit_location"

@@ -8,7 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.helperClasses.alarms.CreateAlarms
+import com.arshadshah.nimaz.helperClasses.fusedLocations.LocationFinderAuto
+import com.arshadshah.nimaz.helperClasses.fusedLocations.PermissionUtils
 import com.arshadshah.nimaz.helperClasses.prayertimes.prayerTimeThread
+import com.arshadshah.nimaz.helperClasses.utils.locationFinder
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -18,6 +21,19 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
  */
 class HomeActivity : AppCompatActivity()
 {
+
+    override fun onStart(){
+        super.onStart()
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val locationTypeValue = sharedPreferences.getBoolean("locationType" , true)
+        val latitude = sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
+        val longitude = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()
+        if(locationTypeValue){
+            LocationFinderAuto().getLocations(this,12345)
+
+            locationFinder().findCityName(this,latitude,longitude)
+        }
+    }
     override fun onResume()
     {
         super.onResume()

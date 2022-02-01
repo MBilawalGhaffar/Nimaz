@@ -135,13 +135,15 @@ class HomeFragment : Fragment()
 
         //high latitude rule list
         val highlatRule = sharedPreferences.getString("highlatrule" , "TWILIGHT_ANGLE")
-
+        val locationTypeValue = sharedPreferences.getBoolean("locationType" , true)
         val isNetworkAvailable = NetworkChecker().networkCheck(requireContext())
         if (isNetworkAvailable)
         {
+            if(!locationTypeValue) {
                 //location finder class
                 val lonAndLat = locationFinder()
-                lonAndLat.findLongAndLan(requireContext() , name !!)
+                lonAndLat.findLongAndLan(requireContext(), name!!)
+            }
                 cityName.text = sharedPreferences.getString("location_input" , "Portlaoise").toString()
                 latitude = sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
                 longitude = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()

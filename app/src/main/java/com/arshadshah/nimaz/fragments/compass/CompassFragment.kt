@@ -87,13 +87,15 @@ open class CompassFragment : Fragment() , SensorEventListener
         // get values from settings
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val name = sharedPreferences.getString("location_input" , "Portlaoise")
-
+        val locationTypeValue = sharedPreferences.getBoolean("locationType" , true)
         val isNetworkAvailable = NetworkChecker().networkCheck(requireContext())
         if (isNetworkAvailable)
         {
-            //location finder class
-            val lonAndLat = locationFinder()
-            lonAndLat.findLongAndLan(requireContext() , name !!)
+            if(!locationTypeValue) {
+                //location finder class
+                val lonAndLat = locationFinder()
+                lonAndLat.findLongAndLan(requireContext(), name!!)
+            }
             location.text = sharedPreferences.getString("location_input" , "Portlaoise").toString()
             latitude = sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
             longitude = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()

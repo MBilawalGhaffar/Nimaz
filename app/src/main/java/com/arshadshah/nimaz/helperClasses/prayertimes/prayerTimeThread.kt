@@ -52,14 +52,16 @@ class prayerTimeThread(context : Context) : Thread()
 
 
         val highlatRule = sharedPreferences.getString("highlatrule" , "TWILIGHT_ANGLE")
-
+        val locationTypeValue = sharedPreferences.getBoolean("locationType" , true)
 
         val isNetworkAvailable = NetworkChecker().networkCheck(applicationContextVal)
         if (isNetworkAvailable)
         {
-            //location finder class
-            val lonAndLat = locationFinder()
-            lonAndLat.findLongAndLan(applicationContextVal , name !!)
+            if(!locationTypeValue) {
+                //location finder class
+                val lonAndLat = locationFinder()
+                lonAndLat.findLongAndLan(applicationContextVal, name!!)
+            }
             lati = sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
             longi = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()
         }

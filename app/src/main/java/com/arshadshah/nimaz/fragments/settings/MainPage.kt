@@ -20,15 +20,14 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import androidx.preference.EditTextPreference
-import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
-import androidx.preference.PreferenceManager
+import androidx.preference.*
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.alarms.Alarms
+import com.arshadshah.nimaz.helperClasses.fusedLocations.LocationFinderAuto
 import com.arshadshah.nimaz.helperClasses.utils.NetworkChecker
 import com.arshadshah.nimaz.helperClasses.utils.NotificationHelper
 import com.arshadshah.nimaz.helperClasses.prayertimes.prayerTimeThread
+import com.arshadshah.nimaz.helperClasses.utils.locationFinder
 import com.arshadshah.nimaz.recievers.ReminderReciever
 
 class MainPage : PreferenceFragmentCompat()
@@ -43,6 +42,9 @@ class MainPage : PreferenceFragmentCompat()
         val isNetworkAvailable = NetworkChecker().networkCheck(requireContext())
 
         val location : EditTextPreference? = findPreference("location_input")
+
+        val locationType : SwitchPreference? = findPreference("locationType")
+
         val latitude : EditTextPreference? = findPreference("latitude")
         val longitude : EditTextPreference? = findPreference("longitude")
         val setAlarmIn10 : Preference? = findPreference("setAlarmIn10")
@@ -50,8 +52,82 @@ class MainPage : PreferenceFragmentCompat()
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val location_value = sharedPreferences.getString("location_input" , "Portlaoise")
 
+        val locationTypeValue = sharedPreferences.getBoolean("locationType" , true)
+
         val lat = sharedPreferences.getString("latitude" , "0.0")
         val lon = sharedPreferences.getString("longitude" , "0.0")
+
+        if(locationTypeValue){
+            locationType!!.title = "Automatic"
+            location!!.isVisible = false
+            latitude!!.isVisible = false
+            longitude!!.isVisible = false
+            locationType.setOnPreferenceChangeListener{ preference, newValue ->
+                if (newValue as Boolean)
+                {
+                    locationType.title = "Automatic"
+                    location.isVisible = false
+                    latitude.isVisible = false
+                    longitude.isVisible = false
+
+                    with(sharedPreferences.edit()) {
+                        putBoolean("locationType" , true)
+                        apply()
+                    }
+                    LocationFinderAuto().getLocations(requireActivity(),12345)
+                }
+                else if (newValue == false)
+                {
+                    locationType.title = "Manual"
+                    location.isVisible = true
+                    latitude.isVisible = true
+                    longitude.isVisible = true
+                    //reset alarms
+                    with(sharedPreferences.edit()) {
+                        putBoolean("locationType" , false)
+                        apply()
+                    }
+
+                }
+                true
+            }
+
+        }
+        else{
+            location!!.isVisible = true
+            latitude!!.isVisible = true
+            longitude!!.isVisible = true
+            locationType!!.title = "Manual"
+            locationType.setOnPreferenceChangeListener{ preference, newValue ->
+                if (newValue as Boolean)
+                {
+                    locationType.title = "Automatic"
+                    location.isVisible = false
+                    latitude.isVisible = false
+                    longitude.isVisible = false
+
+                    with(sharedPreferences.edit()) {
+                        putBoolean("locationType" , true)
+                        apply()
+                    }
+                    LocationFinderAuto().getLocations(requireActivity(),12345)
+                }
+                else if (newValue == false)
+                {
+                    locationType.title = "Manual"
+                    location.isVisible = true
+                    latitude.isVisible = true
+                    longitude.isVisible = true
+                    //reset alarms
+                    with(sharedPreferences.edit()) {
+                        putBoolean("locationType" , false)
+                        apply()
+                    }
+
+                }
+                true
+            }
+        }
 
 
         //navigation in settings
@@ -132,9 +208,9 @@ class MainPage : PreferenceFragmentCompat()
             Log.i("Alarms Test" , "Test alarm set in 10 seconds")
             false
         }
-        latitude !!.isPersistent = true
-        longitude !!.isPersistent = true
-        location !!.isPersistent = true
+        latitude.isPersistent = true
+        longitude.isPersistent = true
+        location.isPersistent = true
 
         location.setOnBindEditTextListener { editText ->
             editText.inputType = InputType.TYPE_CLASS_TEXT or
@@ -167,6 +243,7 @@ class MainPage : PreferenceFragmentCompat()
             val value = newValue as String
             if (value != lat)
             {
+                locationFinder().findLongAndLan(requireContext(),value)
                 //write lock to storage
                 with(sharedPreferences.edit()) {
                     putBoolean("alarmLock" , false)
@@ -197,7 +274,7 @@ class MainPage : PreferenceFragmentCompat()
             val value = newValue as String
             if (value != lat)
             {
-                //write lock to storage
+               //write lock to storage
                 with(sharedPreferences.edit()) {
                     putBoolean("alarmLock" , false)
                     putString("latitude" , value)

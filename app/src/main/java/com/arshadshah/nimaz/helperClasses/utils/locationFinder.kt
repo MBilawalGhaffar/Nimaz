@@ -151,8 +151,8 @@ class locationFinder
                 Log.e("Geocoder" , "Geocoder has failed")
                 latitudeValue = sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
                 longitudeValue = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()
-                cityName = sharedPreferences.getString("location_input" , "Portlaoise").toString()
-                Log.i("Location" , "Location Found From Storage $cityName")
+                cityName = "Not Found"
+                Log.i("Location" , "Location Found From value $latitude, and $longitude")
             }
         }
         else

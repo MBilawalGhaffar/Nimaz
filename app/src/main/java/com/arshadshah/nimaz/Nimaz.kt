@@ -97,14 +97,16 @@ internal fun updateAppWidget(
 
 
     val highlatRule = sharedPreferences.getString("highlatrule" , "TWILIGHT_ANGLE")
-
+    val locationTypeValue = sharedPreferences.getBoolean("locationType" , true)
 
     val isNetworkAvailable = NetworkChecker().networkCheck(context)
     if (isNetworkAvailable)
     {
-        //location finder class
-        val lonAndLat = locationFinder()
-        lonAndLat.findLongAndLan(context , name !!)
+        if(!locationTypeValue) {
+            //location finder class
+            val lonAndLat = locationFinder()
+            lonAndLat.findLongAndLan(context, name!!)
+        }
         latitude = sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
         longitude = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()
     }
@@ -158,4 +160,3 @@ internal fun updateAppWidget(
 
     Log.i("Widget", "created")
 }
-

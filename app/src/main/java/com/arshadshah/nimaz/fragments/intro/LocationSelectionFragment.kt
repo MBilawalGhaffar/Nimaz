@@ -8,44 +8,50 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.HomeActivity
 import com.arshadshah.nimaz.R
+import com.arshadshah.nimaz.helperClasses.fusedLocations.LocationFinderAuto
+import com.arshadshah.nimaz.helperClasses.fusedLocations.PermissionUtils
 
-class LocationInputFragment : Fragment() {
+class LocationSelectionFragment : Fragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.fragment_location_input, container, false)
+        val root = inflater.inflate(R.layout.fragment_location_selection, container, false)
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
-        val locationFinish: Button = root.findViewById(R.id.locationFinish)
+        val manual: Button = root.findViewById(R.id.manual)
+        val auto: Button = root.findViewById(R.id.auto)
         val locationSkip: Button = root.findViewById(R.id.locationSkip)
 
-        locationFinish.setOnClickListener {
-            val city:EditText = root.findViewById(R.id.city)
-
-            if(city.text.length > 2){
-                val currentLocation = city.text.toString()
-                with(sharedPreferences.edit()) {
-                    putString("location_input" , currentLocation)
-                    putBoolean("isFirstInstall" , false)
-                    putBoolean("navigateToHome", true)
-                    putBoolean("channelLock" , false)
-                    apply()
-                }
-                val intent = Intent(requireContext() , HomeActivity::class.java)
-                startActivity(intent)
-                activity?.finish()
-                Toast.makeText(requireContext(),"Showing Prayer times for $currentLocation", Toast.LENGTH_LONG).show()
+        manual.setOnClickListener {
+            val navcontroller = requireActivity().findNavController(R.id.fragmentContainerView)
+            navcontroller.navigate(R.id.locationInputFragment)
+            with(sharedPreferences.edit()) {
+                putBoolean("locationType" , false)
+                apply()
             }
         }
+        auto.setOnClickListener {
 
+            with(sharedPreferences.edit()) {
+                putBoolean("locationType" , true)
+                putBoolean("isFirstInstall" , false)
+                putBoolean("channelLock" , false)
+                apply()
+            }
+
+            val intent = Intent(requireContext() , HomeActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
+        }
         //if skipped
         locationSkip.setOnClickListener {
             with(sharedPreferences.edit()) {
@@ -55,13 +61,15 @@ class LocationInputFragment : Fragment() {
             }
             createDialog()
         }
+
         return root
     }
+
 
     /***
      * create a dialog to add a reminder
      */
-    fun createDialog() {
+    private fun createDialog() {
         // Create the object of
         // AlertDialog Builder class
         val builder = AlertDialog.Builder(requireContext())

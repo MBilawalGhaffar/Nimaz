@@ -65,15 +65,17 @@ class bootReceiver : BroadcastReceiver()
             val ishaa_adjust = sharedPreferences.getString("ishaa" , "0")
 
             val highlatRule = sharedPreferences.getString("highlatrule" , "TWILIGHT_ANGLE")
-
+            val locationTypeValue = sharedPreferences.getString("locationType" , "auto")
 
             val isNetworkAvailable = NetworkChecker().networkCheck(context)
             if (isNetworkAvailable)
             {
-                //location finder class
-                //location finder class
-                val lonAndLat = locationFinder()
-                lonAndLat.findLongAndLan(context , name !!)
+                if(locationTypeValue == "manual") {
+                    //location finder class
+                    //location finder class
+                    val lonAndLat = locationFinder()
+                    lonAndLat.findLongAndLan(context, name!!)
+                }
                 latitude = sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
                 longitude = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()
             }

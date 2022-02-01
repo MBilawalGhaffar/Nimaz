@@ -25,4 +25,9 @@
         android:name="com.arshadshah.nimaz.fragments.intro.LocationInputFragment"
         android:label="fragment_location_input"
         tools:layout="@layout/fragment_location_input" />
+    <fragment
+        android:id="@+id/locationSelectionFragment"
+        android:name="com.arshadshah.nimaz.fragments.intro.LocationSelectionFragment"
+        android:label="fragment_location_selection"
+        tools:layout="@layout/fragment_location_selection" />
 </navigation>

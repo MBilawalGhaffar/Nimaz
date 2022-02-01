@@ -180,7 +180,7 @@ class IntroTandCFragment : Fragment() {
         //if skipped
         tandcskip.setOnClickListener {
             val navcontroller = requireActivity().findNavController(R.id.fragmentContainerView)
-            navcontroller.navigate(R.id.locationInputFragment)
+            navcontroller.navigate(R.id.locationSelectionFragment)
             with(sharedPreferences.edit()) {
                 putBoolean("isTandCApproved" , false)
                 apply()

@@ -187,7 +187,7 @@ class IntroPrivacyPolicyFragment : Fragment() {
 
         pandpcontinue.setOnClickListener {
             val navcontroller = requireActivity().findNavController(R.id.fragmentContainerView)
-            navcontroller.navigate(R.id.locationInputFragment)
+            navcontroller.navigate(R.id.locationSelectionFragment)
             with(sharedPreferences.edit()) {
                 putBoolean("isPrivacyPolicyApproved" , true)
                 apply()
@@ -197,7 +197,7 @@ class IntroPrivacyPolicyFragment : Fragment() {
         //if skipped
         pandpskip.setOnClickListener {
             val navcontroller = requireActivity().findNavController(R.id.fragmentContainerView)
-            navcontroller.navigate(R.id.locationInputFragment)
+            navcontroller.navigate(R.id.locationSelectionFragment)
             with(sharedPreferences.edit()) {
                 putBoolean("isPrivacyPolicyApproved" , false)
                 apply()
