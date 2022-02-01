@@ -42,6 +42,8 @@ class QuranJuzFragment : Fragment() {
             val juzObject = JuzObject(cursorForJuzName.getString(0), cursorForJuzName.getString(3), cursorForJuzName.getString(2))
             juzObjects.add(juzObject)
         }
+        cursorForJuzName.close()
+
 
         //create a custom adapter
         val JuzListCustomAdapter = JuzListCustomAdapter(requireContext(), juzObjects)
