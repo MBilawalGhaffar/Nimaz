@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.IntroFragment">
+    tools:context=".fragments.intro.IntroFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView4"

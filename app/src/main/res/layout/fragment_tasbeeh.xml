@@ -5,7 +5,7 @@
                                                     android:background="?android:windowBackground"
                                                    android:layout_width = "match_parent"
                                                    android:layout_height = "match_parent"
-                                                   tools:context = ".fragments.Tasbeeh">
+                                                   tools:context = ".fragments.tasbeeh.Tasbeeh">
 
     <LinearLayout
         android:id="@+id/linearLayout"

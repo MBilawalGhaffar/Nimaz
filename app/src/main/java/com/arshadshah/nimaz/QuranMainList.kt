@@ -8,8 +8,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import androidx.preference.PreferenceManager
-import com.arshadshah.nimaz.fragments.AyaListJuzFragment
-import com.arshadshah.nimaz.fragments.AyaListSurahFragment
+import com.arshadshah.nimaz.fragments.quran.AyaListJuzFragment
+import com.arshadshah.nimaz.fragments.quran.AyaListSurahFragment
 
 class QuranMainList : AppCompatActivity() {
 

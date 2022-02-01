@@ -6,8 +6,8 @@ import android.widget.ListView
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
-import com.arshadshah.nimaz.helperClasses.TasbeehListCustomAdapter
-import com.arshadshah.nimaz.helperClasses.TasbeehObject
+import com.arshadshah.nimaz.helperClasses.tasbeeh.TasbeehListCustomAdapter
+import com.arshadshah.nimaz.helperClasses.tasbeeh.TasbeehObject
 
 class DikhrListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

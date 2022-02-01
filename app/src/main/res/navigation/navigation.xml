@@ -19,12 +19,12 @@
         tools:layout = "@layout/fragment_names"/>
     <fragment
         android:id = "@+id/navigation_compass"
-        android:name = "com.arshadshah.nimaz.fragments.CompassFragment"
+        android:name = "com.arshadshah.nimaz.fragments.compass.CompassFragment"
         android:label = "fragment_compass"
         tools:layout = "@layout/fragment_compass"/>
     <fragment
         android:id="@+id/navigation_tasbeeh2"
-        android:name="com.arshadshah.nimaz.fragments.TasbeehFragment"
+        android:name="com.arshadshah.nimaz.fragments.tasbeeh.TasbeehFragment"
         android:label="fragment_tasbeeh2"
         tools:layout="@layout/fragment_tasbeeh2" />
     <activity

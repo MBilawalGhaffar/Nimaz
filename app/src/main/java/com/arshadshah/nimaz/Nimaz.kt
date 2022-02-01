@@ -11,8 +11,8 @@ import android.util.Log
 import android.widget.RemoteViews
 import androidx.annotation.RequiresApi
 import androidx.preference.PreferenceManager
-import com.arshadshah.nimaz.helperClasses.NetworkChecker
-import com.arshadshah.nimaz.helperClasses.locationFinder
+import com.arshadshah.nimaz.helperClasses.utils.NetworkChecker
+import com.arshadshah.nimaz.helperClasses.utils.locationFinder
 import com.arshadshah.nimaz.prayerTimeApi.*
 import com.arshadshah.nimaz.prayerTimeApi.data.DateComponents
 import java.text.DateFormat

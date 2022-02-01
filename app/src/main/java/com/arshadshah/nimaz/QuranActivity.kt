@@ -1,13 +1,11 @@
 package com.arshadshah.nimaz
 
-import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.arshadshah.nimaz.helperClasses.DatabaseHelper
-import com.arshadshah.nimaz.helperClasses.QuranFragmentAdapter
+import com.arshadshah.nimaz.helperClasses.quran.QuranFragmentAdapter
 import com.google.android.material.tabs.TabLayout
 
 class QuranActivity : AppCompatActivity() {

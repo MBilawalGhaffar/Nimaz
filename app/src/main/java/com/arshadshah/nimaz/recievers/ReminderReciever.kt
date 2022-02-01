@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
-import com.arshadshah.nimaz.helperClasses.NotificationHelper
+import com.arshadshah.nimaz.helperClasses.utils.NotificationHelper
 
 /**
  * A BroadcastReceiver That Shows notification

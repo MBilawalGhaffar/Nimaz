@@ -7,9 +7,8 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.preference.PreferenceManager
-import com.arshadshah.nimaz.helperClasses.CreateAlarms
-import com.arshadshah.nimaz.helperClasses.DatabaseAccessHelper
-import com.arshadshah.nimaz.helperClasses.prayerTimeThread
+import com.arshadshah.nimaz.helperClasses.alarms.CreateAlarms
+import com.arshadshah.nimaz.helperClasses.prayertimes.prayerTimeThread
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 

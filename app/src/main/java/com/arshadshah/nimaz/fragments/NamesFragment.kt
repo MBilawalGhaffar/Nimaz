@@ -13,10 +13,9 @@ import android.widget.ImageButton
 import android.widget.ListView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
-import com.arshadshah.nimaz.helperClasses.CustomAdapter
-import com.arshadshah.nimaz.helperClasses.SubjectData
+import com.arshadshah.nimaz.helperClasses.names.CustomAdapter
+import com.arshadshah.nimaz.helperClasses.names.SubjectData
 
 
 class NamesFragment : Fragment()

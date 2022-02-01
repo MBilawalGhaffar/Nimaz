@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.*
-import com.arshadshah.nimaz.fragments.MainPage
+import com.arshadshah.nimaz.fragments.settings.MainPage
 
 /**
  * Settings for the application.

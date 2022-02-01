@@ -7,10 +7,10 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.preference.PreferenceManager
-import com.arshadshah.nimaz.helperClasses.CreateAlarms
-import com.arshadshah.nimaz.helperClasses.DateConvertor
-import com.arshadshah.nimaz.helperClasses.NetworkChecker
-import com.arshadshah.nimaz.helperClasses.locationFinder
+import com.arshadshah.nimaz.helperClasses.alarms.CreateAlarms
+import com.arshadshah.nimaz.helperClasses.utils.DateConvertor
+import com.arshadshah.nimaz.helperClasses.utils.NetworkChecker
+import com.arshadshah.nimaz.helperClasses.utils.locationFinder
 import com.arshadshah.nimaz.prayerTimeApi.*
 import com.arshadshah.nimaz.prayerTimeApi.data.DateComponents
 import java.util.*

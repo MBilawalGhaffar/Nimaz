@@ -1,8 +1,6 @@
 package com.arshadshah.nimaz.fragments
 
 import android.annotation.SuppressLint
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -22,13 +20,12 @@ import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
-import com.arshadshah.nimaz.HomeActivity
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.SettingsActivity
-import com.arshadshah.nimaz.helperClasses.DateConvertor
-import com.arshadshah.nimaz.helperClasses.NetworkChecker
-import com.arshadshah.nimaz.helperClasses.TimerCreater
-import com.arshadshah.nimaz.helperClasses.locationFinder
+import com.arshadshah.nimaz.helperClasses.utils.DateConvertor
+import com.arshadshah.nimaz.helperClasses.utils.NetworkChecker
+import com.arshadshah.nimaz.helperClasses.prayertimes.TimerCreater
+import com.arshadshah.nimaz.helperClasses.utils.locationFinder
 import com.arshadshah.nimaz.prayerTimeApi.*
 import com.arshadshah.nimaz.prayerTimeApi.data.DateComponents
 import java.text.DateFormat
@@ -36,7 +33,6 @@ import java.time.LocalDate
 import java.time.chrono.HijrahDate
 import java.time.format.DateTimeFormatter
 import java.util.*
-import java.util.prefs.Preferences
 import kotlin.properties.Delegates
 
 

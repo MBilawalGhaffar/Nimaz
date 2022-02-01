@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/android:windowBackground"
-    tools:context=".fragments.AyaListSurahFragment">
+    tools:context=".fragments.quran.AyaListSurahFragment">
 
     <ListView
         android:id="@+id/ayaListSurah"
