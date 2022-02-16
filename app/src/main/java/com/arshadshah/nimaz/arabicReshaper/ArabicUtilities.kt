@@ -17,7 +17,7 @@ object ArabicUtilities {
     /**
      * the path of teh fonts file must be under assets folder
      */
-    private const val FONTS_LOCATION_PATH = "fonts/DejaVuSans.ttf"
+    private const val FONTS_LOCATION_PATH = "fonts/quran_font.ttf"
     var face: Typeface? = null
 
     /**
@@ -44,7 +44,7 @@ object ArabicUtilities {
      * @param sentence the Sentence to Split into Array of Words
      * @return Array Of words
      */
-    private fun getWords(sentence: String?): Array<String?> {
+    fun getWords(sentence: String?): Array<String?> {
         return sentence?.split("\\s".toRegex())?.toTypedArray() ?: arrayOfNulls(0)
     }
 
@@ -198,10 +198,9 @@ object ArabicUtilities {
                 reshapedText.append(words[i])
             }
 
-            // don't append the space to the final word
             if (i < words.size - 1) {
                 //Append the space to separate between words
-                reshapedText.append(" ")
+                reshapedText.append("   ")
             }
         }
 
@@ -215,7 +214,7 @@ object ArabicUtilities {
             face = Typeface.createFromAsset(context.assets, FONTS_LOCATION_PATH)
         }
         targetTextView.typeface = face
-        targetTextView.gravity = Gravity.RIGHT
+        targetTextView.gravity = Gravity.END
         return targetTextView
     }
 }

@@ -47,7 +47,7 @@ class AyaListJuzFragment : Fragment() {
         //add object bismillah before it for every occurance of ayaForJuz[i]!!.ayaNumber = 1
         var index = 0
         while(index < ayaForJuz.size){
-            if(ayaForJuz[index]!!.ayaEnglish != bismillah.ayaEnglish && ayaForJuz[index]!!.ayaArabic != bismillah.ayaArabic){
+            if(ayaForJuz[index]!!.ayaArabic != bismillah.ayaArabic){
                 //add bismillah before ayaForJuz[i]
                 if(ayaForJuz[index]!!.ayaNumber == "1"){
                     if(number+1 != 10 && index != 36){

@@ -90,7 +90,8 @@ internal class AyaListCustomAdapter(
         val unicodeWithNumber = unicodeAyaEndStart + endOfAyaWithNumber + unicodeAyaEndEnd
 
         EnglishName?.text = AyaObject.ayaEnglish
-        ArabicName?.text = ArabicUtilities.reshape(AyaObject.ayaArabic + unicodeWithNumber)
+        ArabicName?.text = ArabicUtilities.reshape(AyaObject.ayaArabic + " " + unicodeWithNumber)
+
         return convertView
     }
 

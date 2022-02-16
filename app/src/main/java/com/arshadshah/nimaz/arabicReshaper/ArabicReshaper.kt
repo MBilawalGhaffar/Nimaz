@@ -39,7 +39,7 @@ class ArabicReshaper(unshapedWord: String) {
         for (n in ARABIC_GLPHIES.indices) {
             //Check if the character equals the target character
             if (ARABIC_GLPHIES[n][0] == target) //Get the number of Forms that the character has
-                return ARABIC_GLPHIES[n][5].toInt()
+                return ARABIC_GLPHIES[n][5].code
         }
         //Return the number 2 Otherwise
         return 2
@@ -66,13 +66,13 @@ class ArabicReshaper(unshapedWord: String) {
         unshapedWord.toCharArray(wordLetters, 0, 0, wordLength)
         var letterBefore = 0.toChar()
         for (index in 0 until wordLetters.size - 1) {
-            if (!isHaraka(wordLetters[index]) && DEFINED_CHARACTERS_ORGINAL_LAM.toInt() != wordLetters[index]
-                    .toInt()
+            if (!isHaraka(wordLetters[index]) && DEFINED_CHARACTERS_ORGINAL_LAM.code != wordLetters[index]
+                    .code
             ) {
                 letterBefore = wordLetters[index]
             }
-            if (DEFINED_CHARACTERS_ORGINAL_LAM.toInt() == wordLetters[index]
-                    .toInt()
+            if (DEFINED_CHARACTERS_ORGINAL_LAM.code == wordLetters[index]
+                    .code
             ) {
                 val candidateLam = wordLetters[index]
                 var harakaPosition = index + 1
@@ -80,8 +80,7 @@ class ArabicReshaper(unshapedWord: String) {
                     harakaPosition++
                 }
                 if (harakaPosition < wordLetters.size) {
-                    var lamAlef = 0.toChar()
-                    lamAlef = if (index > 0 && getGlphyType(letterBefore) > 2) getLamAlef(
+                    val lamAlef: Char = if (index > 0 && getGlphyType(letterBefore) > 2) getLamAlef(
                         wordLetters[harakaPosition], candidateLam, false
                     ) else {
                         getLamAlef(wordLetters[harakaPosition], candidateLam, true)
@@ -116,19 +115,19 @@ class ArabicReshaper(unshapedWord: String) {
         if (isEndOfWord) shiftRate++
 
         //check if the Lam is matching the candidate Lam
-        if (DEFINED_CHARACTERS_ORGINAL_LAM.toInt() == candidateLam.toInt()) {
+        if (DEFINED_CHARACTERS_ORGINAL_LAM.code == candidateLam.code) {
 
             //Check which Alef is matching after the Lam and get Its form
-            if (candidateAlef.toInt() == DEFINED_CHARACTERS_ORGINAL_ALF_UPPER_MDD.toInt()) {
+            if (candidateAlef.code == DEFINED_CHARACTERS_ORGINAL_ALF_UPPER_MDD.code) {
                 reshapedLamAlef = LAM_ALEF_GLPHIES[0][shiftRate]
             }
-            if (candidateAlef.toInt() == DEFINED_CHARACTERS_ORGINAL_ALF_UPPER_HAMAZA.toInt()) {
+            if (candidateAlef.code == DEFINED_CHARACTERS_ORGINAL_ALF_UPPER_HAMAZA.code) {
                 reshapedLamAlef = LAM_ALEF_GLPHIES[1][shiftRate]
             }
-            if (candidateAlef.toInt() == DEFINED_CHARACTERS_ORGINAL_ALF_LOWER_HAMAZA.toInt()) {
+            if (candidateAlef.code == DEFINED_CHARACTERS_ORGINAL_ALF_LOWER_HAMAZA.code) {
                 reshapedLamAlef = LAM_ALEF_GLPHIES[3][shiftRate]
             }
-            if (candidateAlef.toInt() == DEFINED_CHARACTERS_ORGINAL_ALF.toInt()) {
+            if (candidateAlef.code == DEFINED_CHARACTERS_ORGINAL_ALF.code) {
                 reshapedLamAlef = LAM_ALEF_GLPHIES[2][shiftRate]
             }
         }

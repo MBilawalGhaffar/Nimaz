@@ -34,8 +34,7 @@ class AyaListSurahFragment : Fragment() {
 
         //add the following object to index 0 of ayaForSurah without losing value of index 0 in ayaForSurah
         val ayaNumberOfBismillah= "0"
-        var ayaOfBismillah =""
-        ayaOfBismillah = if(isEnglish){
+        val ayaOfBismillah = if(isEnglish){
             "In the name of Allah, the Entirely Merciful, the Especially Merciful."
         } else{
             "اللہ کے نام سے جو رحمان و رحیم ہے"
@@ -44,7 +43,7 @@ class AyaListSurahFragment : Fragment() {
         val bismillah  = AyaObject(ayaNumberOfBismillah,ayaOfBismillah,ayaArabicOfBismillah)
         //first check if an object like this is already in the list
         //check all the attributes of the object bisimillah with the attributes of the object in the list at index 0
-        if(ayaForsurah[0]!!.ayaEnglish != bismillah.ayaEnglish && ayaForsurah[0]!!.ayaArabic != bismillah.ayaArabic || !isEnglish){
+        if(ayaForsurah[0]!!.ayaArabic != bismillah.ayaArabic){
             if(number+1 != 9) {
                 ayaForsurah.add(0, bismillah)
             }

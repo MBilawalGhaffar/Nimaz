@@ -27,21 +27,22 @@
 
             <TextView
                 android:id="@+id/TranslationAya"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
                 android:fontFamily="@font/urdu"
                 android:lineSpacingExtra="2sp"
                 android:text="TextView"
+                android:textAlignment="viewEnd"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ArabicAya" />
 
             <TextView
                 android:id="@+id/ArabicAya"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:breakStrategy="high_quality"
@@ -52,6 +53,7 @@
                 android:textAlignment="viewEnd"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

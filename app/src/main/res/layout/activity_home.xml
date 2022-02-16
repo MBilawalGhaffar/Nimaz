@@ -24,19 +24,19 @@
         tools:ignore = "FragmentTagUsage"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id = "@+id/nav_view"
-        android:layout_width = "0dp"
-        android:layout_height = "wrap_content"
-        android:background = "@drawable/menucard"
-        android:elevation = "10dp"
-        android:padding = "5dp"
-        app:itemHorizontalTranslationEnabled = "true"
-        app:itemIconTint = "@drawable/selector"
-        app:itemTextColor = "@drawable/selector"
-        app:labelVisibilityMode = "auto"
-        app:layout_constraintBottom_toBottomOf = "parent"
-        app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:menu = "@menu/menu"/>
+        android:id="@+id/nav_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/menucard"
+        android:elevation="10dp"
+        android:padding="5dp"
+        app:itemHorizontalTranslationEnabled="true"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:labelVisibilityMode="auto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
