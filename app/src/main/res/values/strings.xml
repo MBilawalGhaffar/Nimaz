@@ -52,7 +52,7 @@
     <string name="amount" translatable="false">Amount: </string>
     <string name="appwidget_text" translatable="false">EXAMPLE</string>
     <string name="add_widget" translatable="false">Add widget</string>
-    <string name="email" translatable="false">Contact:<a href="mailto:shaharshad57@gmail.com">shaharshad57@gmail.com</a></string>
+    <string name="email" translatable="false">Contact:<a href="info@arshadshah.com">info@arshadshah.com</a></string>
     <string name="version" translatable="false">Version: </string>
     <string name="_0_0" translatable="false">0.0</string>
     <string name="configure" translatable="false">Configure</string>
@@ -133,13 +133,13 @@
     <string name="quran" translatable="false">Quran</string>
     <string name="juz" translatable="false">Juz</string>
     <string name="surah" translatable="false">Surah</string>
-    <string name="gps_not_enabled">GPS not enabled</string>
-    <string name="required_for_this_app">GPS is required to get your location automatically, if you would like to use the app manually please input location in settings</string>
-    <string name="enable_now">Enable GPS now</string>
-    <string name="permission_required">Location Permission Required</string>
-    <string name="Location_required_for_this_app">Location is required to get correct prayer times.  if you dont want to use the auto location, please enter your city name in settings.</string>
-    <string name="please_select_which_type_of_location_system_you_would_like_to_use">Please select which type of location system you would like to use?</string>
-    <string name="AllowPerms">Allow Location</string>
+    <string name="gps_not_enabled" translatable="false">GPS not enabled</string>
+    <string name="required_for_this_app" translatable="false">GPS is required to get your location automatically, if you would like to use the app manually please input location in settings</string>
+    <string name="enable_now" translatable="false">Enable GPS now</string>
+    <string name="permission_required" translatable="false">Location Permission Required</string>
+    <string name="Location_required_for_this_app" translatable="false">Location is required to get correct prayer times.  if you dont want to use the auto location, please enter your city name in settings.</string>
+    <string name="please_select_which_type_of_location_system_you_would_like_to_use" translatable="false">Please select which type of location system you would like to use?</string>
+    <string name="AllowPerms" translatable="false">Allow Location</string>
 
     <!--    location-->
 

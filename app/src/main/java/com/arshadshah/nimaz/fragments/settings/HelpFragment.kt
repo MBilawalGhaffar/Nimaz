@@ -19,7 +19,10 @@ class HelpFragment : Fragment()
     {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_help , container , false)
+        val fragmentName = requireArguments().getString("fragmentName")
 
+        //change the action bar title to fragmentName
+        activity?.title = fragmentName
 
         val internet : TextView = root.findViewById(R.id.internet)
 

@@ -17,9 +17,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.*
 import androidx.preference.*
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.alarms.Alarms
@@ -133,23 +131,23 @@ class MainPage : PreferenceFragmentCompat()
         //navigation in settings
         val prayerTimeAdjust : Preference? = findPreference("time_calc")
 
-        changeFragment(prayerTimeAdjust, PrayerTimeAdjustFragment())
+        changeFragment(prayerTimeAdjust, PrayerTimeAdjustFragment(), "Prayer Times Adjustments")
 
         val tandc : Preference? = findPreference("tandc")
 
-        changeFragment(tandc, TandC())
+        changeFragment(tandc, TandC(), "Terms and Conditions")
 
         val privacy : Preference? = findPreference("privacy")
 
-        changeFragment(privacy, Privacypolicy())
+        changeFragment(privacy, Privacypolicy(), "Privacy Policy")
 
         val help : Preference? = findPreference("help")
 
-        changeFragment(help, HelpFragment())
+        changeFragment(help, HelpFragment(),"Help")
 
         val about : Preference? = findPreference("about")
 
-        changeFragment(about, About())
+        changeFragment(about, About(),"About")
 
 
 
@@ -335,11 +333,16 @@ class MainPage : PreferenceFragmentCompat()
     }
     //oncreate
 
-    private fun changeFragment(preferenceClicked : Preference?, fragmentToGoTo : Fragment)
+    private fun changeFragment(preferenceClicked : Preference?, fragmentToGoTo : Fragment,fragmentName:String)
     {
         preferenceClicked?.setOnPreferenceClickListener{
-            val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
-            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            val bundle = Bundle()
+            bundle.putString("fragmentName", fragmentName)
+
+            //navigate to fragment with bundle
+            fragmentToGoTo.arguments = bundle
+            val fragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.settings, fragmentToGoTo)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()

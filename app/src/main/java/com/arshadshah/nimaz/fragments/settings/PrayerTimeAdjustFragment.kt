@@ -14,6 +14,11 @@ class PrayerTimeAdjustFragment : PreferenceFragmentCompat()
     {
         setPreferencesFromResource(R.xml.prayer_time_adjust , rootKey)
 
+        val fragmentName = requireArguments().getString("fragmentName")
+
+        //change the action bar title to fragmentName
+        activity?.title = fragmentName
+
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val calcMethod : ListPreference? = findPreference("calcMethod")
         val latituderule : ListPreference? = findPreference("highlatrule")

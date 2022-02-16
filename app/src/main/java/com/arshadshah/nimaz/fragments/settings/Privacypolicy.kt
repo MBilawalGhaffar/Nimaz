@@ -25,6 +25,10 @@ class Privacypolicy : Fragment()
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_privacypolicy , container , false)
 
+        val fragmentName = requireArguments().getString("fragmentName")
+
+        //change the action bar title to fragmentName
+        activity?.title = fragmentName
 
         val privacy1 : TextView = root.findViewById(R.id.privacy1)
 

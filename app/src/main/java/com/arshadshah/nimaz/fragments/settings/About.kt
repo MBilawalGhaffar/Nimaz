@@ -31,6 +31,11 @@ class About : Fragment()
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_about , container , false)
 
+        val fragmentName = requireArguments().getString("fragmentName")
+
+        //change the action bar title to fragmentName
+        activity?.title = fragmentName
+        
         val version : TextView = root.findViewById(R.id.version)
         val versionCode = BuildConfig.VERSION_NAME
 
