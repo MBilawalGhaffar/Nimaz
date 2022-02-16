@@ -127,7 +127,8 @@ class QuranMainList : AppCompatActivity() {
 
     private fun fragmentSelecterForListDisplay(name: String, number:Int){
         if(fragmentToUse == "juz"){
-            nameOfPage!!.text = name
+            val numberOfJuz = number+1
+            nameOfPage!!.text = numberOfJuz.toString()  + "     " +  name
             val bundle = Bundle()
             bundle.putInt("number", number)
             supportFragmentManager.commit {
@@ -137,7 +138,8 @@ class QuranMainList : AppCompatActivity() {
             }
         }
         else{
-            nameOfPage!!.text = name
+            val numberOfSurah = number+1
+            nameOfPage!!.text = numberOfSurah.toString()  + "       " + name
             val bundle = Bundle()
             bundle.putInt("number", number)
             supportFragmentManager.commit {
