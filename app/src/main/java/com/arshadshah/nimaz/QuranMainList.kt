@@ -16,6 +16,7 @@ import com.arshadshah.nimaz.fragments.quran.AyaListSurahFragment
 class QuranMainList : AppCompatActivity() {
 
     var nameOfPage: TextView? = null
+    var numberOfPage: TextView? = null
     var fragmentToUse = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +39,7 @@ class QuranMainList : AppCompatActivity() {
         fragmentToUse = intent.getStringExtra("fragment").toString()
         val moreButton: ImageButton = findViewById(R.id.moreButton)
         nameOfPage= findViewById(R.id.NameToChange)
+        numberOfPage= findViewById(R.id.numberOfPage)
 
         moreButton.setOnClickListener {
             val expandIn : Animation =
@@ -128,7 +130,8 @@ class QuranMainList : AppCompatActivity() {
     private fun fragmentSelecterForListDisplay(name: String, number:Int){
         if(fragmentToUse == "juz"){
             val numberOfJuz = number+1
-            nameOfPage!!.text = numberOfJuz.toString()  + "     " +  name
+            nameOfPage!!.text = name
+            numberOfPage!!.text = numberOfJuz.toString()
             val bundle = Bundle()
             bundle.putInt("number", number)
             supportFragmentManager.commit {
@@ -139,7 +142,8 @@ class QuranMainList : AppCompatActivity() {
         }
         else{
             val numberOfSurah = number+1
-            nameOfPage!!.text = numberOfSurah.toString()  + "       " + name
+            nameOfPage!!.text = name
+            numberOfPage!!.text = numberOfSurah.toString()
             val bundle = Bundle()
             bundle.putInt("number", number)
             supportFragmentManager.commit {
