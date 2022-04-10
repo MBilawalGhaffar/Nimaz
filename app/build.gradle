@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
 }
+apply plugin: 'kotlin-android'
 android {
     compileSdkVersion 32
     buildToolsVersion "30.0.3"
@@ -26,7 +27,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
-        languageVersion = "1.6"
     }
     buildFeatures {
         viewBinding true
@@ -61,4 +61,9 @@ dependencies {
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
     debugImplementation("androidx.fragment:fragment-testing:1.4.1")
     implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'androidx.core:core-ktx'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
