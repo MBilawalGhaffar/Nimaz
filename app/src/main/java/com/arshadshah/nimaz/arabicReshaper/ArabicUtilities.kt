@@ -1,10 +1,6 @@
 package com.arshadshah.nimaz.arabicReshaper
 
-import android.content.Context
 import android.graphics.Typeface
-import android.view.Gravity
-import android.widget.TextView
-import java.util.ArrayList
 
 
 /**
@@ -206,15 +202,5 @@ object ArabicUtilities {
 
         //return the final reshaped whole text
         return reshapedText.toString()
-    }
-
-    fun getArabicEnabledTextView(context: Context, targetTextView: TextView): TextView {
-        //this is a static for testing!
-        if (face == null) {
-            face = Typeface.createFromAsset(context.assets, FONTS_LOCATION_PATH)
-        }
-        targetTextView.typeface = face
-        targetTextView.gravity = Gravity.END
-        return targetTextView
     }
 }

@@ -3,16 +3,16 @@ package com.arshadshah.nimaz.fragments.quran
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
-import com.arshadshah.nimaz.QuranMainList
+import androidx.fragment.app.Fragment
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.database.DatabaseAccessHelper
 import com.arshadshah.nimaz.helperClasses.quran.JuzListCustomAdapter
 import com.arshadshah.nimaz.helperClasses.quran.JuzObject
+import com.arshadshah.nimaz.activities.quran.QuranMainList
 
 class QuranJuzFragment : Fragment() {
 

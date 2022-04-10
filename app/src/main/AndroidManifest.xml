@@ -5,10 +5,8 @@
     android:versionName="1.4.76">
     <!-- Permissions -->
     <!-- Always include this permission -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!-- Include only if your app benefits from precise location access. -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Include only if your app benefits from precise location access. -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
@@ -19,7 +17,6 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
-
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
@@ -29,13 +26,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Nimaz">
         <activity
-            android:name=".QuranMainList"
+            android:name=".activities.ShahadahActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.tasbeeh.TasbeehActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.quran.QuranMainList"
             android:exported="true" />
         <activity
-            android:name=".QuranActivity"
+            android:name=".activities.tasbeeh.DikhrListActivity"
             android:exported="true" />
         <activity
-            android:name=".DikhrListActivity"
+            android:name=".activities.NamesOfAllahActivity"
             android:exported="true" />
         <activity android:name=".IntroductionActivity" />
 
@@ -56,14 +59,14 @@
             </intent-filter>
         </activity> <!-- Home activity that runs the code base -->
         <activity
-            android:name=".HomeActivity"
+            android:name=".activities.HomeActivity"
             android:label="Home"
             android:screenOrientation="portrait" /> <!-- Settings activity for app settings -->
         <activity
-            android:name=".SettingsActivity"
+            android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings" /> <!-- Widget receiver -->
         <receiver
-            android:name=".Nimaz"
+            android:name=".widgets.Nimaz"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

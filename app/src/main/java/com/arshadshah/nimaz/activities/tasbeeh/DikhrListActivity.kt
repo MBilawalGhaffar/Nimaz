@@ -1,4 +1,4 @@
-package com.arshadshah.nimaz
+package com.arshadshah.nimaz.activities.tasbeeh
 
 import android.os.Bundle
 import android.widget.ImageView
@@ -6,6 +6,7 @@ import android.widget.ListView
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
+import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.tasbeeh.TasbeehListCustomAdapter
 import com.arshadshah.nimaz.helperClasses.tasbeeh.TasbeehObject
 
@@ -21,14 +22,9 @@ class DikhrListActivity : AppCompatActivity() {
         val backButton: ImageView = findViewById(R.id.backButton)
 
         backButton.setOnClickListener {
+            //pop back stack to previous activity
             finish()
         }
-
-        this.onBackPressedDispatcher.addCallback(this) {
-            finish()
-        }
-
-
 
         val list : ListView = findViewById(R.id.DhikrList)
         val arrayList : ArrayList<TasbeehObject> = ArrayList()
@@ -48,13 +44,18 @@ class DikhrListActivity : AppCompatActivity() {
         val TasbeehListCustomAdapter = TasbeehListCustomAdapter(this , arrayList)
         list.adapter = TasbeehListCustomAdapter
 
-        list.setOnItemClickListener { parent, view, position, id ->
+        list.setOnItemClickListener { _, _, position, _ ->
+
+            //sent back data to TasbeehActivity
+            val intent = intent
+            intent.putExtra("tasbeehArabic" , arrayList[position].arabic)
+            intent.putExtra("tasbeehEnglish" , arrayList[position].english)
+            intent.putExtra("tasbeehTranslation" , arrayList[position].translation)
             with(sharedPreferences.edit()) {
-                putString("tasbeehEnglish" , arrayList[position].english)
-                putString("tasbeehArabic" , arrayList[position].arabic)
-                putString("tasbeehTranslation" , arrayList[position].translation)
+                putBoolean("isFromDhikrList" , true)
                 apply()
             }
+            setResult(RESULT_OK, intent)
             finish()
         }
     }

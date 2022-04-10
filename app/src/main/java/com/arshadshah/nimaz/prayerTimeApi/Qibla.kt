@@ -1,6 +1,5 @@
 package com.arshadshah.nimaz.prayerTimeApi
 
-import com.arshadshah.nimaz.prayerTimeApi.internals.QiblaUtil
 import com.arshadshah.nimaz.prayerTimeApi.internals.QiblaUtil.calculateQiblaDirection
 
 

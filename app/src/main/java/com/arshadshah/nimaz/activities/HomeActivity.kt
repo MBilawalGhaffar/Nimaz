@@ -1,4 +1,4 @@
-package com.arshadshah.nimaz
+package com.arshadshah.nimaz.activities
 
 import android.os.Build
 import android.os.Bundle
@@ -7,9 +7,9 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.preference.PreferenceManager
+import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.alarms.CreateAlarms
 import com.arshadshah.nimaz.helperClasses.fusedLocations.LocationFinderAuto
-import com.arshadshah.nimaz.helperClasses.fusedLocations.PermissionUtils
 import com.arshadshah.nimaz.helperClasses.prayertimes.prayerTimeThread
 import com.arshadshah.nimaz.helperClasses.utils.locationFinder
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -47,7 +47,7 @@ class HomeActivity : AppCompatActivity()
         super.onPause()
         val navView : BottomNavigationView = findViewById(R.id.nav_view)
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        if(navView.selectedItemId == R.id.navigation_quran){
+        if(navView.selectedItemId == R.id.navigation_setting){
             with(sharedPreferences.edit()) {
                 putInt("menuSelected" , R.id.navigation_home)
                 apply()
@@ -90,22 +90,20 @@ class HomeActivity : AppCompatActivity()
                     navController.navigate(R.id.navigation_home)
                     true
                 }
-
-                R.id.navigation_tasbeeh2 -> {
-                    navController.navigate(R.id.navigation_tasbeeh2)
-                    true
-                }
-
                 R.id.navigation_compass -> {
                     navController.navigate(R.id.navigation_compass)
                     true
                 }
-                R.id.navigation_names -> {
-                    navController.navigate(R.id.navigation_names)
-                    true
-                }
                 R.id.navigation_quran -> {
                     navController.navigate(R.id.navigation_quran)
+                    true
+                }
+                R.id.navigation_more -> {
+                    navController.navigate(R.id.navigation_more)
+                    true
+                }
+                R.id.navigation_setting -> {
+                    navController.navigate(R.id.navigation_setting)
                     true
                 }
                 else -> false

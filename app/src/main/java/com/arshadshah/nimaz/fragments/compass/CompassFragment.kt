@@ -23,14 +23,11 @@ import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.utils.NetworkChecker
 import com.arshadshah.nimaz.helperClasses.utils.locationFinder
+import com.arshadshah.nimaz.prayerTimeApi.Coordinates
+import com.arshadshah.nimaz.prayerTimeApi.Qibla
 import com.google.android.material.snackbar.Snackbar
 import kotlin.math.ceil
 import kotlin.properties.Delegates
-import com.arshadshah.nimaz.prayerTimeApi.Qibla
-
-import com.arshadshah.nimaz.prayerTimeApi.Coordinates
-
-
 
 
 open class CompassFragment : Fragment() , SensorEventListener
@@ -40,10 +37,10 @@ open class CompassFragment : Fragment() , SensorEventListener
     var longitude by Delegates.notNull<Double>()
 
     // variables
-    private lateinit var sensorManager : SensorManager
+    lateinit var sensorManager : SensorManager
     private lateinit var image : ImageView
-    private lateinit var accelerometer : Sensor
-    private lateinit var magnetometer : Sensor
+    lateinit var accelerometer : Sensor
+    lateinit var magnetometer : Sensor
 
     private var currentDegree = 0.0f
     private var lastAccelerometer = FloatArray(3)

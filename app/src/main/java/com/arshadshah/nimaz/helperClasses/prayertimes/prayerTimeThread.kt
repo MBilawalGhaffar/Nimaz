@@ -2,9 +2,9 @@ package com.arshadshah.nimaz.helperClasses.prayertimes
 
 import android.content.Context
 import androidx.preference.PreferenceManager
+import com.arshadshah.nimaz.helperClasses.alarms.CreateAlarms
 import com.arshadshah.nimaz.helperClasses.utils.DateConvertor
 import com.arshadshah.nimaz.helperClasses.utils.NetworkChecker
-import com.arshadshah.nimaz.helperClasses.alarms.CreateAlarms
 import com.arshadshah.nimaz.helperClasses.utils.locationFinder
 import com.arshadshah.nimaz.prayerTimeApi.*
 import com.arshadshah.nimaz.prayerTimeApi.data.DateComponents

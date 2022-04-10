@@ -87,6 +87,41 @@
         <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/xml/header_preferences.xml" value="0.3515625" />
         <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/xml/prayer_time_adjust.xml" value="0.3515625" />
         <entry key="..\:/Users/shaha/OneDrive - Technological University Dublin/practice programs/android app/Nimaz/app/src/main/res/xml/root_preferences.xml" value="0.3515625" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/drawable-v24/aboutcard.xml" value="0.1" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/drawable/battery.xml" value="0.1" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/drawable/ic_book__1_.xml" value="0.1" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/drawable/ic_external_link.xml" value="0.1" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/drawable/ic_more_horizontal.xml" value="0.1" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/drawable/ic_more_vertical.xml" value="0.1" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/drawable/ic_name_99.xml" value="0.1" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/drawable/ic_quran.xml" value="0.1" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/drawable/ic_shahadah.xml" value="0.1" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/drawable/ic_shahadah_1_1__1_.xml" value="0.1" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/drawable/ic_square.xml" value="0.1" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/drawable/ic_tasbeeh.xml" value="0.1245" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/drawable/ic_tasbih.xml" value="0.1245" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/drawable/ic_vector.xml" value="0.1" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/drawable/ic_vector__1_.xml" value="0.1" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/drawable/settingoption.xml" value="0.1" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/drawable/settings.xml" value="0.1" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/layout/activity_dikhr_list.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/layout/activity_names_of_allah.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/layout/activity_quran.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/layout/activity_shahadah.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/layout/activity_tasbeeh.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/layout/fragment_home.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/layout/fragment_more.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/layout/fragment_names.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/layout/fragment_quran.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/layout/fragment_settings_main.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/layout/fragment_tasbeeh.xml" value="0.1574167507568113" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/layout/fragment_tasbeeh2.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/layout/row_item_tasbeeh.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/layout/row_item_tasbeeh_list.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/layout/settings_activity.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/menu/menu.xml" value="0.2833333333333333" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/menu/quran_menu.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/shaha/StudioProjects/Nimaz/app/src/main/res/xml/header_preferences.xml" value="0.17777777777777778" />
       </map>
     </option>
   </component>

@@ -1,28 +1,34 @@
-package com.arshadshah.nimaz
+package com.arshadshah.nimaz.fragments.quran
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.arshadshah.nimaz.R
+import com.arshadshah.nimaz.activities.HomeActivity
 import com.arshadshah.nimaz.helperClasses.quran.QuranFragmentAdapter
 import com.google.android.material.tabs.TabLayout
 
-class QuranActivity : AppCompatActivity() {
+class QuranFragment : Fragment() {
 
     private lateinit var quranTabLayout: TabLayout
     private lateinit var quranViewPager: ViewPager2
-    private lateinit var quranFragmentAdapter:FragmentStateAdapter
-    
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_quran)
-        supportActionBar?.hide()
+    private lateinit var quranFragmentAdapter: FragmentStateAdapter
 
-        quranTabLayout = findViewById(R.id.quranTabLayout)
-        quranViewPager = findViewById(R.id.quranViewPager)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        val root =  inflater.inflate(R.layout.fragment_quran, container, false)
+        quranTabLayout = root.findViewById(R.id.quranTabLayout)
+        quranViewPager = root.findViewById(R.id.quranViewPager)
 
-        val fragmentManager = supportFragmentManager
+        val fragmentManager = childFragmentManager
         quranFragmentAdapter = QuranFragmentAdapter(fragmentManager,lifecycle)
         quranViewPager.adapter = quranFragmentAdapter
 
@@ -50,11 +56,6 @@ class QuranActivity : AppCompatActivity() {
                 quranTabLayout.selectTab(quranTabLayout.getTabAt(position))
             }
         })
-
-        val backButton: ImageView = findViewById(R.id.backButton)
-
-        backButton.setOnClickListener {
-            finish()
-        }
+        return root
     }
 }

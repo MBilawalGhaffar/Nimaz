@@ -17,14 +17,14 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
-import androidx.fragment.app.*
+import androidx.fragment.app.Fragment
 import androidx.preference.*
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.alarms.Alarms
 import com.arshadshah.nimaz.helperClasses.fusedLocations.LocationFinderAuto
+import com.arshadshah.nimaz.helperClasses.prayertimes.prayerTimeThread
 import com.arshadshah.nimaz.helperClasses.utils.NetworkChecker
 import com.arshadshah.nimaz.helperClasses.utils.NotificationHelper
-import com.arshadshah.nimaz.helperClasses.prayertimes.prayerTimeThread
 import com.arshadshah.nimaz.helperClasses.utils.locationFinder
 import com.arshadshah.nimaz.recievers.ReminderReciever
 

@@ -140,6 +140,13 @@
     <string name="Location_required_for_this_app" translatable="false">Location is required to get correct prayer times.  if you dont want to use the auto location, please enter your city name in settings.</string>
     <string name="please_select_which_type_of_location_system_you_would_like_to_use" translatable="false">Please select which type of location system you would like to use?</string>
     <string name="AllowPerms" translatable="false">Allow Location</string>
+    <string name="more" translatable="false">More</string>
+    <string name="names_of_allah" translatable="false">Names Of Allah</string>
+    <string name="shahadah" translatable="false">Shahadah</string>
+    <string name="play_button">play button</string>
+    <string name="pause_stop_button">pause/stop button</string>
+    <string name="dhikr_list">Dhikr List</string>
+    <string name="reset_counter">Reset Counter</string>
 
     <!--    location-->
 

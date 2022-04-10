@@ -1,15 +1,16 @@
-package com.arshadshah.nimaz
+package com.arshadshah.nimaz.activities.quran
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import androidx.preference.PreferenceManager
+import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.fragments.quran.AyaListJuzFragment
 import com.arshadshah.nimaz.fragments.quran.AyaListSurahFragment
 
@@ -58,7 +59,7 @@ class QuranMainList : AppCompatActivity() {
                             // AlertDialog Builder class
                             val builder : AlertDialog.Builder = AlertDialog.Builder(this)
                             val inflater : LayoutInflater = layoutInflater
-                            val moreDialog = inflater.inflate(R.layout.moredialog , null)
+                            val moreDialog = inflater.inflate(R.layout.moredialog, null)
                             val englishTranslation : RadioButton = moreDialog.findViewById(R.id.englishTranslation)
                             val urduTranslation : RadioButton = moreDialog.findViewById(R.id.urduTranslation)
                             val submitBtn : Button = moreDialog.findViewById(R.id.dialogSubmit)

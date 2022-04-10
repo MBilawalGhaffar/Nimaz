@@ -13,25 +13,24 @@
         tools:layout = "@layout/fragment_home"/>
 
     <fragment
-        android:id = "@+id/navigation_names"
-        android:name = "com.arshadshah.nimaz.fragments.NamesFragment"
-        android:label = "fragment_names"
-        tools:layout = "@layout/fragment_names"/>
-    <fragment
         android:id = "@+id/navigation_compass"
         android:name = "com.arshadshah.nimaz.fragments.compass.CompassFragment"
         android:label = "fragment_compass"
         tools:layout = "@layout/fragment_compass"/>
     <fragment
-        android:id="@+id/navigation_tasbeeh2"
-        android:name="com.arshadshah.nimaz.fragments.tasbeeh.TasbeehFragment"
-        android:label="fragment_tasbeeh2"
-        tools:layout="@layout/fragment_tasbeeh2" />
-    <activity
+        android:id="@+id/navigation_more"
+        android:name="com.arshadshah.nimaz.fragments.MoreFragment"
+        android:label="fragment_more"
+        tools:layout="@layout/fragment_more" />
+    <fragment
         android:id="@+id/navigation_quran"
-        android:name="com.arshadshah.nimaz.QuranActivity"
-        android:label="activity_quran"
-        tools:layout="@layout/activity_quran" />
+        android:name="com.arshadshah.nimaz.fragments.quran.QuranFragment"
+        android:label="fragment_quran"
+        tools:layout="@layout/fragment_quran" />
+    <activity
+        android:id="@+id/navigation_setting"
+        android:name="com.arshadshah.nimaz.activities.SettingsActivity"
+        android:label="SettingsActivity" />
 
 
 </navigation>

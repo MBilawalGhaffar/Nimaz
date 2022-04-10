@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="?android:windowBackground"
     android:layout_height="match_parent"
-    tools:context=".DikhrListActivity">
+    tools:context=".activities.tasbeeh.DikhrListActivity">
     <LinearLayout
         android:id = "@+id/linearLayout10"
         android:layout_width = "match_parent"

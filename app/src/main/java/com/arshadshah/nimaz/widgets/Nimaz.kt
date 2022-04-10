@@ -1,4 +1,4 @@
-package com.arshadshah.nimaz
+package com.arshadshah.nimaz.widgets
 
 import android.app.PendingIntent
 import android.app.PendingIntent.FLAG_IMMUTABLE
@@ -11,6 +11,8 @@ import android.util.Log
 import android.widget.RemoteViews
 import androidx.annotation.RequiresApi
 import androidx.preference.PreferenceManager
+import com.arshadshah.nimaz.MainActivity
+import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.utils.NetworkChecker
 import com.arshadshah.nimaz.helperClasses.utils.locationFinder
 import com.arshadshah.nimaz.prayerTimeApi.*

@@ -1,9 +1,12 @@
-package com.arshadshah.nimaz
+package com.arshadshah.nimaz.activities
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.preference.*
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceManager
+import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.fragments.settings.MainPage
 
 /**
@@ -80,7 +83,7 @@ class SettingsActivity :
         // Instantiate the new Fragment
         val args = pref.extras
         val fragment =
-            supportFragmentManager.fragmentFactory.instantiate(classLoader , pref.fragment)
+            supportFragmentManager.fragmentFactory.instantiate(classLoader , pref.fragment!!)
                 .apply {
                     arguments = args
                     setTargetFragment(caller , 0)

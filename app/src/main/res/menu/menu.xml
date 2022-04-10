@@ -7,22 +7,22 @@
         android:title = "@string/title_home"/>
 
     <item
-        android:id = "@id/navigation_tasbeeh2"
-        android:title = "@string/title_tasbeeh"
-        android:icon = "@drawable/ic_tasbih"/>
-
-    <item
         android:id = "@id/navigation_compass"
         android:title = "@string/compass"
         android:icon = "@drawable/compass"/>
 
     <item
-        android:id = "@id/navigation_names"
-        android:title = "@string/holy_names"
-        android:icon = "@drawable/ic__9"/>
-
-    <item
         android:id = "@id/navigation_quran"
         android:title = "@string/quran"
-        android:icon = "@drawable/ic_book_open"/>
+        android:icon = "@drawable/ic_quran"/>
+
+    <item
+        android:id = "@id/navigation_more"
+        android:title = "@string/more"
+        android:icon = "@drawable/ic_more_horizontal"/>
+
+    <item
+        android:id = "@id/navigation_setting"
+        android:title = "@string/title_activity_settings"
+        android:icon = "@drawable/settings"/>
 </menu>

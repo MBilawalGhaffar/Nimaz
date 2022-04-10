@@ -1,12 +1,13 @@
 package com.arshadshah.nimaz.fragments.tasbeeh
 
+import android.app.Activity
 import android.app.AlertDialog
-import android.content.Context.VIBRATOR_SERVICE
+import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,61 +15,145 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.RotateAnimation
 import android.widget.*
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.Fragment
+import androidx.core.view.isVisible
 import androidx.preference.PreferenceManager
-import com.arshadshah.nimaz.DikhrListActivity
 import com.arshadshah.nimaz.R
+import com.arshadshah.nimaz.activities.tasbeeh.DikhrListActivity
+import com.arshadshah.nimaz.activities.tasbeeh.TasbeehActivity
+import com.arshadshah.nimaz.helperClasses.tasbeeh.TasbeehListMainAdapter
+import com.arshadshah.nimaz.helperClasses.tasbeeh.TasbeehObjectMain
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.lang.reflect.Type
 
 
-/**
- * The fragment where The tally counter feature is Implemented
- * It has a Positive Counter,
- * A negative Counter,
- * A reset,
- * Display.
- * @author Arshad Shah
- * */
-class TasbeehFragment : Fragment()
-{
+class TasbeehFragment : Fragment() {
 
     private var count = 0
     private var lapCounter = 0
     private var lapCounterOfCount = 0
     private var lapCounterOfCountRemove = 0
+    private var arrayList: ArrayList<TasbeehObjectMain> = ArrayList()
+
+    private val startForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+        { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                //get the data from the activity
+                val data = result.data
+
+                //get the values from the data
+                val tasbeehArabic = data?.getStringExtra("tasbeehArabic")
+                val tasbeehEnglish = data?.getStringExtra("tasbeehEnglish")
+                val tasbeehTranslation = data?.getStringExtra("tasbeehTranslation")
+
+                if(arrayList.isNotEmpty()){
+                    arrayList = getListFromLocal("Tasbeeh")
+                }
+
+                //add the values to the array list
+                arrayList.add(
+                    TasbeehObjectMain(
+                        tasbeehArabic!!,
+                        tasbeehEnglish!!,
+                        tasbeehTranslation!!
+                    )
+                )
+                //save the data in the sharedPreferences
+                saveListInLocal(arrayList, "Tasbeeh")
+            }
+
+        }
 
     override fun onCreateView(
-        inflater : LayoutInflater ,
-        container : ViewGroup? ,
-        savedInstanceState : Bundle?
-    ) : View?
-    {
-        // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.fragment_tasbeeh2 , container , false)
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for requireContext() fragment
+        val root = inflater.inflate(R.layout.fragment_tasbeeh, container, false)
+
+
+
+        val backButton: ImageView = root.findViewById(R.id.backButton3)
+
+        backButton.setOnClickListener {
+            val expandIn: Animation =
+                AnimationUtils.loadAnimation(requireContext(), R.anim.expand_in)
+            backButton.startAnimation(expandIn)
+            //pop back stack to previous activity
+            TasbeehActivity().finish()
+        }
+
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
         //************************************************************************
-        val dhikrListButton: Button = root.findViewById(R.id.dhikrListButton)
+        val dhikrListButton: LinearLayout = root.findViewById(R.id.dhikrListButton)
         dhikrListButton.setOnClickListener {
             val intent = Intent(requireContext(), DikhrListActivity::class.java)
-            startActivity(intent)
+            startForResult.launch(intent)
         }
 
-        val tasbeehEnglish = sharedPreferences.getString("tasbeehEnglish" , null)
-        val tasbeehArabic = sharedPreferences.getString("tasbeehArabic" , null)
-        val tasbeehTranslation = sharedPreferences.getString("tasbeehTranslation" , null)
+        //create a listView to show the dhikr
+        val dhikrListView: ListView = root.findViewById(R.id.dhikrListView)
+        //a callback function given to the adapter which removes the item from the list
+        //when the delete is pressed
+        val removeItemFromList = { position: Int ->
+            //read the data from the sharedPreferences
+            val arrayListFromLocal = getListFromLocal("Tasbeeh")
 
-        if(tasbeehEnglish != null || tasbeehArabic != null || tasbeehTranslation != null){
-            //replace the current fragment with TasbeehFragment
-            val fragment = Tasbeeh()
+            //remove the item from the list
+            arrayListFromLocal.removeAt(position)
+
+            //update the list
+            //save the data in the sharedPreferences
+            saveListInLocal(arrayListFromLocal, "Tasbeeh")
+
+            //reload fragment
+            val fragment = TasbeehFragment()
             val fragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.nav_host_fragment , fragment)
-            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.replace(R.id.fragmentContainerView2, fragment)
             fragmentTransaction.commit()
         }
+
+
+        //create a flag to determine if you are back from the list of dhikr
+        val isFromDhikrList = sharedPreferences.getBoolean("isFromDhikrList" , false)
+
+        //read the data from the sharedPreferences
+        arrayList = getListFromLocal("Tasbeeh")
+
+        dhikrListView.isVisible = arrayList.size > 0
+
+        if(isFromDhikrList || arrayList.size > 0){
+
+            val TasbeehListCustomAdapter = TasbeehListMainAdapter(
+                requireContext(),
+                arrayList,
+                removeItemFromList
+            )
+            dhikrListView.adapter = TasbeehListCustomAdapter
+
+            //reload fragment
+            val fragment = TasbeehFragment()
+            val fragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragmentContainerView2, fragment)
+            fragmentTransaction.commit()
+
+            with(sharedPreferences.edit()) {
+                putBoolean("isFromDhikrList" , false)
+                apply()
+            }
+        }
+
+
         //****************************************************************
-        val vibrator = requireContext().getSystemService(VIBRATOR_SERVICE) as Vibrator
+        val vibrator = requireContext().getSystemService(AppCompatActivity.VIBRATOR_SERVICE) as Vibrator
 
         // variables for the counter
         val main_display : TextView = root.findViewById(R.id.Display)
@@ -349,22 +434,34 @@ class TasbeehFragment : Fragment()
             }
         }
 
+
         return root
     }
 
+
     private fun vibrate(amount : Long)
     {
-        val vibrator = requireContext().getSystemService(VIBRATOR_SERVICE) as Vibrator
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-        {
+        val vibrator = requireContext().getSystemService(AppCompatActivity.VIBRATOR_SERVICE) as Vibrator
 
-            vibrator.vibrate(
-                VibrationEffect.createOneShot(amount , VibrationEffect.DEFAULT_AMPLITUDE)
-            )
-        }
-        else
-        {
-            vibrator.vibrate(amount)
-        }
+        vibrator.vibrate(
+            VibrationEffect.createOneShot(amount , VibrationEffect.DEFAULT_AMPLITUDE)
+        )
+    }
+
+    private fun saveListInLocal(list: ArrayList<TasbeehObjectMain>, key: String?) {
+        val prefs = requireContext().getSharedPreferences("Nimaz", AppCompatActivity.MODE_PRIVATE)
+        val editor = prefs.edit()
+        val gson = Gson()
+        val json: String = gson.toJson(list)
+        editor.putString(key, json)
+        editor.apply() // This line is IMPORTANT !!!
+    }
+
+    private fun getListFromLocal(key: String?): ArrayList<TasbeehObjectMain> {
+        val prefs = requireContext().getSharedPreferences("Nimaz", Context.MODE_PRIVATE)
+        val gson = Gson()
+        val json = prefs.getString(key, null)
+        val type: Type = object : TypeToken<ArrayList<TasbeehObjectMain?>?>() {}.type
+        return gson.fromJson(json, type)
     }
 }

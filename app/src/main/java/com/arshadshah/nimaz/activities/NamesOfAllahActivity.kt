@@ -1,26 +1,24 @@
-package com.arshadshah.nimaz.fragments
+package com.arshadshah.nimaz.activities
 
+import android.content.Context
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.net.Uri
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.ListView
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.names.CustomAdapter
 import com.arshadshah.nimaz.helperClasses.names.SubjectData
 
+class NamesOfAllahActivity : AppCompatActivity() {
 
-class NamesFragment : Fragment()
-{
-    val mediaPlayer = MediaPlayer()
+    private val mediaPlayer = MediaPlayer()
     override fun onDestroy() {
         super.onDestroy()
         mediaPlayer.release()
@@ -31,16 +29,22 @@ class NamesFragment : Fragment()
         mediaPlayer.release()
     }
 
-    override fun onCreateView(
-        inflater : LayoutInflater , container : ViewGroup? ,
-        savedInstanceState : Bundle?
-                             ) : View?
-    {
-        // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.fragment_names , container , false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_names_of_allah)
+        supportActionBar?.hide()
 
+        val backButton: ImageView = findViewById(R.id.backButton4)
 
-        val list : ListView = root.findViewById(R.id.allahNames)
+        backButton.setOnClickListener {
+            val expandIn : Animation =
+                AnimationUtils.loadAnimation(this , R.anim.expand_in)
+            backButton.startAnimation(expandIn)
+            //pop back stack to previous activity
+            finish()
+        }
+
+        val list : ListView = findViewById(R.id.allahNames)
         val arrayList : ArrayList<SubjectData> = ArrayList()
         val array = resources.getStringArray(R.array.English)
         var indexNo : Int
@@ -53,21 +57,21 @@ class NamesFragment : Fragment()
                     arabicName(indexNo) ,
                     translation(indexNo) ,
                     (indexNo + 1).toString()
-                           )
-                         )
+                )
+            )
         }
-        val customAdapter = CustomAdapter(requireContext() , arrayList)
+        val customAdapter = CustomAdapter(this , arrayList)
         list.adapter = customAdapter
 
         //get the play button
-        val playButton: ImageButton = root.findViewById(R.id.namesOfAllahAudio)
-        val pauseButton : ImageButton = root.findViewById(R.id.pause)
+        val playButton: ImageButton = findViewById(R.id.namesOfAllahAudio)
+        val pauseButton : ImageButton = findViewById(R.id.pause)
         pauseButton.isVisible = false
-        prepareMediaPlayer()
+        prepareMediaPlayer(this)
         //when play button is clicked
         playButton.setOnClickListener {
             val expandIn : Animation =
-                AnimationUtils.loadAnimation(requireContext() , R.anim.expand_in)
+                AnimationUtils.loadAnimation(this , R.anim.expand_in)
             playButton.startAnimation(expandIn)
             if(!mediaPlayer.isPlaying){
                 //start the audio
@@ -77,7 +81,7 @@ class NamesFragment : Fragment()
                 pauseButton.isVisible = true
                 pauseButton.setOnClickListener {
                     val expandIn : Animation =
-                        AnimationUtils.loadAnimation(requireContext() , R.anim.expand_in)
+                        AnimationUtils.loadAnimation(this , R.anim.expand_in)
                     pauseButton.startAnimation(expandIn)
                     mediaPlayer.pause()
                     playButton.setImageResource(R.drawable.ic_play)
@@ -88,17 +92,17 @@ class NamesFragment : Fragment()
                 mediaPlayer.pause()
                 mediaPlayer.stop()
                 mediaPlayer.reset()
-                prepareMediaPlayer()
+                prepareMediaPlayer(this)
                 //change the button image to stop
                 playButton.setImageResource(R.drawable.ic_play)
                 pauseButton.isVisible = false
             }
         }
 
-        return root
+
     }
 
-    private fun prepareMediaPlayer(){
+    private fun prepareMediaPlayer(context: Context){
         val myUri: Uri = Uri.parse("android.resource://" + context?.packageName + "/" + R.raw.asmaulhusna)
         mediaPlayer.apply {
             setAudioAttributes(
@@ -107,7 +111,7 @@ class NamesFragment : Fragment()
                     .setUsage(AudioAttributes.USAGE_MEDIA)
                     .build()
             )
-            setDataSource(requireContext(), myUri)
+            setDataSource(context, myUri)
             prepare()
         }
     }

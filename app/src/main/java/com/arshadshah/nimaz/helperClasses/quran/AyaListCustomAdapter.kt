@@ -13,7 +13,10 @@ import com.arshadshah.nimaz.arabicReshaper.ArabicUtilities
 import java.lang.String
 import java.text.NumberFormat
 import java.util.*
-import kotlin.collections.ArrayList
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.Long
 
 internal class AyaListCustomAdapter(
     var context: Context,

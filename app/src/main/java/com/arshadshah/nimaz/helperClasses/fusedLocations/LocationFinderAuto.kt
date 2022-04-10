@@ -2,11 +2,8 @@ package com.arshadshah.nimaz.helperClasses.fusedLocations
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.pm.PackageManager
 import android.os.Looper
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.preference.PreferenceManager
 import com.google.android.gms.location.*
 
@@ -20,9 +17,9 @@ class LocationFinderAuto {
     private fun getLocationCallback(context:Context) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         locationCallback =  object : LocationCallback() {
-            override fun onLocationResult(locationResult: LocationResult?) {
-                locationResult ?: return
-                for (location in locationResult.locations) {
+            override fun onLocationResult(p0: LocationResult) {
+                p0
+                for (location in p0.locations) {
                     with(sharedPreferences.edit()) {
                         putString("latitude" , location.latitude.toString())
                         putString("longitude" , location.longitude.toString())

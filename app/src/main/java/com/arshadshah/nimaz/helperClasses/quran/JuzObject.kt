@@ -1,7 +1,5 @@
 package com.arshadshah.nimaz.helperClasses.quran
 
-import android.util.Xml
-
 class JuzObject (
     var JuzNumber: String,
     var english : String,

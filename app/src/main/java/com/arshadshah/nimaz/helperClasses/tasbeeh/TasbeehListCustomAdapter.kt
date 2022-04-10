@@ -9,7 +9,6 @@ import android.widget.ListAdapter
 import android.widget.TextView
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.arabicReshaper.ArabicUtilities
-import java.util.*
 
 internal class TasbeehListCustomAdapter(
     var context : Context ,
