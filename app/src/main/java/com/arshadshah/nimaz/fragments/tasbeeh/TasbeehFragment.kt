@@ -1,9 +1,6 @@
 package com.arshadshah.nimaz.fragments.tasbeeh
 
-import android.app.Activity
 import android.app.AlertDialog
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
@@ -15,20 +12,12 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.RotateAnimation
 import android.widget.*
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.isVisible
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
-import com.arshadshah.nimaz.activities.tasbeeh.DikhrListActivity
-import com.arshadshah.nimaz.activities.tasbeeh.TasbeehActivity
 import com.arshadshah.nimaz.helperClasses.tasbeeh.TasbeehListMainAdapter
 import com.arshadshah.nimaz.helperClasses.tasbeeh.TasbeehObjectMain
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import java.lang.reflect.Type
 
 
 class TasbeehFragment : Fragment() {
@@ -39,44 +28,12 @@ class TasbeehFragment : Fragment() {
     private var lapCounterOfCountRemove = 0
     private var arrayList: ArrayList<TasbeehObjectMain> = ArrayList()
 
-    private val startForResult =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult())
-        { result: ActivityResult ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                //get the data from the activity
-                val data = result.data
-
-                //get the values from the data
-                val tasbeehArabic = data?.getStringExtra("tasbeehArabic")
-                val tasbeehEnglish = data?.getStringExtra("tasbeehEnglish")
-                val tasbeehTranslation = data?.getStringExtra("tasbeehTranslation")
-
-                if(arrayList.isNotEmpty()){
-                    arrayList = getListFromLocal("Tasbeeh")
-                }
-
-                //add the values to the array list
-                arrayList.add(
-                    TasbeehObjectMain(
-                        tasbeehArabic!!,
-                        tasbeehEnglish!!,
-                        tasbeehTranslation!!
-                    )
-                )
-                //save the data in the sharedPreferences
-                saveListInLocal(arrayList, "Tasbeeh")
-            }
-
-        }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for requireContext() fragment
         val root = inflater.inflate(R.layout.fragment_tasbeeh, container, false)
-
-
 
         val backButton: ImageView = root.findViewById(R.id.backButton3)
 
@@ -85,72 +42,36 @@ class TasbeehFragment : Fragment() {
                 AnimationUtils.loadAnimation(requireContext(), R.anim.expand_in)
             backButton.startAnimation(expandIn)
             //pop back stack to previous activity
-            TasbeehActivity().finish()
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
         //************************************************************************
-        val dhikrListButton: LinearLayout = root.findViewById(R.id.dhikrListButton)
-        dhikrListButton.setOnClickListener {
-            val intent = Intent(requireContext(), DikhrListActivity::class.java)
-            startForResult.launch(intent)
-        }
 
         //create a listView to show the dhikr
         val dhikrListView: ListView = root.findViewById(R.id.dhikrListView)
-        //a callback function given to the adapter which removes the item from the list
-        //when the delete is pressed
-        val removeItemFromList = { position: Int ->
-            //read the data from the sharedPreferences
-            val arrayListFromLocal = getListFromLocal("Tasbeeh")
-
-            //remove the item from the list
-            arrayListFromLocal.removeAt(position)
-
-            //update the list
-            //save the data in the sharedPreferences
-            saveListInLocal(arrayListFromLocal, "Tasbeeh")
-
-            //reload fragment
-            val fragment = TasbeehFragment()
-            val fragmentManager = requireActivity().supportFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.fragmentContainerView2, fragment)
-            fragmentTransaction.commit()
-        }
 
 
-        //create a flag to determine if you are back from the list of dhikr
-        val isFromDhikrList = sharedPreferences.getBoolean("isFromDhikrList" , false)
-
-        //read the data from the sharedPreferences
-        arrayList = getListFromLocal("Tasbeeh")
-
-        dhikrListView.isVisible = arrayList.size > 0
-
-        if(isFromDhikrList || arrayList.size > 0){
-
-            val TasbeehListCustomAdapter = TasbeehListMainAdapter(
-                requireContext(),
-                arrayList,
-                removeItemFromList
+        val array = resources.getStringArray(R.array.tasbeehTransliteration)
+        var indexNo : Int
+        for (item in array)
+        {
+            indexNo = array.indexOf(item)
+            arrayList.add(
+                TasbeehObjectMain(
+                    arabic(indexNo),
+                    english(indexNo),
+                    translation(indexNo),
+                )
             )
-            dhikrListView.adapter = TasbeehListCustomAdapter
-
-            //reload fragment
-            val fragment = TasbeehFragment()
-            val fragmentManager = requireActivity().supportFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.fragmentContainerView2, fragment)
-            fragmentTransaction.commit()
-
-            with(sharedPreferences.edit()) {
-                putBoolean("isFromDhikrList" , false)
-                apply()
-            }
         }
 
+        val TasbeehListCustomAdapter = TasbeehListMainAdapter(
+            requireContext(),
+            arrayList
+        )
+        dhikrListView.adapter = TasbeehListCustomAdapter
 
         //****************************************************************
         val vibrator = requireContext().getSystemService(AppCompatActivity.VIBRATOR_SERVICE) as Vibrator
@@ -199,7 +120,7 @@ class TasbeehFragment : Fragment() {
                 // AlertDialog Builder class
                 val builder : AlertDialog.Builder = AlertDialog.Builder(requireContext())
                 val tasbeehDialog = inflater.inflate(R.layout.inputdialog , null)
-                val tasbeehLimit : EditText = tasbeehDialog.findViewById(R.id.tasbeehLimit)
+                val tasbeehLimit : EditText = tasbeehDialog.findViewById(R.id.quranSearch)
                 val submitBtn : Button = tasbeehDialog.findViewById(R.id.dialogSubmit)
                 val cancelbtn : Button = tasbeehDialog.findViewById(R.id.dialogCancel)
 
@@ -447,21 +368,24 @@ class TasbeehFragment : Fragment() {
             VibrationEffect.createOneShot(amount , VibrationEffect.DEFAULT_AMPLITUDE)
         )
     }
-
-    private fun saveListInLocal(list: ArrayList<TasbeehObjectMain>, key: String?) {
-        val prefs = requireContext().getSharedPreferences("Nimaz", AppCompatActivity.MODE_PRIVATE)
-        val editor = prefs.edit()
-        val gson = Gson()
-        val json: String = gson.toJson(list)
-        editor.putString(key, json)
-        editor.apply() // This line is IMPORTANT !!!
+    private fun english(indexNo : Int) : String
+    {
+        val array = resources.getStringArray(R.array.tasbeehTransliteration)
+        val output = array[indexNo]
+        return output
     }
 
-    private fun getListFromLocal(key: String?): ArrayList<TasbeehObjectMain> {
-        val prefs = requireContext().getSharedPreferences("Nimaz", Context.MODE_PRIVATE)
-        val gson = Gson()
-        val json = prefs.getString(key, null)
-        val type: Type = object : TypeToken<ArrayList<TasbeehObjectMain?>?>() {}.type
-        return gson.fromJson(json, type)
+    private fun arabic(indexNo : Int) : String
+    {
+        val array = resources.getStringArray(R.array.tasbeeharabic)
+        val output = array[indexNo]
+        return output
+    }
+
+    private fun translation(indexNo : Int) : String
+    {
+        val array = resources.getStringArray(R.array.tasbeehTranslation)
+        val output = array[indexNo]
+        return output
     }
 }

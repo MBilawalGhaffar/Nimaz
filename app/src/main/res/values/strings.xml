@@ -143,10 +143,13 @@
     <string name="more" translatable="false">More</string>
     <string name="names_of_allah" translatable="false">Names Of Allah</string>
     <string name="shahadah" translatable="false">Shahadah</string>
-    <string name="play_button">play button</string>
-    <string name="pause_stop_button">pause/stop button</string>
-    <string name="dhikr_list">Dhikr List</string>
-    <string name="reset_counter">Reset Counter</string>
+    <string name="play_button" translatable="false">play button</string>
+    <string name="pause_stop_button" translatable="false">pause/stop button</string>
+    <string name="dhikr_list" translatable="false">Dhikr List</string>
+    <string name="reset_counter" translatable="false">Reset Counter</string>
+    <string name="search" translatable="false">Search</string>
+    <string name="Quran_List_Page_Label_for_Search" translatable="false">The Word %1$s was found %2$s Times</string>
+    <string name="times">%1$s Times</string>
 
     <!--    location-->
 

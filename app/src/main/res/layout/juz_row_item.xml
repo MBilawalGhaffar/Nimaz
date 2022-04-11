@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="3dp"
         app:contentPadding="5dp"
@@ -23,7 +23,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/JuzNumber"
@@ -53,11 +53,11 @@
                 android:id="@+id/juzNameArabic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="4dp"
                 android:fontFamily="@font/quran_font"
                 android:text="Arabic"
-                android:textSize="34sp"
+                android:textSize="24sp"
                 app:layout_constraintStart_toEndOf="@+id/JuzNumber"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,17 +65,15 @@
                 android:id="@+id/JuzNameEnglish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginBottom="4dp"
                 android:fontFamily="@font/nunito"
                 android:text="English"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/JuzNumber"
                 app:layout_constraintTop_toBottomOf="@+id/juzNameArabic"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
                 android:id="@+id/imageView4"

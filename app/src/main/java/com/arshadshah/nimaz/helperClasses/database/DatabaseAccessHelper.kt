@@ -260,4 +260,107 @@ class DatabaseAccessHelper(context: Context) {
 
         return ayas
     }
+
+    /**
+     * function that searches the database for the given query and returns the results in an arraylist of AyaObjects
+     * @param query the query to search for
+     * @return an arraylist of AyaObjects
+     */
+    fun searchForAya(query: String, tableName: String, columnName:String ): ArrayList<AyaObject?> {
+        //find the ayas that have the query in the table
+        val cursor = db!!.rawQuery("SELECT * FROM $tableName WHERE $columnName LIKE '%$query%'", null)
+
+        //arabic text array
+        val arabicText = ArrayList<String?>()
+
+        //english text array
+        val translationText = ArrayList<String?>()
+
+        //aya number array
+        val ayaNumber = ArrayList<String?>()
+
+        //loop through the cursor and add the ayanumbers for the ayas to the table quran_text
+        while (cursor.moveToNext()) {
+            //add the ayaNumber at index 0 to the ayaNumber array
+            ayaNumber.add(cursor.getString(0))
+        }
+
+        cursor.close()
+
+
+        //arraylist of AyaObjects
+        val ayas = ArrayList<AyaObject?>()
+
+
+        //initialize the cursors for the tables
+        lateinit var cursorOfAyasFromArabic: Cursor
+        lateinit var cursorOfAyasFromEnglish: Cursor
+        lateinit var cursorOfAyasFromUrdu: Cursor
+
+        //find the ayas that have the ayanumberiquran in the table using arrayList ayaNumber
+        for (i in 0 until ayaNumber.size) {
+            //get a cursor to the table quran_text
+            cursorOfAyasFromArabic = db!!.rawQuery(
+                "SELECT * FROM quran_text WHERE ayaNumberInQuran = ${ayaNumber[i]}",
+                null
+            )
+            while (cursorOfAyasFromArabic.moveToNext()) {
+                //add the arabic text at index 3 to the arabicText array
+                arabicText.add(cursorOfAyasFromArabic.getString(3))
+            }
+
+            //if the user is in english
+            if (sharedPreferences.getBoolean("isEnglish", true)) {
+                cursorOfAyasFromEnglish = db!!.rawQuery(
+                    "SELECT * FROM en_sahih WHERE ayaNumberInQuranEnglish = ${ayaNumber[i]}",
+                    null
+                )
+                while (cursorOfAyasFromEnglish.moveToNext()) {
+                    //add the english text at index 3 to the englishText array
+                    translationText.add(cursorOfAyasFromEnglish.getString(3))
+                }
+            } else {
+                cursorOfAyasFromUrdu = db!!.rawQuery(
+                    "SELECT * FROM urdu_text WHERE ayaNumberInQuranUrdu = ${ayaNumber[i]}",
+                    null
+                )
+                while (cursorOfAyasFromUrdu.moveToNext()) {
+                    //add the english text at index 3 to the englishText array
+                    translationText.add(cursorOfAyasFromUrdu.getString(3))
+                }
+            }
+
+            ayas.add(AyaObject(ayaNumber[i]!!, translationText[i]!!, arabicText[i]!!))
+        }
+
+        if (sharedPreferences.getBoolean("isEnglish", true)) {
+            cursorOfAyasFromEnglish!!.close()
+        } else {
+            cursorOfAyasFromUrdu!!.close()
+        }
+        cursorOfAyasFromArabic!!.close()
+
+
+        return ayas
+    }
+
+
+    /**
+     * function that searches the database for the given query and returns the results as the number of ayas found
+     * @param query the query to search for
+     * @return the number of ayas found
+     */
+    fun searchForAyaAmountFound(query: String, tableName: String, columnName:String ): Int {
+        //find the ayas that have the query in the table
+        val cursor =
+            db!!.rawQuery("SELECT * FROM $tableName WHERE $columnName LIKE '%$query%'", null)
+
+
+        //number of ayas found
+        val ayaAmountForQuery = cursor.count
+
+        cursor.close()
+
+        return ayaAmountForQuery
+    }
 }

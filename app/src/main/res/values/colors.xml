@@ -15,4 +15,5 @@
     <color name="highlightDark">#959595</color>
     <color name="black">#000000</color>
     <color name="cardDark">#545454</color>
+    <color name="bookmark">#009933</color>
 </resources>

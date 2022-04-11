@@ -14,8 +14,7 @@ import com.arshadshah.nimaz.fragments.tasbeeh.TasbeehFragment
 
 internal class TasbeehListMainAdapter(
     var context: Context,
-    private var arrayList: ArrayList<TasbeehObjectMain>,
-    private val removeItemFromList: (Int) -> Unit
+    private var arrayList: ArrayList<TasbeehObjectMain>
 ) :
     ListAdapter
 {
@@ -72,11 +71,6 @@ internal class TasbeehListMainAdapter(
         val EnglishName = convertView?.findViewById<TextView>(R.id.English)
         val ArabicName = convertView?.findViewById<TextView>(R.id.Arabic)
         val Translation = convertView?.findViewById<TextView>(R.id.TasbeehTranslation)
-        val DeleteTasbeeh = convertView?.findViewById<ImageView>(R.id.DeleteTasbeeh)
-
-        DeleteTasbeeh?.setOnClickListener {
-            removeItemFromList(position)
-        }
 
         EnglishName?.text = TasbeehObjectMain.english
         ArabicName?.text = ArabicUtilities.reshape(TasbeehObjectMain.arabic)
@@ -91,7 +85,7 @@ internal class TasbeehListMainAdapter(
 
     override fun getViewTypeCount() : Int
     {
-        return arrayList.size
+        return 1
     }
 
     override fun isEmpty() : Boolean

@@ -19,10 +19,11 @@
         android:gravity="center"
         android:text="@string/arabic_name"
         android:textAlignment="viewEnd"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/English"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/English"
@@ -30,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/nunito"
         android:text="@string/english_name"
         android:textAlignment="textEnd"
@@ -46,7 +47,7 @@
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="4dp"
         android:fontFamily="@font/nunito"
         android:text="@string/translation"
         android:textAlignment="textEnd"
@@ -55,17 +56,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/DeleteTasbeeh"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/finecontrol"
-        android:padding="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/Arabic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_trash_2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

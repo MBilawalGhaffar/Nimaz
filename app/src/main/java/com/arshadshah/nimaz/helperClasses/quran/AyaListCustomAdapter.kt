@@ -80,6 +80,13 @@ internal class AyaListCustomAdapter(
                 convertView = layoutInflater.inflate(R.layout.aya_list_urdu_row_item, null)
             }
         }
+        val ayaNumberBookmark = sharedPreferences.getString("ayaNumberBookmark", "")
+        val ayaTextBookmark = sharedPreferences.getString("ayaTextBookmark", "")
+        val ayaArabicBookmark = sharedPreferences.getString("ayaArabicBookmark", "")
+
+        if(ayaNumberBookmark == AyaObject!!.ayaNumber && ayaTextBookmark == AyaObject.ayaEnglish && ayaArabicBookmark == AyaObject.ayaArabic){
+            convertView?.setBackgroundColor(context.resources.getColor(R.color.bookmark))
+        }
 
         val EnglishName = convertView?.findViewById<TextView>(R.id.TranslationAya)
         val ArabicName = convertView?.findViewById<TextView>(R.id.ArabicAya)

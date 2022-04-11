@@ -7,63 +7,65 @@
                                                    android:padding = "10dp">
 
     <LinearLayout
-        android:layout_width = "0dp"
-        android:layout_height = "wrap_content"
-        android:orientation = "vertical"
-        app:layout_constraintBottom_toBottomOf = "parent"
-        app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toTopOf = "parent">
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id = "@+id/textView2"
-            android:layout_width = "176dp"
-            android:layout_height = "wrap_content"
-            android:layout_gravity = "center"
-            android:fontFamily = "@font/nunito"
-            android:gravity = "center"
-            android:text = "@string/tasbeeh_limit"
-            android:textSize = "24sp"/>
+            android:id="@+id/textView2"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nunito"
+            android:gravity="center"
+            android:text="Quran Search"
+            android:textSize="24sp" />
 
         <TextView
-            android:id = "@+id/textView9"
-            android:layout_width = "match_parent"
-            android:layout_height = "41dp"
-            android:layout_gravity = "center"
-            android:fontFamily = "@font/nunito"
-            android:gravity = "center"
-            android:text = "@string/please_enter_tasbeeh_objective"
-            android:textSize = "16sp"/>
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/nunito"
+            android:gravity="center"
+            android:text="Please enter a keyword."
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/quranSearch"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="58dp"
             android:layout_gravity="center"
+            android:layout_margin="16dp"
             android:background="@drawable/inputfield"
             android:fontFamily="@font/nunito"
-            android:hint="@string/limitdailog"
+            android:hint="Search...."
             android:importantForAutofill="no"
-            android:inputType="number"
-            android:padding="10dp"
+            android:inputType="text"
+            android:padding="16dp"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:text="@string/_33"
-            android:textAlignment="center"
+            android:textAlignment="textStart"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <LinearLayout
-            android:layout_width = "match_parent"
-            android:layout_height = "wrap_content"
-            android:layout_gravity = "center"
-            android:layout_marginTop = "10dp"
-            android:gravity = "center"
-            android:orientation = "horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width = "match_parent"
-                android:layout_height = "match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <Button
                     android:id="@+id/dialogCancel"
@@ -101,6 +103,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

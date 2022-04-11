@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import androidx.fragment.app.Fragment
+import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.database.DatabaseAccessHelper
 import com.arshadshah.nimaz.helperClasses.quran.JuzListCustomAdapter
@@ -62,4 +63,24 @@ class QuranJuzFragment : Fragment() {
         return root
     }
 
+        //a function that saves the last position of the listview before the fragment is paused
+    override fun onPause() {
+        super.onPause()
+
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val editor = sharedPreferences.edit()
+        val juzList = requireView().findViewById<ListView>(R.id.juzList)
+        editor.putInt("lastPositionJuzMain", juzList.firstVisiblePosition)
+        editor.apply()
+    }
+
+    //a function that restores the last position of the listview before the fragment is created
+    override fun onResume() {
+        super.onResume()
+
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val lastPosition = sharedPreferences.getInt("lastPositionJuzMain", 0)
+        val juzList = requireView().findViewById<ListView>(R.id.juzList)
+        juzList.setSelection(lastPosition)
+    }
 }
