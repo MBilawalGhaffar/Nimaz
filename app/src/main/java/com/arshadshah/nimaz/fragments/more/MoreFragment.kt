@@ -1,4 +1,4 @@
-package com.arshadshah.nimaz.fragments
+package com.arshadshah.nimaz.fragments.more
 
 import android.app.Activity
 import android.content.Context
@@ -12,8 +12,9 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.arshadshah.nimaz.R
-import com.arshadshah.nimaz.activities.NamesOfAllahActivity
-import com.arshadshah.nimaz.activities.ShahadahActivity
+import com.arshadshah.nimaz.activities.more.HelpActivity
+import com.arshadshah.nimaz.activities.more.NamesOfAllahActivity
+import com.arshadshah.nimaz.activities.more.ShahadahActivity
 import com.arshadshah.nimaz.activities.tasbeeh.TasbeehActivity
 
 class MoreFragment : Fragment() {
@@ -29,6 +30,7 @@ class MoreFragment : Fragment() {
         val tasbeeh : ImageView = root.findViewById(R.id.Tasbeeh)
         val namesOfAllah : ImageView = root.findViewById(R.id.NamesOfAllah)
         val shahadah : ImageView = root.findViewById(R.id.Shahadah)
+        val help : ImageView = root.findViewById(R.id.help)
 
 
         startActivityUsingIntent(requireContext(), tasbeeh, TasbeehActivity())
@@ -36,6 +38,8 @@ class MoreFragment : Fragment() {
         startActivityUsingIntent(requireContext(), namesOfAllah, NamesOfAllahActivity())
 
         startActivityUsingIntent(requireContext(), shahadah, ShahadahActivity())
+
+        startActivityUsingIntent(requireContext(), help, HelpActivity())
 
 
         return root
@@ -48,8 +52,8 @@ class MoreFragment : Fragment() {
             nameOfButton.startAnimation(expandIn)
 
             //navigate to activity
-            val tasbeehIntent = Intent(context, ActivityToStart::class.java)
-            startActivity(tasbeehIntent)
+            val activityIntent = Intent(context, ActivityToStart::class.java)
+            startActivity(activityIntent)
         }
     }
 }

@@ -26,7 +26,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Nimaz">
         <activity
-            android:name=".activities.ShahadahActivity"
+            android:name=".activities.more.HelpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.more.ShahadahActivity"
             android:exported="false" />
         <activity
             android:name=".activities.tasbeeh.TasbeehActivity"
@@ -35,10 +38,7 @@
             android:name=".activities.quran.QuranMainList"
             android:exported="true" />
         <activity
-            android:name=".activities.tasbeeh.DikhrListActivity"
-            android:exported="true" />
-        <activity
-            android:name=".activities.NamesOfAllahActivity"
+            android:name=".activities.more.NamesOfAllahActivity"
             android:exported="true" />
         <activity android:name=".IntroductionActivity" />
 

@@ -11,8 +11,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
-import com.arshadshah.nimaz.activities.HomeActivity
 import com.arshadshah.nimaz.R
+import com.arshadshah.nimaz.activities.HomeActivity
 
 class LocationInputFragment : Fragment() {
     override fun onCreateView(

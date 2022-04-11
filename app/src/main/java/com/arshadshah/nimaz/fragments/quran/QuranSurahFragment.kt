@@ -9,10 +9,10 @@ import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
+import com.arshadshah.nimaz.activities.quran.QuranMainList
 import com.arshadshah.nimaz.helperClasses.database.DatabaseAccessHelper
 import com.arshadshah.nimaz.helperClasses.quran.SurahListCustomAdapter
 import com.arshadshah.nimaz.helperClasses.quran.SurahObject
-import com.arshadshah.nimaz.activities.quran.QuranMainList
 
 class QuranSurahFragment : Fragment() {
     override fun onCreateView(

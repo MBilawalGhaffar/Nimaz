@@ -1,6 +1,5 @@
 package com.arshadshah.nimaz.fragments.compass
 
-import android.hardware.Sensor
 import androidx.fragment.app.testing.launchFragment
 import androidx.lifecycle.Lifecycle
 import androidx.test.ext.junit.runners.AndroidJUnit4

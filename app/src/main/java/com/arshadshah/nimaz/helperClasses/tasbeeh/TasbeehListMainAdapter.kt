@@ -5,12 +5,10 @@ import android.database.DataSetObserver
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.ListAdapter
 import android.widget.TextView
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.arabicReshaper.ArabicUtilities
-import com.arshadshah.nimaz.fragments.tasbeeh.TasbeehFragment
 
 internal class TasbeehListMainAdapter(
     var context: Context,

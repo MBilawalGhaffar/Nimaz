@@ -150,6 +150,7 @@
     <string name="search" translatable="false">Search</string>
     <string name="Quran_List_Page_Label_for_Search" translatable="false">The Word %1$s was found %2$s Times</string>
     <string name="times">%1$s Times</string>
+    <string name="help">help</string>
 
     <!--    location-->
 

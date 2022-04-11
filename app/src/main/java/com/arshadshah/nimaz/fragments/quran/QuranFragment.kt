@@ -2,7 +2,6 @@ package com.arshadshah.nimaz.fragments.quran
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +9,11 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.arshadshah.nimaz.R
-import com.arshadshah.nimaz.activities.HomeActivity
 import com.arshadshah.nimaz.activities.quran.QuranMainList
 import com.arshadshah.nimaz.helperClasses.quran.QuranFragmentAdapter
 import com.google.android.material.tabs.TabLayout

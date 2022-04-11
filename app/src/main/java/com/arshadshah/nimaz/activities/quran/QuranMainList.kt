@@ -1,16 +1,16 @@
 package com.arshadshah.nimaz.activities.quran
 
 import android.content.Context
-import android.content.Intent
-import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.RadioButton
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.add
@@ -21,7 +21,6 @@ import com.arshadshah.nimaz.fragments.quran.AyaListJuzFragment
 import com.arshadshah.nimaz.fragments.quran.AyaListSurahFragment
 import com.arshadshah.nimaz.fragments.quran.QuranSearchFragment
 import com.arshadshah.nimaz.helperClasses.database.DatabaseAccessHelper
-import com.google.android.material.snackbar.Snackbar
 
 class QuranMainList : AppCompatActivity() {
 
@@ -76,7 +75,7 @@ class QuranMainList : AppCompatActivity() {
         if (fragmentToUse == "search"){
             query = intent.getStringExtra("query").toString()
 
-            val numberOfAyas = helper.searchForAyaAmountFound(query.toString(), "en_sahih", "text")
+            val numberOfAyas = helper.searchForAyaAmountFound(query, "en_sahih", "text")
 
             if(numberOfAyas != 0){
                 val bundle = Bundle()

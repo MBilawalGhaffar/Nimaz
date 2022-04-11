@@ -114,13 +114,6 @@
     <PreferenceCategory android:title = "Other">
 
         <Preference
-            android:id = "@+id/help"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            app:icon = "@drawable/help"
-            app:key = "help"
-            app:title = "help"/>
-        <Preference
             app:icon = "@drawable/info"
             app:key = "about"
             app:title = "About"/>

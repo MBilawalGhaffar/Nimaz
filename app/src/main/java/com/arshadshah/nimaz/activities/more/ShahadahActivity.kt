@@ -1,10 +1,10 @@
-package com.arshadshah.nimaz.activities
+package com.arshadshah.nimaz.activities.more
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import com.arshadshah.nimaz.R
 
 class ShahadahActivity : AppCompatActivity() {

@@ -19,7 +19,7 @@
         tools:layout = "@layout/fragment_compass"/>
     <fragment
         android:id="@+id/navigation_more"
-        android:name="com.arshadshah.nimaz.fragments.MoreFragment"
+        android:name="com.arshadshah.nimaz.fragments.more.MoreFragment"
         android:label="fragment_more"
         tools:layout="@layout/fragment_more" />
     <fragment

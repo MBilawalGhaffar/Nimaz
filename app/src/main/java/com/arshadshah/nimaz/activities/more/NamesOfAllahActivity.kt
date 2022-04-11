@@ -1,16 +1,16 @@
-package com.arshadshah.nimaz.activities
+package com.arshadshah.nimaz.activities.more
 
 import android.content.Context
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.names.CustomAdapter

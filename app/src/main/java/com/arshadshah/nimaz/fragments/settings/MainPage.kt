@@ -141,10 +141,6 @@ class MainPage : PreferenceFragmentCompat()
 
         changeFragment(privacy, Privacypolicy(), "Privacy Policy")
 
-        val help : Preference? = findPreference("help")
-
-        changeFragment(help, HelpFragment(),"Help")
-
         val about : Preference? = findPreference("about")
 
         changeFragment(about, About(),"About")
