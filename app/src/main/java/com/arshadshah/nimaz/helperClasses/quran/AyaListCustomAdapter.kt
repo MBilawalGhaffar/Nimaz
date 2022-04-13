@@ -6,10 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListAdapter
+import android.widget.RadioButton
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.arabicReshaper.ArabicUtilities
+import com.arshadshah.nimaz.helperClasses.database.BookmarkDatabaseAccessHelper
 import java.lang.String
 import java.text.NumberFormat
 import java.util.*
@@ -73,34 +77,42 @@ internal class AyaListCustomAdapter(
 
         if(convertView == null){
             val layoutInflater = LayoutInflater.from(context)
-            if(isEnglish){
-                convertView = layoutInflater.inflate(R.layout.aya_list_row_item, null)
-            }
-            else{
-                convertView = layoutInflater.inflate(R.layout.aya_list_urdu_row_item, null)
+            convertView = if(isEnglish){
+                layoutInflater.inflate(R.layout.aya_list_row_item, null)
+            } else{
+                layoutInflater.inflate(R.layout.aya_list_urdu_row_item, null)
             }
         }
-        val ayaNumberBookmark = sharedPreferences.getString("ayaNumberBookmark", "")
-        val ayaTextBookmark = sharedPreferences.getString("ayaTextBookmark", "")
-        val ayaArabicBookmark = sharedPreferences.getString("ayaArabicBookmark", "")
+        val helperBookmarkDatabase = BookmarkDatabaseAccessHelper(context)
 
-        if(ayaNumberBookmark == AyaObject!!.ayaNumber && ayaTextBookmark == AyaObject.ayaEnglish && ayaArabicBookmark == AyaObject.ayaArabic){
-            convertView?.setBackgroundColor(context.resources.getColor(R.color.bookmark))
-        }
+        helperBookmarkDatabase.open()
 
         val EnglishName = convertView?.findViewById<TextView>(R.id.TranslationAya)
         val ArabicName = convertView?.findViewById<TextView>(R.id.ArabicAya)
+        val bookmark: ConstraintLayout? = if(isEnglish){
+            convertView?.findViewById(R.id.bookmarkButton)
+        } else{
+            convertView?.findViewById(R.id.bookmarkButton2)
+        }
+
+        bookmark!!.isVisible = helperBookmarkDatabase.isAyaBookmarkedJuz(AyaObject!!.ayaNumber,
+            AyaObject.ayaEnglish, AyaObject.ayaArabic)
+
+        helperBookmarkDatabase.close()
 
         //take AyaObject!!.ayaNumber and append it at the end of AyaObject.ayaArabic inside an ayat end unicode
         val unicodeAyaEndEnd = "\uFD3E"
         val unicodeAyaEndStart = "\uFD3F"
         val nf: NumberFormat = NumberFormat.getInstance(Locale.forLanguageTag("AR"))
-        val endOfAyaWithNumber= String.valueOf(nf.format(AyaObject!!.ayaNumber.toInt())).toString()
+        val endOfAyaWithNumber= String.valueOf(nf.format(AyaObject.ayaNumber.toInt())).toString()
 
         val unicodeWithNumber = unicodeAyaEndStart + endOfAyaWithNumber + unicodeAyaEndEnd
+        //remove comma from the the unicodeWithNumber
+        val unicodeWithNumberWithoutComma = unicodeWithNumber.replace("'", "")
+        
 
         EnglishName?.text = AyaObject.ayaEnglish
-        ArabicName?.text = ArabicUtilities.reshape(AyaObject.ayaArabic + " " + unicodeWithNumber)
+        ArabicName?.text = ArabicUtilities.reshape(AyaObject.ayaArabic + " " + unicodeWithNumberWithoutComma)
 
         return convertView
     }

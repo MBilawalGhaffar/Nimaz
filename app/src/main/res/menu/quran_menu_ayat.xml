@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/translation"  android:id = "@+id/translation"/>
+    <item android:title="@string/go_to_bookmark"  android:id = "@+id/bookmark"/>
+    <item android:title="@string/go_to_ayat"  android:id = "@+id/gotoAyat"/>
+</menu>

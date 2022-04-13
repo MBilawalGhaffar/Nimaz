@@ -151,6 +151,10 @@
     <string name="Quran_List_Page_Label_for_Search" translatable="false">The Word %1$s was found %2$s Times</string>
     <string name="times">%1$s Times</string>
     <string name="help">help</string>
+    <string name="go_to_bookmark">Go to Bookmark</string>
+    <string name="go_to_ayat">go to ayat</string>
+    <string name="go_to_ayat_dialog_label">Go to Ayat</string>
+    <string name="please_enter_ayat_number_to_go_to">Please enter ayat number to go to</string>
 
     <!--    location-->
 

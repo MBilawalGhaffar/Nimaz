@@ -5,14 +5,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
+import com.arshadshah.nimaz.helperClasses.database.BookmarkDatabaseAccessHelper
 import com.arshadshah.nimaz.helperClasses.database.DatabaseAccessHelper
 import com.arshadshah.nimaz.helperClasses.quran.AyaListCustomAdapter
 import com.arshadshah.nimaz.helperClasses.quran.AyaObject
+import kotlin.properties.Delegates
 
 class AyaListSurahFragment : Fragment() {
+    var number by Delegates.notNull<Int>()
+    private lateinit var helperQuranDatabase: DatabaseAccessHelper
+    //call the bookmark database helper
+    private lateinit var helperBookmarkDatabase: BookmarkDatabaseAccessHelper
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,16 +30,19 @@ class AyaListSurahFragment : Fragment() {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_aya_surah_list, container, false)
 
-        val helper = DatabaseAccessHelper(requireContext())
-        helper.open()
+        helperQuranDatabase = DatabaseAccessHelper(requireContext())
+        helperBookmarkDatabase = BookmarkDatabaseAccessHelper(requireContext())
+
+
+        helperQuranDatabase.open()
 
         //get the juzNumber from bundle
-        val number = requireArguments().getInt("number")
+        number = requireArguments().getInt("number")
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val isEnglish = sharedPreferences.getBoolean("isEnglish", true)
 
-        val ayaForsurah = helper.getAllAyaForSurah(number+1)
+        val ayaForsurah = helperQuranDatabase.getAllAyaForSurah(number+1)
 
         //add the following object to index 0 of ayaForSurah without losing value of index 0 in ayaForSurah
         val ayaNumberOfBismillah= "0"
@@ -58,58 +70,65 @@ class AyaListSurahFragment : Fragment() {
         //set the adapter to the listview
         ayaList.adapter = ayaListCustomAdapter
 
-        helper.close()
-
-        //check the preference for the bookmark
-        val ayaNumberBookmark = sharedPreferences.getString("ayaNumberBookmark", "")
-        val ayaTextBookmark = sharedPreferences.getString("ayaTextBookmark", "")
-        val ayaArabicBookmark = sharedPreferences.getString("ayaArabicBookmark", "")
-
-        //when this is first created, the listview is scrolled to the position where the user made a bookmark
-        //this is retrieved from the shared preferences
-        //check if the list has a bookmark
-        if(ayaNumberBookmark != null && ayaTextBookmark != null && ayaArabicBookmark != null){
-            //check if the bookmark is in the list by comparing the ayaNumberBookmark with the ayaNumber of the list
-            //and the ayaTextBookmark with the ayaText of the list
-            //and the ayaArabicBookmark with the ayaArabic of the list
-            for(i in 0 until ayaForsurah.size){
-                if(ayaNumberBookmark == ayaForsurah[i]?.ayaNumber && ayaTextBookmark == ayaForsurah[i]?.ayaEnglish && ayaArabicBookmark == ayaForsurah[i]?.ayaArabic){
-                    //scroll to the position of the bookmark
-                    ayaList.setSelection(i)
-                    break
-                }
-            }
-        }
-
+        helperQuranDatabase.close()
 
         //on long click
-        ayaList.setOnItemLongClickListener { parent, view, position, id ->
+        ayaList.setOnItemClickListener { parent, view, position, id ->
             //retrieve the aya object from the list
             val ayaObject = ayaForsurah[position]
-            
-            if(ayaNumberBookmark == ayaObject?.ayaNumber && ayaTextBookmark == ayaObject?.ayaEnglish && ayaArabicBookmark == ayaObject?.ayaArabic){
-                //remove the bookmark and set the preference to null
-                sharedPreferences.edit().putString("ayaNumberBookmark", "").apply()
-                sharedPreferences.edit().putString("ayaTextBookmark", "").apply()
-                sharedPreferences.edit().putString("ayaArabicBookmark", "").apply()
 
-                //change the background color of the item back to normal
-                view.setBackgroundColor(resources.getColor(R.color.background))
-            }
-            else{
-                //change the color of the item that is clicked on to green
-                view.setBackgroundColor(resources.getColor(R.color.bookmark))
+            //start a new thread checking if the aya is a bookmark
+            val bookmarkThread = Thread {
+                helperBookmarkDatabase.open()
 
-                //save the data of the item that is clicked on to shared preferences
-                val editor = sharedPreferences.edit()
-                editor.putString("ayaNumberBookmark", ayaObject?.ayaNumber)
-                editor.putString("ayaTextBookmark", ayaObject?.ayaEnglish)
-                editor.putString("ayaArabicBookmark", ayaObject?.ayaArabic)
-                editor.putInt("surahNumberBookmark", number+1)
-                editor.apply()
+                //check if the aya is already bookmarked
+                val isBookmarkedJuz = helperBookmarkDatabase.isAyaBookmarkedJuz(ayaObject!!.ayaNumber, ayaObject.ayaEnglish, ayaObject.ayaArabic)
+
+                //if it is already bookmarked, remove the bookmark
+                if(isBookmarkedJuz){
+                    val bookmarkRemoved = helperBookmarkDatabase.deleteBookmarkJuz(ayaObject.ayaNumber, (number+1).toString())
+                    if(bookmarkRemoved){
+                        //run on ui thread
+                        activity?.runOnUiThread {
+                            val bookmark: ConstraintLayout? = if(isEnglish){
+                                view?.findViewById(R.id.bookmarkButton)
+                            } else{
+                                view?.findViewById(R.id.bookmarkButton2)
+                            }
+                            //change the tint color of the bookmark button
+                            bookmark!!.isVisible = false
+
+                            //toast that the bookmark has been removed
+                            Toast.makeText(requireContext(), "Bookmark Removed", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+                if(!isBookmarkedJuz) {
+                    val bookmarkAdded = helperBookmarkDatabase.addBookmarkJuz(
+                        ayaObject.ayaNumber,
+                        ayaObject.ayaEnglish,
+                        ayaObject.ayaArabic,
+                        (number + 1).toString()
+                    )
+                    if(bookmarkAdded){
+                        //run on ui thread
+                        activity?.runOnUiThread {
+                            val bookmark: ConstraintLayout? = if(isEnglish){
+                                view?.findViewById(R.id.bookmarkButton)
+                            } else{
+                                view?.findViewById(R.id.bookmarkButton2)
+                            }
+                            //change the tint color of the bookmark button
+                            bookmark!!.isVisible = true
+
+                            //toast that the bookmark has been added
+                            Toast.makeText(requireContext(), "Bookmark Added", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+                helperBookmarkDatabase.close()
             }
-            
-            true
+            bookmarkThread.start()
         }
         return root
     }
@@ -118,11 +137,12 @@ class AyaListSurahFragment : Fragment() {
     override fun onPause() {
         super.onPause()
 
+        helperQuranDatabase.close()
+        helperBookmarkDatabase.close()
+
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        val editor = sharedPreferences.edit()
         val ayaList = requireView().findViewById<ListView>(R.id.ayaListSurah)
-        editor.putInt("lastPositionSurah", ayaList.firstVisiblePosition)
-        editor.apply()
+        sharedPreferences.edit().putInt("lastPositionSurah ${(number+1)}", ayaList.firstVisiblePosition).apply()
     }
 
     //a function that restores the last position of the listview after the fragment is created
@@ -130,9 +150,26 @@ class AyaListSurahFragment : Fragment() {
         super.onResume()
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        val lastPosition = sharedPreferences.getInt("lastPositionSurah", 0)
+        val lastPosition = sharedPreferences.getInt("lastPositionSurah ${(number+1)}", 0)
+        val scrollToAyaNumber = sharedPreferences.getString("scrollToAyaNumber", "")
+        val scrollToBookmark = sharedPreferences.getBoolean("scrollToBookmark", false)
+        val scrollToBookmarkNumber = sharedPreferences.getInt("scrollToBookmarkNumber", 0)
+
         val ayaList = requireView().findViewById<ListView>(R.id.ayaListSurah)
         ayaList.setSelection(lastPosition)
+
+        if(scrollToBookmark){
+            ayaList.setSelection(scrollToBookmarkNumber)
+        }else{
+            if(scrollToAyaNumber != ""){
+                val positionOfAyaGiven = scrollToAyaNumber!!.toInt()
+                ayaList.setSelection(positionOfAyaGiven)
+                sharedPreferences.edit().remove("scrollToAyaNumber").apply()
+            }else{
+                ayaList.setSelection(lastPosition)
+            }
+        }
+
     }
 
 }
