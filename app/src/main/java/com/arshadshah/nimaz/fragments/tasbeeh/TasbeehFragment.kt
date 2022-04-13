@@ -4,6 +4,8 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,11 +15,13 @@ import android.view.animation.RotateAnimation
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.tasbeeh.TasbeehListMainAdapter
 import com.arshadshah.nimaz.helperClasses.tasbeeh.TasbeehObjectMain
+import com.google.android.material.switchmaterial.SwitchMaterial
 
 
 class TasbeehFragment : Fragment() {
@@ -46,12 +50,24 @@ class TasbeehFragment : Fragment() {
         }
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-
-        //************************************************************************
-
         //create a listView to show the dhikr
         val dhikrListView: ListView = root.findViewById(R.id.dhikrListView)
+        //************************************************************************
+        val dhikrSwitch: SwitchMaterial = root.findViewById(R.id.dhikrSwitch)
+        dhikrListView.isVisible = dhikrSwitch.isChecked
 
+        dhikrSwitch.setOnCheckedChangeListener { _, isChecked ->
+            dhikrListView.isVisible = isChecked
+
+            //change title of the switch
+            if (isChecked) {
+                dhikrSwitch.text = "Hide Dhikr"
+            } else {
+                dhikrSwitch.text = "Show Dhikr"
+            }
+        }
+
+        dhikrListView.divider = null
 
         val array = resources.getStringArray(R.array.tasbeehTransliteration)
         var indexNo : Int
@@ -126,6 +142,21 @@ class TasbeehFragment : Fragment() {
 
                 tasbeehLimit.setText(sharedPreferences.getString("tasbeehLimit" , "33"))
 
+                //check that number is the right format and not too long
+                tasbeehLimit.addTextChangedListener(object : TextWatcher {
+                    override fun afterTextChanged(s: Editable?) {
+                        if (tasbeehLimit.text.toString().length > 6)
+                        {
+                            tasbeehLimit.setText(tasbeehLimit.text.toString().substring(0 , 6))
+                        }
+                    }
+
+                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                    }
+
+                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    }
+                })
                 builder.setView(tasbeehDialog)
 
                 // Set Cancelable false
@@ -141,13 +172,20 @@ class TasbeehFragment : Fragment() {
 
                     amount.text = tasbeehLimit.text.toString()
 
-                    with(sharedPreferences.edit()) {
-                        putString("amount" , amount.text as String)
-                        putString("tasbeehLimit" , amount.text as String)
-                        apply()
-                    }
+                    val amountToClean = amount.text
 
-                    alertDialog.cancel()
+                    if(amountToClean.toString().toInt() >= 900000000){
+                        //show a toast and dont do anything
+                        Toast.makeText(requireContext() , "Please enter a number less than 900000000" , Toast.LENGTH_LONG).show()
+                    }else{
+                        with(sharedPreferences.edit()) {
+                            putString("amount" , amount.text as String)
+                            putString("tasbeehLimit" , amount.text as String)
+                            apply()
+                        }
+
+                        alertDialog.cancel()
+                    }
                 }
 
                 cancelbtn.setOnClickListener {

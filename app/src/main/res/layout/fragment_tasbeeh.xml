@@ -11,15 +11,12 @@
     <ListView
         android:id="@+id/dhikrListView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/aboutcard"
-        android:padding="10dp"
+        android:layout_height="200dp"
+        android:background="?attr/cardBackground"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -83,12 +80,14 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
+        android:layout_marginBottom="8dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="5dp"
         app:contentPadding="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/dhikrListView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
@@ -110,6 +109,7 @@
                     android:id="@+id/plus"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
                     android:background="@drawable/finecontrol"
                     android:fontFamily="@font/nunito"
                     android:scaleType="center"
@@ -147,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/Display"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/dhikrSwitch"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -206,7 +206,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/finecontrol"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout8"
                 app:layout_constraintStart_toStartOf="parent"
@@ -250,7 +250,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/finecontrol"
                 android:contentDescription="@string/reset_counter"
                 android:src="@drawable/reset"
@@ -261,6 +261,24 @@
                 app:layout_constraintStart_toEndOf="@+id/edit_button"
                 app:layout_constraintTop_toBottomOf="@+id/Display"
                 app:layout_constraintVertical_bias="0.51" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/dhikrSwitch"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:background="@drawable/finecontrolswitch"
+                android:checked="false"
+                android:fontFamily="@font/nunito"
+                android:padding="8dp"
+                android:showText="false"
+                android:splitTrack="false"
+                android:text="Show Dhikr"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/Display"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:checked="false" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

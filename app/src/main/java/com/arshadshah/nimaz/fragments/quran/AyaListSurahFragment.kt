@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
@@ -44,26 +45,27 @@ class AyaListSurahFragment : Fragment() {
 
         val ayaForsurah = helperQuranDatabase.getAllAyaForSurah(number+1)
 
-        //add the following object to index 0 of ayaForSurah without losing value of index 0 in ayaForSurah
-        val ayaNumberOfBismillah= "0"
-        val ayaOfBismillah = if(isEnglish){
-            "In the name of Allah, the Entirely Merciful, the Especially Merciful."
-        } else{
-            "اللہ کے نام سے جو رحمان و رحیم ہے"
-        }
+        val ayaList: ListView = root.findViewById(R.id.ayaListSurah)
+
         val ayaArabicOfBismillah = "بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ"
-        val bismillah  = AyaObject(ayaNumberOfBismillah,ayaOfBismillah,ayaArabicOfBismillah)
         //first check if an object like this is already in the list
         //check all the attributes of the object bisimillah with the attributes of the object in the list at index 0
-        if(ayaForsurah[0]!!.ayaArabic != bismillah.ayaArabic){
+        if(ayaForsurah[0]!!.ayaArabic != ayaArabicOfBismillah){
             if(number+1 != 9) {
-                ayaForsurah.add(0, bismillah)
+                injectHeader(ayaArabicOfBismillah,ayaList)
+            }
+        }
+        else{
+            if(number+1 != 9) {
+                //remove the first element of the list
+                ayaForsurah.removeAt(0)
+                injectHeader(ayaArabicOfBismillah,ayaList)
             }
         }
 
-        val ayaList: ListView = root.findViewById(R.id.ayaListSurah)
+
         ayaList.divider = null
-        
+
         //create a custom adapter
         val ayaListCustomAdapter = AyaListCustomAdapter(requireContext(), ayaForsurah)
 
@@ -172,4 +174,22 @@ class AyaListSurahFragment : Fragment() {
 
     }
 
+    private fun injectHeader(ayaArabicOfBismillah: String, ayaList: ListView){
+        //initialize the bismillah container from the layout folder
+        //get this fragments inflater
+        val inflater = requireActivity().layoutInflater
+        
+        val bismillahContainer = inflater.inflate(R.layout.aya_list_header, null)
+        //set the visibility of the bismillah container to visible
+        bismillahContainer.isVisible = true
+
+        //initialize the bismillah textview from the layout folder
+        val bismillahTextView = bismillahContainer.findViewById<TextView>(R.id.bismillah)
+
+        //set the text of the bismillah textview to the bismillah text
+        bismillahTextView.text = ayaArabicOfBismillah
+
+        //add the bismillah object to the list header
+        ayaList.addHeaderView( bismillahContainer)
+    }
 }

@@ -34,9 +34,13 @@ class QuranMainList : AppCompatActivity() {
         setContentView(R.layout.activity_quran_main_list)
         supportActionBar?.hide()
 
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val helper = DatabaseAccessHelper(this)
         helper.open()
+
+        //get the values from the intent
+        val intent = intent
+
+        fragmentToUse = intent.getStringExtra("fragment").toString()
 
         val backButton: ImageView = findViewById(R.id.backButton2)
 
@@ -70,13 +74,16 @@ class QuranMainList : AppCompatActivity() {
             val menu = PopupMenu(this, moreButton)
             menu.inflate(R.menu.quran_menu_ayat)
 
+            if(fragmentToUse == "search"){
+                //disable the bookmark and gotoaya options
+                menu.menu.findItem(R.id.bookmark).isVisible = false
+                menu.menu.findItem(R.id.gotoAyat).isVisible = false
+            }
+
             launchMenu( this, name.toString(), number, menu)
         }
 
-        //get the values from the intent
-        val intent = intent
 
-        fragmentToUse = intent.getStringExtra("fragment").toString()
         if (fragmentToUse == "search"){
             query = intent.getStringExtra("query").toString()
 
