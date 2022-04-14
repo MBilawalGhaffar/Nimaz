@@ -32,11 +32,15 @@ class QuranJuzFragment : Fragment() {
         helper.open()
 
         val cursorForJuzName = helper.getAllJuzs()
-        
+
         //get an array list of JuzObjects
         val juzObjects = ArrayList<JuzObject>()
-        while(cursorForJuzName!!.moveToNext()){
-            val juzObject = JuzObject(cursorForJuzName.getString(0), cursorForJuzName.getString(3), cursorForJuzName.getString(2))
+        while (cursorForJuzName!!.moveToNext()) {
+            val juzObject = JuzObject(
+                cursorForJuzName.getString(0),
+                cursorForJuzName.getString(3),
+                cursorForJuzName.getString(2)
+            )
             juzObjects.add(juzObject)
         }
         cursorForJuzName.close()
@@ -51,10 +55,10 @@ class QuranJuzFragment : Fragment() {
 
         juzList.setOnItemClickListener { parent, view, position, id ->
             val juzClicked = juzObjects[position]
-            val intent = Intent(requireContext() , QuranMainList::class.java)
-            intent.putExtra("number",position)
-            intent.putExtra("fragment","juz")
-            intent.putExtra("name",juzClicked.arabic)
+            val intent = Intent(requireContext(), QuranMainList::class.java)
+            intent.putExtra("number", position)
+            intent.putExtra("fragment", "juz")
+            intent.putExtra("name", juzClicked.arabic)
             startActivity(intent)
         }
 
@@ -63,7 +67,7 @@ class QuranJuzFragment : Fragment() {
         return root
     }
 
-        //a function that saves the last position of the listview before the fragment is paused
+    //a function that saves the last position of the listview before the fragment is paused
     override fun onPause() {
         super.onPause()
 

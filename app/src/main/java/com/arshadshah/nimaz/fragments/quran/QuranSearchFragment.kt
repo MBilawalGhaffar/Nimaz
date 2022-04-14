@@ -51,7 +51,7 @@ class QuranSearchFragment : Fragment() {
                 //show a progess bar while the data is being fetched
                 progressBar.isVisible = true
             }
-            ayaFound = helper.searchForAya(searchQuery.toString(), "en_sahih", "text" )
+            ayaFound = helper.searchForAya(searchQuery.toString(), "en_sahih", "text")
 
             activity?.runOnUiThread {
                 progressBarContainer.isVisible = false

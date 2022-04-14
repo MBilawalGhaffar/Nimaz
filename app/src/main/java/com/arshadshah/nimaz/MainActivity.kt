@@ -18,38 +18,32 @@ import com.arshadshah.nimaz.widgets.updateAppWidget
  * Launcher activity that works as a Splash screen
  * @author Arshad Shah
  */
-class MainActivity : AppCompatActivity()
-{
+class MainActivity : AppCompatActivity() {
     @SuppressLint("NewApi")
     @RequiresApi(Build.VERSION_CODES.O)
-    override fun onCreate(savedInstanceState : Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val isFirstInstall = sharedPreferences.getBoolean("isFirstInstall" , true)
+        val isFirstInstall = sharedPreferences.getBoolean("isFirstInstall", true)
 
         val appWidgetManager = AppWidgetManager.getInstance(this)
-        val appWidgetIds : IntArray = appWidgetManager.getAppWidgetIds(
+        val appWidgetIds: IntArray = appWidgetManager.getAppWidgetIds(
             ComponentName(
-                this ,
+                this,
                 Nimaz::class.java
-                         )
-                                                                      )
-        for (appWidgetId in appWidgetIds)
-        {
-            updateAppWidget(this , appWidgetManager , appWidgetId)
+            )
+        )
+        for (appWidgetId in appWidgetIds) {
+            updateAppWidget(this, appWidgetManager, appWidgetId)
         }
 
-        if (! isFirstInstall)
-        {
-            val intent = Intent(this , HomeActivity::class.java)
+        if (!isFirstInstall) {
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()
-        }
-        else
-        {
-            val intent = Intent(this , IntroductionActivity::class.java)
+        } else {
+            val intent = Intent(this, IntroductionActivity::class.java)
             startActivity(intent)
             finish()
         }

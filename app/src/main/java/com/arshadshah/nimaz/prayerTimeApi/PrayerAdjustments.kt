@@ -12,29 +12,28 @@ class PrayerAdjustments
     /**
      * Fajr offset in minutes
      */
-    var fajr : Int = 0 ,
+    var fajr: Int = 0,
     /**
      * Sunrise offset in minutes
      */
-    var sunrise : Int = 0 ,
+    var sunrise: Int = 0,
     /**
      * Dhuhr offset in minutes
      */
-    var dhuhr : Int = 0 ,
+    var dhuhr: Int = 0,
     /**
      * Asr offset in minutes
      */
-    var asr : Int = 0 ,
+    var asr: Int = 0,
     /**
      * Maghrib offset in minutes
      */
-    var maghrib : Int = 0 ,
+    var maghrib: Int = 0,
     /**
      * Isha offset in minutes
      */
-    var isha : Int = 0
-                             )
-{
+    var isha: Int = 0
+) {
 
     /**
      * Gets a PrayerAdjustments object to offset prayer times

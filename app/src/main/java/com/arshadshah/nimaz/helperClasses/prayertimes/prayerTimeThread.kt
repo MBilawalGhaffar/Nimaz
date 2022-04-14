@@ -11,16 +11,14 @@ import com.arshadshah.nimaz.prayerTimeApi.data.DateComponents
 import java.util.*
 import kotlin.properties.Delegates
 
-class prayerTimeThread(context : Context) : Thread()
-{
+class prayerTimeThread(context: Context) : Thread() {
 
     var lati by Delegates.notNull<Double>()
     var longi by Delegates.notNull<Double>()
 
     val applicationContextVal = context
 
-    override fun run()
-    {
+    override fun run() {
 
         //code to reset the alarm
         //shared preferences
@@ -32,78 +30,72 @@ class prayerTimeThread(context : Context) : Thread()
         * */
 
         // get values from settings
-        val name = sharedPreferences.getString("location_input" , "Portlaoise")
-        val calcMethod = sharedPreferences.getString("calcMethod" , "IRELAND")
+        val name = sharedPreferences.getString("location_input", "Portlaoise")
+        val calcMethod = sharedPreferences.getString("calcMethod", "IRELAND")
 
         // madhab adjustments
-        val madhab = sharedPreferences.getBoolean("madhab" , true)
+        val madhab = sharedPreferences.getBoolean("madhab", true)
 
         // angle input from settings
-        val fajr_angle = sharedPreferences.getString("fajrAngle" , "14.0")
-        val ishaa_angle = sharedPreferences.getString("ishaaAngle" , "13.0")
+        val fajr_angle = sharedPreferences.getString("fajrAngle", "14.0")
+        val ishaa_angle = sharedPreferences.getString("ishaaAngle", "13.0")
 
         // time adjustments
-        val fajr_adjust = sharedPreferences.getString("fajr" , "0")
-        val sunrise_adjust = sharedPreferences.getString("sunrise" , "0")
-        val zuhar_adjust = sharedPreferences.getString("zuhar" , "0")
-        val asar_adjust = sharedPreferences.getString("asar" , "0")
-        val maghrib_adjust = sharedPreferences.getString("maghrib" , "0")
-        val ishaa_adjust = sharedPreferences.getString("ishaa" , "0")
+        val fajr_adjust = sharedPreferences.getString("fajr", "0")
+        val sunrise_adjust = sharedPreferences.getString("sunrise", "0")
+        val zuhar_adjust = sharedPreferences.getString("zuhar", "0")
+        val asar_adjust = sharedPreferences.getString("asar", "0")
+        val maghrib_adjust = sharedPreferences.getString("maghrib", "0")
+        val ishaa_adjust = sharedPreferences.getString("ishaa", "0")
 
 
-        val highlatRule = sharedPreferences.getString("highlatrule" , "TWILIGHT_ANGLE")
-        val locationTypeValue = sharedPreferences.getBoolean("locationType" , true)
+        val highlatRule = sharedPreferences.getString("highlatrule", "TWILIGHT_ANGLE")
+        val locationTypeValue = sharedPreferences.getBoolean("locationType", true)
 
         val isNetworkAvailable = NetworkChecker().networkCheck(applicationContextVal)
-        if (isNetworkAvailable)
-        {
-            if(!locationTypeValue) {
+        if (isNetworkAvailable) {
+            if (!locationTypeValue) {
                 //location finder class
                 val lonAndLat = locationFinder()
                 lonAndLat.findLongAndLan(applicationContextVal, name!!)
             }
-            lati = sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
-            longi = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()
-        }
-        else
-        {
+            lati = sharedPreferences.getString("latitude", "0.0")!!.toDouble()
+            longi = sharedPreferences.getString("longitude", "0.0")!!.toDouble()
+        } else {
             with(sharedPreferences.edit()) {
-                putString("location_input" , "No Network")
+                putString("location_input", "No Network")
                 apply()
             }
-            lati = sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
-            longi = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()
+            lati = sharedPreferences.getString("latitude", "0.0")!!.toDouble()
+            longi = sharedPreferences.getString("longitude", "0.0")!!.toDouble()
         }
 
         // calculation
-        val coordinates = Coordinates(lati , longi)
+        val coordinates = Coordinates(lati, longi)
         val calcdate = DateComponents.from(Date())
 
         /*
     * calculate the the time with the parameters
     * supplied to the API
     * */
-        val parameters = CalculationMethod.valueOf(calcMethod !!).parameters
-        if (madhab)
-        {
+        val parameters = CalculationMethod.valueOf(calcMethod!!).parameters
+        if (madhab) {
             parameters.madhab = Madhab.SHAFI
-        }
-        else if (! madhab)
-        {
+        } else if (!madhab) {
             parameters.madhab = Madhab.HANAFI
         }
-        parameters.fajrAngle = fajr_angle !!.toDouble()
-        parameters.ishaAngle = ishaa_angle !!.toDouble()
+        parameters.fajrAngle = fajr_angle!!.toDouble()
+        parameters.ishaAngle = ishaa_angle!!.toDouble()
 
-        parameters.adjustments.fajr = fajr_adjust !!.toInt()
-        parameters.adjustments.sunrise = sunrise_adjust !!.toInt()
-        parameters.adjustments.dhuhr = zuhar_adjust !!.toInt()
-        parameters.adjustments.asr = asar_adjust !!.toInt()
-        parameters.adjustments.maghrib = maghrib_adjust !!.toInt()
-        parameters.adjustments.isha = ishaa_adjust !!.toInt()
-        parameters.highLatitudeRule = HighLatitudeRule.valueOf(highlatRule !!)
+        parameters.adjustments.fajr = fajr_adjust!!.toInt()
+        parameters.adjustments.sunrise = sunrise_adjust!!.toInt()
+        parameters.adjustments.dhuhr = zuhar_adjust!!.toInt()
+        parameters.adjustments.asr = asar_adjust!!.toInt()
+        parameters.adjustments.maghrib = maghrib_adjust!!.toInt()
+        parameters.adjustments.isha = ishaa_adjust!!.toInt()
+        parameters.highLatitudeRule = HighLatitudeRule.valueOf(highlatRule!!)
 
-        val prayerTimes = PrayerTimes(coordinates , calcdate , parameters)
+        val prayerTimes = PrayerTimes(coordinates, calcdate, parameters)
 
 
         // time for alarm
@@ -124,53 +116,50 @@ class prayerTimeThread(context : Context) : Thread()
 
         //write lock to storage
         with(sharedPreferences.edit()) {
-            putBoolean("alarmLock" , false)
+            putBoolean("alarmLock", false)
             apply()
         }
 
         //alarm lock
         val oneOClock = GregorianCalendar.getInstance().apply {
-            set(Calendar.HOUR_OF_DAY , 1)
-            set(Calendar.MINUTE , 0)
-            set(Calendar.SECOND , 0)
-            set(Calendar.MILLISECOND , 0)
+            set(Calendar.HOUR_OF_DAY, 1)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
         }
 
         val current_time = System.currentTimeMillis()
-        if (current_time > oneOClock.timeInMillis)
-        {
+        if (current_time > oneOClock.timeInMillis) {
             CreateAlarms().scheduleAlarms(
-                applicationContextVal ,
-                fajrAlarm ,
-                sunriseAlarm ,
-                zuharAlarm ,
-                asarAlarm ,
-                maghribAlarm ,
+                applicationContextVal,
+                fajrAlarm,
+                sunriseAlarm,
+                zuharAlarm,
+                asarAlarm,
+                maghribAlarm,
                 ishaaAlarm
-                                         )
+            )
             //reset alarms
             CreateAlarms().resetAlarms(
-                applicationContextVal ,
-                fajrAlarm ,
-                sunriseAlarm ,
-                zuharAlarm ,
-                asarAlarm ,
-                maghribAlarm ,
+                applicationContextVal,
+                fajrAlarm,
+                sunriseAlarm,
+                zuharAlarm,
+                asarAlarm,
+                maghribAlarm,
                 ishaaAlarm
-                                      )
-        }
-        else
-        {
+            )
+        } else {
             //reset alarms
             CreateAlarms().resetAlarms(
-                applicationContextVal ,
-                fajrAlarm ,
-                sunriseAlarm ,
-                zuharAlarm ,
-                asarAlarm ,
-                maghribAlarm ,
+                applicationContextVal,
+                fajrAlarm,
+                sunriseAlarm,
+                zuharAlarm,
+                asarAlarm,
+                maghribAlarm,
                 ishaaAlarm
-                                      )
+            )
         }
 
     }

@@ -19,7 +19,6 @@ import com.arshadshah.nimaz.fragments.quran.AyaListSurahFragment
 import com.arshadshah.nimaz.fragments.quran.QuranSearchFragment
 import com.arshadshah.nimaz.helperClasses.database.BookmarkDatabaseAccessHelper
 import com.arshadshah.nimaz.helperClasses.database.DatabaseAccessHelper
-import com.arshadshah.nimaz.helperClasses.quran.AyaObject
 
 class QuranMainList : AppCompatActivity() {
 
@@ -45,25 +44,25 @@ class QuranMainList : AppCompatActivity() {
 
         val keyword: TextView = findViewById(R.id.keyword)
 
-        val keywordAmount: TextView= findViewById(R.id.keywordAmount)
+        val keywordAmount: TextView = findViewById(R.id.keywordAmount)
 
-        val searchFragmentTitle: ConstraintLayout= findViewById(R.id.searchFragmentTitle)
+        val searchFragmentTitle: ConstraintLayout = findViewById(R.id.searchFragmentTitle)
 
         backButton.setOnClickListener {
-            val expandIn : Animation =
-                AnimationUtils.loadAnimation(this , R.anim.expand_in)
+            val expandIn: Animation =
+                AnimationUtils.loadAnimation(this, R.anim.expand_in)
             backButton.startAnimation(expandIn)
             finish()
         }
 
-        nameOfPage= findViewById(R.id.NameToChange)
-        numberOfPage= findViewById(R.id.numberOfPage)
+        nameOfPage = findViewById(R.id.NameToChange)
+        numberOfPage = findViewById(R.id.numberOfPage)
 
         val moreButton: ImageView = findViewById(R.id.moreButton2)
 
         moreButton.setOnClickListener {
-            val expandIn : Animation =
-                AnimationUtils.loadAnimation(this , R.anim.expand_in)
+            val expandIn: Animation =
+                AnimationUtils.loadAnimation(this, R.anim.expand_in)
             moreButton.startAnimation(expandIn)
 
             val number = intent.getIntExtra("number", 0)
@@ -73,22 +72,22 @@ class QuranMainList : AppCompatActivity() {
             val menu = PopupMenu(this, moreButton)
             menu.inflate(R.menu.quran_menu_ayat)
 
-            if(fragmentToUse == "search"){
+            if (fragmentToUse == "search") {
                 //disable the bookmark and gotoaya options
                 menu.menu.findItem(R.id.bookmark).isVisible = false
                 menu.menu.findItem(R.id.gotoAyat).isVisible = false
             }
 
-            launchMenu( this, name.toString(), number, menu)
+            launchMenu(this, name.toString(), number, menu)
         }
 
 
-        if (fragmentToUse == "search"){
+        if (fragmentToUse == "search") {
             query = intent.getStringExtra("query").toString()
 
             val numberOfAyas = helper.searchForAyaAmountFound(query, "en_sahih", "text")
 
-            if(numberOfAyas != 0){
+            if (numberOfAyas != 0) {
                 val bundle = Bundle()
                 bundle.putString("query", query)
                 supportFragmentManager.commit {
@@ -99,12 +98,12 @@ class QuranMainList : AppCompatActivity() {
                 //get string from resources and add the number of ayas found and the query to it
                 searchFragmentTitle.isVisible = true
                 keyword.text = query
-                keywordAmount.text = getString(R.string.times,numberOfAyas.toString())
+                keywordAmount.text = getString(R.string.times, numberOfAyas.toString())
                 numberOfPage!!.isVisible = false
                 nameOfPage?.isVisible = false
                 helper.close()
-            }else{
-                nameOfPage!!.text = "Not Found"
+            } else {
+                nameOfPage!!.text = getString(R.string.ayatNotFound)
                 numberOfPage!!.isVisible = false
                 searchFragmentTitle.isVisible = false
 
@@ -112,12 +111,13 @@ class QuranMainList : AppCompatActivity() {
                 val builder = AlertDialog.Builder(this)
 
                 //set the custom view
-                val customView = LayoutInflater.from(this).inflate(R.layout.resultnotfounddialog, null)
+                val customView =
+                    LayoutInflater.from(this).inflate(R.layout.resultnotfounddialog, null)
                 builder.setView(customView)
 
                 //set the message
                 val message = customView.findViewById<TextView>(R.id.message)
-                message.text = "No Results Found for the Keyword: $query"
+                message.text = getString(R.string.ayatNotFoundMessage, query)
 
                 val dialog: AlertDialog = builder.create()
                 //set the button
@@ -130,41 +130,45 @@ class QuranMainList : AppCompatActivity() {
                 dialog.show()
 
             }
-        }
-        else{
+        } else {
             numberOfPage!!.isVisible = true
             nameOfPage?.isVisible = true
             searchFragmentTitle.isVisible = false
             val number = intent.getIntExtra("number", 0)
             val name = intent.getStringExtra("name")
             helper.close()
-            fragmentSelecterForListDisplay(name!!,number)
+            fragmentSelecterForListDisplay(name!!, number)
         }
     }
 
 
-    private fun fragmentSelecterForListDisplay(name: String, number:Int){
+    private fun fragmentSelecterForListDisplay(name: String, number: Int) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        if(fragmentToUse == "juz"){
-            val numberOfJuz = number+1
+        if (fragmentToUse == "juz") {
+            val numberOfJuz = number + 1
             nameOfPage!!.text = name
             numberOfPage!!.text = numberOfJuz.toString()
             val bundle = Bundle()
             bundle.putInt("number", number)
-            bundle.putBoolean("scrollToBookmark", sharedPreferences.getBoolean("scrollToBookmark", false))
+            bundle.putBoolean(
+                "scrollToBookmark",
+                sharedPreferences.getBoolean("scrollToBookmark", false)
+            )
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
-                    //add new fragment
-                    add<AyaListJuzFragment>(R.id.fragmentContainerView3, args = bundle)
+                //add new fragment
+                add<AyaListJuzFragment>(R.id.fragmentContainerView3, args = bundle)
             }
-        }
-        else{
-            val numberOfSurah = number+1
+        } else {
+            val numberOfSurah = number + 1
             nameOfPage!!.text = name
             numberOfPage!!.text = numberOfSurah.toString()
             val bundle = Bundle()
             bundle.putInt("number", number)
-            bundle.putBoolean("scrollToBookmark", sharedPreferences.getBoolean("scrollToBookmark", false))
+            bundle.putBoolean(
+                "scrollToBookmark",
+                sharedPreferences.getBoolean("scrollToBookmark", false)
+            )
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
                 add<AyaListSurahFragment>(R.id.fragmentContainerView3, args = bundle)
@@ -172,22 +176,23 @@ class QuranMainList : AppCompatActivity() {
         }
     }
 
-    private fun launchMenu(context: Context, name: String, number: Int, menu: PopupMenu){
+    private fun launchMenu(context: Context, name: String, number: Int, menu: PopupMenu) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         menu.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.translation -> {
                     // Create the object of
                     // AlertDialog Builder class
-                    val builder : AlertDialog.Builder = AlertDialog.Builder(context)
+                    val builder: AlertDialog.Builder = AlertDialog.Builder(context)
                     //get layout inflater
-                    val inflater : LayoutInflater =
+                    val inflater: LayoutInflater =
                         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
                     val moreDialog = inflater.inflate(R.layout.moredialog, null)
-                    val englishTranslation : RadioButton = moreDialog.findViewById(R.id.englishTranslation)
-                    val urduTranslation : RadioButton = moreDialog.findViewById(R.id.urduTranslation)
-                    val submitBtn : Button = moreDialog.findViewById(R.id.dialogSubmit)
-                    val cancelbtn : Button = moreDialog.findViewById(R.id.dialogCancel)
+                    val englishTranslation: RadioButton =
+                        moreDialog.findViewById(R.id.englishTranslation)
+                    val urduTranslation: RadioButton = moreDialog.findViewById(R.id.urduTranslation)
+                    val submitBtn: Button = moreDialog.findViewById(R.id.dialogSubmit)
+                    val cancelbtn: Button = moreDialog.findViewById(R.id.dialogCancel)
 
                     val isEnglish = sharedPreferences.getBoolean("isEnglish", true)
                     builder.setView(moreDialog)
@@ -197,15 +202,14 @@ class QuranMainList : AppCompatActivity() {
                     // the Dialog Box then it will remain show
                     builder.setCancelable(false)
                     // Create the Alert dialog
-                    val alertDialog : AlertDialog = builder.create()
+                    val alertDialog: AlertDialog = builder.create()
                     // Show the Alert Dialog box
                     alertDialog.show()
 
                     var translationSelected = ""
-                    if(isEnglish){
+                    if (isEnglish) {
                         englishTranslation.isChecked = true
-                    }
-                    else{
+                    } else {
                         urduTranslation.isChecked = true
                     }
 
@@ -218,23 +222,21 @@ class QuranMainList : AppCompatActivity() {
                     }
 
                     submitBtn.setOnClickListener {
-                        if(translationSelected == "english")
-                        {
+                        if (translationSelected == "english") {
                             with(sharedPreferences.edit()) {
-                                putBoolean("isEnglish" , true)
+                                putBoolean("isEnglish", true)
                                 apply()
                             }
-                        }
-                        else{
+                        } else {
                             with(sharedPreferences.edit()) {
-                                putBoolean("isEnglish" , false)
+                                putBoolean("isEnglish", false)
                                 apply()
                             }
                         }
 
                         alertDialog.cancel()
 
-                        if (fragmentToUse == "search"){
+                        if (fragmentToUse == "search") {
                             val bundle = Bundle()
                             bundle.putString("query", query)
                             supportFragmentManager.commit {
@@ -242,8 +244,7 @@ class QuranMainList : AppCompatActivity() {
                                 //add new fragment
                                 add<QuranSearchFragment>(R.id.fragmentContainerView3, args = bundle)
                             }
-                        }
-                        else{
+                        } else {
                             //swap the fragment using fragmentSelecterForListDisplay()
                             fragmentSelecterForListDisplay(name, number)
                         }
@@ -254,32 +255,42 @@ class QuranMainList : AppCompatActivity() {
                     }
                 }
                 R.id.bookmark -> {
-                   val helperBookmarkDatabase = BookmarkDatabaseAccessHelper(this)
+                    val helperBookmarkDatabase = BookmarkDatabaseAccessHelper(this)
                     val helperQuranDatabase = DatabaseAccessHelper(this)
                     helperBookmarkDatabase.open()
                     helperQuranDatabase.open()
-                    var aya = ArrayList<AyaObject?>()
-                    aya = if(fragmentToUse == "juz"){
-                        helperQuranDatabase.getAllAyaForJuz(number+1)
-                    } else{
-                        helperQuranDatabase.getAllAyaForSurah(number+1)
+                    val aya = if (fragmentToUse == "juz") {
+                        helperQuranDatabase.getAllAyaForJuz(number + 1)
+                    } else {
+                        helperQuranDatabase.getAllAyaForSurah(number + 1)
                     }
 
-                    if(fragmentToUse == "juz"){
+                    if (fragmentToUse == "juz") {
                         //check the juz for the bookmark
-                        for(i in 0 until aya.size){
-                            if(helperBookmarkDatabase.isAyaBookmarkedJuz(aya[i]!!.ayaNumber,aya[i]!!.ayaEnglish, aya[i]!!.ayaArabic)){
-                                sharedPreferences.edit().putBoolean("scrollToBookmark", true).apply()
+                        for (i in 0 until aya.size) {
+                            if (helperBookmarkDatabase.isAyaBookmarkedJuz(
+                                    aya[i]!!.ayaNumber,
+                                    aya[i]!!.ayaEnglish,
+                                    aya[i]!!.ayaArabic
+                                )
+                            ) {
+                                sharedPreferences.edit().putBoolean("scrollToBookmark", true)
+                                    .apply()
                                 sharedPreferences.edit().putInt("scrollToBookmarkNumber", i).apply()
                                 break
                             }
                         }
-                    }
-                    else{
+                    } else {
                         //check the surah for the bookmark
-                        for(i in 0 until aya.size){
-                            if(helperBookmarkDatabase.isAyaBookmarkedSurah(aya[i]!!.ayaNumber,aya[i]!!.ayaEnglish, aya[i]!!.ayaArabic)){
-                                sharedPreferences.edit().putBoolean("scrollToBookmark", true).apply()
+                        for (i in 0 until aya.size) {
+                            if (helperBookmarkDatabase.isAyaBookmarkedSurah(
+                                    aya[i]!!.ayaNumber,
+                                    aya[i]!!.ayaEnglish,
+                                    aya[i]!!.ayaArabic
+                                )
+                            ) {
+                                sharedPreferences.edit().putBoolean("scrollToBookmark", true)
+                                    .apply()
                                 sharedPreferences.edit().putInt("scrollToBookmarkNumber", i).apply()
                                 break
                             }
@@ -294,26 +305,25 @@ class QuranMainList : AppCompatActivity() {
                 R.id.gotoAyat -> {
                     //create a dialog box that has the ayat numbers of the fragment to be displayed
                     //the user can select the ayat number and the fragment will be displayed with the list scroll to that ayat
-                    val builder : AlertDialog.Builder = AlertDialog.Builder(context)
+                    val builder: AlertDialog.Builder = AlertDialog.Builder(context)
                     //get layout inflater
-                    val inflater : LayoutInflater =
+                    val inflater: LayoutInflater =
                         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
                     val gotoayadialog = inflater.inflate(R.layout.gotoayadialog, null)
-                    val ayatNumber : EditText = gotoayadialog.findViewById(R.id.quranSearch)
-                    val startAyaNumber : TextView = gotoayadialog.findViewById(R.id.startAyaNumber)
-                    val endAyaNumber : TextView = gotoayadialog.findViewById(R.id.endAyaNumber)
-                    val submitBtn : Button = gotoayadialog.findViewById(R.id.dialogSubmit)
-                    val cancelbtn : Button = gotoayadialog.findViewById(R.id.dialogCancel)
+                    val ayatNumber: EditText = gotoayadialog.findViewById(R.id.quranSearch)
+                    val startAyaNumber: TextView = gotoayadialog.findViewById(R.id.startAyaNumber)
+                    val endAyaNumber: TextView = gotoayadialog.findViewById(R.id.endAyaNumber)
+                    val submitBtn: Button = gotoayadialog.findViewById(R.id.dialogSubmit)
+                    val cancelbtn: Button = gotoayadialog.findViewById(R.id.dialogCancel)
 
                     val helper = DatabaseAccessHelper(this)
                     helper.open()
 
-                    var aya = ArrayList<String?>()
-                    aya = if(fragmentToUse == "juz"){
-                        helper.getNumberOfAyatJuz(number+1)
-                    } else{
-                        helper.getNumberOfAyatSurah(number+1)
+                    val aya = if (fragmentToUse == "juz") {
+                        helper.getNumberOfAyatJuz(number + 1)
+                    } else {
+                        helper.getNumberOfAyatSurah(number + 1)
                     }
 
                     helper.close()
@@ -334,7 +344,7 @@ class QuranMainList : AppCompatActivity() {
                     builder.setCancelable(false)
 
                     // Create the Alert dialog
-                    val alertDialog : AlertDialog = builder.create()
+                    val alertDialog: AlertDialog = builder.create()
                     // Show the Alert Dialog box
                     alertDialog.show()
 
@@ -342,7 +352,8 @@ class QuranMainList : AppCompatActivity() {
 
                         val ayatToGOTo = ayatNumber.text
 
-                        sharedPreferences.edit().putString("scrollToAyaNumber",
+                        sharedPreferences.edit().putString(
+                            "scrollToAyaNumber",
                             ayatToGOTo.toString()
                         ).apply()
                         fragmentSelecterForListDisplay(name, number)
@@ -350,7 +361,7 @@ class QuranMainList : AppCompatActivity() {
                         alertDialog.cancel()
 
                     }
-                    
+
                     cancelbtn.setOnClickListener {
                         alertDialog.cancel()
                     }

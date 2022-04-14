@@ -34,7 +34,15 @@ class QuranSurahFragment : Fragment() {
         val surahObjects = ArrayList<SurahObject>()
         while (cursorForSuras!!.moveToNext()) {
 
-            val surah = SurahObject(cursorForSuras.getString(0), cursorForSuras.getString(3), cursorForSuras.getString(4), cursorForSuras.getString(5), cursorForSuras.getString(6), cursorForSuras.getString(1), cursorForSuras.getString(8))
+            val surah = SurahObject(
+                cursorForSuras.getString(0),
+                cursorForSuras.getString(3),
+                cursorForSuras.getString(4),
+                cursorForSuras.getString(5),
+                cursorForSuras.getString(6),
+                cursorForSuras.getString(1),
+                cursorForSuras.getString(8)
+            )
 
             surahObjects.add(surah)
         }
@@ -48,11 +56,11 @@ class QuranSurahFragment : Fragment() {
         surahList.adapter = surahListCustomAdapter
 
         surahList.setOnItemClickListener { parent, view, position, id ->
-            val surahClicked= surahObjects[position]
-            val intent = Intent(requireContext() , QuranMainList::class.java)
-            intent.putExtra("number",position)
-            intent.putExtra("fragment","surah")
-            intent.putExtra("name",surahClicked.arabic)
+            val surahClicked = surahObjects[position]
+            val intent = Intent(requireContext(), QuranMainList::class.java)
+            intent.putExtra("number", position)
+            intent.putExtra("fragment", "surah")
+            intent.putExtra("name", surahClicked.arabic)
             startActivity(intent)
         }
 
@@ -60,7 +68,7 @@ class QuranSurahFragment : Fragment() {
         return root
     }
 
-        //a function that saves the last position of the listview before the fragment is paused
+    //a function that saves the last position of the listview before the fragment is paused
     override fun onPause() {
         super.onPause()
 

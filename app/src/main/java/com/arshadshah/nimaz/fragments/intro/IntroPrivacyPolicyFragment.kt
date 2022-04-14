@@ -16,16 +16,15 @@ class IntroPrivacyPolicyFragment : Fragment() {
 
 
     override fun onCreateView(
-        inflater : LayoutInflater ,
-        container : ViewGroup? ,
-        savedInstanceState : Bundle?
-    ) : View?
-    {
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.fragment_intro_privacy_policy , container , false)
+        val root = inflater.inflate(R.layout.fragment_intro_privacy_policy, container, false)
 
 
-        val privacy1 : TextView = root.findViewById(R.id.privacy1)
+        val privacy1: TextView = root.findViewById(R.id.privacy1)
 
         val privacy1Text = "<p>\n" +
                 "<h1>Privacy Policy</h1>" +
@@ -175,7 +174,7 @@ class IntroPrivacyPolicyFragment : Fragment() {
 
 
         privacy1.text =
-            Html.fromHtml(privacy1Text , Html.FROM_HTML_MODE_LEGACY)
+            Html.fromHtml(privacy1Text, Html.FROM_HTML_MODE_LEGACY)
 
         val pandpcontinue: Button = root.findViewById(R.id.pandpcontinue)
         val pandpskip: Button = root.findViewById(R.id.pandpskip)
@@ -186,7 +185,7 @@ class IntroPrivacyPolicyFragment : Fragment() {
             val navcontroller = requireActivity().findNavController(R.id.fragmentContainerView)
             navcontroller.navigate(R.id.locationSelectionFragment)
             with(sharedPreferences.edit()) {
-                putBoolean("isPrivacyPolicyApproved" , true)
+                putBoolean("isPrivacyPolicyApproved", true)
                 apply()
             }
         }
@@ -196,7 +195,7 @@ class IntroPrivacyPolicyFragment : Fragment() {
             val navcontroller = requireActivity().findNavController(R.id.fragmentContainerView)
             navcontroller.navigate(R.id.locationSelectionFragment)
             with(sharedPreferences.edit()) {
-                putBoolean("isPrivacyPolicyApproved" , false)
+                putBoolean("isPrivacyPolicyApproved", false)
                 apply()
             }
         }

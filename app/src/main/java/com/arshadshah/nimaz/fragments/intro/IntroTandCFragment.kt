@@ -16,17 +16,16 @@ class IntroTandCFragment : Fragment() {
 
 
     override fun onCreateView(
-        inflater : LayoutInflater ,
-        container : ViewGroup? ,
-        savedInstanceState : Bundle?
-    ) : View?
-    {
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.fragment_intro_tand_c , container , false)
+        val root = inflater.inflate(R.layout.fragment_intro_tand_c, container, false)
 
 
         //first paragraph
-        val TandC1 : TextView = root.findViewById(R.id.TandC1)
+        val TandC1: TextView = root.findViewById(R.id.TandC1)
 
 
         //email
@@ -162,7 +161,7 @@ class IntroTandCFragment : Fragment() {
 
 
         TandC1.text =
-            Html.fromHtml(TandCtext , Html.FROM_HTML_MODE_LEGACY)
+            Html.fromHtml(TandCtext, Html.FROM_HTML_MODE_LEGACY)
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val tandccontinue: Button = root.findViewById(R.id.tandccontinue)
@@ -172,7 +171,7 @@ class IntroTandCFragment : Fragment() {
             val navcontroller = requireActivity().findNavController(R.id.fragmentContainerView)
             navcontroller.navigate(R.id.introPrivacyPolicyFragment)
             with(sharedPreferences.edit()) {
-                putBoolean("isTandCApproved" , true)
+                putBoolean("isTandCApproved", true)
                 apply()
             }
         }
@@ -182,7 +181,7 @@ class IntroTandCFragment : Fragment() {
             val navcontroller = requireActivity().findNavController(R.id.fragmentContainerView)
             navcontroller.navigate(R.id.locationSelectionFragment)
             with(sharedPreferences.edit()) {
-                putBoolean("isTandCApproved" , false)
+                putBoolean("isTandCApproved", false)
                 apply()
             }
         }

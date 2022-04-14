@@ -27,10 +27,10 @@ class MoreFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_more, container, false)
 
 //        buttons
-        val tasbeeh : ImageView = root.findViewById(R.id.Tasbeeh)
-        val namesOfAllah : ImageView = root.findViewById(R.id.NamesOfAllah)
-        val shahadah : ImageView = root.findViewById(R.id.Shahadah)
-        val help : ImageView = root.findViewById(R.id.help)
+        val tasbeeh: ImageView = root.findViewById(R.id.Tasbeeh)
+        val namesOfAllah: ImageView = root.findViewById(R.id.NamesOfAllah)
+        val shahadah: ImageView = root.findViewById(R.id.Shahadah)
+        val help: ImageView = root.findViewById(R.id.help)
 
 
         startActivityUsingIntent(requireContext(), tasbeeh, TasbeehActivity())
@@ -45,10 +45,14 @@ class MoreFragment : Fragment() {
         return root
     }
 
-    fun startActivityUsingIntent(context: Context,nameOfButton: ImageView,  ActivityToStart: Activity){
+    fun startActivityUsingIntent(
+        context: Context,
+        nameOfButton: ImageView,
+        ActivityToStart: Activity
+    ) {
         nameOfButton.setOnClickListener {
-            val expandIn : Animation =
-                AnimationUtils.loadAnimation(context , R.anim.expand_in)
+            val expandIn: Animation =
+                AnimationUtils.loadAnimation(context, R.anim.expand_in)
             nameOfButton.startAnimation(expandIn)
 
             //navigate to activity

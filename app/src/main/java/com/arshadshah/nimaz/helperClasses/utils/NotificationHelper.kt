@@ -23,8 +23,7 @@ import com.arshadshah.nimaz.R
  * A Helper class that creates both the Notifications and the notification channels
  * @author Arshad Shah
  */
-class NotificationHelper
-{
+class NotificationHelper {
 
     /**
      * Creates Notification Channel in Android O and Above
@@ -39,44 +38,43 @@ class NotificationHelper
      */
     @RequiresApi(Build.VERSION_CODES.O)
     fun createNotificationChannel(
-        context : Context ,
-        importance : Int ,
-        showBadge : Boolean ,
-        name : String ,
-        description : String ,
-        channel_id : String ,
-        sound : String
-                                 )
-    {
-        val notificationManager : NotificationManager =
+        context: Context,
+        importance: Int,
+        showBadge: Boolean,
+        name: String,
+        description: String,
+        channel_id: String,
+        sound: String
+    ) {
+        val notificationManager: NotificationManager =
             context.getSystemService(NOTIFICATION_SERVICE) as
                     NotificationManager
 
-        val Adhan : Uri = Uri.parse(sound)
+        val Adhan: Uri = Uri.parse(sound)
 
         val attributes =
             AudioAttributes.Builder()
                 .setContentType(
                     AudioAttributes
                         .CONTENT_TYPE_SONIFICATION
-                               )
+                )
                 .setUsage(AudioAttributes.USAGE_NOTIFICATION)
                 .build()
         // 1
         // 2
-        val channel = NotificationChannel(channel_id , name , importance)
+        val channel = NotificationChannel(channel_id, name, importance)
         channel.description = description
         channel.setShowBadge(showBadge)
         channel.enableLights(true)
         channel.lightColor = GREEN
-        channel.setSound(Adhan , attributes)
+        channel.setSound(Adhan, attributes)
         channel.lockscreenVisibility = VISIBILITY_PUBLIC
         channel.enableVibration(true)
         channel.vibrationPattern =
-            longArrayOf(100 , 200 , 300 , 400 , 500 , 400 , 300 , 200 , 400)
+            longArrayOf(100, 200, 300, 400, 500, 400, 300, 200, 400)
         // 3
         notificationManager.createNotificationChannel(channel)
-        Log.i("Notifications" , "Notification Channel $name Successfully created")
+        Log.i("Notifications", "Notification Channel $name Successfully created")
     }
 
 
@@ -92,19 +90,19 @@ class NotificationHelper
      */
     @RequiresApi(Build.VERSION_CODES.O)
     fun NotificationChannelSilent(
-        context : Context ,
-        importance : Int ,
-        showBadge : Boolean ,
-        name : String ,
-        description : String ,
-        channel_id : String)
-    {
-        val notificationManager : NotificationManager =
+        context: Context,
+        importance: Int,
+        showBadge: Boolean,
+        name: String,
+        description: String,
+        channel_id: String
+    ) {
+        val notificationManager: NotificationManager =
             context.getSystemService(NOTIFICATION_SERVICE) as
                     NotificationManager
         // 1
         // 2
-        val channel = NotificationChannel(channel_id , name , importance)
+        val channel = NotificationChannel(channel_id, name, importance)
         channel.description = description
         channel.setShowBadge(showBadge)
         channel.enableLights(true)
@@ -112,14 +110,11 @@ class NotificationHelper
         channel.lockscreenVisibility = VISIBILITY_PUBLIC
         channel.enableVibration(true)
         channel.vibrationPattern =
-            longArrayOf(100 , 200 , 300 , 400 , 500 , 400 , 300 , 200 , 400)
+            longArrayOf(100, 200, 300, 400, 500, 400, 300, 200, 400)
         // 3
         notificationManager.createNotificationChannel(channel)
-        Log.i("Notifications" , "Notification Channel $name Successfully created")
+        Log.i("Notifications", "Notification Channel $name Successfully created")
     }
-
-
-
 
 
     /**
@@ -131,44 +126,40 @@ class NotificationHelper
      * @param notification_id The id of the Notification ( Unique Integer)
      */
     fun createNotification(
-        context : Context ,
-        channel_id : String ,
-        title : String ,
-        notification_id : Int
-                          )
-    {
+        context: Context,
+        channel_id: String,
+        title: String,
+        notification_id: Int
+    ) {
         // Create an explicit intent for an Activity in your app
         val notificationIntent =
-            Intent(context , MainActivity::class.java).apply {
+            Intent(context, MainActivity::class.java).apply {
                 flags =
                     Intent.FLAG_ACTIVITY_NEW_TASK or
                             Intent
                                 .FLAG_ACTIVITY_CLEAR_TASK
             }
-        val notificationPendingIntent : PendingIntent =
-            PendingIntent.getActivity(context , 8 , notificationIntent , FLAG_IMMUTABLE)
+        val notificationPendingIntent: PendingIntent =
+            PendingIntent.getActivity(context, 8, notificationIntent, FLAG_IMMUTABLE)
 
-            val builder =
-                NotificationCompat.Builder(context , channel_id).apply {
-                    setSmallIcon(R.drawable.ic_prayer)
-                    setContentTitle(title)
-                    if (title == "Test Adhan"){
-                        setContentText("This is a test Adhan")
-                    }
-                    else if(title == "Sunrise" || title == "شروق"){
-                        setContentText("The sun has risen!!")
-                    }
-                    else
-                    {
-                        setContentText("Time to Offer $title salat")
-                    }
-                    priority = NotificationCompat.PRIORITY_HIGH
-                    setContentIntent(notificationPendingIntent)
-                    setAutoCancel(true)
+        val builder =
+            NotificationCompat.Builder(context, channel_id).apply {
+                setSmallIcon(R.drawable.ic_prayer)
+                setContentTitle(title)
+                if (title == "Test Adhan") {
+                    setContentText("This is a test Adhan")
+                } else if (title == "Sunrise" || title == "شروق") {
+                    setContentText("The sun has risen!!")
+                } else {
+                    setContentText("Time to Offer $title salat")
                 }
-            with(NotificationManagerCompat.from(context)) {
-                notify(notification_id , builder.build())
+                priority = NotificationCompat.PRIORITY_HIGH
+                setContentIntent(notificationPendingIntent)
+                setAutoCancel(true)
             }
-        Log.i("Notifications" , "Notification $title Successfully Displayed")
+        with(NotificationManagerCompat.from(context)) {
+            notify(notification_id, builder.build())
+        }
+        Log.i("Notifications", "Notification $title Successfully Displayed")
     }
 }

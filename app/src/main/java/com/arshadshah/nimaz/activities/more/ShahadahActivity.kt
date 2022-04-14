@@ -16,8 +16,8 @@ class ShahadahActivity : AppCompatActivity() {
         val backButton: ImageView = findViewById(R.id.backButton5)
 
         backButton.setOnClickListener {
-            val expandIn : Animation =
-                AnimationUtils.loadAnimation(this , R.anim.expand_in)
+            val expandIn: Animation =
+                AnimationUtils.loadAnimation(this, R.anim.expand_in)
             backButton.startAnimation(expandIn)
             //pop back stack to previous activity
             finish()

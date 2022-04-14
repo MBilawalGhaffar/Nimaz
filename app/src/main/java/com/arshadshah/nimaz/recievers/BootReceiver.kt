@@ -20,21 +20,18 @@ import kotlin.properties.Delegates
  * A BroadcastReceiver that Resets the Alarms on Device bootup
  * @author Arshad Shah
  */
-class bootReceiver : BroadcastReceiver()
-{
+class bootReceiver : BroadcastReceiver() {
 
     var latitude by Delegates.notNull<Double>()
     var longitude by Delegates.notNull<Double>()
 
     @RequiresApi(Build.VERSION_CODES.Q)
-    override fun onReceive(context : Context , intent : Intent)
-    {
+    override fun onReceive(context: Context, intent: Intent) {
         if (intent.action.equals(Intent.ACTION_BOOT_COMPLETED) ||
             intent.action.equals(Intent.ACTION_LOCKED_BOOT_COMPLETED)
-        )
-        {
-            Log.i("Boot Completed" , "Intent action from Boot Complete Received")
-            Log.i("Alarms for Adhan" , "Resetting Alarms after BootUp!")
+        ) {
+            Log.i("Boot Completed", "Intent action from Boot Complete Received")
+            Log.i("Alarms for Adhan", "Resetting Alarms after BootUp!")
 
 
             //shared preferences
@@ -46,78 +43,72 @@ class bootReceiver : BroadcastReceiver()
              * */
 
             // get values from settings
-            val name = sharedPreferences.getString("location_input" , "Portlaoise")
-            val calcMethod = sharedPreferences.getString("calcMethod" , "IRELAND")
+            val name = sharedPreferences.getString("location_input", "Portlaoise")
+            val calcMethod = sharedPreferences.getString("calcMethod", "IRELAND")
 
             // madhab adjustments
-            val madhab = sharedPreferences.getBoolean("madhab" , true)
+            val madhab = sharedPreferences.getBoolean("madhab", true)
 
             // angle input from settings
-            val fajr_angle = sharedPreferences.getString("fajrAngle" , "14.0")
-            val ishaa_angle = sharedPreferences.getString("ishaaAngle" , "13.0")
+            val fajr_angle = sharedPreferences.getString("fajrAngle", "14.0")
+            val ishaa_angle = sharedPreferences.getString("ishaaAngle", "13.0")
 
             // time adjustments
-            val fajr_adjust = sharedPreferences.getString("fajr" , "0")
-            val sunrise_adjust = sharedPreferences.getString("sunrise" , "0")
-            val zuhar_adjust = sharedPreferences.getString("zuhar" , "0")
-            val asar_adjust = sharedPreferences.getString("asar" , "0")
-            val maghrib_adjust = sharedPreferences.getString("maghrib" , "0")
-            val ishaa_adjust = sharedPreferences.getString("ishaa" , "0")
+            val fajr_adjust = sharedPreferences.getString("fajr", "0")
+            val sunrise_adjust = sharedPreferences.getString("sunrise", "0")
+            val zuhar_adjust = sharedPreferences.getString("zuhar", "0")
+            val asar_adjust = sharedPreferences.getString("asar", "0")
+            val maghrib_adjust = sharedPreferences.getString("maghrib", "0")
+            val ishaa_adjust = sharedPreferences.getString("ishaa", "0")
 
-            val highlatRule = sharedPreferences.getString("highlatrule" , "TWILIGHT_ANGLE")
-            val locationTypeValue = sharedPreferences.getBoolean("locationType" , true)
+            val highlatRule = sharedPreferences.getString("highlatrule", "TWILIGHT_ANGLE")
+            val locationTypeValue = sharedPreferences.getBoolean("locationType", true)
 
             val isNetworkAvailable = NetworkChecker().networkCheck(context)
-            if (isNetworkAvailable)
-            {
-                if(!locationTypeValue){
+            if (isNetworkAvailable) {
+                if (!locationTypeValue) {
                     //location finder class
                     //location finder class
                     val lonAndLat = locationFinder()
                     lonAndLat.findLongAndLan(context, name!!)
                 }
-                latitude = sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
-                longitude = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()
-            }
-            else
-            {
+                latitude = sharedPreferences.getString("latitude", "0.0")!!.toDouble()
+                longitude = sharedPreferences.getString("longitude", "0.0")!!.toDouble()
+            } else {
                 with(sharedPreferences.edit()) {
-                    putString("location_input" , "No Network")
+                    putString("location_input", "No Network")
                     apply()
                 }
-                latitude = sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
-                longitude = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()
+                latitude = sharedPreferences.getString("latitude", "0.0")!!.toDouble()
+                longitude = sharedPreferences.getString("longitude", "0.0")!!.toDouble()
             }
 
             // calculation
-            val coordinates = Coordinates(latitude , longitude)
+            val coordinates = Coordinates(latitude, longitude)
             val calcdate = DateComponents.from(Date())
 
             /**
              * calculate the the time with the parameters
              * supplied to the API
              * */
-            val parameters = CalculationMethod.valueOf(calcMethod !!).parameters
-            if (madhab)
-            {
+            val parameters = CalculationMethod.valueOf(calcMethod!!).parameters
+            if (madhab) {
                 parameters.madhab = Madhab.SHAFI
-            }
-            else if (! madhab)
-            {
+            } else if (!madhab) {
                 parameters.madhab = Madhab.HANAFI
             }
-            parameters.fajrAngle = fajr_angle !!.toDouble()
-            parameters.ishaAngle = ishaa_angle !!.toDouble()
+            parameters.fajrAngle = fajr_angle!!.toDouble()
+            parameters.ishaAngle = ishaa_angle!!.toDouble()
 
-            parameters.adjustments.fajr = fajr_adjust !!.toInt()
-            parameters.adjustments.sunrise = sunrise_adjust !!.toInt()
-            parameters.adjustments.dhuhr = zuhar_adjust !!.toInt()
-            parameters.adjustments.asr = asar_adjust !!.toInt()
-            parameters.adjustments.maghrib = maghrib_adjust !!.toInt()
-            parameters.adjustments.isha = ishaa_adjust !!.toInt()
-            parameters.highLatitudeRule = HighLatitudeRule.valueOf(highlatRule !!)
+            parameters.adjustments.fajr = fajr_adjust!!.toInt()
+            parameters.adjustments.sunrise = sunrise_adjust!!.toInt()
+            parameters.adjustments.dhuhr = zuhar_adjust!!.toInt()
+            parameters.adjustments.asr = asar_adjust!!.toInt()
+            parameters.adjustments.maghrib = maghrib_adjust!!.toInt()
+            parameters.adjustments.isha = ishaa_adjust!!.toInt()
+            parameters.highLatitudeRule = HighLatitudeRule.valueOf(highlatRule!!)
 
-            val prayerTimes = PrayerTimes(coordinates , calcdate , parameters)
+            val prayerTimes = PrayerTimes(coordinates, calcdate, parameters)
 
 
             // time for alarm
@@ -138,31 +129,31 @@ class bootReceiver : BroadcastReceiver()
 
             //write lock to storage
             with(sharedPreferences.edit()) {
-                putBoolean("alarmLock" , false)
+                putBoolean("alarmLock", false)
                 apply()
             }
 
             CreateAlarms().scheduleAlarms(
-                context ,
-                fajrAlarm ,
-                sunriseAlarm ,
-                zuharAlarm ,
-                asarAlarm ,
-                maghribAlarm ,
+                context,
+                fajrAlarm,
+                sunriseAlarm,
+                zuharAlarm,
+                asarAlarm,
+                maghribAlarm,
                 ishaaAlarm
-                                         )
-            Log.i("Alarms for Adhan" , "Alarms Reset and executed")
+            )
+            Log.i("Alarms for Adhan", "Alarms Reset and executed")
             //reset alarms
             CreateAlarms().resetAlarms(
-                context ,
-                fajrAlarm ,
-                sunriseAlarm ,
-                zuharAlarm ,
-                asarAlarm ,
-                maghribAlarm ,
+                context,
+                fajrAlarm,
+                sunriseAlarm,
+                zuharAlarm,
+                asarAlarm,
+                maghribAlarm,
                 ishaaAlarm
-                                      )
-            Log.i("Alarms for Adhan" , "Alarms will be reset on 1 oclock every night")
+            )
+            Log.i("Alarms for Adhan", "Alarms will be reset on 1 oclock every night")
         }
     } // end of on receive function
 } // end of boot receiver

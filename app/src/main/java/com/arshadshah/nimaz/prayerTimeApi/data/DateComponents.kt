@@ -2,11 +2,9 @@ package com.arshadshah.nimaz.prayerTimeApi.data
 
 import java.util.*
 
-class DateComponents(val year : Int , val month : Int , val day : Int)
-{
+class DateComponents(val year: Int, val month: Int, val day: Int) {
 
-    companion object
-    {
+    companion object {
 
         /**
          * Convenience method that returns a DateComponents from a given Date
@@ -14,14 +12,13 @@ class DateComponents(val year : Int , val month : Int , val day : Int)
          * @param date the date
          * @return the DateComponents (according to the default device timezone)
          */
-        fun from(date : Date?) : DateComponents
-        {
+        fun from(date: Date?): DateComponents {
             val calendar = GregorianCalendar.getInstance()
-            calendar.time = date !!
+            calendar.time = date!!
             return DateComponents(
-                calendar[Calendar.YEAR] , calendar[Calendar.MONTH] + 1 ,
+                calendar[Calendar.YEAR], calendar[Calendar.MONTH] + 1,
                 calendar[Calendar.DAY_OF_MONTH]
-                                 )
+            )
         }
 
         /**
@@ -32,14 +29,13 @@ class DateComponents(val year : Int , val month : Int , val day : Int)
          * @return the DateComponents (according to UTC)
          */
         @JvmStatic
-        fun fromUTC(date : Date?) : DateComponents
-        {
+        fun fromUTC(date: Date?): DateComponents {
             val calendar = GregorianCalendar.getInstance(TimeZone.getTimeZone("UTC"))
-            calendar.time = date !!
+            calendar.time = date!!
             return DateComponents(
-                calendar[Calendar.YEAR] , calendar[Calendar.MONTH] + 1 ,
+                calendar[Calendar.YEAR], calendar[Calendar.MONTH] + 1,
                 calendar[Calendar.DAY_OF_MONTH]
-                                 )
+            )
         }
     }
 }

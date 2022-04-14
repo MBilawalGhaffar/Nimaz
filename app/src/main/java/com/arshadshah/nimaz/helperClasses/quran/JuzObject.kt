@@ -1,7 +1,7 @@
 package com.arshadshah.nimaz.helperClasses.quran
 
-class JuzObject (
+class JuzObject(
     var JuzNumber: String,
-    var english : String,
-    var arabic : String,
-    )
+    var english: String,
+    var arabic: String,
+)

@@ -28,29 +28,33 @@ class LocationInputFragment : Fragment() {
         val locationSkip: Button = root.findViewById(R.id.locationSkip)
 
         locationFinish.setOnClickListener {
-            val city:EditText = root.findViewById(R.id.city)
+            val city: EditText = root.findViewById(R.id.city)
 
-            if(city.text.length > 2){
+            if (city.text.length > 2) {
                 val currentLocation = city.text.toString()
                 with(sharedPreferences.edit()) {
-                    putString("location_input" , currentLocation)
-                    putBoolean("isFirstInstall" , false)
+                    putString("location_input", currentLocation)
+                    putBoolean("isFirstInstall", false)
                     putBoolean("navigateToHome", true)
-                    putBoolean("channelLock" , false)
+                    putBoolean("channelLock", false)
                     apply()
                 }
-                val intent = Intent(requireContext() , HomeActivity::class.java)
+                val intent = Intent(requireContext(), HomeActivity::class.java)
                 startActivity(intent)
                 activity?.finish()
-                Toast.makeText(requireContext(),"Showing Prayer times for $currentLocation", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Showing Prayer times for $currentLocation",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
 
         //if skipped
         locationSkip.setOnClickListener {
             with(sharedPreferences.edit()) {
-                putBoolean("isFirstInstall" , false)
-                putBoolean("channelLock" , false)
+                putBoolean("isFirstInstall", false)
+                putBoolean("channelLock", false)
                 apply()
             }
             createDialog()
@@ -67,8 +71,8 @@ class LocationInputFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         val inflater: LayoutInflater? = activity?.layoutInflater
         val locationInputDialog: View = inflater!!.inflate(R.layout.locationskip, null)
-        val dialogYes:Button = locationInputDialog.findViewById(R.id.dialogYes)
-        val dialogNo:Button = locationInputDialog.findViewById(R.id.dialogNo)
+        val dialogYes: Button = locationInputDialog.findViewById(R.id.dialogYes)
+        val dialogNo: Button = locationInputDialog.findViewById(R.id.dialogNo)
         builder.setView(locationInputDialog)
         // Set Cancelable false
         builder.setCancelable(false)
@@ -77,7 +81,7 @@ class LocationInputFragment : Fragment() {
         // Show the Alert Dialog box
         alertDialog.show()
         dialogYes.setOnClickListener { view: View? ->
-            val intent = Intent(requireContext() , HomeActivity::class.java)
+            val intent = Intent(requireContext(), HomeActivity::class.java)
             startActivity(intent)
             activity?.finish()
         }

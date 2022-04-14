@@ -11,58 +11,48 @@ import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.arabicReshaper.ArabicUtilities
 
 internal class SurahListCustomAdapter(
-    var context : Context ,
-    private var arrayList : ArrayList<SurahObject>
-                            ) :
-    ListAdapter
-{
+    var context: Context,
+    private var arrayList: ArrayList<SurahObject>
+) :
+    ListAdapter {
 
-    override fun areAllItemsEnabled() : Boolean
-    {
+    override fun areAllItemsEnabled(): Boolean {
         return false
     }
 
-    override fun isEnabled(position : Int) : Boolean
-    {
+    override fun isEnabled(position: Int): Boolean {
         return true
     }
 
-    override fun registerDataSetObserver(observer : DataSetObserver)
-    {
+    override fun registerDataSetObserver(observer: DataSetObserver) {
     }
 
-    override fun unregisterDataSetObserver(observer : DataSetObserver)
-    {
+    override fun unregisterDataSetObserver(observer: DataSetObserver) {
     }
 
-    override fun getCount() : Int
-    {
+    override fun getCount(): Int {
         return arrayList.size
     }
 
-    override fun getItem(position : Int) : Any
-    {
+    override fun getItem(position: Int): Any {
         return position
     }
 
-    override fun getItemId(position : Int) : Long
-    {
+    override fun getItemId(position: Int): Long {
         return position.toLong()
     }
 
-    override fun hasStableIds() : Boolean
-    {
+    override fun hasStableIds(): Boolean {
         return false
     }
 
-    override fun getView(position : Int , ConvertView : View? , parent : ViewGroup) : View?
-    {
-        var convertView : View? = ConvertView
+    override fun getView(position: Int, ConvertView: View?, parent: ViewGroup): View? {
+        var convertView: View? = ConvertView
         val SurahObject = arrayList[position]
 
-        if(convertView == null){
+        if (convertView == null) {
             val layoutInflater = LayoutInflater.from(context)
-            convertView = layoutInflater.inflate(R.layout.surah_row_item , null)
+            convertView = layoutInflater.inflate(R.layout.surah_row_item, null)
         }
         val surahNumber = convertView?.findViewById<TextView>(R.id.surahNumber)
         val SurahArabicName = convertView?.findViewById<TextView>(R.id.SurahArabicName)
@@ -80,18 +70,15 @@ internal class SurahListCustomAdapter(
         return convertView
     }
 
-    override fun getItemViewType(position : Int) : Int
-    {
+    override fun getItemViewType(position: Int): Int {
         return position
     }
 
-    override fun getViewTypeCount() : Int
-    {
+    override fun getViewTypeCount(): Int {
         return arrayList.size
     }
 
-    override fun isEmpty() : Boolean
-    {
+    override fun isEmpty(): Boolean {
         return false
     }
 }

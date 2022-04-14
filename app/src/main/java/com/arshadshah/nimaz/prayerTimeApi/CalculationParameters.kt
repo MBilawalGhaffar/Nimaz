@@ -18,13 +18,12 @@ class CalculationParameters
     /**
      * The angle of the sun used to calculate fajr
      */
-    var fajrAngle : Double ,
+    var fajrAngle: Double,
     /**
      * The angle of the sun used to calculate isha
      */
-    var ishaAngle : Double
-   )
-{
+    var ishaAngle: Double
+) {
 
     /**
      * The method used to do the calculation
@@ -68,8 +67,7 @@ class CalculationParameters
      * @param fajrAngle    the angle for calculating fajr
      * @param ishaInterval the amount of time after maghrib to have isha
      */
-    constructor(fajrAngle : Double , ishaInterval : Int) : this(fajrAngle , 0.0)
-    {
+    constructor(fajrAngle: Double, ishaInterval: Int) : this(fajrAngle, 0.0) {
         this.ishaInterval = ishaInterval
     }
 
@@ -80,11 +78,10 @@ class CalculationParameters
      * @param ishaAngle the angle for calculating isha
      * @param method    the calculation method to use
      */
-    constructor(fajrAngle : Double , ishaAngle : Double , method : CalculationMethod) : this(
-        fajrAngle ,
+    constructor(fajrAngle: Double, ishaAngle: Double, method: CalculationMethod) : this(
+        fajrAngle,
         ishaAngle
-                                                                                            )
-    {
+    ) {
         this.method = method
     }
 
@@ -96,11 +93,10 @@ class CalculationParameters
      * @param ishaInterval the amount of time after maghrib to have isha
      * @param method       the calculation method to use
      */
-    constructor(fajrAngle : Double , ishaInterval : Int , method : CalculationMethod) : this(
-        fajrAngle ,
+    constructor(fajrAngle: Double, ishaInterval: Int, method: CalculationMethod) : this(
+        fajrAngle,
         ishaInterval
-                                                                                            )
-    {
+    ) {
         this.method = method
     }
 
@@ -110,35 +106,28 @@ class CalculationParameters
      * @param adjustments the prayer adjustments
      * @return this calculation parameters instance
      */
-    fun withMethodAdjustments(adjustments : PrayerAdjustments) : CalculationParameters
-    {
+    fun withMethodAdjustments(adjustments: PrayerAdjustments): CalculationParameters {
         methodAdjustments = adjustments
         return this
     }
 
-    class NightPortions(val fajr : Double , val isha : Double)
+    class NightPortions(val fajr: Double, val isha: Double)
 
-    fun nightPortions() : NightPortions
-    {
-        return when (highLatitudeRule)
-        {
-            HighLatitudeRule.MIDDLE_OF_THE_NIGHT ->
-            {
-                NightPortions(1.0 / 2.0 , 1.0 / 2.0)
+    fun nightPortions(): NightPortions {
+        return when (highLatitudeRule) {
+            HighLatitudeRule.MIDDLE_OF_THE_NIGHT -> {
+                NightPortions(1.0 / 2.0, 1.0 / 2.0)
             }
 
-            HighLatitudeRule.SEVENTH_OF_THE_NIGHT ->
-            {
-                NightPortions(1.0 / 7.0 , 1.0 / 7.0)
+            HighLatitudeRule.SEVENTH_OF_THE_NIGHT -> {
+                NightPortions(1.0 / 7.0, 1.0 / 7.0)
             }
 
-            HighLatitudeRule.TWILIGHT_ANGLE ->
-            {
-                NightPortions(fajrAngle / 60.0 , ishaAngle / 60.0)
+            HighLatitudeRule.TWILIGHT_ANGLE -> {
+                NightPortions(fajrAngle / 60.0, ishaAngle / 60.0)
             }
 
-            else ->
-            {
+            else -> {
                 throw IllegalArgumentException("Invalid high latitude rule")
             }
         }

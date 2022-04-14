@@ -13,9 +13,9 @@ class Coordinates
     /**
      * Latitude
      */
-    val latitude : Double ,
+    val latitude: Double,
     /**
      * Longitude
      */
-    val longitude : Double
-   )
+    val longitude: Double
+)

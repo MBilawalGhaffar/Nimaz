@@ -20,23 +20,21 @@ import com.arshadshah.nimaz.R
  * is displayed.
  * @author Arshad Shah
  * */
-class About : Fragment()
-{
+class About : Fragment() {
 
     override fun onCreateView(
-        inflater : LayoutInflater , container : ViewGroup? ,
-        savedInstanceState : Bundle?
-                             ) : View?
-    {
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.fragment_about , container , false)
+        val root = inflater.inflate(R.layout.fragment_about, container, false)
 
         val fragmentName = requireArguments().getString("fragmentName")
 
         //change the action bar title to fragmentName
         activity?.title = fragmentName
-        
-        val version : TextView = root.findViewById(R.id.version)
+
+        val version: TextView = root.findViewById(R.id.version)
         val versionCode = BuildConfig.VERSION_NAME
 
         version.text = versionCode
@@ -52,7 +50,12 @@ class About : Fragment()
         val linkedin: ImageButton = root.findViewById(R.id.linkedin)
 
         linkedin.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/in/arshadshah")))
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://www.linkedin.com/in/arshadshah")
+                )
+            )
         }
 
         //        website button
@@ -74,13 +77,23 @@ class About : Fragment()
         val ref1: ImageButton = root.findViewById(R.id.ref1)
 
         ref1.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/batoulapps/adhan-java")))
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://github.com/batoulapps/adhan-java")
+                )
+            )
         }
         //        website button
         val ref2: ImageButton = root.findViewById(R.id.ref2)
 
         ref2.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.flaticon.com/authors/dinosoftlabs")))
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://www.flaticon.com/authors/dinosoftlabs")
+                )
+            )
         }
         //        website button
         val ref3: ImageButton = root.findViewById(R.id.ref3)
@@ -100,7 +113,12 @@ class About : Fragment()
         val ref4: ImageButton = root.findViewById(R.id.ref4)
 
         ref4.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/agawish/Better-Arabic-Reshaper")))
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://github.com/agawish/Better-Arabic-Reshaper")
+                )
+            )
         }
         return root
     }

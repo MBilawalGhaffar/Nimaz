@@ -16,54 +16,43 @@ import com.arshadshah.nimaz.fragments.settings.MainPage
 private const val TITLE_TAG = "settingsActivityTitle"
 
 class SettingsActivity :
-    AppCompatActivity() , PreferenceFragmentCompat.OnPreferenceStartFragmentCallback
-{
+    AppCompatActivity(), PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
 
-    override fun onCreate(savedInstanceState : Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_activity)
 
-        if (savedInstanceState == null)
-        {
+        if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.settings , MainPage())
+                .replace(R.id.settings, MainPage())
                 .commit()
-        }
-        else
-        {
+        } else {
             title = savedInstanceState.getCharSequence(TITLE_TAG)
         }
         supportFragmentManager.addOnBackStackChangedListener {
-            if (supportFragmentManager.backStackEntryCount == 0)
-            {
+            if (supportFragmentManager.backStackEntryCount == 0) {
                 setTitle(R.string.title_activity_settings)
             }
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    override fun onSaveInstanceState(outState : Bundle)
-    {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         // Save current activity title so we can set it again after a configuration change
-        outState.putCharSequence(TITLE_TAG , title)
+        outState.putCharSequence(TITLE_TAG, title)
     }
 
-    override fun onSupportNavigateUp() : Boolean
-    {
-        if (supportFragmentManager.popBackStackImmediate())
-        {
+    override fun onSupportNavigateUp(): Boolean {
+        if (supportFragmentManager.popBackStackImmediate()) {
             return true
-        }
-        else
-        {
+        } else {
             val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-            val navigateToHome = sharedPreferences.getBoolean("navigateToHome" , true)
-            if(navigateToHome){
-                val intent = Intent(this@SettingsActivity , HomeActivity::class.java)
+            val navigateToHome = sharedPreferences.getBoolean("navigateToHome", true)
+            if (navigateToHome) {
+                val intent = Intent(this@SettingsActivity, HomeActivity::class.java)
                 startActivity(intent)
                 with(sharedPreferences.edit()) {
                     putBoolean("navigateToHome", false)
@@ -76,22 +65,21 @@ class SettingsActivity :
     }
 
     override fun onPreferenceStartFragment(
-        caller : PreferenceFragmentCompat ,
-        pref : Preference
-                                          ) : Boolean
-    {
+        caller: PreferenceFragmentCompat,
+        pref: Preference
+    ): Boolean {
         // Instantiate the new Fragment
         val args = pref.extras
         val fragment =
-            supportFragmentManager.fragmentFactory.instantiate(classLoader , pref.fragment!!)
+            supportFragmentManager.fragmentFactory.instantiate(classLoader, pref.fragment!!)
                 .apply {
                     arguments = args
-                    setTargetFragment(caller , 0)
+                    setTargetFragment(caller, 0)
                 }
         // Replace the existing Fragment with the new Fragment
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.settings , fragment)
+            .replace(R.id.settings, fragment)
             .addToBackStack(null)
             .commit()
         title = pref.title

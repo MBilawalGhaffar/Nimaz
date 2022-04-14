@@ -6,8 +6,7 @@ import kotlin.math.*
 /**
  * Astronomical equations
  */
-internal object Astronomical
-{
+internal object Astronomical {
 
     /**
      * The geometric mean longitude of the sun in degrees.
@@ -16,8 +15,7 @@ internal object Astronomical
      * @return the geometric longitude of the sun in degrees
      */
     @JvmStatic
-    fun meanSolarLongitude(T : Double) : Double
-    {
+    fun meanSolarLongitude(T: Double): Double {
         /* Equation from Astronomical Algorithms page 163 */
         val term1 = 280.4664567
         val term2 = 36000.76983 * T
@@ -33,8 +31,7 @@ internal object Astronomical
      * @return the geometric mean longitude of the moon in degrees
      */
     @JvmStatic
-    fun meanLunarLongitude(T : Double) : Double
-    {
+    fun meanLunarLongitude(T: Double): Double {
         /* Equation from Astronomical Algorithms page 144 */
         val term1 = 218.3165
         val term2 = 481267.8813 * T
@@ -50,10 +47,9 @@ internal object Astronomical
      * @return the true equinox of the date
      */
     @JvmStatic
-    fun apparentSolarLongitude(T : Double , L0 : Double) : Double
-    {
+    fun apparentSolarLongitude(T: Double, L0: Double): Double {
         /* Equation from Astronomical Algorithms page 164 */
-        val longitude = L0 + solarEquationOfTheCenter(T , meanSolarAnomaly(T))
+        val longitude = L0 + solarEquationOfTheCenter(T, meanSolarAnomaly(T))
         val Ω = 125.04 - 1934.136 * T
         val λ = longitude - 0.00569 - 0.00478 * sin(Math.toRadians(Ω))
         return DoubleUtil.unwindAngle(λ)
@@ -66,8 +62,7 @@ internal object Astronomical
      * @return the ascending lunar node longitude
      */
     @JvmStatic
-    fun ascendingLunarNodeLongitude(T : Double) : Double
-    {
+    fun ascendingLunarNodeLongitude(T: Double): Double {
         /* Equation from Astronomical Algorithms page 144 */
         val term1 = 125.04452
         val term2 = 1934.136261 * T
@@ -83,8 +78,7 @@ internal object Astronomical
      * @param T the julian century
      * @return the mean solar anomaly
      */
-    private fun meanSolarAnomaly(T : Double) : Double
-    {
+    private fun meanSolarAnomaly(T: Double): Double {
         /* Equation from Astronomical Algorithms page 163 */
         val term1 = 357.52911
         val term2 = 35999.05029 * T
@@ -100,8 +94,7 @@ internal object Astronomical
      * @param M the mean anomaly
      * @return the sun's equation of the center in degrees
      */
-    private fun solarEquationOfTheCenter(T : Double , M : Double) : Double
-    {
+    private fun solarEquationOfTheCenter(T: Double, M: Double): Double {
         /* Equation from Astronomical Algorithms page 164 */
         val Mrad = Math.toRadians(M)
         val term1 = (1.914602 - (0.004817 * T) - (0.000014 * T.pow(2.0))) * sin(Mrad)
@@ -118,8 +111,7 @@ internal object Astronomical
      * @return the mean obliquity of the ecliptic in degrees
      */
     @JvmStatic
-    fun meanObliquityOfTheEcliptic(T : Double) : Double
-    {
+    fun meanObliquityOfTheEcliptic(T: Double): Double {
         /* Equation from Astronomical Algorithms page 147 */
         val term1 = 23.439291
         val term2 = 0.013004167 * T
@@ -137,8 +129,7 @@ internal object Astronomical
      * @return the corrected mean obliquity of the ecliptic in degrees
      */
     @JvmStatic
-    fun apparentObliquityOfTheEcliptic(T : Double , ε0 : Double) : Double
-    {
+    fun apparentObliquityOfTheEcliptic(T: Double, ε0: Double): Double {
         /* Equation from Astronomical Algorithms page 165 */
         val O = 125.04 - 1934.136 * T
         return ε0 + 0.00256 * cos(Math.toRadians(O))
@@ -151,8 +142,7 @@ internal object Astronomical
      * @return the mean sidereal time in degrees
      */
     @JvmStatic
-    fun meanSiderealTime(T : Double) : Double
-    {
+    fun meanSiderealTime(T: Double): Double {
         /* Equation from Astronomical Algorithms page 165 */
         val JD = T * 36525 + 2451545.0
         val term1 = 280.46061837
@@ -173,10 +163,9 @@ internal object Astronomical
      * @return the nutation in longitude
      */
     @JvmStatic
-    fun nutationInLongitude(T : Double , L0 : Double , Lp : Double , Ω : Double) : Double
-    {
+    fun nutationInLongitude(T: Double, L0: Double, Lp: Double, Ω: Double): Double {
         /* Equation from Astronomical Algorithms page 144 */
-        val term1 = - 17.2 / 3600 * sin(Math.toRadians(Ω))
+        val term1 = -17.2 / 3600 * sin(Math.toRadians(Ω))
         val term2 = 1.32 / 3600 * sin(2 * Math.toRadians(L0))
         val term3 = 0.23 / 3600 * sin(2 * Math.toRadians(Lp))
         val term4 = 0.21 / 3600 * sin(2 * Math.toRadians(Ω))
@@ -193,8 +182,7 @@ internal object Astronomical
      * @return the nutation in obliquity
      */
     @JvmStatic
-    fun nutationInObliquity(T : Double , L0 : Double , Lp : Double , Ω : Double) : Double
-    {
+    fun nutationInObliquity(T: Double, L0: Double, Lp: Double, Ω: Double): Double {
         /* Equation from Astronomical Algorithms page 144 */
         val term1 = 9.2 / 3600 * cos(Math.toRadians(Ω))
         val term2 = 0.57 / 3600 * cos(2 * Math.toRadians(L0))
@@ -211,8 +199,7 @@ internal object Astronomical
      * @param H the local hour angle
      * @return the altitude of the celestial body
      */
-    private fun altitudeOfCelestialBody(φ : Double , δ : Double , H : Double) : Double
-    {
+    private fun altitudeOfCelestialBody(φ: Double, δ: Double, H: Double): Double {
         /* Equation from Astronomical Algorithms page 93 */
         val term1 = sin(Math.toRadians(φ)) * sin(Math.toRadians(δ))
         val term2 =
@@ -229,11 +216,10 @@ internal object Astronomical
      * @return the approximate transite
      */
     @JvmStatic
-    fun approximateTransit(L : Double , Θ0 : Double , α2 : Double) : Double
-    {
+    fun approximateTransit(L: Double, Θ0: Double, α2: Double): Double {
         /* Equation from page Astronomical Algorithms 102 */
-        val Lw = L * - 1
-        return DoubleUtil.normalizeWithBound((α2 + Lw - Θ0) / 360 , 1.0)
+        val Lw = L * -1
+        return DoubleUtil.normalizeWithBound((α2 + Lw - Θ0) / 360, 1.0)
     }
 
     /**
@@ -251,27 +237,26 @@ internal object Astronomical
      */
     @JvmStatic
     fun correctedTransit(
-        m0 : Double ,
-        L : Double ,
-        Θ0 : Double ,
-        α2 : Double ,
-        α1 : Double ,
-        α3 : Double
-                        ) : Double
-    {
+        m0: Double,
+        L: Double,
+        Θ0: Double,
+        α2: Double,
+        α1: Double,
+        α3: Double
+    ): Double {
         /* Equation from page Astronomical Algorithms 102 */
-        val Lw = L * - 1
+        val Lw = L * -1
         val θ = DoubleUtil.unwindAngle(Θ0 + 360.985647 * m0)
         val α = DoubleUtil
             .unwindAngle(
-                interpolateAngles( /* value */α2 ,  /* previousValue */
-                                              α1 ,  /* nextValue */
-                                              α3 ,  /* factor */
-                                              m0
-                                 )
-                        )
+                interpolateAngles( /* value */α2,  /* previousValue */
+                    α1,  /* nextValue */
+                    α3,  /* factor */
+                    m0
+                )
+            )
         val H = DoubleUtil.closestAngle(θ - Lw - α)
-        val Δm = H / - 360
+        val Δm = H / -360
         return (m0 + Δm) * 24
     }
 
@@ -293,51 +278,50 @@ internal object Astronomical
      */
     @JvmStatic
     fun correctedHourAngle(
-        m0 : Double ,
-        h0 : Double ,
-        coordinates : Coordinates ,
-        afterTransit : Boolean ,
-        Θ0 : Double ,
-        α2 : Double ,
-        α1 : Double ,
-        α3 : Double ,
-        δ2 : Double ,
-        δ1 : Double ,
-        δ3 : Double
-                          ) : Double
-    {
+        m0: Double,
+        h0: Double,
+        coordinates: Coordinates,
+        afterTransit: Boolean,
+        Θ0: Double,
+        α2: Double,
+        α1: Double,
+        α3: Double,
+        δ2: Double,
+        δ1: Double,
+        δ3: Double
+    ): Double {
         /* Equation from page Astronomical Algorithms 102 */
-        val Lw = coordinates.longitude * - 1
+        val Lw = coordinates.longitude * -1
         val term1 = (sin(Math.toRadians(h0))
-                     - sin(Math.toRadians(coordinates.latitude)) * sin(Math.toRadians(δ2)))
+                - sin(Math.toRadians(coordinates.latitude)) * sin(Math.toRadians(δ2)))
         val term2 = cos(Math.toRadians(coordinates.latitude)) * cos(Math.toRadians(δ2))
         val H0 = Math.toDegrees(acos(term1 / term2))
         val m = if (afterTransit) m0 + H0 / 360 else m0 - H0 / 360
         val θ = DoubleUtil.unwindAngle(Θ0 + 360.985647 * m)
         val α = DoubleUtil
             .unwindAngle(
-                interpolateAngles( /* value */α2 ,  /* previousValue */
-                                              α1 ,  /* nextValue */
-                                              α3 ,  /* factor */
-                                              m
-                                 )
-                        )
+                interpolateAngles( /* value */α2,  /* previousValue */
+                    α1,  /* nextValue */
+                    α3,  /* factor */
+                    m
+                )
+            )
         val δ =
-            interpolate( /* value */δ2 ,  /* previousValue */
-                                    δ1 ,  /* nextValue */
-                                    δ3 ,  /* factor */
-                                    m
-                       )
+            interpolate( /* value */δ2,  /* previousValue */
+                δ1,  /* nextValue */
+                δ3,  /* factor */
+                m
+            )
         val H = θ - Lw - α
         val h =
-            altitudeOfCelestialBody( /* observerLatitude */coordinates.latitude ,  /* declination */
-                                                           δ ,  /* localHourAngle */
-                                                           H
-                                   )
+            altitudeOfCelestialBody( /* observerLatitude */coordinates.latitude,  /* declination */
+                δ,  /* localHourAngle */
+                H
+            )
         val term3 = h - h0
         val term4 =
             (360 * cos(Math.toRadians(δ)) * cos(Math.toRadians(coordinates.latitude))
-             * sin(Math.toRadians(H)))
+                    * sin(Math.toRadians(H)))
         val Δm = term3 / term4
         return (m + Δm) * 24
     }
@@ -354,8 +338,7 @@ internal object Astronomical
      * @param n  the factor
      * @return the interpolated value
      */
-    private fun interpolate(y2 : Double , y1 : Double , y3 : Double , n : Double) : Double
-    {
+    private fun interpolate(y2: Double, y1: Double, y3: Double, n: Double): Double {
         /* Equation from Astronomical Algorithms page 24 */
         val a = y2 - y1
         val b = y3 - y2
@@ -372,8 +355,7 @@ internal object Astronomical
      * @param n  factor
      * @return interpolated angle
      */
-    private fun interpolateAngles(y2 : Double , y1 : Double , y3 : Double , n : Double) : Double
-    {
+    private fun interpolateAngles(y2: Double, y1: Double, y3: Double, n: Double): Double {
         /* Equation from Astronomical Algorithms page 24 */
         val a = DoubleUtil.unwindAngle(y2 - y1)
         val b = DoubleUtil.unwindAngle(y3 - y2)

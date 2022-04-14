@@ -11,18 +11,19 @@ class LocationFinderAuto {
 
     var fusedLocationProviderClient: FusedLocationProviderClient? = null
     var locationCallback: LocationCallback? = null
+
     /**
      * make the location callback object to be given to fusedLocationProviderClient
      */
-    private fun getLocationCallback(context:Context) {
+    private fun getLocationCallback(context: Context) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-        locationCallback =  object : LocationCallback() {
+        locationCallback = object : LocationCallback() {
             override fun onLocationResult(p0: LocationResult) {
                 p0
                 for (location in p0.locations) {
                     with(sharedPreferences.edit()) {
-                        putString("latitude" , location.latitude.toString())
-                        putString("longitude" , location.longitude.toString())
+                        putString("latitude", location.latitude.toString())
+                        putString("longitude", location.longitude.toString())
                         apply()
                     }
                 }
@@ -41,10 +42,14 @@ class LocationFinderAuto {
             fastestInterval = 1000
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         }
-        fusedLocationProviderClient!!.requestLocationUpdates(locationRequest, locationCallback!!, Looper.getMainLooper())
+        fusedLocationProviderClient!!.requestLocationUpdates(
+            locationRequest,
+            locationCallback!!,
+            Looper.getMainLooper()
+        )
     }
 
-    fun getLocations(context: Context, requestCode: Int){
+    fun getLocations(context: Context, requestCode: Int) {
         when {
             PermissionUtils.checkAccessLocationGranted(context) -> {
                 when {

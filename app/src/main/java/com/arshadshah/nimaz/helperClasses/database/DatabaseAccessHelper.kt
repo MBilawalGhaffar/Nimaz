@@ -13,6 +13,7 @@ import com.arshadshah.nimaz.helperClasses.quran.AyaObject
  */
 class DatabaseAccessHelper(context: Context) {
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+
     /**
      * The database helper
      */
@@ -34,7 +35,7 @@ class DatabaseAccessHelper(context: Context) {
      * Opens the database
      */
     fun open() {
-            db = dbHelper!!.readableDatabase
+        db = dbHelper!!.readableDatabase
     }
 
     /**
@@ -63,15 +64,17 @@ class DatabaseAccessHelper(context: Context) {
         //if the juznumber is 31 then the juzStartAyaInQuran is 6236
         //return 6236
         val ayaNumber: Int
-        if(juznumber == 31) {
+        if (juznumber == 31) {
             ayaNumber = 6236
-        }
-        else{
+        } else {
             //the cursor
-            val cursor = db!!.rawQuery("SELECT juzStartAyaInQuran FROM juzs WHERE juznumberdata = $juznumber", null)
+            val cursor = db!!.rawQuery(
+                "SELECT juzStartAyaInQuran FROM juzs WHERE juznumberdata = $juznumber",
+                null
+            )
             //returns the juz object
             cursor.moveToFirst()
-            ayaNumber =  cursor.getInt(0)
+            ayaNumber = cursor.getInt(0)
         }
 
         return ayaNumber
@@ -80,7 +83,10 @@ class DatabaseAccessHelper(context: Context) {
     //function to get all the ayas from quran_text between two numbers and return them as a cursor
     fun getAyaFromQuranText(startAya: Int, endAya: Int): Cursor? {
         //the cursor
-        val cursor1 = db!!.rawQuery("SELECT * FROM quran_text WHERE ayaNumberInQuran BETWEEN $startAya AND $endAya", null)
+        val cursor1 = db!!.rawQuery(
+            "SELECT * FROM quran_text WHERE ayaNumberInQuran BETWEEN $startAya AND $endAya",
+            null
+        )
         //returns the juz object
         return cursor1
     }
@@ -88,7 +94,10 @@ class DatabaseAccessHelper(context: Context) {
     //function to get all the ayas from quran_text between two numbers and return them as a cursor
     fun getAyaFromUrduText(startAya: Int, endAya: Int): Cursor? {
         //the cursor
-        val cursor1 = db!!.rawQuery("SELECT * FROM urdu_text WHERE ayaNumberInQuranUrdu BETWEEN $startAya AND $endAya", null)
+        val cursor1 = db!!.rawQuery(
+            "SELECT * FROM urdu_text WHERE ayaNumberInQuranUrdu BETWEEN $startAya AND $endAya",
+            null
+        )
         //returns the juz object
         return cursor1
     }
@@ -96,7 +105,10 @@ class DatabaseAccessHelper(context: Context) {
     //function to get all the ayas from en_sahih between two numbers and return them as a cursor
     fun getAyaFromEnSahih(startAya: Int, endAya: Int): Cursor? {
         //the cursor
-        val cursor2 = db!!.rawQuery("SELECT * FROM en_sahih WHERE ayaNumberInQuranEnglish BETWEEN $startAya AND $endAya", null)
+        val cursor2 = db!!.rawQuery(
+            "SELECT * FROM en_sahih WHERE ayaNumberInQuranEnglish BETWEEN $startAya AND $endAya",
+            null
+        )
         //returns the juz object
         return cursor2
     }
@@ -104,17 +116,16 @@ class DatabaseAccessHelper(context: Context) {
     //function that returns all the aya based on the juz number given to it
     fun getAllAyaForJuz(juzNumber: Int): ArrayList<AyaObject?> {
         val currentJuzStartAya = getJuzStartAyaInQuran(juzNumber)
-        val nextJuzStartAya = getJuzStartAyaInQuran(juzNumber+1)
+        val nextJuzStartAya = getJuzStartAyaInQuran(juzNumber + 1)
         val isEnglish = sharedPreferences.getBoolean("isEnglish", true)
-        var cursorOfAyasFromEnglish:Cursor? = null
-        var cursorOfAyasFromUrdu:Cursor? = null
-        if(isEnglish){
-            cursorOfAyasFromEnglish = getAyaFromEnSahih(currentJuzStartAya,nextJuzStartAya-1)
+        var cursorOfAyasFromEnglish: Cursor? = null
+        var cursorOfAyasFromUrdu: Cursor? = null
+        if (isEnglish) {
+            cursorOfAyasFromEnglish = getAyaFromEnSahih(currentJuzStartAya, nextJuzStartAya - 1)
+        } else {
+            cursorOfAyasFromUrdu = getAyaFromUrduText(currentJuzStartAya, nextJuzStartAya - 1)
         }
-        else{
-            cursorOfAyasFromUrdu = getAyaFromUrduText(currentJuzStartAya,nextJuzStartAya-1)
-        }
-        val cursorOfAyasFromArabic = getAyaFromQuranText(currentJuzStartAya,nextJuzStartAya-1)
+        val cursorOfAyasFromArabic = getAyaFromQuranText(currentJuzStartAya, nextJuzStartAya - 1)
 
         //arraylist of AyaObjects
         val ayas = ArrayList<AyaObject?>()
@@ -137,7 +148,7 @@ class DatabaseAccessHelper(context: Context) {
             } while (cursorOfAyasFromArabic.moveToNext())
         }
 
-        if(isEnglish){
+        if (isEnglish) {
             //loop through the english text cursor and add the ayas to the arraylist
             if (cursorOfAyasFromEnglish != null && cursorOfAyasFromEnglish.moveToFirst()) {
                 do {
@@ -145,8 +156,7 @@ class DatabaseAccessHelper(context: Context) {
                     translationText.add(cursorOfAyasFromEnglish.getString(3))
                 } while (cursorOfAyasFromEnglish.moveToNext())
             }
-        }
-        else{
+        } else {
             //loop through the english text cursor and add the ayas to the arraylist
             if (cursorOfAyasFromUrdu != null && cursorOfAyasFromUrdu.moveToFirst()) {
                 do {
@@ -158,14 +168,13 @@ class DatabaseAccessHelper(context: Context) {
 
 
         //combine the arrays into an arraylist of ayaObjects
-        for(i in 0 until arabicText.size){
-            ayas.add(AyaObject(ayaNumber[i]!!, translationText[i]!!,arabicText[i]!!))
+        for (i in 0 until arabicText.size) {
+            ayas.add(AyaObject(ayaNumber[i]!!, translationText[i]!!, arabicText[i]!!))
         }
         cursorOfAyasFromArabic!!.close()
-        if(isEnglish){
+        if (isEnglish) {
             cursorOfAyasFromEnglish!!.close()
-        }
-        else{
+        } else {
             cursorOfAyasFromUrdu!!.close()
         }
         return ayas
@@ -174,7 +183,10 @@ class DatabaseAccessHelper(context: Context) {
     //function that returns all aya from quran_text for given surahNumberInQuran and returns it in an array
     private fun getAllAyaFromQuranTextForSurah(surahNumberInQuran: Int): ArrayList<String?> {
         //the cursor
-        val cursor = db!!.rawQuery("SELECT * FROM quran_text WHERE suraNumberInQuran = $surahNumberInQuran", null)
+        val cursor = db!!.rawQuery(
+            "SELECT * FROM quran_text WHERE suraNumberInQuran = $surahNumberInQuran",
+            null
+        )
         //array for arabic text
         val arabicText = ArrayList<String?>()
 
@@ -190,7 +202,10 @@ class DatabaseAccessHelper(context: Context) {
     //function that returns all aya from en_sahih for given surahNumberInQuran and returns it in an array
     private fun getAllAyaFromEnSahihForSurah(surahNumberInQuran: Int): ArrayList<String?> {
         //the cursor
-        val cursor = db!!.rawQuery("SELECT * FROM en_sahih WHERE suraNumberInQuranEnglish = $surahNumberInQuran", null)
+        val cursor = db!!.rawQuery(
+            "SELECT * FROM en_sahih WHERE suraNumberInQuranEnglish = $surahNumberInQuran",
+            null
+        )
         //array for english text
         val englishText = ArrayList<String?>()
 
@@ -206,7 +221,10 @@ class DatabaseAccessHelper(context: Context) {
     //function that returns all aya from en_sahih for given surahNumberInQuran and returns it in an array
     private fun getAllAyaFromUrdu_TextForSurah(surahNumberInQuran: Int): ArrayList<String?> {
         //the cursor
-        val cursor = db!!.rawQuery("SELECT * FROM urdu_text WHERE suraNumberInQuranUrdu = $surahNumberInQuran", null)
+        val cursor = db!!.rawQuery(
+            "SELECT * FROM urdu_text WHERE suraNumberInQuranUrdu = $surahNumberInQuran",
+            null
+        )
         //array for english text
         val urduText = ArrayList<String?>()
 
@@ -222,7 +240,10 @@ class DatabaseAccessHelper(context: Context) {
     //function that returns all ayaNumberInSurah from quran_text for given surahNumberInQuran and returns it in an array
     private fun getAllAyaNumberInSurahFromQuranText(surahNumberInQuran: Int): ArrayList<String?> {
         //the cursor
-        val cursor = db!!.rawQuery("SELECT * FROM quran_text WHERE suraNumberInQuran = $surahNumberInQuran", null)
+        val cursor = db!!.rawQuery(
+            "SELECT * FROM quran_text WHERE suraNumberInQuran = $surahNumberInQuran",
+            null
+        )
         //array for ayaNumber
         val ayaNumber = ArrayList<String?>()
 
@@ -242,9 +263,9 @@ class DatabaseAccessHelper(context: Context) {
 
         val isEnglish = sharedPreferences.getBoolean("isEnglish", true)
 
-        val arrayOfTranslationtext: ArrayList<String?> = if(isEnglish){
+        val arrayOfTranslationtext: ArrayList<String?> = if (isEnglish) {
             getAllAyaFromEnSahihForSurah(surahNumber)
-        } else{
+        } else {
             getAllAyaFromUrdu_TextForSurah(surahNumber)
         }
 
@@ -254,8 +275,14 @@ class DatabaseAccessHelper(context: Context) {
         val ayas = ArrayList<AyaObject?>()
 
         //combine the arrays into an arraylist of ayaObjects
-        for(i in 0 until arrayOfArabicText.size){
-            ayas.add(AyaObject(arrayOfAyaNumber[i]!!, arrayOfTranslationtext[i]!!,arrayOfArabicText[i]!!))
+        for (i in 0 until arrayOfArabicText.size) {
+            ayas.add(
+                AyaObject(
+                    arrayOfAyaNumber[i]!!,
+                    arrayOfTranslationtext[i]!!,
+                    arrayOfArabicText[i]!!
+                )
+            )
         }
 
         return ayas
@@ -266,9 +293,10 @@ class DatabaseAccessHelper(context: Context) {
      * @param query the query to search for
      * @return an arraylist of AyaObjects
      */
-    fun searchForAya(query: String, tableName: String, columnName:String ): ArrayList<AyaObject?> {
+    fun searchForAya(query: String, tableName: String, columnName: String): ArrayList<AyaObject?> {
         //find the ayas that have the query in the table
-        val cursor = db!!.rawQuery("SELECT * FROM $tableName WHERE $columnName LIKE '%$query%'", null)
+        val cursor =
+            db!!.rawQuery("SELECT * FROM $tableName WHERE $columnName LIKE '%$query%'", null)
 
         //arabic text array
         val arabicText = ArrayList<String?>()
@@ -334,11 +362,11 @@ class DatabaseAccessHelper(context: Context) {
         }
 
         if (sharedPreferences.getBoolean("isEnglish", true)) {
-            cursorOfAyasFromEnglish!!.close()
+            cursorOfAyasFromEnglish.close()
         } else {
-            cursorOfAyasFromUrdu!!.close()
+            cursorOfAyasFromUrdu.close()
         }
-        cursorOfAyasFromArabic!!.close()
+        cursorOfAyasFromArabic.close()
 
 
         return ayas
@@ -350,7 +378,7 @@ class DatabaseAccessHelper(context: Context) {
      * @param query the query to search for
      * @return the number of ayas found
      */
-    fun searchForAyaAmountFound(query: String, tableName: String, columnName:String ): Int {
+    fun searchForAyaAmountFound(query: String, tableName: String, columnName: String): Int {
         //find the ayas that have the query in the table
         val cursor =
             db!!.rawQuery("SELECT * FROM $tableName WHERE $columnName LIKE '%$query%'", null)
@@ -366,8 +394,8 @@ class DatabaseAccessHelper(context: Context) {
 
     fun getNumberOfAyatJuz(number: Int): ArrayList<String?> {
         val currentJuzStartAya = getJuzStartAyaInQuran(number)
-        val nextJuzStartAya = getJuzStartAyaInQuran(number+1)
-        val cursor = getAyaFromQuranText(currentJuzStartAya,nextJuzStartAya-1)
+        val nextJuzStartAya = getJuzStartAyaInQuran(number + 1)
+        val cursor = getAyaFromQuranText(currentJuzStartAya, nextJuzStartAya - 1)
         val ayaNumber = ArrayList<String?>()
 
         while (cursor!!.moveToNext()) {
@@ -380,9 +408,12 @@ class DatabaseAccessHelper(context: Context) {
     }
 
     //function that returns all aya from quran_text for given surahNumberInQuran and returns it in an array
-     fun getNumberOfAyatSurah(surahNumberInQuran: Int): ArrayList<String?> {
+    fun getNumberOfAyatSurah(surahNumberInQuran: Int): ArrayList<String?> {
         //the cursor
-        val cursor = db!!.rawQuery("SELECT * FROM quran_text WHERE suraNumberInQuran = $surahNumberInQuran", null)
+        val cursor = db!!.rawQuery(
+            "SELECT * FROM quran_text WHERE suraNumberInQuran = $surahNumberInQuran",
+            null
+        )
         //array for arabic text
         val arabicText = ArrayList<String?>()
 

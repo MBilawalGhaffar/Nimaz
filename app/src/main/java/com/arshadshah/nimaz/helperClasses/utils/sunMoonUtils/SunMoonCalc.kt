@@ -1,20 +1,20 @@
-package com.arshadshah.nimaz.helperClasses.utils.sunkalc
+package com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils
 
-import com.arshadshah.nimaz.helperClasses.utils.sunkalc.MathUtils.astroRefraction
-import com.arshadshah.nimaz.helperClasses.utils.sunkalc.MathUtils.azimuth
+import com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils.MathUtils.astroRefraction
+import com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils.MathUtils.azimuth
 import com.costular.sunkalc.MoonCalculations
 import com.costular.sunkalc.MoonPhaseInfo
 import com.costular.sunkalc.MoonPosition
-import com.costular.sunkalc.SunkalcConstants.rad
+import com.costular.sunkalc.SunMoonCalcConstants.rad
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
 import kotlin.math.*
 
-class SunKalc @JvmOverloads constructor(
-        private val latitude: Double,
-        private val longitude: Double,
-        private val date: LocalDateTime = LocalDateTime.now()
+class SunMoonCalc @JvmOverloads constructor(
+    private val latitude: Double,
+    private val longitude: Double,
+    private val date: LocalDateTime = LocalDateTime.now()
 ) {
 
     private val percentages = arrayOf(0f, .25f, .5f, .75f, 1f)
@@ -32,8 +32,8 @@ class SunKalc @JvmOverloads constructor(
         val H = MathUtils.siderealTime(d, lw) - c.ra
 
         return SunPosition(
-                azimuth(H, phi, c.dec),
-                MathUtils.altitude(H, phi, c.dec)
+            azimuth(H, phi, c.dec),
+            MathUtils.altitude(H, phi, c.dec)
         )
     }
 
@@ -43,28 +43,33 @@ class SunKalc @JvmOverloads constructor(
      */
     fun getTimes(date: LocalDateTime = this.date, height: Double = 0.0): SunTimes {
         val solarNoonAndNadir = MathUtils.getSolarNoonAndNadir(latitude, longitude, date, height)
-        val sunriseAndSunset = MathUtils.getTimeAndEndingByValue(latitude, longitude, date, height, -0.833f)
-        val sunriseEndAndSunsetStart = MathUtils.getTimeAndEndingByValue(latitude, longitude, date, height, -0.3f)
+        val sunriseAndSunset =
+            MathUtils.getTimeAndEndingByValue(latitude, longitude, date, height, -0.833f)
+        val sunriseEndAndSunsetStart =
+            MathUtils.getTimeAndEndingByValue(latitude, longitude, date, height, -0.3f)
         val dawnAndDusk = MathUtils.getTimeAndEndingByValue(latitude, longitude, date, height, -6f)
-        val nauticalDawnAndNauticalDusk = MathUtils.getTimeAndEndingByValue(latitude, longitude, date, height, -12f)
-        val nightEndAndNight = MathUtils.getTimeAndEndingByValue(latitude, longitude, date, height, -18f)
-        val goldenHourEndAndGoldenHour = MathUtils.getTimeAndEndingByValue(latitude, longitude, date, height, 6f)
+        val nauticalDawnAndNauticalDusk =
+            MathUtils.getTimeAndEndingByValue(latitude, longitude, date, height, -12f)
+        val nightEndAndNight =
+            MathUtils.getTimeAndEndingByValue(latitude, longitude, date, height, -18f)
+        val goldenHourEndAndGoldenHour =
+            MathUtils.getTimeAndEndingByValue(latitude, longitude, date, height, 6f)
 
         return SunTimes(
-                sunriseAndSunset.first,
-                sunriseEndAndSunsetStart.first,
-                goldenHourEndAndGoldenHour.second,
-                goldenHourEndAndGoldenHour.first,
-                solarNoonAndNadir.first,
-                sunriseEndAndSunsetStart.second,
-                sunriseAndSunset.second,
-                dawnAndDusk.second,
-                nauticalDawnAndNauticalDusk.second,
-                nightEndAndNight.second,
-                nightEndAndNight.first,
-                solarNoonAndNadir.second,
-                nauticalDawnAndNauticalDusk.first,
-                dawnAndDusk.first
+            sunriseAndSunset.first,
+            sunriseEndAndSunsetStart.first,
+            goldenHourEndAndGoldenHour.second,
+            goldenHourEndAndGoldenHour.first,
+            solarNoonAndNadir.first,
+            sunriseEndAndSunsetStart.second,
+            sunriseAndSunset.second,
+            dawnAndDusk.second,
+            nauticalDawnAndNauticalDusk.second,
+            nightEndAndNight.second,
+            nightEndAndNight.first,
+            solarNoonAndNadir.second,
+            nauticalDawnAndNauticalDusk.first,
+            dawnAndDusk.first
         )
     }
 
@@ -86,10 +91,10 @@ class SunKalc @JvmOverloads constructor(
         h += astroRefraction(h) // altitude correction for refraction
 
         return MoonPosition(
-                h,
-                azimuth(H, phi, c.dec),
-                c.dist,
-                pa
+            h,
+            azimuth(H, phi, c.dec),
+            c.dist,
+            pa
         )
     }
 
@@ -106,14 +111,15 @@ class SunKalc @JvmOverloads constructor(
         val phaseEmoji = getPhaseEmojiByPhasePosition(moonPhasePosition)
 
         val fraction = ((1 + cos(moonCalculations.inc)) / 2)
-        val phaseValue = (0.5 + 0.5 * moonCalculations.inc * (if (moonCalculations.angle < 0) -1 else 1) / Math.PI)
+        val phaseValue =
+            (0.5 + 0.5 * moonCalculations.inc * (if (moonCalculations.angle < 0) -1 else 1) / Math.PI)
 
         return MoonPhaseInfo(
-                fraction,
-                phaseValue,
-                moonCalculations.angle,
-                phaseName,
-                phaseEmoji
+            fraction,
+            phaseValue,
+            moonCalculations.angle,
+            phaseName,
+            phaseEmoji
         )
     }
 
@@ -127,8 +133,8 @@ class SunKalc @JvmOverloads constructor(
         val phi = acos(sin(s.dec) * sin(m.dec) + cos(s.dec) * cos(m.dec) * cos(s.ra - m.ra))
         val inc = atan2(sdist * sin(phi), m.dist - sdist * cos(phi))
         val angle = atan2(
-                cos(s.dec) * sin(s.ra - m.ra), sin(s.dec) * cos(m.dec) -
-                cos(s.dec) * sin(m.dec) * cos(s.ra - m.ra)
+            cos(s.dec) * sin(s.ra - m.ra), sin(s.dec) * cos(m.dec) -
+                    cos(s.dec) * sin(m.dec) * cos(s.ra - m.ra)
         )
 
         return MoonCalculations(phi, inc, angle)
@@ -188,17 +194,17 @@ class SunKalc @JvmOverloads constructor(
      *
      */
     fun getZodiacSign(_date: LocalDate = this.date.toLocalDate()): ZodiacSign {
-        var longitude: Double = 0.0
+        var longitude = 0.0
 
-        var yy: Double = 0.0
-        var mm: Double = 0.0
-        var k1: Double = 0.0
-        var k2: Double = 0.0
-        var k3: Double = 0.0
-        var jd: Double = 0.0
-        var ip: Double = 0.0
-        var dp: Double = 0.0
-        var rp: Double = 0.0
+        var yy = 0.0
+        var mm = 0.0
+        var k1 = 0.0
+        var k2 = 0.0
+        var k3 = 0.0
+        var jd = 0.0
+        var ip = 0.0
+        var dp = 0.0
+        var rp = 0.0
 
         val year = _date.year
         val month = _date.monthValue
@@ -324,10 +330,10 @@ class SunKalc @JvmOverloads constructor(
         val alwaysDown = (rise != 0.0 && set != 0.0 && ye <= 0.0)
 
         return MoonTime(
-                if (rise != 0.0) MathUtils.hoursLater(date, rise.toInt()) else date,
-                if (set != 0.0) MathUtils.hoursLater(date, set.toInt()) else date,
-                alwaysUp,
-                alwaysDown
+            if (rise != 0.0) MathUtils.hoursLater(date, rise.toInt()) else date,
+            if (set != 0.0) MathUtils.hoursLater(date, set.toInt()) else date,
+            alwaysUp,
+            alwaysDown
         )
     }
 

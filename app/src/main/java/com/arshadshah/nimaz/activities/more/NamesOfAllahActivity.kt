@@ -37,58 +37,56 @@ class NamesOfAllahActivity : AppCompatActivity() {
         val backButton: ImageView = findViewById(R.id.backButton4)
 
         backButton.setOnClickListener {
-            val expandIn : Animation =
-                AnimationUtils.loadAnimation(this , R.anim.expand_in)
+            val expandIn: Animation =
+                AnimationUtils.loadAnimation(this, R.anim.expand_in)
             backButton.startAnimation(expandIn)
             //pop back stack to previous activity
             finish()
         }
 
-        val list : ListView = findViewById(R.id.allahNames)
-        val arrayList : ArrayList<SubjectData> = ArrayList()
+        val list: ListView = findViewById(R.id.allahNames)
+        val arrayList: ArrayList<SubjectData> = ArrayList()
         val array = resources.getStringArray(R.array.English)
-        var indexNo : Int
-        for (item in array)
-        {
+        var indexNo: Int
+        for (item in array) {
             indexNo = array.indexOf(item)
             arrayList.add(
                 SubjectData(
-                    englishName(indexNo) ,
-                    arabicName(indexNo) ,
-                    translation(indexNo) ,
+                    englishName(indexNo),
+                    arabicName(indexNo),
+                    translation(indexNo),
                     (indexNo + 1).toString()
                 )
             )
         }
-        val customAdapter = CustomAdapter(this , arrayList)
+        val customAdapter = CustomAdapter(this, arrayList)
         list.adapter = customAdapter
 
         //get the play button
         val playButton: ImageButton = findViewById(R.id.namesOfAllahAudio)
-        val pauseButton : ImageButton = findViewById(R.id.pause)
+        val pauseButton: ImageButton = findViewById(R.id.pause)
         pauseButton.isVisible = false
         prepareMediaPlayer(this)
         //when play button is clicked
         playButton.setOnClickListener {
-            val expandIn : Animation =
-                AnimationUtils.loadAnimation(this , R.anim.expand_in)
+            val expandIn: Animation =
+                AnimationUtils.loadAnimation(this, R.anim.expand_in)
             playButton.startAnimation(expandIn)
-            if(!mediaPlayer.isPlaying){
+            if (!mediaPlayer.isPlaying) {
                 //start the audio
                 mediaPlayer.start()
                 //change the button image to stop
                 playButton.setImageResource(R.drawable.ic_square)
                 pauseButton.isVisible = true
                 pauseButton.setOnClickListener {
-                    val expandIn : Animation =
-                        AnimationUtils.loadAnimation(this , R.anim.expand_in)
+                    val expandIn: Animation =
+                        AnimationUtils.loadAnimation(this, R.anim.expand_in)
                     pauseButton.startAnimation(expandIn)
                     mediaPlayer.pause()
                     playButton.setImageResource(R.drawable.ic_play)
                     pauseButton.isVisible = false
                 }
-            }
-            else{
+            } else {
                 mediaPlayer.pause()
                 mediaPlayer.stop()
                 mediaPlayer.reset()
@@ -102,8 +100,9 @@ class NamesOfAllahActivity : AppCompatActivity() {
 
     }
 
-    private fun prepareMediaPlayer(context: Context){
-        val myUri: Uri = Uri.parse("android.resource://" + context?.packageName + "/" + R.raw.asmaulhusna)
+    private fun prepareMediaPlayer(context: Context) {
+        val myUri: Uri =
+            Uri.parse("android.resource://" + context.packageName + "/" + R.raw.asmaulhusna)
         mediaPlayer.apply {
             setAudioAttributes(
                 AudioAttributes.Builder()
@@ -116,22 +115,19 @@ class NamesOfAllahActivity : AppCompatActivity() {
         }
     }
 
-    private fun englishName(indexNo : Int) : String
-    {
+    private fun englishName(indexNo: Int): String {
         val array = resources.getStringArray(R.array.English)
         val output = array[indexNo]
         return output
     }
 
-    private fun arabicName(indexNo : Int) : String
-    {
+    private fun arabicName(indexNo: Int): String {
         val array = resources.getStringArray(R.array.Arabic)
         val output = array[indexNo]
         return output
     }
 
-    private fun translation(indexNo : Int) : String
-    {
+    private fun translation(indexNo: Int): String {
         val array = resources.getStringArray(R.array.translation)
         val output = array[indexNo]
         return output

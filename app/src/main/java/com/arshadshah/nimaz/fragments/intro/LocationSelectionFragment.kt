@@ -32,28 +32,28 @@ class LocationSelectionFragment : Fragment() {
             val navcontroller = requireActivity().findNavController(R.id.fragmentContainerView)
             navcontroller.navigate(R.id.locationInputFragment)
             with(sharedPreferences.edit()) {
-                putBoolean("locationType" , false)
+                putBoolean("locationType", false)
                 apply()
             }
         }
         auto.setOnClickListener {
 
             with(sharedPreferences.edit()) {
-                putBoolean("locationType" , true)
-                putBoolean("isFirstInstall" , false)
-                putBoolean("channelLock" , false)
+                putBoolean("locationType", true)
+                putBoolean("isFirstInstall", false)
+                putBoolean("channelLock", false)
                 apply()
             }
 
-            val intent = Intent(requireContext() , HomeActivity::class.java)
+            val intent = Intent(requireContext(), HomeActivity::class.java)
             startActivity(intent)
             activity?.finish()
         }
         //if skipped
         locationSkip.setOnClickListener {
             with(sharedPreferences.edit()) {
-                putBoolean("isFirstInstall" , false)
-                putBoolean("channelLock" , false)
+                putBoolean("isFirstInstall", false)
+                putBoolean("channelLock", false)
                 apply()
             }
             createDialog()
@@ -72,8 +72,8 @@ class LocationSelectionFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         val inflater: LayoutInflater? = activity?.layoutInflater
         val locationInputDialog: View = inflater!!.inflate(R.layout.locationskip, null)
-        val dialogYes:Button = locationInputDialog.findViewById(R.id.dialogYes)
-        val dialogNo:Button = locationInputDialog.findViewById(R.id.dialogNo)
+        val dialogYes: Button = locationInputDialog.findViewById(R.id.dialogYes)
+        val dialogNo: Button = locationInputDialog.findViewById(R.id.dialogNo)
         builder.setView(locationInputDialog)
         // Set Cancelable false
         builder.setCancelable(false)
@@ -82,7 +82,7 @@ class LocationSelectionFragment : Fragment() {
         // Show the Alert Dialog box
         alertDialog.show()
         dialogYes.setOnClickListener { view: View? ->
-            val intent = Intent(requireContext() , HomeActivity::class.java)
+            val intent = Intent(requireContext(), HomeActivity::class.java)
             startActivity(intent)
             activity?.finish()
         }

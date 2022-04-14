@@ -7,12 +7,10 @@ import androidx.preference.PreferenceManager
 import androidx.preference.SwitchPreference
 import com.arshadshah.nimaz.R
 
-class PrayerTimeAdjustFragment : PreferenceFragmentCompat()
-{
+class PrayerTimeAdjustFragment : PreferenceFragmentCompat() {
 
-    override fun onCreatePreferences(savedInstanceState : Bundle?, rootKey : String?)
-    {
-        setPreferencesFromResource(R.xml.prayer_time_adjust , rootKey)
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.prayer_time_adjust, rootKey)
 
         val fragmentName = requireArguments().getString("fragmentName")
 
@@ -20,150 +18,141 @@ class PrayerTimeAdjustFragment : PreferenceFragmentCompat()
         activity?.title = fragmentName
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        val calcMethod : ListPreference? = findPreference("calcMethod")
-        val latituderule : ListPreference? = findPreference("highlatrule")
-        val latituderulevalue = sharedPreferences.getString("highlatrule" , "TWILIGHT_ANGLE")
+        val calcMethod: ListPreference? = findPreference("calcMethod")
+        val latituderule: ListPreference? = findPreference("highlatrule")
+        val latituderulevalue = sharedPreferences.getString("highlatrule", "TWILIGHT_ANGLE")
 
         //calculation  method
-        val calculationMethod = sharedPreferences.getString("calcMethod" , "IRELAND")
+        val calculationMethod = sharedPreferences.getString("calcMethod", "IRELAND")
 
         //adjustements
-        val fajrAngle : ListPreference? = findPreference("fajrAngle")
-        val ishaaAngle : ListPreference? = findPreference("ishaaAngle")
+        val fajrAngle: ListPreference? = findPreference("fajrAngle")
+        val ishaaAngle: ListPreference? = findPreference("ishaaAngle")
 
 
-        val fajr : ListPreference? = findPreference("fajr")
-        val sunrise : ListPreference? = findPreference("sunrise")
-        val zuhar : ListPreference? = findPreference("zuhar")
-        val asar : ListPreference? = findPreference("asar")
-        val maghrib : ListPreference? = findPreference("maghrib")
-        val ishaa : ListPreference? = findPreference("ishaa")
+        val fajr: ListPreference? = findPreference("fajr")
+        val sunrise: ListPreference? = findPreference("sunrise")
+        val zuhar: ListPreference? = findPreference("zuhar")
+        val asar: ListPreference? = findPreference("asar")
+        val maghrib: ListPreference? = findPreference("maghrib")
+        val ishaa: ListPreference? = findPreference("ishaa")
 
         // angle input from settings
-        val fajr_angle = sharedPreferences.getString("fajrAngle" , "14.0")
-        val ishaa_angle = sharedPreferences.getString("ishaaAngle" , "13.0")
+        val fajr_angle = sharedPreferences.getString("fajrAngle", "14.0")
+        val ishaa_angle = sharedPreferences.getString("ishaaAngle", "13.0")
 
         // time adjustments
-        val fajr_adjust = sharedPreferences.getString("fajr" , "0")
-        val sunrise_adjust = sharedPreferences.getString("sunrise" , "0")
-        val zuhar_adjust = sharedPreferences.getString("zuhar" , "0")
-        val asar_adjust = sharedPreferences.getString("asar" , "0")
-        val maghrib_adjust = sharedPreferences.getString("maghrib" , "0")
-        val ishaa_adjust = sharedPreferences.getString("ishaa" , "0")
+        val fajr_adjust = sharedPreferences.getString("fajr", "0")
+        val sunrise_adjust = sharedPreferences.getString("sunrise", "0")
+        val zuhar_adjust = sharedPreferences.getString("zuhar", "0")
+        val asar_adjust = sharedPreferences.getString("asar", "0")
+        val maghrib_adjust = sharedPreferences.getString("maghrib", "0")
+        val ishaa_adjust = sharedPreferences.getString("ishaa", "0")
 
         //madhab
-        val madhab : SwitchPreference? = findPreference("madhab")
-        var madhabCheck = sharedPreferences.getBoolean("madhab" , true)
+        val madhab: SwitchPreference? = findPreference("madhab")
+        var madhabCheck = sharedPreferences.getBoolean("madhab", true)
 
-        latituderule !!.setOnPreferenceChangeListener { preference , newValue : Any? ->
+        latituderule!!.setOnPreferenceChangeListener { preference, newValue: Any? ->
             val value = newValue as String
-            if (value != latituderulevalue)
-            {
+            if (value != latituderulevalue) {
                 //write lock to storage
                 with(sharedPreferences.edit()) {
-                    putBoolean("alarmLock" , false)
-                    apply()
-                }
-            }
-            true
-        }
-
-        fajrAngle !!.setOnPreferenceChangeListener { preference , newValue : Any? ->
-            val value = newValue as String
-            if (value != fajr_angle)
-            {
-                //write lock to storage
-                with(sharedPreferences.edit()) {
-                    putBoolean("alarmLock" , false)
+                    putBoolean("alarmLock", false)
                     apply()
                 }
             }
             true
         }
 
-        ishaaAngle !!.setOnPreferenceChangeListener { preference , newValue : Any? ->
+        fajrAngle!!.setOnPreferenceChangeListener { preference, newValue: Any? ->
             val value = newValue as String
-            if (value != ishaa_angle)
-            {
+            if (value != fajr_angle) {
                 //write lock to storage
                 with(sharedPreferences.edit()) {
-                    putBoolean("alarmLock" , false)
+                    putBoolean("alarmLock", false)
                     apply()
                 }
             }
             true
         }
 
-        fajr !!.setOnPreferenceChangeListener { preference , newValue : Any? ->
+        ishaaAngle!!.setOnPreferenceChangeListener { preference, newValue: Any? ->
             val value = newValue as String
-            if (value != fajr_adjust)
-            {
+            if (value != ishaa_angle) {
                 //write lock to storage
                 with(sharedPreferences.edit()) {
-                    putBoolean("alarmLock" , false)
+                    putBoolean("alarmLock", false)
                     apply()
                 }
             }
             true
         }
 
-        sunrise !!.setOnPreferenceChangeListener { preference , newValue : Any? ->
+        fajr!!.setOnPreferenceChangeListener { preference, newValue: Any? ->
             val value = newValue as String
-            if (value != sunrise_adjust)
-            {
+            if (value != fajr_adjust) {
                 //write lock to storage
                 with(sharedPreferences.edit()) {
-                    putBoolean("alarmLock" , false)
+                    putBoolean("alarmLock", false)
                     apply()
                 }
             }
             true
         }
 
-        zuhar !!.setOnPreferenceChangeListener { preference , newValue : Any? ->
+        sunrise!!.setOnPreferenceChangeListener { preference, newValue: Any? ->
             val value = newValue as String
-            if (value != zuhar_adjust)
-            {
+            if (value != sunrise_adjust) {
                 //write lock to storage
                 with(sharedPreferences.edit()) {
-                    putBoolean("alarmLock" , false)
-                    apply()
-                }
-            }
-            true
-        }
-        asar !!.setOnPreferenceChangeListener { preference , newValue : Any? ->
-            val value = newValue as String
-            if (value != asar_adjust)
-            {
-                //write lock to storage
-                with(sharedPreferences.edit()) {
-                    putBoolean("alarmLock" , false)
-                    apply()
-                }
-            }
-            true
-        }
-        maghrib !!.setOnPreferenceChangeListener { preference , newValue : Any? ->
-            val value = newValue as String
-            if (value != maghrib_adjust)
-            {
-                //write lock to storage
-                with(sharedPreferences.edit()) {
-                    putBoolean("alarmLock" , false)
+                    putBoolean("alarmLock", false)
                     apply()
                 }
             }
             true
         }
 
-        ishaa !!.setOnPreferenceChangeListener { preference , newValue : Any? ->
+        zuhar!!.setOnPreferenceChangeListener { preference, newValue: Any? ->
             val value = newValue as String
-            if (value != ishaa_adjust)
-            {
+            if (value != zuhar_adjust) {
                 //write lock to storage
                 with(sharedPreferences.edit()) {
-                    putBoolean("alarmLock" , false)
+                    putBoolean("alarmLock", false)
+                    apply()
+                }
+            }
+            true
+        }
+        asar!!.setOnPreferenceChangeListener { preference, newValue: Any? ->
+            val value = newValue as String
+            if (value != asar_adjust) {
+                //write lock to storage
+                with(sharedPreferences.edit()) {
+                    putBoolean("alarmLock", false)
+                    apply()
+                }
+            }
+            true
+        }
+        maghrib!!.setOnPreferenceChangeListener { preference, newValue: Any? ->
+            val value = newValue as String
+            if (value != maghrib_adjust) {
+                //write lock to storage
+                with(sharedPreferences.edit()) {
+                    putBoolean("alarmLock", false)
+                    apply()
+                }
+            }
+            true
+        }
+
+        ishaa!!.setOnPreferenceChangeListener { preference, newValue: Any? ->
+            val value = newValue as String
+            if (value != ishaa_adjust) {
+                //write lock to storage
+                with(sharedPreferences.edit()) {
+                    putBoolean("alarmLock", false)
                     apply()
                 }
             }
@@ -172,13 +161,12 @@ class PrayerTimeAdjustFragment : PreferenceFragmentCompat()
 
 
         //preset method selection
-        calcMethod !!.setOnPreferenceChangeListener { preference , newValue : Any? ->
+        calcMethod!!.setOnPreferenceChangeListener { preference, newValue: Any? ->
             val value = newValue as String
-            if (value != calculationMethod)
-            {
+            if (value != calculationMethod) {
                 //write lock to storage
                 with(sharedPreferences.edit()) {
-                    putBoolean("alarmLock" , false)
+                    putBoolean("alarmLock", false)
                     apply()
                 }
             }
@@ -186,55 +174,46 @@ class PrayerTimeAdjustFragment : PreferenceFragmentCompat()
         }
 
         //madhab states
-        if (madhabCheck)
-        {
-            madhab !!.setOnPreferenceChangeListener { preference , newValue ->
-                if (newValue as Boolean)
-                {
+        if (madhabCheck) {
+            madhab!!.setOnPreferenceChangeListener { preference, newValue ->
+                if (newValue as Boolean) {
                     madhab.title = "Shafi,Maliki,Hanbali"
 
                     //reset alarms
                     with(sharedPreferences.edit()) {
-                        putBoolean("alarmLock" , false)
+                        putBoolean("alarmLock", false)
                         apply()
                     }
 
-                }
-                else if (newValue == false)
-                {
+                } else if (newValue == false) {
                     madhab.title = "Hanafi"
 
                     //reset alarms
                     with(sharedPreferences.edit()) {
-                        putBoolean("alarmLock" , false)
+                        putBoolean("alarmLock", false)
                         apply()
                     }
 
                 }
                 true
             }
-        }
-        else if (! madhabCheck)
-        {
-            madhab !!.setOnPreferenceChangeListener { preference , newValue ->
-                if (newValue as Boolean)
-                {
+        } else if (!madhabCheck) {
+            madhab!!.setOnPreferenceChangeListener { preference, newValue ->
+                if (newValue as Boolean) {
                     madhab.title = "Shafi,Maliki,Hanbali"
 
                     //reset alarms
                     with(sharedPreferences.edit()) {
-                        putBoolean("alarmLock" , false)
+                        putBoolean("alarmLock", false)
                         apply()
                     }
 
-                }
-                else if (newValue == false)
-                {
+                } else if (newValue == false) {
                     madhab.title = "Hanafi"
 
                     //reset alarms
                     with(sharedPreferences.edit()) {
-                        putBoolean("alarmLock" , false)
+                        putBoolean("alarmLock", false)
                         apply()
                     }
 
@@ -245,12 +224,10 @@ class PrayerTimeAdjustFragment : PreferenceFragmentCompat()
 
 
         //default values based on method selected
-        calcMethod.setOnPreferenceChangeListener { preference , newValue ->
+        calcMethod.setOnPreferenceChangeListener { preference, newValue ->
             val newvalue = newValue as String
-            when (newvalue)
-            {
-                "MUSLIM_WORLD_LEAGUE" ->
-                {
+            when (newvalue) {
+                "MUSLIM_WORLD_LEAGUE" -> {
                     ishaaAngle.isVisible = true
                     fajrAngle.value = "18.0"
                     ishaaAngle.value = "17.0"
@@ -263,8 +240,7 @@ class PrayerTimeAdjustFragment : PreferenceFragmentCompat()
                     madhabCheck = true
                 }
 
-                "EGYPTIAN" ->
-                {
+                "EGYPTIAN" -> {
                     ishaaAngle.isVisible = true
                     fajrAngle.value = "19.5"
                     ishaaAngle.value = "17.5"
@@ -277,8 +253,7 @@ class PrayerTimeAdjustFragment : PreferenceFragmentCompat()
                     madhabCheck = true
                 }
 
-                "KARACHI" ->
-                {
+                "KARACHI" -> {
                     ishaaAngle.isVisible = true
                     fajrAngle.value = "18.0"
                     ishaaAngle.value = "18.0"
@@ -291,8 +266,7 @@ class PrayerTimeAdjustFragment : PreferenceFragmentCompat()
                     madhabCheck = true
                 }
 
-                "UMM_AL_QURA" ->
-                {
+                "UMM_AL_QURA" -> {
                     fajrAngle.value = "18.5"
                     ishaaAngle.isVisible = false
                     fajr.value = "0"
@@ -304,8 +278,7 @@ class PrayerTimeAdjustFragment : PreferenceFragmentCompat()
                     madhabCheck = true
                 }
 
-                "DUBAI" ->
-                {
+                "DUBAI" -> {
                     ishaaAngle.isVisible = true
                     fajrAngle.value = "18.5"
                     ishaaAngle.value = "18.5"
@@ -318,8 +291,7 @@ class PrayerTimeAdjustFragment : PreferenceFragmentCompat()
                     madhabCheck = true
                 }
 
-                "MOON_SIGHTING_COMMITTEE" ->
-                {
+                "MOON_SIGHTING_COMMITTEE" -> {
                     ishaaAngle.isVisible = true
                     fajrAngle.value = "18.0"
                     ishaaAngle.value = "18.0"
@@ -332,8 +304,7 @@ class PrayerTimeAdjustFragment : PreferenceFragmentCompat()
                     madhabCheck = true
                 }
 
-                "NORTH_AMERICA" ->
-                {
+                "NORTH_AMERICA" -> {
                     ishaaAngle.isVisible = true
                     fajrAngle.value = "15.0"
                     ishaaAngle.value = "15.0"
@@ -346,8 +317,7 @@ class PrayerTimeAdjustFragment : PreferenceFragmentCompat()
                     madhabCheck = true
                 }
 
-                "KUWAIT" ->
-                {
+                "KUWAIT" -> {
                     ishaaAngle.isVisible = true
                     fajrAngle.value = "18.0"
                     ishaaAngle.value = "17.5"
@@ -360,8 +330,7 @@ class PrayerTimeAdjustFragment : PreferenceFragmentCompat()
                     madhabCheck = true
                 }
 
-                "QATAR" ->
-                {
+                "QATAR" -> {
                     fajrAngle.value = "18.0"
                     ishaaAngle.isVisible = false
                     fajr.value = "0"
@@ -373,8 +342,7 @@ class PrayerTimeAdjustFragment : PreferenceFragmentCompat()
                     madhabCheck = true
                 }
 
-                "SINGAPORE" ->
-                {
+                "SINGAPORE" -> {
                     ishaaAngle.isVisible = true
                     fajrAngle.value = "20.0"
                     ishaaAngle.value = "18.0"
@@ -387,8 +355,7 @@ class PrayerTimeAdjustFragment : PreferenceFragmentCompat()
                     madhabCheck = true
                 }
 
-                "FRANCE" ->
-                {
+                "FRANCE" -> {
                     ishaaAngle.isVisible = true
                     fajrAngle.value = "12.0"
                     ishaaAngle.value = "12.0"
@@ -401,8 +368,7 @@ class PrayerTimeAdjustFragment : PreferenceFragmentCompat()
                     madhabCheck = true
                 }
 
-                "RUSSIA" ->
-                {
+                "RUSSIA" -> {
                     ishaaAngle.isVisible = true
                     fajrAngle.value = "16.0"
                     ishaaAngle.value = "14.0"
@@ -415,8 +381,7 @@ class PrayerTimeAdjustFragment : PreferenceFragmentCompat()
                     madhabCheck = true
                 }
 
-                "IRELAND" ->
-                {
+                "IRELAND" -> {
                     ishaaAngle.isVisible = true
                     fajrAngle.value = "14.0"
                     ishaaAngle.value = "13.0"
@@ -429,8 +394,7 @@ class PrayerTimeAdjustFragment : PreferenceFragmentCompat()
                     madhabCheck = true
                 }
 
-                "OTHER" ->
-                {
+                "OTHER" -> {
                     ishaaAngle.isVisible = true
                     fajrAngle.value = "0.0"
                     ishaaAngle.value = "0.0"

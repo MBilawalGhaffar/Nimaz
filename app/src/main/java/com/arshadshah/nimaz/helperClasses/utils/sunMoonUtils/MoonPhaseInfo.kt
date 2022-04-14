@@ -1,6 +1,6 @@
 package com.costular.sunkalc
 
-import com.arshadshah.nimaz.helperClasses.utils.sunkalc.MoonPhase
+import com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils.MoonPhase
 
 /**
  * Represents the moon phase

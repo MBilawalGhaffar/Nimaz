@@ -3,21 +3,20 @@ package com.arshadshah.nimaz.prayerTimeApi
 /**
  * Rules for dealing with Fajr and Isha at places with high latitudes
  */
-enum class HighLatitudeRule
-{
+enum class HighLatitudeRule {
 
     /**
      * Fajr will never be earlier than the middle of the night, and Isha will never
      * be later than the middle of the night.
      */
-    MIDDLE_OF_THE_NIGHT ,
+    MIDDLE_OF_THE_NIGHT,
 
     /**
      * Fajr will never be earlier than the beginning of the last seventh of the
      * night, and Isha will never be later than the end of hte first seventh of the
      * night.
      */
-    SEVENTH_OF_THE_NIGHT ,
+    SEVENTH_OF_THE_NIGHT,
 
     /**
      * Similar to [HighLatitudeRule.SEVENTH_OF_THE_NIGHT], but instead of

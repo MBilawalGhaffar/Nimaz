@@ -1,4 +1,4 @@
-package com.arshadshah.nimaz.helperClasses.utils.sunkalc
+package com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils
 
 enum class MoonPhase {
     NEW_MOON,

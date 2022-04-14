@@ -18,12 +18,12 @@ class IntroFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val root =  inflater.inflate(R.layout.fragment_intro, container, false)
+        val root = inflater.inflate(R.layout.fragment_intro, container, false)
 
         //buttons
-        val introContinue : Button = root.findViewById(R.id.introContinue)
+        val introContinue: Button = root.findViewById(R.id.introContinue)
 
-        val IntroductoryText : TextView = root.findViewById(R.id.IntroductoryText)
+        val IntroductoryText: TextView = root.findViewById(R.id.IntroductoryText)
 
 
         val IntroductoryTextHtml = "<b>In the name of Allah, Most Gracious,Most Merciful</b>\n" +
@@ -49,7 +49,7 @@ class IntroFragment : Fragment() {
                 "        Press <b>CONTINUE</b> to Enter now.\n" +
                 "    </p>"
 
-        IntroductoryText.text = Html.fromHtml(IntroductoryTextHtml , Html.FROM_HTML_MODE_COMPACT)
+        IntroductoryText.text = Html.fromHtml(IntroductoryTextHtml, Html.FROM_HTML_MODE_COMPACT)
 
         introContinue.setOnClickListener {
             val navcontroller = requireActivity().findNavController(R.id.fragmentContainerView)

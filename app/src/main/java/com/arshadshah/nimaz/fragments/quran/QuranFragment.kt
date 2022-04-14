@@ -29,12 +29,12 @@ class QuranFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val root =  inflater.inflate(R.layout.fragment_quran, container, false)
+        val root = inflater.inflate(R.layout.fragment_quran, container, false)
 
         val moreButton: ImageButton = root.findViewById(R.id.moreButton)
         moreButton.setOnClickListener {
-            val expandIn : Animation =
-                AnimationUtils.loadAnimation(requireContext() , R.anim.expand_in)
+            val expandIn: Animation =
+                AnimationUtils.loadAnimation(requireContext(), R.anim.expand_in)
             moreButton.startAnimation(expandIn)
 
 
@@ -47,14 +47,17 @@ class QuranFragment : Fragment() {
                     R.id.translation -> {
                         // Create the object of
                         // AlertDialog Builder class
-                        val builder : AlertDialog.Builder = AlertDialog.Builder(requireContext())
+                        val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
                         val moreDialog = inflater.inflate(R.layout.moredialog, null)
-                        val englishTranslation : RadioButton = moreDialog.findViewById(R.id.englishTranslation)
-                        val urduTranslation : RadioButton = moreDialog.findViewById(R.id.urduTranslation)
-                        val submitBtn : Button = moreDialog.findViewById(R.id.dialogSubmit)
-                        val cancelbtn : Button = moreDialog.findViewById(R.id.dialogCancel)
+                        val englishTranslation: RadioButton =
+                            moreDialog.findViewById(R.id.englishTranslation)
+                        val urduTranslation: RadioButton =
+                            moreDialog.findViewById(R.id.urduTranslation)
+                        val submitBtn: Button = moreDialog.findViewById(R.id.dialogSubmit)
+                        val cancelbtn: Button = moreDialog.findViewById(R.id.dialogCancel)
 
-                        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+                        val sharedPreferences =
+                            PreferenceManager.getDefaultSharedPreferences(requireContext())
                         val isEnglish = sharedPreferences.getBoolean("isEnglish", true)
                         builder.setView(moreDialog)
 
@@ -63,15 +66,14 @@ class QuranFragment : Fragment() {
                         // the Dialog Box then it will remain show
                         builder.setCancelable(false)
                         // Create the Alert dialog
-                        val alertDialog : AlertDialog = builder.create()
+                        val alertDialog: AlertDialog = builder.create()
                         // Show the Alert Dialog box
                         alertDialog.show()
 
                         var translationSelected = ""
-                        if(isEnglish){
+                        if (isEnglish) {
                             englishTranslation.isChecked = true
-                        }
-                        else{
+                        } else {
                             urduTranslation.isChecked = true
                         }
 
@@ -84,16 +86,14 @@ class QuranFragment : Fragment() {
                         }
 
                         submitBtn.setOnClickListener {
-                            if(translationSelected == "english")
-                            {
+                            if (translationSelected == "english") {
                                 with(sharedPreferences.edit()) {
-                                    putBoolean("isEnglish" , true)
+                                    putBoolean("isEnglish", true)
                                     apply()
                                 }
-                            }
-                            else{
+                            } else {
                                 with(sharedPreferences.edit()) {
-                                    putBoolean("isEnglish" , false)
+                                    putBoolean("isEnglish", false)
                                     apply()
                                 }
                             }
@@ -108,13 +108,14 @@ class QuranFragment : Fragment() {
                     R.id.search -> {
                         // Create the object of
                         // AlertDialog Builder class
-                        val builder : AlertDialog.Builder = AlertDialog.Builder(requireContext())
+                        val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
                         val moreDialog = inflater.inflate(R.layout.quransearch, null)
-                        val quranSearch : EditText = moreDialog.findViewById(R.id.quranSearch)
-                        val submitBtn : Button = moreDialog.findViewById(R.id.dialogSubmit)
-                        val cancelbtn : Button = moreDialog.findViewById(R.id.dialogCancel)
+                        val quranSearch: EditText = moreDialog.findViewById(R.id.quranSearch)
+                        val submitBtn: Button = moreDialog.findViewById(R.id.dialogSubmit)
+                        val cancelbtn: Button = moreDialog.findViewById(R.id.dialogCancel)
 
-                        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+                        val sharedPreferences =
+                            PreferenceManager.getDefaultSharedPreferences(requireContext())
                         builder.setView(moreDialog)
 
                         // Set Cancelable false
@@ -122,7 +123,7 @@ class QuranFragment : Fragment() {
                         // the Dialog Box then it will remain show
                         builder.setCancelable(false)
                         // Create the Alert dialog
-                        val alertDialog : AlertDialog = builder.create()
+                        val alertDialog: AlertDialog = builder.create()
                         // Show the Alert Dialog box
                         alertDialog.show()
 
@@ -131,19 +132,22 @@ class QuranFragment : Fragment() {
                             // get the input from the user
                             val searchText = quranSearch.text.toString()
 
-                            if(searchText.isNotEmpty()){
+                            if (searchText.isNotEmpty()) {
                                 // if the user has entered text then
                                 // open the search fragment
-                                val intent = Intent(requireContext() , QuranMainList::class.java)
-                                intent.putExtra("query",searchText)
-                                intent.putExtra("fragment","search")
+                                val intent = Intent(requireContext(), QuranMainList::class.java)
+                                intent.putExtra("query", searchText)
+                                intent.putExtra("fragment", "search")
                                 startActivity(intent)
                                 alertDialog.cancel()
-                            }
-                            else{
+                            } else {
                                 // if the user has not entered any text
                                 // then show a toast message
-                                Toast.makeText(requireContext(), "Please enter some text", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Please enter some text",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
 
@@ -162,7 +166,7 @@ class QuranFragment : Fragment() {
         quranViewPager = root.findViewById(R.id.quranViewPager)
 
         val fragmentManager = childFragmentManager
-        quranFragmentAdapter = QuranFragmentAdapter(fragmentManager,lifecycle)
+        quranFragmentAdapter = QuranFragmentAdapter(fragmentManager, lifecycle)
         quranViewPager.adapter = quranFragmentAdapter
 
 
@@ -184,8 +188,8 @@ class QuranFragment : Fragment() {
 
         })
 
-        quranViewPager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int){
+        quranViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
                 quranTabLayout.selectTab(quranTabLayout.getTabAt(position))
             }
         })

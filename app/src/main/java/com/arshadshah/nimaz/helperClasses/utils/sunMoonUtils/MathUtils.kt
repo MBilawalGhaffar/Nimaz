@@ -1,12 +1,12 @@
-package com.arshadshah.nimaz.helperClasses.utils.sunkalc
+package com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils
 
-import com.costular.sunkalc.SunkalcConstants
-import com.costular.sunkalc.SunkalcConstants.J1970
-import com.costular.sunkalc.SunkalcConstants.J2000
-import com.costular.sunkalc.SunkalcConstants.dayMs
-import com.costular.sunkalc.SunkalcConstants.e
-import com.costular.sunkalc.SunkalcConstants.rad
-import com.costular.sunkalc.SunkalcConstants.zeroFive
+import com.costular.sunkalc.SunMoonCalcConstants
+import com.costular.sunkalc.SunMoonCalcConstants.J1970
+import com.costular.sunkalc.SunMoonCalcConstants.J2000
+import com.costular.sunkalc.SunMoonCalcConstants.dayMs
+import com.costular.sunkalc.SunMoonCalcConstants.e
+import com.costular.sunkalc.SunMoonCalcConstants.rad
+import com.costular.sunkalc.SunMoonCalcConstants.zeroFive
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -17,13 +17,16 @@ import kotlin.math.*
 internal object MathUtils {
 
     fun toJulian(date: LocalDateTime): Double =
-            date.toInstant(ZoneOffset.UTC).toEpochMilli() / dayMs - zeroFive + J1970
+        date.toInstant(ZoneOffset.UTC).toEpochMilli() / dayMs - zeroFive + J1970
 
     fun fromJulian(julian: Double): LocalDateTime =
-            LocalDateTime.ofInstant(Instant.ofEpochMilli(((julian + 0.50 - J1970) * dayMs).toLong()), ZoneId.systemDefault())
+        LocalDateTime.ofInstant(
+            Instant.ofEpochMilli(((julian + 0.50 - J1970) * dayMs).toLong()),
+            ZoneId.systemDefault()
+        )
 
     fun toDays(date: LocalDateTime): Double =
-            toJulian(date) - J2000
+        toJulian(date) - J2000
 
     fun rightAscension(l: Double, b: Double): Double {
         return atan2(sin(l) * cos(e) - tan(b) * sin(e), cos(l))
@@ -46,7 +49,8 @@ internal object MathUtils {
     }
 
     fun astroRefraction(h: Double): Double {
-        var hChecked = if (h < 0) h else h // the following formula works for positive altitudes only.
+        var hChecked =
+            if (h < 0) h else h // the following formula works for positive altitudes only.
 
         // formula 16.4 of "Astronomical Algorithms" 2nd edition by Jean Meeus (Willmann-Bell, Richmond) 1998.
         // 1.02 / tan(h + 10.26 / (h + 5.10)) h in degrees, result in arc minutes -> converted to rad:
@@ -56,11 +60,11 @@ internal object MathUtils {
 // general sun calculations
 
     fun julianCycle(d: Double, lw: Double): Double {
-        return round(d - SunkalcConstants.J0 - lw / (2 * PI))
+        return round(d - SunMoonCalcConstants.J0 - lw / (2 * PI))
     }
 
     fun approxTransit(Ht: Double, lw: Double, n: Double): Double {
-        return SunkalcConstants.J0 + (Ht + lw) / (2 * PI) + n
+        return SunMoonCalcConstants.J0 + (Ht + lw) / (2 * PI) + n
     }
 
     fun solarTransitJ(ds: Double, M: Double, L: Double): Double {
@@ -76,7 +80,15 @@ internal object MathUtils {
     }
 
     // returns set time for the given sun altitude
-    fun getSetJ(h: Double, lw: Double, phi: Double, dec: Double, n: Double, M: Double, L: Double): Double {
+    fun getSetJ(
+        h: Double,
+        lw: Double,
+        phi: Double,
+        dec: Double,
+        n: Double,
+        M: Double,
+        L: Double
+    ): Double {
         val w = hourAngle(h, phi, dec)
         val a = approxTransit(w, lw, n)
         return solarTransitJ(a, M, L)
@@ -87,8 +99,9 @@ internal object MathUtils {
     }
 
     fun eclipticLongitude(M: Double): Double {
-        var C = rad * (1.9148 * sin(M) + 0.02 * sin(2 * M) + 0.0003 * sin(3 * M)) // equation of center
-        val P = rad * 102.9372; // perihelion of the Earth
+        var C =
+            rad * (1.9148 * sin(M) + 0.02 * sin(2 * M) + 0.0003 * sin(3 * M)) // equation of center
+        val P = rad * 102.9372 // perihelion of the Earth
 
         return M + C + P + PI
     }
@@ -118,17 +131,17 @@ internal object MathUtils {
         val dt = 385001 - 20905 * cos(M)  // distance to the moon in km
 
         return MoonCords(
-                rightAscension(l, b),
-                declination(l, b),
-                dt
+            rightAscension(l, b),
+            declination(l, b),
+            dt
         )
     }
 
     fun getSolarNoonAndNadir(
-            latitude: Double,
-            longitude: Double,
-            date: LocalDateTime,
-            height: Double
+        latitude: Double,
+        longitude: Double,
+        date: LocalDateTime,
+        height: Double
     ): Pair<LocalDateTime, LocalDateTime> {
         val lw = rad * -longitude
 
@@ -148,11 +161,11 @@ internal object MathUtils {
     }
 
     fun getTimeAndEndingByValue(
-            latitude: Double,
-            longitude: Double,
-            date: LocalDateTime,
-            height: Double,
-            angle: Float
+        latitude: Double,
+        longitude: Double,
+        date: LocalDateTime,
+        height: Double,
+        angle: Float
     ): Pair<LocalDateTime, LocalDateTime> {
         val lw = rad * -longitude
         val phi = rad * latitude
@@ -176,7 +189,7 @@ internal object MathUtils {
     }
 
     fun hoursLater(date: LocalDateTime, hoursLater: Int): LocalDateTime =
-            date.plusMinutes((hoursLater * 60).toLong())
+        date.plusMinutes((hoursLater * 60).toLong())
 
     fun closestValue(value: Float, values: FloatArray): Float {
         var min = Integer.MAX_VALUE.toFloat()

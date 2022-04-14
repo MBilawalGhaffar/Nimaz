@@ -5,34 +5,29 @@ import com.arshadshah.nimaz.prayerTimeApi.internals.ShadowLength
 /**
  * Madhab for determining how Asr is calculated
  */
-enum class Madhab
-{
+enum class Madhab {
 
     /**
      * Shafi Madhab
      */
-    SHAFI ,
+    SHAFI,
 
     /**
      * Hanafi Madhab
      */
     HANAFI;
 
-    val shadowLength : ShadowLength
-        get() = when (this)
-        {
-            SHAFI ->
-            {
+    val shadowLength: ShadowLength
+        get() = when (this) {
+            SHAFI -> {
                 ShadowLength.SINGLE
             }
 
-            HANAFI ->
-            {
+            HANAFI -> {
                 ShadowLength.DOUBLE
             }
 
-            else ->
-            {
+            else -> {
                 throw IllegalArgumentException("Invalid Madhab")
             }
         }

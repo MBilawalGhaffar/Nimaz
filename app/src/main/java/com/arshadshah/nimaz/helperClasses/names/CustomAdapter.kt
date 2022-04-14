@@ -11,58 +11,48 @@ import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.arabicReshaper.ArabicUtilities
 
 internal class CustomAdapter(
-    var context : Context ,
-    private var arrayList : ArrayList<SubjectData>
-                            ) :
-    ListAdapter
-{
+    var context: Context,
+    private var arrayList: ArrayList<SubjectData>
+) :
+    ListAdapter {
 
-    override fun areAllItemsEnabled() : Boolean
-    {
+    override fun areAllItemsEnabled(): Boolean {
         return false
     }
 
-    override fun isEnabled(position : Int) : Boolean
-    {
+    override fun isEnabled(position: Int): Boolean {
         return true
     }
 
-    override fun registerDataSetObserver(observer : DataSetObserver)
-    {
+    override fun registerDataSetObserver(observer: DataSetObserver) {
     }
 
-    override fun unregisterDataSetObserver(observer : DataSetObserver)
-    {
+    override fun unregisterDataSetObserver(observer: DataSetObserver) {
     }
 
-    override fun getCount() : Int
-    {
+    override fun getCount(): Int {
         return arrayList.size
     }
 
-    override fun getItem(position : Int) : Any
-    {
+    override fun getItem(position: Int): Any {
         return position
     }
 
-    override fun getItemId(position : Int) : Long
-    {
+    override fun getItemId(position: Int): Long {
         return position.toLong()
     }
 
-    override fun hasStableIds() : Boolean
-    {
+    override fun hasStableIds(): Boolean {
         return false
     }
 
-    override fun getView(position : Int , ConvertView : View? , parent : ViewGroup) : View?
-    {
-        var convertView : View? = ConvertView
+    override fun getView(position: Int, ConvertView: View?, parent: ViewGroup): View? {
+        var convertView: View? = ConvertView
         val subjectData = arrayList[position]
 
-        if(convertView == null){
+        if (convertView == null) {
             val layoutInflater = LayoutInflater.from(context)
-            convertView = layoutInflater.inflate(R.layout.row_item , null)
+            convertView = layoutInflater.inflate(R.layout.row_item, null)
         }
         val number = convertView?.findViewById<TextView>(R.id.number)
         val EnglishName = convertView?.findViewById<TextView>(R.id.EnglishName)
@@ -76,18 +66,15 @@ internal class CustomAdapter(
         return convertView
     }
 
-    override fun getItemViewType(position : Int) : Int
-    {
+    override fun getItemViewType(position: Int): Int {
         return position
     }
 
-    override fun getViewTypeCount() : Int
-    {
+    override fun getViewTypeCount(): Int {
         return arrayList.size
     }
 
-    override fun isEmpty() : Boolean
-    {
+    override fun isEmpty(): Boolean {
         return false
     }
 }

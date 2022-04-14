@@ -2,7 +2,7 @@ package com.arshadshah.nimaz.helperClasses.database
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper 
+import android.database.sqlite.SQLiteOpenHelper
 
 /**
  * a class that creates the bookmark database
@@ -20,25 +20,26 @@ class BookmarkDatabaseHelper
     companion object {
         //database name
         private const val DATABASE_NAME = "bookmarkDatabase"
+
         //database version
         private const val DATABASE_VERSION = 1
 
         //table name
-         const val TABLE_BOOKMARK_SURAH = "bookmarkSurah"
-         const val TABLE_BOOKMARK_JUZ = "bookmarkJuz"
+        const val TABLE_BOOKMARK_SURAH = "bookmarkSurah"
+        const val TABLE_BOOKMARK_JUZ = "bookmarkJuz"
 
         //columns
-         const val COLUMN_AYA_NUMBER_BOOKMARK_ID = "ayaBookmarkId"
-         const val COLUMN_AYA_NUMBER_BOOKMARK = "ayaNumberBookmark"
-         const val COLUMN_AYA_TEXT_BOOKMARK = "ayaTextBookmark"
-         const val COLUMN_AYA_ARABIC_BOOKMARK = "ayaArabicBookmark"
+        const val COLUMN_AYA_NUMBER_BOOKMARK_ID = "ayaBookmarkId"
+        const val COLUMN_AYA_NUMBER_BOOKMARK = "ayaNumberBookmark"
+        const val COLUMN_AYA_TEXT_BOOKMARK = "ayaTextBookmark"
+        const val COLUMN_AYA_ARABIC_BOOKMARK = "ayaArabicBookmark"
         const val COLUMN_SURAH_NUMBER = "surahNumber"
 
-         const val COLUMN_AYA_NUMBER_BOOKMARK_ID_JUZ = "ayaBookmarkIdJuz"
-         const val COLUMN_AYA_NUMBER_BOOKMARK_JUZ = "ayaNumberBookmark"
-         const val COLUMN_AYA_TEXT_BOOKMARK_JUZ = "ayaTextBookmark"
-         const val COLUMN_AYA_ARABIC_BOOKMARK_JUZ = "ayaArabicBookmark"
-         const val COLUMN_JUZ_NUMBER = "juzNumber"
+        const val COLUMN_AYA_NUMBER_BOOKMARK_ID_JUZ = "ayaBookmarkIdJuz"
+        const val COLUMN_AYA_NUMBER_BOOKMARK_JUZ = "ayaNumberBookmark"
+        const val COLUMN_AYA_TEXT_BOOKMARK_JUZ = "ayaTextBookmark"
+        const val COLUMN_AYA_ARABIC_BOOKMARK_JUZ = "ayaArabicBookmark"
+        const val COLUMN_JUZ_NUMBER = "juzNumber"
     }
 
     //create table sql
@@ -48,14 +49,14 @@ class BookmarkDatabaseHelper
             "$COLUMN_AYA_TEXT_BOOKMARK TEXT, " +
             "$COLUMN_AYA_ARABIC_BOOKMARK TEXT, " +
             "$COLUMN_SURAH_NUMBER INTEGER)")
-    
+
     private val CREATE_TABLE_BOOKMARK_JUZ = ("CREATE TABLE $TABLE_BOOKMARK_JUZ (" +
             "$COLUMN_AYA_NUMBER_BOOKMARK_ID_JUZ INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "$COLUMN_AYA_NUMBER_BOOKMARK_JUZ TEXT, " +
             "$COLUMN_AYA_TEXT_BOOKMARK_JUZ TEXT, " +
             "$COLUMN_AYA_ARABIC_BOOKMARK_JUZ TEXT, " +
             "$COLUMN_JUZ_NUMBER INTEGER)")
-    
+
 
     //drop table sql
     private val DROP_TABLE_BOOKMARK_SURAH = "DROP TABLE IF EXISTS $TABLE_BOOKMARK_SURAH"

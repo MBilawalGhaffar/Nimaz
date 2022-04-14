@@ -1,7 +1,6 @@
 package com.arshadshah.nimaz.prayerTimeApi
 
-enum class Prayer
-{
+enum class Prayer {
 
-    NONE , FAJR , SUNRISE , DHUHR , ASR , MAGHRIB , ISHA
+    NONE, FAJR, SUNRISE, DHUHR, ASR, MAGHRIB, ISHA
 }

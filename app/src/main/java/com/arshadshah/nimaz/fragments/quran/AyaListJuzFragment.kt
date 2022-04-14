@@ -21,6 +21,7 @@ class AyaListJuzFragment : Fragment() {
 
     var number by Delegates.notNull<Int>()
     private lateinit var helperQuranDatabase: DatabaseAccessHelper
+
     //call the bookmark database helper
     private lateinit var helperBookmarkDatabase: BookmarkDatabaseAccessHelper
 
@@ -39,30 +40,30 @@ class AyaListJuzFragment : Fragment() {
         //get the juzNumber from bundle
         number = requireArguments().getInt("number")
 
-        val ayaForJuz = helperQuranDatabase.getAllAyaForJuz(number+1)
+        val ayaForJuz = helperQuranDatabase.getAllAyaForJuz(number + 1)
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val isEnglish = sharedPreferences.getBoolean("isEnglish", true)
 
         //add the following object to index 0 of ayaForSurah without losing value of index 0 in ayaForSurah
-        val ayaNumberOfBismillah= "0"
-        var ayaOfBismillah =""
-        ayaOfBismillah = if(isEnglish){
+        val ayaNumberOfBismillah = "0"
+
+        val ayaOfBismillah = if (isEnglish) {
             "In the name of Allah, the Entirely Merciful, the Especially Merciful."
-        } else{
+        } else {
             "اللہ کے نام سے جو رحمان و رحیم ہے"
         }
         val ayaArabicOfBismillah = "بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ"
-        val bismillah  = AyaObject(ayaNumberOfBismillah,ayaOfBismillah,ayaArabicOfBismillah)
-        
+        val bismillah = AyaObject(ayaNumberOfBismillah, ayaOfBismillah, ayaArabicOfBismillah)
+
         //find all the objects in arraylist ayaForJuz where ayaForJuz[i]!!.ayaNumber = 1
         //add object bismillah before it for every occurance of ayaForJuz[i]!!.ayaNumber = 1
         var index = 0
-        while(index < ayaForJuz.size){
-            if(ayaForJuz[index]!!.ayaArabic != bismillah.ayaArabic){
+        while (index < ayaForJuz.size) {
+            if (ayaForJuz[index]!!.ayaArabic != bismillah.ayaArabic) {
                 //add bismillah before ayaForJuz[i]
-                if(ayaForJuz[index]!!.ayaNumber == "1"){
-                    if(number+1 != 10 && index != 36){
+                if (ayaForJuz[index]!!.ayaNumber == "1") {
+                    if (number + 1 != 10 && index != 36) {
                         ayaForJuz.add(index, bismillah)
                         //skip the next iteration
                         index++
@@ -122,7 +123,7 @@ class AyaListJuzFragment : Fragment() {
                                 .show()
                         }
                     }
-                }else{
+                } else {
                     val bookmarkAdded = helperBookmarkDatabase.addBookmarkJuz(
                         ayaObject.ayaNumber,
                         ayaObject.ayaEnglish,
@@ -163,7 +164,8 @@ class AyaListJuzFragment : Fragment() {
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val ayaList = requireView().findViewById<ListView>(R.id.ayaList)
-        sharedPreferences.edit().putInt("lastPositionJuz ${(number+1)}", ayaList.firstVisiblePosition).apply()
+        sharedPreferences.edit()
+            .putInt("lastPositionJuz ${(number + 1)}", ayaList.firstVisiblePosition).apply()
     }
 
     //a function that restores the last position of the listview before the fragment is created
@@ -171,24 +173,24 @@ class AyaListJuzFragment : Fragment() {
         super.onResume()
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        val lastPosition = sharedPreferences.getInt("lastPositionJuz ${(number+1)}", 0)
+        val lastPosition = sharedPreferences.getInt("lastPositionJuz ${(number + 1)}", 0)
         val scrollToAyaNumber = sharedPreferences.getString("scrollToAyaNumber", "")
         val scrollToBookmark = sharedPreferences.getBoolean("scrollToBookmark", false)
         val scrollToBookmarkNumber = sharedPreferences.getInt("scrollToBookmarkNumber", 0)
         val ayaList = requireView().findViewById<ListView>(R.id.ayaList)
 
-        if(scrollToBookmark){
+        if (scrollToBookmark) {
             ayaList.setSelection(scrollToBookmarkNumber)
             sharedPreferences.edit().remove("scrollToBookmark").apply()
             sharedPreferences.edit().remove("scrollToBookmarkNumber").apply()
-        }else if(!scrollToBookmark){
-            if(scrollToAyaNumber != ""){
+        } else if (!scrollToBookmark) {
+            if (scrollToAyaNumber != "") {
                 val positionOfAyaGiven = scrollToAyaNumber!!.toInt()
                 ayaList.setSelection(positionOfAyaGiven)
                 sharedPreferences.edit().remove("scrollToAyaNumber").apply()
-            }else{
+            } else {
                 ayaList.setSelection(lastPosition)
-                sharedPreferences.edit().remove("lastPositionJuz ${(number+1)}").apply()
+                sharedPreferences.edit().remove("lastPositionJuz ${(number + 1)}").apply()
             }
         }
     }

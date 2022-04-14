@@ -21,11 +21,10 @@ import com.arshadshah.nimaz.prayerTimeApi.PrayerTimes
  * class for timer creation
  * @author Arshad shah
  * */
-class TimerCreater
-{
+class TimerCreater {
 
     // countdown timer for prayers
-    private lateinit var countDownTimer : CountDownTimer
+    private lateinit var countDownTimer: CountDownTimer
 
     /**
      * Creates a timer for given time
@@ -36,21 +35,20 @@ class TimerCreater
     @RequiresApi(Build.VERSION_CODES.O)
     fun createTimer(
         context: Context,
-        prayerTimes : PrayerTimes,
-        Tofajr : TextView ,
-        fajrhighlight : ConstraintLayout ,
-        Tosunrise : TextView ,
-        sunrisehighlight : ConstraintLayout ,
-        ToZuhar : TextView ,
-        zuharhighlight : ConstraintLayout ,
-        ToAsar : TextView ,
-        asarhighlight : ConstraintLayout ,
-        ToMaghrib : TextView ,
-        maghribhighlight : ConstraintLayout ,
-        ToIshaa : TextView ,
-        ishaahighlight : ConstraintLayout
-                   )
-    {
+        prayerTimes: PrayerTimes,
+        Tofajr: TextView,
+        fajrhighlight: ConstraintLayout,
+        Tosunrise: TextView,
+        sunrisehighlight: ConstraintLayout,
+        ToZuhar: TextView,
+        zuharhighlight: ConstraintLayout,
+        ToAsar: TextView,
+        asarhighlight: ConstraintLayout,
+        ToMaghrib: TextView,
+        maghribhighlight: ConstraintLayout,
+        ToIshaa: TextView,
+        ishaahighlight: ConstraintLayout
+    ) {
 
         //shared preferences
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -84,38 +82,41 @@ class TimerCreater
         val currentPrayerTimeInLong = DateConvertor().convertTimeToLong(currentPrayerTime)
         val nextPrayerTimeInLong = DateConvertor().convertTimeToLong(nextPrayerTime)
 
-        Log.i("Current Prayer time" , DateConvertor().convertTimeToLong(currentPrayerTime).toString())
-        Log.i("Next prayer time" , DateConvertor().convertTimeToLong(nextPrayerTime).toString())
+        Log.i(
+            "Current Prayer time",
+            DateConvertor().convertTimeToLong(currentPrayerTime).toString()
+        )
+        Log.i("Next prayer time", DateConvertor().convertTimeToLong(nextPrayerTime).toString())
 
 
-        val fajr_value_Long = DateConvertor().convertTimeToLong(prayerTimes.timeForPrayer(Prayer.FAJR).toString())
+        val fajr_value_Long =
+            DateConvertor().convertTimeToLong(prayerTimes.timeForPrayer(Prayer.FAJR).toString())
         val fajr_tommorow = fajr_value_Long + 86400000
 
-        val sunrise_value_Long = DateConvertor().convertTimeToLong(prayerTimes.timeForPrayer(Prayer.SUNRISE).toString())
-        val zuhar_value_Long = DateConvertor().convertTimeToLong(prayerTimes.timeForPrayer(Prayer.DHUHR).toString())
-        val asar_value_Long = DateConvertor().convertTimeToLong(prayerTimes.timeForPrayer(Prayer.ASR).toString())
-        val maghrib_value_Long = DateConvertor().convertTimeToLong(prayerTimes.timeForPrayer(Prayer.MAGHRIB).toString())
-        val isha_value_Long = DateConvertor().convertTimeToLong(prayerTimes.timeForPrayer(Prayer.ISHA).toString())
+        val sunrise_value_Long =
+            DateConvertor().convertTimeToLong(prayerTimes.timeForPrayer(Prayer.SUNRISE).toString())
+        val zuhar_value_Long =
+            DateConvertor().convertTimeToLong(prayerTimes.timeForPrayer(Prayer.DHUHR).toString())
+        val asar_value_Long =
+            DateConvertor().convertTimeToLong(prayerTimes.timeForPrayer(Prayer.ASR).toString())
+        val maghrib_value_Long =
+            DateConvertor().convertTimeToLong(prayerTimes.timeForPrayer(Prayer.MAGHRIB).toString())
+        val isha_value_Long =
+            DateConvertor().convertTimeToLong(prayerTimes.timeForPrayer(Prayer.ISHA).toString())
 
 
-        if (current_time in (isha_value_Long + 1) until fajr_tommorow)
-        {
+        if (current_time in (isha_value_Long + 1) until fajr_tommorow) {
             Tofajr.isVisible = true
             fajrhighlight.setBackgroundResource(R.drawable.prayertimehighlight)
-            Log.i("Nimaz Timer" , "Timer Started")
-            Count_DownTimer(context , fajr_tommorow , Tofajr)
-        }
-        else
-        {
-            if (current_time < fajr_value_Long)
-            {
+            Log.i("Nimaz Timer", "Timer Started")
+            Count_DownTimer(context, fajr_tommorow, Tofajr)
+        } else {
+            if (current_time < fajr_value_Long) {
                 Tofajr.isVisible = true
                 fajrhighlight.setBackgroundResource(R.drawable.prayertimehighlight)
-                Log.i("Nimaz Timer" , "Timer Started")
-                Count_DownTimer(context , nextPrayerTimeInLong , Tofajr)
-            }
-            else
-            {
+                Log.i("Nimaz Timer", "Timer Started")
+                Count_DownTimer(context, nextPrayerTimeInLong, Tofajr)
+            } else {
                 fajrhighlight.setBackgroundResource(R.drawable.linesinprayerbottom)
                 Tofajr.isVisible = false
                 Tosunrise.isVisible = true
@@ -123,46 +124,37 @@ class TimerCreater
         }
 
         // sunrise
-        if (current_time in (fajr_value_Long + 1) until sunrise_value_Long)
-        {
+        if (current_time in (fajr_value_Long + 1) until sunrise_value_Long) {
             fajrhighlight.setBackgroundResource(0)
             Tofajr.isVisible = false
             Tosunrise.isVisible = true
             sunrisehighlight.setBackgroundResource(R.drawable.prayertimehighlight)
-            Log.i("Nimaz Timer" , "Timer Started")
-            Count_DownTimer(context , nextPrayerTimeInLong , Tosunrise)
-        }
-        else
-        {
+            Log.i("Nimaz Timer", "Timer Started")
+            Count_DownTimer(context, nextPrayerTimeInLong, Tosunrise)
+        } else {
             sunrisehighlight.setBackgroundResource(R.drawable.linesinprayerbottom)
             Tosunrise.isVisible = false
             ToZuhar.isVisible = true
         }
         // zuhar
-        if (current_time in (sunrise_value_Long + 1) until zuhar_value_Long)
-        {
+        if (current_time in (sunrise_value_Long + 1) until zuhar_value_Long) {
             fajrhighlight.setBackgroundResource(R.drawable.linesinprayerbottom)
             zuharhighlight.setBackgroundResource(R.drawable.prayertimehighlight)
-            Log.i("Nimaz Timer" , "Timer Started")
-            Count_DownTimer(context , nextPrayerTimeInLong , ToZuhar)
-        }
-        else
-        {
+            Log.i("Nimaz Timer", "Timer Started")
+            Count_DownTimer(context, nextPrayerTimeInLong, ToZuhar)
+        } else {
             zuharhighlight.setBackgroundResource(R.drawable.linesinprayerbottom)
             ToZuhar.isVisible = false
             ToAsar.isVisible = true
         }
         // asar
-        if (current_time in (zuhar_value_Long + 1) until asar_value_Long)
-        {
+        if (current_time in (zuhar_value_Long + 1) until asar_value_Long) {
             fajrhighlight.setBackgroundResource(R.drawable.linesinprayerbottom)
             asarhighlight.setBackgroundResource(R.drawable.prayertimehighlight)
-            Log.i("Nimaz Timer" , "Timer Started")
-            Count_DownTimer(context , nextPrayerTimeInLong , ToAsar)
+            Log.i("Nimaz Timer", "Timer Started")
+            Count_DownTimer(context, nextPrayerTimeInLong, ToAsar)
 
-        }
-        else
-        {
+        } else {
 
             asarhighlight.setBackgroundResource(R.drawable.linesinprayerbottom)
             ToAsar.isVisible = false
@@ -170,63 +162,48 @@ class TimerCreater
         }
 
         // maghrib
-        if (current_time in (asar_value_Long + 1) until maghrib_value_Long)
-        {
+        if (current_time in (asar_value_Long + 1) until maghrib_value_Long) {
             fajrhighlight.setBackgroundResource(R.drawable.linesinprayerbottom)
             maghribhighlight.setBackgroundResource(R.drawable.prayertimehighlight)
-            Log.i("Nimaz Timer" , "Timer Started")
-            Count_DownTimer(context , nextPrayerTimeInLong , ToMaghrib)
-        }
-        else
-        {
+            Log.i("Nimaz Timer", "Timer Started")
+            Count_DownTimer(context, nextPrayerTimeInLong, ToMaghrib)
+        } else {
 
             maghribhighlight.setBackgroundResource(R.drawable.linesinprayerbottom)
             ToMaghrib.isVisible = false
             ToIshaa.isVisible = true
         }
 
-        val ishaaTimeLonger = sharedPreferences.getBoolean("ishaaTimeLonger" , false)
-        if (! ishaaTimeLonger)
-        {
+        val ishaaTimeLonger = sharedPreferences.getBoolean("ishaaTimeLonger", false)
+        if (!ishaaTimeLonger) {
             // ishaa
-            if (current_time in (maghrib_value_Long + 1) until isha_value_Long)
-            {
+            if (current_time in (maghrib_value_Long + 1) until isha_value_Long) {
                 fajrhighlight.setBackgroundResource(R.drawable.linesinprayerbottom)
                 ishaahighlight.setBackgroundResource(R.drawable.prayertimehighlight)
-                Log.i("Nimaz Timer" , "Timer Started")
-                Count_DownTimer(context , nextPrayerTimeInLong , ToIshaa)
-            }
-            else
-            {
+                Log.i("Nimaz Timer", "Timer Started")
+                Count_DownTimer(context, nextPrayerTimeInLong, ToIshaa)
+            } else {
                 ishaahighlight.setBackgroundResource(0)
                 ToIshaa.isVisible = false
             }
 
-        }
-        else
-        {
+        } else {
             val MaghribPlusBuffer = maghrib_value_Long + 1800000
 
-            if (current_time in (MaghribPlusBuffer + 1) until fajr_tommorow)
-            {
+            if (current_time in (MaghribPlusBuffer + 1) until fajr_tommorow) {
                 Tofajr.isVisible = true
                 fajrhighlight.setBackgroundResource(R.drawable.prayertimehighlight)
-                Log.i("Nimaz Timer" , "Timer Started")
-                Count_DownTimer(context , fajr_tommorow , Tofajr)
+                Log.i("Nimaz Timer", "Timer Started")
+                Count_DownTimer(context, fajr_tommorow, Tofajr)
                 ishaahighlight.setBackgroundResource(0)
                 ToIshaa.isVisible = true
                 ToIshaa.text = "After"
-            }
-            else
-            {
-                if (current_time in (maghrib_value_Long + 1) until MaghribPlusBuffer)
-                {
+            } else {
+                if (current_time in (maghrib_value_Long + 1) until MaghribPlusBuffer) {
                     ishaahighlight.setBackgroundResource(R.drawable.prayertimehighlight)
                     ToIshaa.isVisible = true
                     ToIshaa.text = "After"
-                }
-                else
-                {
+                } else {
                     ishaahighlight.setBackgroundResource(0)
                     ToIshaa.isVisible = true
                     ToIshaa.text = "After"
@@ -247,8 +224,7 @@ class TimerCreater
      * @return A timer to a TextView
      * */
     @RequiresApi(Build.VERSION_CODES.O)
-    fun Count_DownTimer(context : Context , endTime : Long , timeTeller : TextView)
-    {
+    fun Count_DownTimer(context: Context, endTime: Long, timeTeller: TextView) {
 
         // declare and initialize variables
         val start_time_in_milli = System.currentTimeMillis()
@@ -258,12 +234,10 @@ class TimerCreater
 
         // countdown timer object
         countDownTimer =
-            object : CountDownTimer(difference , 1000)
-            {
-                override fun onTick(millisUntilFinished : Long)
-                {
+            object : CountDownTimer(difference, 1000) {
+                override fun onTick(millisUntilFinished: Long) {
                     var diff = millisUntilFinished
-                    val secondsInMilli : Long = 1000
+                    val secondsInMilli: Long = 1000
                     val minutesInMilli = secondsInMilli * 60
                     val hoursInMilli = minutesInMilli * 60
 
@@ -281,24 +255,24 @@ class TimerCreater
 
                     val res: Resources = context.resources
                     val text = res.getString(R.string.timer)
-                    val filledText = String.format(text,elapsedHours,elapsedMinutes,elapsedSeconds)
+                    val filledText =
+                        String.format(text, elapsedHours, elapsedMinutes, elapsedSeconds)
                     timeTeller.text = filledText
                 }
 
-                override fun onFinish()
-                {
+                override fun onFinish() {
                     //refresh fragment
                     val fragment = HomeFragment()
                     val fragmentManager = (context as AppCompatActivity).supportFragmentManager
                     val fragmentTransaction = fragmentManager.beginTransaction()
-                    fragmentTransaction.replace(R.id.nav_host_fragment , fragment)
+                    fragmentTransaction.replace(R.id.nav_host_fragment, fragment)
                     fragmentTransaction.commit()
-                
+
                     //cancel the countdown timer
                     countDownTimer.cancel()
-                    
+
                     timeTeller.isVisible = false
-                    Log.i("Nimaz Timer" , "Timer finished")
+                    Log.i("Nimaz Timer", "Timer finished")
                 }
             }.start()
     } // end of countdown function

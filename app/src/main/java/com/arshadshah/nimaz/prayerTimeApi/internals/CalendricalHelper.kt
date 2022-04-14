@@ -2,8 +2,7 @@ package com.arshadshah.nimaz.prayerTimeApi.internals
 
 import java.util.*
 
-internal object CalendricalHelper
-{
+internal object CalendricalHelper {
 
     /**
      * The Julian Day for a given date
@@ -11,16 +10,15 @@ internal object CalendricalHelper
      * @param date the date
      * @return the julian day
      */
-    fun julianDay(date : Date?) : Double
-    {
+    fun julianDay(date: Date?): Double {
         val calendar = GregorianCalendar.getInstance(TimeZone.getTimeZone("UTC"))
-        calendar.time = date !!
+        calendar.time = date!!
         return julianDay(
-            calendar[Calendar.YEAR] ,
-            calendar[Calendar.MONTH] + 1 ,
-            calendar[Calendar.DAY_OF_MONTH] ,
+            calendar[Calendar.YEAR],
+            calendar[Calendar.MONTH] + 1,
+            calendar[Calendar.DAY_OF_MONTH],
             calendar[Calendar.HOUR_OF_DAY] + calendar[Calendar.MINUTE] / 60.0
-                        )
+        )
     }
     /**
      * The Julian Day for a given Gregorian date
@@ -40,8 +38,7 @@ internal object CalendricalHelper
      * @return the julian day
      */
     @JvmOverloads
-    fun julianDay(year : Int , month : Int , day : Int , hours : Double = 0.0) : Double
-    {
+    fun julianDay(year: Int, month: Int, day: Int, hours: Double = 0.0): Double {
         /* Equation from Astronomical Algorithms page 60 */
 
         // NOTE: Integer conversion is done intentionally for the purpose of decimal
@@ -63,8 +60,7 @@ internal object CalendricalHelper
      * @return the julian century from the epoch
      */
     @JvmStatic
-    fun julianCentury(JD : Double) : Double
-    {
+    fun julianCentury(JD: Double): Double {
         /* Equation from Astronomical Algorithms page 163 */
         return (JD - 2451545.0) / 36525
     }

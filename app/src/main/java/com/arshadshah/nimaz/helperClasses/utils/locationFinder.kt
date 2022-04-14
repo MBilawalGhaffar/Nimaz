@@ -11,15 +11,14 @@ import java.util.*
  * Finds the location from a string using Geocoder
  * @author Arshad Shah
  */
-class locationFinder
-{
+class locationFinder {
 
     // coordinates for the calculation of prayer time
     var latitudeValue = 0.0
     var longitudeValue = 0.0
 
     // name of city
-    var cityName : String = " "
+    var cityName: String = " "
 
 
     /**
@@ -28,87 +27,72 @@ class locationFinder
      * @param context context of the application
      * @param name Name of the city
      */
-    fun findLongAndLan(context : Context , name : String)
-    {
+    fun findLongAndLan(context: Context, name: String) {
         // city name
-        if (name == null || name == "No Network")
-        {
+        if (name == null || name == "No Network") {
             val isNetworkAvailable = NetworkChecker().networkCheck(context)
-            if (isNetworkAvailable)
-            {
+            if (isNetworkAvailable) {
                 val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-                val latitudeInput = sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
-                val longitudeInput = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()
-                findCityName(context , latitudeInput , longitudeInput)
-            }
-            else
-            {
+                val latitudeInput = sharedPreferences.getString("latitude", "0.0")!!.toDouble()
+                val longitudeInput = sharedPreferences.getString("longitude", "0.0")!!.toDouble()
+                findCityName(context, latitudeInput, longitudeInput)
+            } else {
 
                 val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
                 with(sharedPreferences.edit()) {
-                    putString("location_input" , "No Network")
+                    putString("location_input", "No Network")
                     apply()
                 }
 
             }
-        }
-        else
-        {
+        } else {
 
-            val gcd = Geocoder(context , Locale.getDefault())
+            val gcd = Geocoder(context, Locale.getDefault())
             val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
             val isNetworkAvailable = NetworkChecker().networkCheck(context)
-            if (isNetworkAvailable)
-            {
-                try
-                {
-                    val addresses : List<Address> = gcd.getFromLocationName(name , 1)
-                    if (addresses.isNotEmpty())
-                    {
+            if (isNetworkAvailable) {
+                try {
+                    val addresses: List<Address> = gcd.getFromLocationName(name, 1)
+                    if (addresses.isNotEmpty()) {
                         cityName = addresses[0].locality
                         latitudeValue = addresses[0].latitude
                         longitudeValue = addresses[0].longitude
                         with(sharedPreferences.edit()) {
-                            putString("latitude" , latitudeValue.toString())
-                            putString("longitude" , longitudeValue.toString())
-                            putString("location_input" , cityName)
+                            putString("latitude", latitudeValue.toString())
+                            putString("longitude", longitudeValue.toString())
+                            putString("location_input", cityName)
                             apply()
                         }
 
-                        Log.i("Location" , "Location Found From value $cityName")
-                    }
-                    else
-                    {
+                        Log.i("Location", "Location Found From value $cityName")
+                    } else {
                         latitudeValue =
-                            sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
+                            sharedPreferences.getString("latitude", "0.0")!!.toDouble()
                         longitudeValue =
-                            sharedPreferences.getString("longitude" , "0.0") !!.toDouble()
+                            sharedPreferences.getString("longitude", "0.0")!!.toDouble()
                         cityName =
-                            sharedPreferences.getString("location_input" , "Portlaoise").toString()
-                        Log.i("Location" , "Location Found From Storage $cityName")
+                            sharedPreferences.getString("location_input", "Portlaoise").toString()
+                        Log.i("Location", "Location Found From Storage $cityName")
                     }
-                }
-                catch (e : Exception)
-                {
-                    Log.e("Geocoder" , "Geocoder has failed")
-                    latitudeValue = sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
-                    longitudeValue = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()
-                    val cityNameFromStorage = sharedPreferences.getString("location_input" , "Portlaoise").toString()
-
-                    cityName = if(cityNameFromStorage != null) {
+                } catch (e: Exception) {
+                    Log.e("Geocoder", "Geocoder has failed")
+                    latitudeValue = sharedPreferences.getString("latitude", "0.0")!!.toDouble()
+                    longitudeValue = sharedPreferences.getString("longitude", "0.0")!!.toDouble()
+                    val cityNameFromStorage =
                         sharedPreferences.getString("location_input", "Portlaoise").toString()
-                    } else{
+
+                    cityName = if (cityNameFromStorage != null) {
+                        sharedPreferences.getString("location_input", "Portlaoise").toString()
+                    } else {
                         "Not Found"
                     }
-                    Log.i("Location" , "Location Found From Storage $cityName")
+                    Log.i("Location", "Location Found From Storage $cityName")
                 }
-            }
-            else
-            {
-                latitudeValue = sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
-                longitudeValue = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()
-                cityName = sharedPreferences.getString("location_input" , "Portlaoise").toString()
-                Log.i("Location" , "Location Found From Storage $cityName")
+            } else {
+                latitudeValue = sharedPreferences.getString("latitude", "0.0")!!.toDouble()
+                longitudeValue = sharedPreferences.getString("longitude", "0.0")!!.toDouble()
+                cityName = sharedPreferences.getString("location_input", "Portlaoise").toString()
+                Log.i("Location", "Location Found From Storage $cityName")
             }
         }
     }
@@ -120,57 +104,48 @@ class locationFinder
      * @param context context of the application
      * @param name Name of the city
      */
-    fun findCityName(context : Context , latitude : Double , longitude : Double)
-    {
+    fun findCityName(context: Context, latitude: Double, longitude: Double) {
         // city name
-        val gcd = Geocoder(context , Locale.getDefault())
+        val gcd = Geocoder(context, Locale.getDefault())
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         val isNetworkAvailable = NetworkChecker().networkCheck(context)
-        if (isNetworkAvailable)
-        {
-            try
-            {
-                val addresses : List<Address> = gcd.getFromLocation(latitude , longitude , 1)
-                if (addresses.isNotEmpty())
-                {
+        if (isNetworkAvailable) {
+            try {
+                val addresses: List<Address> = gcd.getFromLocation(latitude, longitude, 1)
+                if (addresses.isNotEmpty()) {
                     cityName = addresses[0].locality
                     with(sharedPreferences.edit()) {
-                        putString("location_input" , cityName)
+                        putString("location_input", cityName)
                         apply()
                     }
 
-                    Log.i("Location" , "Location Found From value $latitude, and $longitude")
-                }
-                else
-                {
-                    latitudeValue = sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
-                    longitudeValue = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()
+                    Log.i("Location", "Location Found From value $latitude, and $longitude")
+                } else {
+                    latitudeValue = sharedPreferences.getString("latitude", "0.0")!!.toDouble()
+                    longitudeValue = sharedPreferences.getString("longitude", "0.0")!!.toDouble()
                     cityName =
-                        sharedPreferences.getString("location_input" , "Portlaoise").toString()
-                    Log.i("Location" , "Location Found From Storage $cityName")
+                        sharedPreferences.getString("location_input", "Portlaoise").toString()
+                    Log.i("Location", "Location Found From Storage $cityName")
                 }
-            }
-            catch (e : Exception)
-            {
-                Log.e("Geocoder" , "Geocoder has failed")
-                latitudeValue = sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
-                longitudeValue = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()
-                val cityNameFromStorage = sharedPreferences.getString("location_input" , "Portlaoise").toString()
-
-                cityName = if(cityNameFromStorage != null) {
+            } catch (e: Exception) {
+                Log.e("Geocoder", "Geocoder has failed")
+                latitudeValue = sharedPreferences.getString("latitude", "0.0")!!.toDouble()
+                longitudeValue = sharedPreferences.getString("longitude", "0.0")!!.toDouble()
+                val cityNameFromStorage =
                     sharedPreferences.getString("location_input", "Portlaoise").toString()
-                } else{
+
+                cityName = if (cityNameFromStorage != null) {
+                    sharedPreferences.getString("location_input", "Portlaoise").toString()
+                } else {
                     "Not Found"
                 }
-                Log.i("Location" , "Location Found From value $latitude, and $longitude")
+                Log.i("Location", "Location Found From value $latitude, and $longitude")
             }
-        }
-        else
-        {
-            latitudeValue = sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
-            longitudeValue = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()
-            cityName = sharedPreferences.getString("location_input" , "Portlaoise").toString()
-            Log.i("Location" , "Location Found From Storage $cityName")
+        } else {
+            latitudeValue = sharedPreferences.getString("latitude", "0.0")!!.toDouble()
+            longitudeValue = sharedPreferences.getString("longitude", "0.0")!!.toDouble()
+            cityName = sharedPreferences.getString("location_input", "Portlaoise").toString()
+            Log.i("Location", "Location Found From Storage $cityName")
         }
     }
 }

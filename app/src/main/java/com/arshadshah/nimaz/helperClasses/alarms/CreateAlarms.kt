@@ -19,8 +19,7 @@ import com.arshadshah.nimaz.recievers.ReminderReciever
  * create channels
  * @author Arshad Shah
  * */
-class CreateAlarms
-{
+class CreateAlarms {
 
 
     /**
@@ -34,15 +33,14 @@ class CreateAlarms
      * */
     @RequiresApi(Build.VERSION_CODES.M)
     fun scheduleAlarms(
-        context : Context ,
-        fajrAlarm : Long ,
-        sunriseAlarm : Long ,
-        zuharAlarm : Long ,
-        asarAlarm : Long ,
-        maghribAlarm : Long ,
-        ishaaAlarm : Long
-                      )
-    {
+        context: Context,
+        fajrAlarm: Long,
+        sunriseAlarm: Long,
+        zuharAlarm: Long,
+        asarAlarm: Long,
+        maghribAlarm: Long,
+        ishaaAlarm: Long
+    ) {
 
 
         // notification channelid
@@ -65,100 +63,103 @@ class CreateAlarms
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
         //alarm lock
-        val alarmLock = sharedPreferences.getBoolean("alarmLock" , false)
+        val alarmLock = sharedPreferences.getBoolean("alarmLock", false)
 
-        if (! alarmLock)
-        {
+        if (!alarmLock) {
 
             // fajr alarm
             val fajrIntent =
-                Intent(context , ReminderReciever::class.java).apply {
-                    putExtra("title" , channelFajr)
-                    putExtra("channelid" , CHANNEL_ID)
-                    putExtra("notifyid" , 2000)
-                    putExtra("time" , fajrAlarm)
+                Intent(context, ReminderReciever::class.java).apply {
+                    putExtra("title", channelFajr)
+                    putExtra("channelid", CHANNEL_ID)
+                    putExtra("notifyid", 2000)
+                    putExtra("time", fajrAlarm)
                 }
-            val fajrPendingIntent = PendingIntent.getBroadcast(context , 1 , fajrIntent , FLAG_IMMUTABLE)
-            Alarms().setExactAlarm(context , fajrAlarm , fajrPendingIntent)
+            val fajrPendingIntent =
+                PendingIntent.getBroadcast(context, 1, fajrIntent, FLAG_IMMUTABLE)
+            Alarms().setExactAlarm(context, fajrAlarm, fajrPendingIntent)
 
             // fajr alarm
             val sunriseIntent =
-                Intent(context , ReminderReciever::class.java).apply {
-                    putExtra("title" , channelSunrise)
-                    putExtra("channelid" , CHANNEL_ID1)
-                    putExtra("notifyid" , 2001)
-                    putExtra("time" , sunriseAlarm)
+                Intent(context, ReminderReciever::class.java).apply {
+                    putExtra("title", channelSunrise)
+                    putExtra("channelid", CHANNEL_ID1)
+                    putExtra("notifyid", 2001)
+                    putExtra("time", sunriseAlarm)
                 }
-            val sunrisePendingIntent = PendingIntent.getBroadcast(context , 2 , sunriseIntent , FLAG_IMMUTABLE)
-            Alarms().setExactAlarm(context , sunriseAlarm , sunrisePendingIntent)
+            val sunrisePendingIntent =
+                PendingIntent.getBroadcast(context, 2, sunriseIntent, FLAG_IMMUTABLE)
+            Alarms().setExactAlarm(context, sunriseAlarm, sunrisePendingIntent)
 
             // zuhar
             val zuharIntent =
-                Intent(context , ReminderReciever::class.java).apply {
-                    putExtra("title" , channelZuhar)
-                    putExtra("channelid" , CHANNEL_ID2)
-                    putExtra("notifyid" , 2002)
-                    putExtra("time" , zuharAlarm)
+                Intent(context, ReminderReciever::class.java).apply {
+                    putExtra("title", channelZuhar)
+                    putExtra("channelid", CHANNEL_ID2)
+                    putExtra("notifyid", 2002)
+                    putExtra("time", zuharAlarm)
                 }
-            val zuharPendingIntent = PendingIntent.getBroadcast(context , 3 , zuharIntent , FLAG_IMMUTABLE)
-            Alarms().setExactAlarm(context , zuharAlarm , zuharPendingIntent)
+            val zuharPendingIntent =
+                PendingIntent.getBroadcast(context, 3, zuharIntent, FLAG_IMMUTABLE)
+            Alarms().setExactAlarm(context, zuharAlarm, zuharPendingIntent)
 
             // asar
             val asarintent =
-                Intent(context , ReminderReciever::class.java).apply {
-                    putExtra("title" , channelAsar)
-                    putExtra("channelid" , CHANNEL_ID3)
-                    putExtra("notifyid" , 2003)
-                    putExtra("time" , asarAlarm)
+                Intent(context, ReminderReciever::class.java).apply {
+                    putExtra("title", channelAsar)
+                    putExtra("channelid", CHANNEL_ID3)
+                    putExtra("notifyid", 2003)
+                    putExtra("time", asarAlarm)
                 }
-            val asarPendingIntent = PendingIntent.getBroadcast(context , 4 , asarintent , FLAG_IMMUTABLE)
-            Alarms().setExactAlarm(context , asarAlarm , asarPendingIntent)
+            val asarPendingIntent =
+                PendingIntent.getBroadcast(context, 4, asarintent, FLAG_IMMUTABLE)
+            Alarms().setExactAlarm(context, asarAlarm, asarPendingIntent)
 
             // maghrib
             val maghribIntent =
-                Intent(context , ReminderReciever::class.java).apply {
-                    putExtra("title" , channelMaghrib)
-                    putExtra("channelid" , CHANNEL_ID4)
-                    putExtra("notifyid" , 2004)
-                    putExtra("time" , maghribAlarm)
+                Intent(context, ReminderReciever::class.java).apply {
+                    putExtra("title", channelMaghrib)
+                    putExtra("channelid", CHANNEL_ID4)
+                    putExtra("notifyid", 2004)
+                    putExtra("time", maghribAlarm)
                 }
-            val maghribPendingIntent = PendingIntent.getBroadcast(context , 5 , maghribIntent , FLAG_IMMUTABLE)
-            Alarms().setExactAlarm(context , maghribAlarm , maghribPendingIntent)
+            val maghribPendingIntent =
+                PendingIntent.getBroadcast(context, 5, maghribIntent, FLAG_IMMUTABLE)
+            Alarms().setExactAlarm(context, maghribAlarm, maghribPendingIntent)
 
             //ishaa alarm
-            val ishaaTimeLonger = sharedPreferences.getBoolean("ishaaTimeLonger" , false)
+            val ishaaTimeLonger = sharedPreferences.getBoolean("ishaaTimeLonger", false)
 
-            if (! ishaaTimeLonger)
-            {
+            if (!ishaaTimeLonger) {
                 // ishaa
                 val ishaaIntent =
-                    Intent(context , ReminderReciever::class.java).apply {
-                        putExtra("title" , channelIshaa)
-                        putExtra("channelid" , CHANNEL_ID5)
-                        putExtra("notifyid" , 2005)
-                        putExtra("time" , ishaaAlarm)
+                    Intent(context, ReminderReciever::class.java).apply {
+                        putExtra("title", channelIshaa)
+                        putExtra("channelid", CHANNEL_ID5)
+                        putExtra("notifyid", 2005)
+                        putExtra("time", ishaaAlarm)
                     }
-                val ishaaPendingIntent = PendingIntent.getBroadcast(context , 6 , ishaaIntent , FLAG_IMMUTABLE)
-                Alarms().setExactAlarm(context , ishaaAlarm , ishaaPendingIntent)
-            }
-            else
-            {
+                val ishaaPendingIntent =
+                    PendingIntent.getBroadcast(context, 6, ishaaIntent, FLAG_IMMUTABLE)
+                Alarms().setExactAlarm(context, ishaaAlarm, ishaaPendingIntent)
+            } else {
                 val MaghribPlusBuffer = maghribAlarm + 1800000
                 // ishaa
                 val ishaaIntent =
-                    Intent(context , ReminderReciever::class.java).apply {
-                        putExtra("title" , channelIshaa)
-                        putExtra("channelid" , CHANNEL_ID5)
-                        putExtra("notifyid" , 2005)
-                        putExtra("time" , MaghribPlusBuffer)
+                    Intent(context, ReminderReciever::class.java).apply {
+                        putExtra("title", channelIshaa)
+                        putExtra("channelid", CHANNEL_ID5)
+                        putExtra("notifyid", 2005)
+                        putExtra("time", MaghribPlusBuffer)
                     }
-                val ishaaPendingIntent = PendingIntent.getBroadcast(context , 6 , ishaaIntent , FLAG_IMMUTABLE)
-                Alarms().setExactAlarm(context , MaghribPlusBuffer , ishaaPendingIntent)
+                val ishaaPendingIntent =
+                    PendingIntent.getBroadcast(context, 6, ishaaIntent, FLAG_IMMUTABLE)
+                Alarms().setExactAlarm(context, MaghribPlusBuffer, ishaaPendingIntent)
             }
-            Log.i("Alarms for Adhan" , "All alarms Alarms are scheduled successfully.")
+            Log.i("Alarms for Adhan", "All alarms Alarms are scheduled successfully.")
             //write lock to storage
             with(sharedPreferences.edit()) {
-                putBoolean("alarmLock" , true)
+                putBoolean("alarmLock", true)
                 apply()
             }
         }
@@ -177,35 +178,33 @@ class CreateAlarms
      * */
     @RequiresApi(Build.VERSION_CODES.M)
     fun resetAlarms(
-        context : Context ,
-        fajrAlarm : Long ,
-        sunriseAlarm : Long ,
-        zuharAlarm : Long ,
-        asarAlarm : Long ,
-        maghribAlarm : Long ,
-        ishaaAlarm : Long
-                   )
-    {
+        context: Context,
+        fajrAlarm: Long,
+        sunriseAlarm: Long,
+        zuharAlarm: Long,
+        asarAlarm: Long,
+        maghribAlarm: Long,
+        ishaaAlarm: Long
+    ) {
         //recreate all alarms
         val resetIntent =
-            Intent(context , AlarmResetReceiver::class.java).apply {
-                putExtra("fajrTime" , fajrAlarm)
-                putExtra("sunriseTime" , sunriseAlarm)
-                putExtra("zuharTime" , zuharAlarm)
-                putExtra("asarTime" , asarAlarm)
-                putExtra("maghribTime" , maghribAlarm)
-                putExtra("ishaaTime" , ishaaAlarm)
+            Intent(context, AlarmResetReceiver::class.java).apply {
+                putExtra("fajrTime", fajrAlarm)
+                putExtra("sunriseTime", sunriseAlarm)
+                putExtra("zuharTime", zuharAlarm)
+                putExtra("asarTime", asarAlarm)
+                putExtra("maghribTime", maghribAlarm)
+                putExtra("ishaaTime", ishaaAlarm)
             }
-        val resetPendingIntent = PendingIntent.getBroadcast(context , 7 , resetIntent , FLAG_IMMUTABLE)
-        Alarms().setAlarm(context , resetPendingIntent)
+        val resetPendingIntent = PendingIntent.getBroadcast(context, 7, resetIntent, FLAG_IMMUTABLE)
+        Alarms().setAlarm(context, resetPendingIntent)
     }
 
 
     /**
      * Creates channel
      * */
-    fun createChannel(context : Context)
-    {
+    fun createChannel(context: Context) {
 
         //shared preferences
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -235,9 +234,8 @@ class CreateAlarms
         val descIshaa = "Ishaa Prayer Notification"
 
         // make channels
-        val channelLock = sharedPreferences.getBoolean("channelLock" , false)
-        if (! channelLock)
-        {
+        val channelLock = sharedPreferences.getBoolean("channelLock", false)
+        if (!channelLock) {
             //adhan files
             val fajrAdhan = "android.resource://" + context.packageName + "/" + R.raw.fajr
             val zuharAdhan = "android.resource://" + context.packageName + "/" + R.raw.zuhar
@@ -247,69 +245,70 @@ class CreateAlarms
 
             NotificationHelper()
                 .createNotificationChannel(
-                    context ,
-                    NotificationManagerCompat.IMPORTANCE_MAX ,
-                    true ,
-                    channelFajr ,
-                    descFajr ,
-                    CHANNEL_ID ,
+                    context,
+                    NotificationManagerCompat.IMPORTANCE_MAX,
+                    true,
+                    channelFajr,
+                    descFajr,
+                    CHANNEL_ID,
                     fajrAdhan
-                                          )
+                )
 
             NotificationHelper()
                 .NotificationChannelSilent(
-                    context ,
-                    NotificationManagerCompat.IMPORTANCE_DEFAULT ,
-                    false ,
-                    channelSunrise ,
-                    descSunrise ,
-                    CHANNEL_ID1 )
+                    context,
+                    NotificationManagerCompat.IMPORTANCE_DEFAULT,
+                    false,
+                    channelSunrise,
+                    descSunrise,
+                    CHANNEL_ID1
+                )
 
 
             NotificationHelper()
                 .createNotificationChannel(
-                    context ,
-                    NotificationManagerCompat.IMPORTANCE_MAX ,
-                    true ,
-                    channelZuhar ,
-                    descZuhar ,
-                    CHANNEL_ID2 ,
+                    context,
+                    NotificationManagerCompat.IMPORTANCE_MAX,
+                    true,
+                    channelZuhar,
+                    descZuhar,
+                    CHANNEL_ID2,
                     zuharAdhan
-                                          )
+                )
             NotificationHelper()
                 .createNotificationChannel(
-                    context ,
-                    NotificationManagerCompat.IMPORTANCE_MAX ,
-                    true ,
-                    channelAsar ,
-                    descAsar ,
-                    CHANNEL_ID3 ,
+                    context,
+                    NotificationManagerCompat.IMPORTANCE_MAX,
+                    true,
+                    channelAsar,
+                    descAsar,
+                    CHANNEL_ID3,
                     asarAdhan
-                                          )
+                )
             NotificationHelper()
                 .createNotificationChannel(
-                    context ,
-                    NotificationManagerCompat.IMPORTANCE_MAX ,
-                    true ,
-                    channelMaghrib ,
-                    descMaghrib ,
-                    CHANNEL_ID4 ,
+                    context,
+                    NotificationManagerCompat.IMPORTANCE_MAX,
+                    true,
+                    channelMaghrib,
+                    descMaghrib,
+                    CHANNEL_ID4,
                     maghribAdhan
-                                          )
+                )
             NotificationHelper()
                 .createNotificationChannel(
-                    context ,
-                    NotificationManagerCompat.IMPORTANCE_MAX ,
-                    true ,
-                    channelIshaa ,
-                    descIshaa ,
-                    CHANNEL_ID5 ,
+                    context,
+                    NotificationManagerCompat.IMPORTANCE_MAX,
+                    true,
+                    channelIshaa,
+                    descIshaa,
+                    CHANNEL_ID5,
                     ishaaAdhan
-                                          )
+                )
 
             //write lock to storage
             with(sharedPreferences.edit()) {
-                putBoolean("channelLock" , true)
+                putBoolean("channelLock", true)
                 apply()
             }
 

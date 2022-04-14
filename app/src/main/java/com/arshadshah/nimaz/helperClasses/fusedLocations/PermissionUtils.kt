@@ -18,15 +18,28 @@ object PermissionUtils {
 
     fun askAccessLocationPermission(activity: AppCompatActivity, requestId: Int) {
         //ask for permission
-        if(!checkAccessLocationGranted(activity)){
+        if (!checkAccessLocationGranted(activity)) {
             //permission not granted
-            if(ActivityCompat.shouldShowRequestPermissionRationale(activity,Manifest.permission.ACCESS_COARSE_LOCATION) || ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.ACCESS_FINE_LOCATION)){
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    activity,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) || ActivityCompat.shouldShowRequestPermissionRationale(
+                    activity,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
+            ) {
                 //show dialog
                 showPermissionDialog(activity, requestId)
-            }
-            else{
+            } else {
                 //ask for permission
-                ActivityCompat.requestPermissions(activity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION), requestId)
+                ActivityCompat.requestPermissions(
+                    activity,
+                    arrayOf(
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    ),
+                    requestId
+                )
             }
         }
     }
@@ -45,10 +58,10 @@ object PermissionUtils {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
 
-        if(fineperms || coarsePerms){
+        if (fineperms || coarsePerms) {
             isGranted = true
         }
-        
+
         return isGranted
     }
 
@@ -82,7 +95,10 @@ object PermissionUtils {
                 //ask for permission
                 ActivityCompat.requestPermissions(
                     context as AppCompatActivity,
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION),
+                    arrayOf(
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    ),
                     requestId
                 )
             }

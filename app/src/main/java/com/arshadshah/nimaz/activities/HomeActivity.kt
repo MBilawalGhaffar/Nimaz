@@ -19,43 +19,41 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
  * The main activity that contains the code base for Alarms, and navigation
  * @author Arshad shah
  */
-class HomeActivity : AppCompatActivity()
-{
+class HomeActivity : AppCompatActivity() {
 
-    override fun onStart(){
+    override fun onStart() {
         super.onStart()
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val locationTypeValue = sharedPreferences.getBoolean("locationType" , true)
-        val latitude = sharedPreferences.getString("latitude" , "0.0") !!.toDouble()
-        val longitude = sharedPreferences.getString("longitude" , "0.0") !!.toDouble()
-        if(locationTypeValue){
-            LocationFinderAuto().getLocations(this,12345)
+        val locationTypeValue = sharedPreferences.getBoolean("locationType", true)
+        val latitude = sharedPreferences.getString("latitude", "0.0")!!.toDouble()
+        val longitude = sharedPreferences.getString("longitude", "0.0")!!.toDouble()
+        if (locationTypeValue) {
+            LocationFinderAuto().getLocations(this, 12345)
 
-            locationFinder().findCityName(this,latitude,longitude)
+            locationFinder().findCityName(this, latitude, longitude)
         }
     }
-    override fun onResume()
-    {
+
+    override fun onResume() {
         super.onResume()
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val menuSelected = sharedPreferences.getInt("menuSelected", R.id.navigation_home)
-        val navView : BottomNavigationView = findViewById(R.id.nav_view)
+        val navView: BottomNavigationView = findViewById(R.id.nav_view)
         navView.selectedItemId = menuSelected
     }
 
     override fun onPause() {
         super.onPause()
-        val navView : BottomNavigationView = findViewById(R.id.nav_view)
+        val navView: BottomNavigationView = findViewById(R.id.nav_view)
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        if(navView.selectedItemId == R.id.navigation_setting){
+        if (navView.selectedItemId == R.id.navigation_setting) {
             with(sharedPreferences.edit()) {
-                putInt("menuSelected" , R.id.navigation_home)
+                putInt("menuSelected", R.id.navigation_home)
                 apply()
             }
-        }
-        else{
+        } else {
             with(sharedPreferences.edit()) {
-                putInt("menuSelected" , navView.selectedItemId)
+                putInt("menuSelected", navView.selectedItemId)
                 apply()
             }
         }
@@ -63,29 +61,27 @@ class HomeActivity : AppCompatActivity()
 
 
     @RequiresApi(Build.VERSION_CODES.M)
-    override fun onCreate(savedInstanceState : Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
         // Retrieve values given in the settings activity
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val navView : BottomNavigationView = findViewById(R.id.nav_view)
+        val navView: BottomNavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
 
         this.onBackPressedDispatcher.addCallback(this) {
             // Handle the back button event
-            if(navController.currentDestination?.id == R.id.navigation_home){
+            if (navController.currentDestination?.id == R.id.navigation_home) {
                 finish()
-            }
-            else{
+            } else {
                 navController.navigate(R.id.navigation_home)
                 navView.selectedItemId = R.id.navigation_home
             }
         }
 
-        navView.setOnItemSelectedListener {menu ->
-            when(menu.itemId){
+        navView.setOnItemSelectedListener { menu ->
+            when (menu.itemId) {
                 R.id.navigation_home -> {
                     navController.navigate(R.id.navigation_home)
                     true
@@ -116,9 +112,8 @@ class HomeActivity : AppCompatActivity()
         CreateAlarms().createChannel(this)
 
         //alarm lock
-        val alarmLock = sharedPreferences.getBoolean("alarmLock" , false)
-        if (! alarmLock)
-        {
+        val alarmLock = sharedPreferences.getBoolean("alarmLock", false)
+        if (!alarmLock) {
             val prayerThread = prayerTimeThread(this.applicationContext)
             prayerThread.start()
         }

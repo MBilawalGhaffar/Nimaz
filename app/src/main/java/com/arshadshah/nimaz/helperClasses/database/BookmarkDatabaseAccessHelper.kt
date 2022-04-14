@@ -9,10 +9,10 @@ import com.arshadshah.nimaz.helperClasses.quran.Bookmark
 
 /**
  * This class is used to store and retrieve the bookmarks from the database.
- * 
+ *
  */
 class BookmarkDatabaseAccessHelper(context: Context) {
-    
+
     //get the BookmarkDatabaseHelper instance
     private val bookmarkDatabaseHelper = BookmarkDatabaseHelper(context)
 
@@ -39,12 +39,21 @@ class BookmarkDatabaseAccessHelper(context: Context) {
     fun isAyaBookmarkedSurah(ayahNumber: String, ayaText: String, arabicText: String): Boolean {
         val database = open() ?: return false
 
-        val whereClause = "(${BookmarkDatabaseHelper.COLUMN_AYA_NUMBER_BOOKMARK} = ? OR ${BookmarkDatabaseHelper.COLUMN_AYA_TEXT_BOOKMARK} = ?) AND ${BookmarkDatabaseHelper.COLUMN_AYA_ARABIC_BOOKMARK} = ?"
+        val whereClause =
+            "(${BookmarkDatabaseHelper.COLUMN_AYA_NUMBER_BOOKMARK} = ? OR ${BookmarkDatabaseHelper.COLUMN_AYA_TEXT_BOOKMARK} = ?) AND ${BookmarkDatabaseHelper.COLUMN_AYA_ARABIC_BOOKMARK} = ?"
 
         val whereArgs = arrayOf(ayahNumber, ayaText, arabicText)
 
         //check in surah table
-        val cursorSurah = database.query(BookmarkDatabaseHelper.TABLE_BOOKMARK_SURAH, null, whereClause, whereArgs, null, null, null)
+        val cursorSurah = database.query(
+            BookmarkDatabaseHelper.TABLE_BOOKMARK_SURAH,
+            null,
+            whereClause,
+            whereArgs,
+            null,
+            null,
+            null
+        )
 
         //check if the bookmark exists
         val isBookmarked = cursorSurah.count > 0
@@ -56,7 +65,7 @@ class BookmarkDatabaseAccessHelper(context: Context) {
         return isBookmarked
     }
 
-     /**
+    /**
      * This method is used to check if the bookmark exists in the database.
      * isAyaBookmarked is used to check if the aya is bookmarked or not in Juz Table
      * @param ayahNumber the ayah number of the bookmark
@@ -68,12 +77,21 @@ class BookmarkDatabaseAccessHelper(context: Context) {
     fun isAyaBookmarkedJuz(ayahNumber: String, ayaText: String, arabicText: String): Boolean {
         val database = open() ?: return false
 
-        val whereClause = "(${BookmarkDatabaseHelper.COLUMN_AYA_NUMBER_BOOKMARK_JUZ} = ? OR ${BookmarkDatabaseHelper.COLUMN_AYA_TEXT_BOOKMARK_JUZ} = ?) AND ${BookmarkDatabaseHelper.COLUMN_AYA_ARABIC_BOOKMARK_JUZ} = ?"
+        val whereClause =
+            "(${BookmarkDatabaseHelper.COLUMN_AYA_NUMBER_BOOKMARK_JUZ} = ? OR ${BookmarkDatabaseHelper.COLUMN_AYA_TEXT_BOOKMARK_JUZ} = ?) AND ${BookmarkDatabaseHelper.COLUMN_AYA_ARABIC_BOOKMARK_JUZ} = ?"
 
         val whereArgs = arrayOf(ayahNumber, ayaText, arabicText)
 
         //check in surah table
-        val cursorJuz = database.query(BookmarkDatabaseHelper.TABLE_BOOKMARK_JUZ, null, whereClause, whereArgs, null, null, null)
+        val cursorJuz = database.query(
+            BookmarkDatabaseHelper.TABLE_BOOKMARK_JUZ,
+            null,
+            whereClause,
+            whereArgs,
+            null,
+            null,
+            null
+        )
 
         //check if the bookmark exists
         val isBookmarked = cursorJuz.count > 0
@@ -84,7 +102,7 @@ class BookmarkDatabaseAccessHelper(context: Context) {
 
         return isBookmarked
     }
-    
+
 
     /**
      * This method is used to add a bookmark to the database.
@@ -93,11 +111,16 @@ class BookmarkDatabaseAccessHelper(context: Context) {
      * @param ayaText the aya text of the bookmark
      * @param arabicText the arabic text of the bookmark
      * @param surahNumber the surah number of the bookmark
-     * 
+     *
      * @return true if the bookmark is added successfully, false otherwise
      *
      */
-    fun addBookmarkSurah(ayaNumber: String, ayaText: String, arabicText: String, surahNumber: String): Boolean {
+    fun addBookmarkSurah(
+        ayaNumber: String,
+        ayaText: String,
+        arabicText: String,
+        surahNumber: String
+    ): Boolean {
         //get the database
         val database = open() ?: return false
 
@@ -133,11 +156,16 @@ class BookmarkDatabaseAccessHelper(context: Context) {
      * @param ayaText the aya text of the bookmark
      * @param arabicText the arabic text of the bookmark
      * @param juzNumber the juz number of the bookmark
-     * 
+     *
      * @return true if the bookmark is added successfully, false otherwise
      *
      */
-    fun addBookmarkJuz(ayaNumber: String, ayaText: String, arabicText: String, juzNumber:String): Boolean {
+    fun addBookmarkJuz(
+        ayaNumber: String,
+        ayaText: String,
+        arabicText: String,
+        juzNumber: String
+    ): Boolean {
         //get the database
         val database = open() ?: return false
 
@@ -168,10 +196,10 @@ class BookmarkDatabaseAccessHelper(context: Context) {
 
     /**
      * This method is used to delete a bookmark from the database.
-     * 
+     *
      * @param ayaNumber the aya number of the bookmark
      * @param surahNumber the surah number of the bookmark
-     * 
+     *
      * @return true if the bookmark is deleted successfully, false otherwise
      *
      */
@@ -182,13 +210,15 @@ class BookmarkDatabaseAccessHelper(context: Context) {
         //check if the database is null
 
         //create the where clause
-        val whereClause = "${BookmarkDatabaseHelper.COLUMN_AYA_NUMBER_BOOKMARK} = ? AND ${BookmarkDatabaseHelper.COLUMN_SURAH_NUMBER} = ?"
+        val whereClause =
+            "${BookmarkDatabaseHelper.COLUMN_AYA_NUMBER_BOOKMARK} = ? AND ${BookmarkDatabaseHelper.COLUMN_SURAH_NUMBER} = ?"
 
         //create the where arguments
-        val whereArgs = arrayOf(ayaNumber.toString(), surahNumber.toString())
+        val whereArgs = arrayOf(ayaNumber, surahNumber)
 
         //delete the bookmark
-        val rowId = database.delete(BookmarkDatabaseHelper.TABLE_BOOKMARK_SURAH, whereClause, whereArgs)
+        val rowId =
+            database.delete(BookmarkDatabaseHelper.TABLE_BOOKMARK_SURAH, whereClause, whereArgs)
 
         //check if the row id is -1
         if (rowId == -1) {
@@ -204,27 +234,29 @@ class BookmarkDatabaseAccessHelper(context: Context) {
 
     /**
      * This method is used to delete a bookmark from the database.
-     * 
+     *
      * @param ayaNumber the aya number of the bookmark
      * @param juzNumber the juz number of the bookmark
-     * 
+     *
      * @return true if the bookmark is deleted successfully, false otherwise
      *
      */
-    fun deleteBookmarkJuz(ayaNumber: String, juzNumber:String): Boolean {
+    fun deleteBookmarkJuz(ayaNumber: String, juzNumber: String): Boolean {
         //get the database
         val database = open() ?: return false
 
         //check if the database is null
 
         //create the where clause
-        val whereClause = "${BookmarkDatabaseHelper.COLUMN_AYA_NUMBER_BOOKMARK_JUZ} = ? AND ${BookmarkDatabaseHelper.COLUMN_JUZ_NUMBER} = ?"
+        val whereClause =
+            "${BookmarkDatabaseHelper.COLUMN_AYA_NUMBER_BOOKMARK_JUZ} = ? AND ${BookmarkDatabaseHelper.COLUMN_JUZ_NUMBER} = ?"
 
         //create the where arguments
-        val whereArgs = arrayOf(ayaNumber.toString(), juzNumber.toString())
+        val whereArgs = arrayOf(ayaNumber, juzNumber)
 
         //delete the bookmark
-        val rowId = database.delete(BookmarkDatabaseHelper.TABLE_BOOKMARK_JUZ, whereClause, whereArgs)
+        val rowId =
+            database.delete(BookmarkDatabaseHelper.TABLE_BOOKMARK_JUZ, whereClause, whereArgs)
 
         //check if the row id is -1
         if (rowId == -1) {
@@ -256,10 +288,18 @@ class BookmarkDatabaseAccessHelper(context: Context) {
         val whereClause = "${BookmarkDatabaseHelper.COLUMN_SURAH_NUMBER} = ?"
 
         //create the where arguments
-        val whereArgs = arrayOf(surahNumber.toString())
+        val whereArgs = arrayOf(surahNumber)
 
         //create the cursor
-        val cursor = database.query(BookmarkDatabaseHelper.TABLE_BOOKMARK_SURAH, null, whereClause, whereArgs, null, null, null)
+        val cursor = database.query(
+            BookmarkDatabaseHelper.TABLE_BOOKMARK_SURAH,
+            null,
+            whereClause,
+            whereArgs,
+            null,
+            null,
+            null
+        )
 
         //create the bookmarks array list
         val bookmarks = ArrayList<Bookmark>()
@@ -310,7 +350,7 @@ class BookmarkDatabaseAccessHelper(context: Context) {
      * @return the bookmarks
      */
     @SuppressLint("Range")
-    fun getBookmarksForJuz(juzNumber:String): ArrayList<Bookmark> {
+    fun getBookmarksForJuz(juzNumber: String): ArrayList<Bookmark> {
         //get the database
         val database = open() ?: return ArrayList()
 
@@ -320,10 +360,18 @@ class BookmarkDatabaseAccessHelper(context: Context) {
         val whereClause = "${BookmarkDatabaseHelper.COLUMN_SURAH_NUMBER} = ?"
 
         //create the where arguments
-        val whereArgs = arrayOf(juzNumber.toString())
+        val whereArgs = arrayOf(juzNumber)
 
         //create the cursor
-        val cursor = database.query(BookmarkDatabaseHelper.TABLE_BOOKMARK_JUZ, null, whereClause, whereArgs, null, null, null)
+        val cursor = database.query(
+            BookmarkDatabaseHelper.TABLE_BOOKMARK_JUZ,
+            null,
+            whereClause,
+            whereArgs,
+            null,
+            null,
+            null
+        )
 
         //create the bookmarks array list
         val bookmarks = ArrayList<Bookmark>()
