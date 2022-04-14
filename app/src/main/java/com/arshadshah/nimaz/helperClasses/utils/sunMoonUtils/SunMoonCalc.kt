@@ -1,11 +1,11 @@
 package com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils
 
+import android.content.Context
+import android.graphics.drawable.Drawable
+import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils.MathUtils.astroRefraction
 import com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils.MathUtils.azimuth
-import com.costular.sunkalc.MoonCalculations
-import com.costular.sunkalc.MoonPhaseInfo
-import com.costular.sunkalc.MoonPosition
-import com.costular.sunkalc.SunMoonCalcConstants.rad
+import com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils.SunMoonCalcConstants.rad
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -14,8 +14,9 @@ import kotlin.math.*
 class SunMoonCalc @JvmOverloads constructor(
     private val latitude: Double,
     private val longitude: Double,
-    private val date: LocalDateTime = LocalDateTime.now()
+    private val context: Context
 ) {
+    private val date: LocalDateTime = LocalDateTime.now()
 
     private val percentages = arrayOf(0f, .25f, .5f, .75f, 1f)
 
@@ -108,7 +109,7 @@ class SunMoonCalc @JvmOverloads constructor(
 
         val moonPhasePosition = getMoonPhasePosition(moonCalculations, moonCalculationsNextDay)
         val phaseName = getPhaseNameByPhasePosition(moonPhasePosition)
-        val phaseEmoji = getPhaseEmojiByPhasePosition(moonPhasePosition)
+        val phaseEmoji = getPhaseSvgByPhasePosition(moonPhasePosition)
 
         val fraction = ((1 + cos(moonCalculations.inc)) / 2)
         val phaseValue =
@@ -149,7 +150,7 @@ class SunMoonCalc @JvmOverloads constructor(
         if (phase1 <= phase2) {
             for (i in percentages.indices) {
                 val percentage = percentages[i]
-                if (percentage >= phase1 && percentage <= phase2) {
+                if (percentage in phase1..phase2) {
                     index = 2 * i
                     break
                 } else if (percentage > phase1) {
@@ -176,16 +177,16 @@ class SunMoonCalc @JvmOverloads constructor(
         }
     }
 
-    private fun getPhaseEmojiByPhasePosition(value: Int): String {
+    private fun getPhaseSvgByPhasePosition(value: Int): Drawable {
         return when (value) {
-            0 -> "\uD83C\uDF11"
-            1 -> "\uD83C\uDF12"
-            2 -> "\uD83C\uDF13"
-            3 -> "\uD83C\uDF14"
-            4 -> "\uD83C\uDF15"
-            5 -> "\uD83C\uDF16"
-            6 -> "\uD83C\uDF17"
-            7 -> "\uD83C\uDF18"
+            0 -> context.resources.getDrawable(R.drawable.ic_new_moon)
+            1 -> context.resources.getDrawable(R.drawable.ic_waxing_cresent)
+            2 -> context.resources.getDrawable(R.drawable.ic_first_quarter)
+            3 -> context.resources.getDrawable(R.drawable.ic_waxing_gibous)
+            4 -> context.resources.getDrawable(R.drawable.ic_full_moon)
+            5 -> context.resources.getDrawable(R.drawable.ic_waning_gibous)
+            6 -> context.resources.getDrawable(R.drawable.ic_last_quarter)
+            7 -> context.resources.getDrawable(R.drawable.ic_waning_cresent)
             else -> throw IllegalStateException("Moon phase position should be between 0-7")
         }
     }

@@ -1,4 +1,4 @@
-package com.costular.sunkalc
+package com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils
 
 /**
  * Represents the moon position

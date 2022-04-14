@@ -1,12 +1,11 @@
 package com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils
 
-import com.costular.sunkalc.SunMoonCalcConstants
-import com.costular.sunkalc.SunMoonCalcConstants.J1970
-import com.costular.sunkalc.SunMoonCalcConstants.J2000
-import com.costular.sunkalc.SunMoonCalcConstants.dayMs
-import com.costular.sunkalc.SunMoonCalcConstants.e
-import com.costular.sunkalc.SunMoonCalcConstants.rad
-import com.costular.sunkalc.SunMoonCalcConstants.zeroFive
+import com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils.SunMoonCalcConstants.J1970
+import com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils.SunMoonCalcConstants.J2000
+import com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils.SunMoonCalcConstants.dayMs
+import com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils.SunMoonCalcConstants.e
+import com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils.SunMoonCalcConstants.rad
+import com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils.SunMoonCalcConstants.zeroFive
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId

@@ -1,6 +1,6 @@
-package com.costular.sunkalc
+package com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils
 
-import com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils.MoonPhase
+import android.graphics.drawable.Drawable
 
 /**
  * Represents the moon phase
@@ -13,5 +13,5 @@ data class MoonPhaseInfo(
     val phase: Double,
     val angle: Double,
     val phaseName: MoonPhase,
-    val emoji: String
+    val phaseSvg: Drawable
 )

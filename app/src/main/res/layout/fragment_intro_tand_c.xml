@@ -47,7 +47,7 @@
                     android:layout_margin="10dp"
                     android:autoLink="web|email"
                     android:fontFamily="@font/nunito"
-                    android:textSize="20sp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
         </ScrollView>
@@ -113,7 +113,7 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/nunito"
                 android:text="By pressing continue, you accept the terms and conditions."
-                android:textSize="16sp"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/tandccontinue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

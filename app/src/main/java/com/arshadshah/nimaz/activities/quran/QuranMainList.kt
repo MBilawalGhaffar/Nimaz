@@ -27,13 +27,16 @@ class QuranMainList : AppCompatActivity() {
     var fragmentToUse = ""
     var query = ""
 
+    private lateinit var helperBookmarkDatabase : BookmarkDatabaseAccessHelper
+    private lateinit var helperQuranDatabase :DatabaseAccessHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quran_main_list)
         supportActionBar?.hide()
-
-        val helper = DatabaseAccessHelper(this)
-        helper.open()
+        helperBookmarkDatabase = BookmarkDatabaseAccessHelper(this)
+        helperQuranDatabase = DatabaseAccessHelper(this)
+        helperQuranDatabase.open()
 
         //get the values from the intent
         val intent = intent
@@ -78,6 +81,9 @@ class QuranMainList : AppCompatActivity() {
                 menu.menu.findItem(R.id.gotoAyat).isVisible = false
             }
 
+            val isBookmark = checkForBookmark(number)
+            menu.menu.findItem(R.id.bookmark).isVisible = isBookmark
+
             launchMenu(this, name.toString(), number, menu)
         }
 
@@ -85,7 +91,7 @@ class QuranMainList : AppCompatActivity() {
         if (fragmentToUse == "search") {
             query = intent.getStringExtra("query").toString()
 
-            val numberOfAyas = helper.searchForAyaAmountFound(query, "en_sahih", "text")
+            val numberOfAyas = helperQuranDatabase.searchForAyaAmountFound(query, "en_sahih", "text")
 
             if (numberOfAyas != 0) {
                 val bundle = Bundle()
@@ -101,7 +107,7 @@ class QuranMainList : AppCompatActivity() {
                 keywordAmount.text = getString(R.string.times, numberOfAyas.toString())
                 numberOfPage!!.isVisible = false
                 nameOfPage?.isVisible = false
-                helper.close()
+                helperQuranDatabase.close()
             } else {
                 nameOfPage!!.text = getString(R.string.ayatNotFound)
                 numberOfPage!!.isVisible = false
@@ -136,7 +142,7 @@ class QuranMainList : AppCompatActivity() {
             searchFragmentTitle.isVisible = false
             val number = intent.getIntExtra("number", 0)
             val name = intent.getStringExtra("name")
-            helper.close()
+            helperQuranDatabase.close()
             fragmentSelecterForListDisplay(name!!, number)
         }
     }
@@ -255,51 +261,7 @@ class QuranMainList : AppCompatActivity() {
                     }
                 }
                 R.id.bookmark -> {
-                    val helperBookmarkDatabase = BookmarkDatabaseAccessHelper(this)
-                    val helperQuranDatabase = DatabaseAccessHelper(this)
-                    helperBookmarkDatabase.open()
-                    helperQuranDatabase.open()
-                    val aya = if (fragmentToUse == "juz") {
-                        helperQuranDatabase.getAllAyaForJuz(number + 1)
-                    } else {
-                        helperQuranDatabase.getAllAyaForSurah(number + 1)
-                    }
-
-                    if (fragmentToUse == "juz") {
-                        //check the juz for the bookmark
-                        for (i in 0 until aya.size) {
-                            if (helperBookmarkDatabase.isAyaBookmarkedJuz(
-                                    aya[i]!!.ayaNumber,
-                                    aya[i]!!.ayaEnglish,
-                                    aya[i]!!.ayaArabic
-                                )
-                            ) {
-                                sharedPreferences.edit().putBoolean("scrollToBookmark", true)
-                                    .apply()
-                                sharedPreferences.edit().putInt("scrollToBookmarkNumber", i).apply()
-                                break
-                            }
-                        }
-                    } else {
-                        //check the surah for the bookmark
-                        for (i in 0 until aya.size) {
-                            if (helperBookmarkDatabase.isAyaBookmarkedSurah(
-                                    aya[i]!!.ayaNumber,
-                                    aya[i]!!.ayaEnglish,
-                                    aya[i]!!.ayaArabic
-                                )
-                            ) {
-                                sharedPreferences.edit().putBoolean("scrollToBookmark", true)
-                                    .apply()
-                                sharedPreferences.edit().putInt("scrollToBookmarkNumber", i).apply()
-                                break
-                            }
-                        }
-                    }
-                    helperBookmarkDatabase.close()
-                    helperQuranDatabase.close()
-
-
+                    checkForBookmark(number)
                     fragmentSelecterForListDisplay(name, number)
                 }
                 R.id.gotoAyat -> {
@@ -371,5 +333,54 @@ class QuranMainList : AppCompatActivity() {
             true
         }
         menu.show()
+    }
+
+    private fun checkForBookmark(number: Int): Boolean{
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        helperBookmarkDatabase.open()
+        helperQuranDatabase.open()
+        var isBookmark = false
+        val aya = if (fragmentToUse == "juz") {
+            helperQuranDatabase.getAllAyaForJuz(number + 1)
+        } else {
+            helperQuranDatabase.getAllAyaForSurah(number + 1)
+        }
+
+        if (fragmentToUse == "juz") {
+            //check the juz for the bookmark
+            for (i in 0 until aya.size) {
+                if (helperBookmarkDatabase.isAyaBookmarkedJuz(
+                        aya[i]!!.ayaNumber,
+                        aya[i]!!.ayaEnglish,
+                        aya[i]!!.ayaArabic
+                    )
+                ) {
+                    isBookmark = true
+                    sharedPreferences.edit().putBoolean("scrollToBookmark", true)
+                        .apply()
+                    sharedPreferences.edit().putInt("scrollToBookmarkNumber", i).apply()
+                    break
+                }
+            }
+        } else {
+            //check the surah for the bookmark
+            for (i in 0 until aya.size) {
+                if (helperBookmarkDatabase.isAyaBookmarkedSurah(
+                        aya[i]!!.ayaNumber,
+                        aya[i]!!.ayaEnglish,
+                        aya[i]!!.ayaArabic
+                    )
+                ) {
+                    isBookmark = true
+                    sharedPreferences.edit().putBoolean("scrollToBookmark", true)
+                        .apply()
+                    sharedPreferences.edit().putInt("scrollToBookmarkNumber", i).apply()
+                    break
+                }
+            }
+        }
+        helperBookmarkDatabase.close()
+        helperQuranDatabase.close()
+        return isBookmark
     }
 }
