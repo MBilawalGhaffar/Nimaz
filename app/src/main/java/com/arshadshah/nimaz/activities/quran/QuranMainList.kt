@@ -3,7 +3,6 @@ package com.arshadshah.nimaz.activities.quran
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.*
@@ -265,12 +264,25 @@ class QuranMainList : AppCompatActivity() {
                     } else{
                         helperQuranDatabase.getAllAyaForSurah(number+1)
                     }
-                    //check the juz for the bookmark
-                    for(i in 0 until aya.size){
-                        if(helperBookmarkDatabase.isAyaBookmarkedJuz(aya[i]!!.ayaNumber,aya[i]!!.ayaEnglish, aya[i]!!.ayaArabic)){
-                            sharedPreferences.edit().putBoolean("scrollToBookmark", true).apply()
-                            sharedPreferences.edit().putInt("scrollToBookmarkNumber", i).apply()
-                            break
+
+                    if(fragmentToUse == "juz"){
+                        //check the juz for the bookmark
+                        for(i in 0 until aya.size){
+                            if(helperBookmarkDatabase.isAyaBookmarkedJuz(aya[i]!!.ayaNumber,aya[i]!!.ayaEnglish, aya[i]!!.ayaArabic)){
+                                sharedPreferences.edit().putBoolean("scrollToBookmark", true).apply()
+                                sharedPreferences.edit().putInt("scrollToBookmarkNumber", i).apply()
+                                break
+                            }
+                        }
+                    }
+                    else{
+                        //check the surah for the bookmark
+                        for(i in 0 until aya.size){
+                            if(helperBookmarkDatabase.isAyaBookmarkedSurah(aya[i]!!.ayaNumber,aya[i]!!.ayaEnglish, aya[i]!!.ayaArabic)){
+                                sharedPreferences.edit().putBoolean("scrollToBookmark", true).apply()
+                                sharedPreferences.edit().putInt("scrollToBookmarkNumber", i).apply()
+                                break
+                            }
                         }
                     }
                     helperBookmarkDatabase.close()

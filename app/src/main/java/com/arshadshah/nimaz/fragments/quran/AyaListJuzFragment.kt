@@ -1,16 +1,12 @@
 package com.arshadshah.nimaz.fragments.quran
 
-import android.content.res.Resources
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
-import android.widget.RadioButton
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
@@ -126,8 +122,7 @@ class AyaListJuzFragment : Fragment() {
                                 .show()
                         }
                     }
-                }
-                if (!isBookmarkedJuz) {
+                }else{
                     val bookmarkAdded = helperBookmarkDatabase.addBookmarkJuz(
                         ayaObject.ayaNumber,
                         ayaObject.ayaEnglish,
@@ -193,6 +188,7 @@ class AyaListJuzFragment : Fragment() {
                 sharedPreferences.edit().remove("scrollToAyaNumber").apply()
             }else{
                 ayaList.setSelection(lastPosition)
+                sharedPreferences.edit().remove("lastPositionJuz ${(number+1)}").apply()
             }
         }
     }

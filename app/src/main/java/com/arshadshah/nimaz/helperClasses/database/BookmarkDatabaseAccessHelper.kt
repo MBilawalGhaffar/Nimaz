@@ -39,7 +39,7 @@ class BookmarkDatabaseAccessHelper(context: Context) {
     fun isAyaBookmarkedSurah(ayahNumber: String, ayaText: String, arabicText: String): Boolean {
         val database = open() ?: return false
 
-        val whereClause = "${BookmarkDatabaseHelper.COLUMN_AYA_NUMBER_BOOKMARK} = ? AND ${BookmarkDatabaseHelper.COLUMN_AYA_TEXT_BOOKMARK} = ? AND ${BookmarkDatabaseHelper.COLUMN_AYA_ARABIC_BOOKMARK} = ?"
+        val whereClause = "(${BookmarkDatabaseHelper.COLUMN_AYA_NUMBER_BOOKMARK} = ? OR ${BookmarkDatabaseHelper.COLUMN_AYA_TEXT_BOOKMARK} = ?) AND ${BookmarkDatabaseHelper.COLUMN_AYA_ARABIC_BOOKMARK} = ?"
 
         val whereArgs = arrayOf(ayahNumber, ayaText, arabicText)
 

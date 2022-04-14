@@ -1,12 +1,11 @@
 package com.arshadshah.nimaz.helperClasses.utils.sunkalc
 
-import com.arshadshah.nimaz.helperClasses.utils.sunkalc.*
-import com.costular.sunkalc.SunkalcConstants.rad
 import com.arshadshah.nimaz.helperClasses.utils.sunkalc.MathUtils.astroRefraction
 import com.arshadshah.nimaz.helperClasses.utils.sunkalc.MathUtils.azimuth
 import com.costular.sunkalc.MoonCalculations
 import com.costular.sunkalc.MoonPhaseInfo
 import com.costular.sunkalc.MoonPosition
+import com.costular.sunkalc.SunkalcConstants.rad
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId

@@ -14,7 +14,7 @@ import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.database.BookmarkDatabaseAccessHelper
 import com.arshadshah.nimaz.helperClasses.database.DatabaseAccessHelper
-import com.arshadshah.nimaz.helperClasses.quran.AyaListCustomAdapter
+import com.arshadshah.nimaz.helperClasses.quran.AyaListCustomAdapterSurah
 import com.arshadshah.nimaz.helperClasses.quran.AyaObject
 import kotlin.properties.Delegates
 
@@ -47,19 +47,20 @@ class AyaListSurahFragment : Fragment() {
 
         val ayaList: ListView = root.findViewById(R.id.ayaListSurah)
 
+        val ayaNumberOfBismillah= "0"
+        var ayaOfBismillah =""
+        ayaOfBismillah = if(isEnglish){
+            "In the name of Allah, the Entirely Merciful, the Especially Merciful."
+        } else{
+            "اللہ کے نام سے جو رحمان و رحیم ہے"
+        }
         val ayaArabicOfBismillah = "بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ"
+        val bismillah  = AyaObject(ayaNumberOfBismillah,ayaOfBismillah,ayaArabicOfBismillah)
         //first check if an object like this is already in the list
         //check all the attributes of the object bisimillah with the attributes of the object in the list at index 0
         if(ayaForsurah[0]!!.ayaArabic != ayaArabicOfBismillah){
             if(number+1 != 9) {
-                injectHeader(ayaArabicOfBismillah,ayaList)
-            }
-        }
-        else{
-            if(number+1 != 9) {
-                //remove the first element of the list
-                ayaForsurah.removeAt(0)
-                injectHeader(ayaArabicOfBismillah,ayaList)
+                ayaForsurah.add(0, bismillah)
             }
         }
 
@@ -67,7 +68,7 @@ class AyaListSurahFragment : Fragment() {
         ayaList.divider = null
 
         //create a custom adapter
-        val ayaListCustomAdapter = AyaListCustomAdapter(requireContext(), ayaForsurah)
+        val ayaListCustomAdapter = AyaListCustomAdapterSurah(requireContext(), ayaForsurah)
 
         //set the adapter to the listview
         ayaList.adapter = ayaListCustomAdapter
@@ -84,11 +85,11 @@ class AyaListSurahFragment : Fragment() {
                 helperBookmarkDatabase.open()
 
                 //check if the aya is already bookmarked
-                val isBookmarkedJuz = helperBookmarkDatabase.isAyaBookmarkedJuz(ayaObject!!.ayaNumber, ayaObject.ayaEnglish, ayaObject.ayaArabic)
+                val isBookmarkedSurah = helperBookmarkDatabase.isAyaBookmarkedSurah(ayaObject!!.ayaNumber, ayaObject.ayaEnglish, ayaObject.ayaArabic)
 
                 //if it is already bookmarked, remove the bookmark
-                if(isBookmarkedJuz){
-                    val bookmarkRemoved = helperBookmarkDatabase.deleteBookmarkJuz(ayaObject.ayaNumber, (number+1).toString())
+                if(isBookmarkedSurah){
+                    val bookmarkRemoved = helperBookmarkDatabase.deleteBookmarkSurah(ayaObject.ayaNumber, (number+1).toString())
                     if(bookmarkRemoved){
                         //run on ui thread
                         activity?.runOnUiThread {
@@ -104,9 +105,8 @@ class AyaListSurahFragment : Fragment() {
                             Toast.makeText(requireContext(), "Bookmark Removed", Toast.LENGTH_SHORT).show()
                         }
                     }
-                }
-                if(!isBookmarkedJuz) {
-                    val bookmarkAdded = helperBookmarkDatabase.addBookmarkJuz(
+                }else{
+                    val bookmarkAdded = helperBookmarkDatabase.addBookmarkSurah(
                         ayaObject.ayaNumber,
                         ayaObject.ayaEnglish,
                         ayaObject.ayaArabic,
@@ -169,27 +169,9 @@ class AyaListSurahFragment : Fragment() {
                 sharedPreferences.edit().remove("scrollToAyaNumber").apply()
             }else{
                 ayaList.setSelection(lastPosition)
+                sharedPreferences.edit().remove("lastPositionSurah ${(number+1)}").apply()
             }
         }
 
-    }
-
-    private fun injectHeader(ayaArabicOfBismillah: String, ayaList: ListView){
-        //initialize the bismillah container from the layout folder
-        //get this fragments inflater
-        val inflater = requireActivity().layoutInflater
-        
-        val bismillahContainer = inflater.inflate(R.layout.aya_list_header, null)
-        //set the visibility of the bismillah container to visible
-        bismillahContainer.isVisible = true
-
-        //initialize the bismillah textview from the layout folder
-        val bismillahTextView = bismillahContainer.findViewById<TextView>(R.id.bismillah)
-
-        //set the text of the bismillah textview to the bismillah text
-        bismillahTextView.text = ayaArabicOfBismillah
-
-        //add the bismillah object to the list header
-        ayaList.addHeaderView( bismillahContainer)
     }
 }

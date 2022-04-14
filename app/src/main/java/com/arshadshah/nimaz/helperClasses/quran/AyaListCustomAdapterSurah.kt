@@ -21,7 +21,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 
-internal class AyaListCustomAdapter(
+internal class AyaListCustomAdapterSurah(
     var context: Context,
     private var arrayList: ArrayList<AyaObject?>
                             ) :
@@ -95,7 +95,7 @@ internal class AyaListCustomAdapter(
             convertView?.findViewById(R.id.bookmarkButton2)
         }
 
-        bookmark!!.isVisible = helperBookmarkDatabase.isAyaBookmarkedJuz(AyaObject!!.ayaNumber,
+        bookmark!!.isVisible = helperBookmarkDatabase.isAyaBookmarkedSurah(AyaObject!!.ayaNumber,
             AyaObject.ayaEnglish, AyaObject.ayaArabic)
 
         helperBookmarkDatabase.close()
