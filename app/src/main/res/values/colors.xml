@@ -11,8 +11,8 @@
     <color name="background">#FFECB3</color>
     <color name="white">#FFFFFF</color>
     <color name="cardBackground">#FFFFFF</color>
-    <color name="highlight">#1BE35D</color>
-    <color name="highlightDark">#12983E</color>
+    <color name="highlight">#6100FF0C</color>
+    <color name="highlightDark">#005B1E</color>
     <color name="black">#000000</color>
     <color name="cardDark">#424242</color>
     <color name="bookmark">#009933</color>

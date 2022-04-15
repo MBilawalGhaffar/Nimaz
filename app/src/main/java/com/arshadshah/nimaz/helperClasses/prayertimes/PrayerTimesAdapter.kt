@@ -101,46 +101,50 @@ internal class PrayerTimesAdapter(
 
         val defaultColor = context.getColor(typedValue.resourceId)
 
+        theme.resolveAttribute(R.attr.highlight, typedValue, true)
+
+        val highlight = context.getColor(typedValue.resourceId)
+
         if (currentTime in isha..fajrTommorow && position == 0) {
 
-            convertView?.setBackgroundColor(context.resources.getColor(R.color.highlight))
+            convertView?.setBackgroundColor(highlight)
             timer?.isVisible = true
             TimerCreater().getTimer(context, fajrTommorow, timer!!)
 
         } else if (currentTime < prayerfajr && position == 0) {
 
-            convertView?.setBackgroundColor(context.resources.getColor(R.color.highlight))
+            convertView?.setBackgroundColor(highlight)
             timer?.isVisible = true
             TimerCreater().getTimer(context, nextPrayerTimeInLong, timer!!)
 
         }else if (currentTime in prayerfajr..sunrise && position == 1) {
 
             //change the background color of position 0
-            convertView?.setBackgroundColor(context.resources.getColor(R.color.highlight))
+            convertView?.setBackgroundColor(highlight)
             timer?.isVisible = true
             TimerCreater().getTimer(context, nextPrayerTimeInLong, timer!!)
 
         } else if (currentTime in sunrise..dhuhr && position == 2) {
 
-            convertView?.setBackgroundColor(context.resources.getColor(R.color.highlight))
+            convertView?.setBackgroundColor(highlight)
             timer?.isVisible = true
             TimerCreater().getTimer(context, nextPrayerTimeInLong, timer!!)
 
         } else if (currentTime in dhuhr..asr && position == 3) {
 
-            convertView?.setBackgroundColor(context.resources.getColor(R.color.highlight))
+            convertView?.setBackgroundColor(highlight)
             timer?.isVisible = true
             TimerCreater().getTimer(context, nextPrayerTimeInLong, timer!!)
 
         } else if (currentTime in asr..maghrib && position == 4) {
 
-            convertView?.setBackgroundColor(context.resources.getColor(R.color.highlight))
+            convertView?.setBackgroundColor(highlight)
             timer?.isVisible = true
             TimerCreater().getTimer(context, nextPrayerTimeInLong, timer!!)
 
         } else if (currentTime in maghrib..isha && position == 5) {
 
-            convertView?.setBackgroundColor(context.resources.getColor(R.color.highlight))
+            convertView?.setBackgroundColor(highlight)
             timer?.isVisible = true
             TimerCreater().getTimer(context, nextPrayerTimeInLong, timer!!)
 

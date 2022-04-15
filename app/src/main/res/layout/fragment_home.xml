@@ -96,9 +96,9 @@
 
                 <View
                     android:id="@+id/view"
-                    android:layout_width="1dp"
+                    android:layout_width="1.5dp"
                     android:layout_height="match_parent"
-                    android:background="@android:drawable/divider_horizontal_dark"
+                    android:background="@android:drawable/divider_horizontal_bright"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -187,8 +187,8 @@
                 <View
                     android:id="@+id/view3"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:drawable/divider_horizontal_dark"
+                    android:layout_height="1.5dp"
+                    android:background="@android:drawable/divider_horizontal_bright"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
