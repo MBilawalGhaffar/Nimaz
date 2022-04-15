@@ -12,7 +12,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.database.DatabaseAccessHelper
-import com.arshadshah.nimaz.helperClasses.quran.AyaListCustomAdapter
 import com.arshadshah.nimaz.helperClasses.quran.AyaListCustomAdapterSearch
 import com.arshadshah.nimaz.helperClasses.quran.SearchAyaObject
 

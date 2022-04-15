@@ -293,7 +293,11 @@ class DatabaseAccessHelper(context: Context) {
      * @param query the query to search for
      * @return an arraylist of AyaObjects
      */
-    fun searchForAya(query: String, tableName: String, columnName: String): ArrayList<SearchAyaObject?> {
+    fun searchForAya(
+        query: String,
+        tableName: String,
+        columnName: String
+    ): ArrayList<SearchAyaObject?> {
         val cursor =
             db!!.rawQuery("SELECT * FROM $tableName WHERE $columnName LIKE '%$query%'", null)
 
@@ -329,7 +333,6 @@ class DatabaseAccessHelper(context: Context) {
             }
         }
         cursorOfSurahNames.close()
-
 
 
         //arraylist of AyaObjects

@@ -16,14 +16,14 @@ import com.arshadshah.nimaz.arabicReshaper.ArabicUtilities
 import com.arshadshah.nimaz.helperClasses.database.BookmarkDatabaseAccessHelper
 import java.text.NumberFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 internal class AyaListCustomAdapterSearch(
     var context: Context,
     private var arrayList: ArrayList<SearchAyaObject?>
 ) :
     ListAdapter {
-    val sharedPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    val sharedPreferences: SharedPreferences =
+        PreferenceManager.getDefaultSharedPreferences(context)
 
     override fun areAllItemsEnabled(): Boolean {
         return false

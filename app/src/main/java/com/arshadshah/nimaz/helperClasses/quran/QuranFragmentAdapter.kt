@@ -16,10 +16,10 @@ class QuranFragmentAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycl
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             1 -> {
-                QuranSurahFragment()
+                QuranJuzFragment()
             }
             else -> {
-                QuranJuzFragment()
+                QuranSurahFragment()
             }
         }
     }

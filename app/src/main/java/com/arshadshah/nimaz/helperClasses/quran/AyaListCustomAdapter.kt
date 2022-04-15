@@ -15,7 +15,6 @@ import com.arshadshah.nimaz.arabicReshaper.ArabicUtilities
 import com.arshadshah.nimaz.helperClasses.database.BookmarkDatabaseAccessHelper
 import java.text.NumberFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 internal class AyaListCustomAdapter(
     var context: Context,

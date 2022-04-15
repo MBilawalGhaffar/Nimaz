@@ -13,7 +13,6 @@ import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.activities.HomeActivity
 import com.arshadshah.nimaz.helperClasses.fusedLocations.LocationFinderAuto
-import com.arshadshah.nimaz.helperClasses.utils.locationFinder
 
 class LocationSelectionFragment : Fragment() {
 
