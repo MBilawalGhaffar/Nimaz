@@ -14,13 +14,14 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.ListView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
-import com.arshadshah.nimaz.helperClasses.prayertimes.TimerCreater
+import com.arshadshah.nimaz.helperClasses.prayertimes.PrayerTimeObject
+import com.arshadshah.nimaz.helperClasses.prayertimes.PrayerTimesAdapter
 import com.arshadshah.nimaz.helperClasses.utils.DateConvertor
 import com.arshadshah.nimaz.helperClasses.utils.NetworkChecker
 import com.arshadshah.nimaz.helperClasses.utils.locationFinder
@@ -75,22 +76,9 @@ class HomeFragment : Fragment() {
         val islamDate = islamformat.format(islamicDate)
         Hijridate.text = islamDate.toString()
 
-        // Text views where the prayer times are displayed
-        val fajr_time: TextView = root.findViewById(R.id.Fajr_time)
-        val sunrise_time: TextView = root.findViewById(R.id.sunrise_time)
-        val zuhar_time: TextView = root.findViewById(R.id.Zuhar_time)
-        val asar_time: TextView = root.findViewById(R.id.Asar_time)
-        val maghrib_time: TextView = root.findViewById(R.id.Maghrib_time)
-        val ishaa_time: TextView = root.findViewById(R.id.Ishaa_time)
-
 
         //buttons for notifications
-        val fajrSound: ImageView = root.findViewById(R.id.fajrSound)
-        val sunriseSound: ImageView = root.findViewById(R.id.sunriseSound)
-        val zuharSound: ImageView = root.findViewById(R.id.zuharSound)
-        val asarSound: ImageView = root.findViewById(R.id.asarSound)
-        val maghribSound: ImageView = root.findViewById(R.id.maghribSound)
-        val ishaaSound: ImageView = root.findViewById(R.id.ishaaSound)
+//        val fajrSound: ImageView = root.findViewById(R.id.fajrSound)
 
         //cityName
         val cityName: TextView = root.findViewById(R.id.cityName)
@@ -169,12 +157,6 @@ class HomeFragment : Fragment() {
 
         val prayerTimes = PrayerTimes(coordinates, calcdate, parameters)
 
-        // display prayerTimes to the screen
-        fajr_time.text = formatter.format(prayerTimes.fajr!!)
-        sunrise_time.text = formatter.format(prayerTimes.sunrise!!)
-        zuhar_time.text = formatter.format(prayerTimes.dhuhr!!)
-        asar_time.text = formatter.format(prayerTimes.asr!!)
-        maghrib_time.text = formatter.format(prayerTimes.maghrib!!)
 
         //check if ishaa time is too far away
         val ishaaTime = DateConvertor().convertTimeToLong(prayerTimes.isha.toString())
@@ -186,47 +168,34 @@ class HomeFragment : Fragment() {
         }
 
         if (ishaaTime > elevenOClock.timeInMillis && latitude > 50.0) {
-            val Maghrib_Text = getString(R.string.maghrib)
-            ishaa_time.text = Maghrib_Text
             with(sharedPreferences.edit()) {
                 putBoolean("ishaaTimeLonger", true)
                 apply()
             }
         } else {
-            ishaa_time.text = formatter.format(prayerTimes.isha!!)
             with(sharedPreferences.edit()) {
                 putBoolean("ishaaTimeLonger", false)
                 apply()
             }
         }
 
-        // Display the countdown timers
-        val Tofajr: TextView = root.findViewById(R.id.Tofajr)
-        val Tosunrise: TextView = root.findViewById(R.id.Tosunrise)
-        val ToZuhar: TextView = root.findViewById(R.id.ToZuhar)
-        val ToAsar: TextView = root.findViewById(R.id.ToAsar)
-        val ToMaghrib: TextView = root.findViewById(R.id.ToMaghrib)
-        val ToIshaa: TextView = root.findViewById(R.id.ToIshaa)
 
-        // places to highlight per timer instance
-        val fajrhighlight: ConstraintLayout = root.findViewById(R.id.fajrhighlight)
-        val sunrisehighlight: ConstraintLayout = root.findViewById(R.id.sunrisehighlight)
-        val zuharhighlight: ConstraintLayout = root.findViewById(R.id.zuharhighlight)
-        val asarhighlight: ConstraintLayout = root.findViewById(R.id.asarhighlight)
-        val maghribhighlight: ConstraintLayout = root.findViewById(R.id.maghribhighlight)
-        val ishaahighlight: ConstraintLayout = root.findViewById(R.id.ishaahighlight)
+        //add the times to an array list of PrayerTimeObjects
+        val prayerTimesArrayList = ArrayList<PrayerTimeObject?>()
+        prayerTimesArrayList.add(PrayerTimeObject(getString(R.string.fajr),formatter.format(prayerTimes.fajr!!)))
+        prayerTimesArrayList.add(PrayerTimeObject(getString(R.string.sunrise), formatter.format(prayerTimes.sunrise!!)))
+        prayerTimesArrayList.add(PrayerTimeObject(getString(R.string.zuhar), formatter.format(prayerTimes.dhuhr!!)))
+        prayerTimesArrayList.add(PrayerTimeObject(getString(R.string.asar), formatter.format(prayerTimes.asr!!)))
+        prayerTimesArrayList.add(PrayerTimeObject(getString(R.string.maghrib), formatter.format(prayerTimes.maghrib!!)))
+        prayerTimesArrayList.add(PrayerTimeObject(getString(R.string.ishaa), formatter.format(prayerTimes.isha!!)))
 
-        //create timers
-        TimerCreater().createTimer(
-            requireContext(),
-            prayerTimes,
-            Tofajr, fajrhighlight,
-            Tosunrise, sunrisehighlight,
-            ToZuhar, zuharhighlight,
-            ToAsar, asarhighlight,
-            ToMaghrib, maghribhighlight,
-            ToIshaa, ishaahighlight
-        )
+        //get the listView
+        val prayerTimesList: ListView = root.findViewById(R.id.prayerTimes)
+
+        //get custom adapter
+        val adapter = PrayerTimesAdapter(requireContext(), prayerTimesArrayList,prayerTimes)
+
+        prayerTimesList.adapter = adapter
 
 
         // notification channelid
@@ -237,54 +206,14 @@ class HomeFragment : Fragment() {
         val CHANNEL_ID4 = "channel_id_05"
         val CHANNEL_ID5 = "Channel_id_06"
 
-        //mute functions
-        fajrSound.setOnClickListener {
-            val expandIn: Animation =
-                AnimationUtils.loadAnimation(requireContext(), R.anim.expand_in)
-            fajrSound.startAnimation(expandIn)
-            vibrate(30)
-            openNotificationChannel(CHANNEL_ID)
-        }
-
-        sunriseSound.setOnClickListener {
-            val expandIn: Animation =
-                AnimationUtils.loadAnimation(requireContext(), R.anim.expand_in)
-            sunriseSound.startAnimation(expandIn)
-            vibrate(30)
-            openNotificationChannel(CHANNEL_ID1)
-        }
-
-        zuharSound.setOnClickListener {
-            val expandIn: Animation =
-                AnimationUtils.loadAnimation(requireContext(), R.anim.expand_in)
-            zuharSound.startAnimation(expandIn)
-            vibrate(30)
-            openNotificationChannel(CHANNEL_ID2)
-        }
-
-        asarSound.setOnClickListener {
-            val expandIn: Animation =
-                AnimationUtils.loadAnimation(requireContext(), R.anim.expand_in)
-            asarSound.startAnimation(expandIn)
-            vibrate(30)
-            openNotificationChannel(CHANNEL_ID3)
-        }
-
-        maghribSound.setOnClickListener {
-            val expandIn: Animation =
-                AnimationUtils.loadAnimation(requireContext(), R.anim.expand_in)
-            maghribSound.startAnimation(expandIn)
-            vibrate(30)
-            openNotificationChannel(CHANNEL_ID4)
-        }
-
-        ishaaSound.setOnClickListener {
-            val expandIn: Animation =
-                AnimationUtils.loadAnimation(requireContext(), R.anim.expand_in)
-            ishaaSound.startAnimation(expandIn)
-            vibrate(30)
-            openNotificationChannel(CHANNEL_ID5)
-        }
+//        //mute functions
+//        fajrSound.setOnClickListener {
+//            val expandIn: Animation =
+//                AnimationUtils.loadAnimation(requireContext(), R.anim.expand_in)
+//            fajrSound.startAnimation(expandIn)
+//            vibrate(30)
+//            openNotificationChannel(CHANNEL_ID)
+//        }
 
         // end of main code
         return root
