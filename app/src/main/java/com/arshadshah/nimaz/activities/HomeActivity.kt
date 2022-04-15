@@ -2,6 +2,7 @@ package com.arshadshah.nimaz.activities
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.addCallback
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,8 @@ import com.arshadshah.nimaz.helperClasses.fusedLocations.LocationFinderAuto
 import com.arshadshah.nimaz.helperClasses.prayertimes.prayerTimeThread
 import com.arshadshah.nimaz.helperClasses.utils.locationFinder
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.text.NumberFormat
+import java.util.*
 
 
 /**

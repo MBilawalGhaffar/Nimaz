@@ -279,19 +279,18 @@ class QuranMainList : AppCompatActivity() {
                     val submitBtn: Button = gotoayadialog.findViewById(R.id.dialogSubmit)
                     val cancelbtn: Button = gotoayadialog.findViewById(R.id.dialogCancel)
 
-                    val helper = DatabaseAccessHelper(this)
-                    helper.open()
+                    helperQuranDatabase.open()
 
                     val aya = if (fragmentToUse == "juz") {
-                        helper.getNumberOfAyatJuz(number + 1)
+                        helperQuranDatabase.getNumberOfAyatJuz(number + 1)
                     } else {
-                        helper.getNumberOfAyatSurah(number + 1)
+                        helperQuranDatabase.getNumberOfAyatSurah(number + 1)
                     }
 
-                    helper.close()
+                    helperQuranDatabase.close()
 
                     //get the start index of the aya list and not the value
-                    val startAyat = aya[0]
+                    val startAyat = (aya.indexOf(aya.first())) + 1
 
                     val endAyat = aya.size
 

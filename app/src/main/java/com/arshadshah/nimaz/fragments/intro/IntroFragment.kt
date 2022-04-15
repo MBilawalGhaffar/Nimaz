@@ -40,14 +40,8 @@ class IntroFragment : Fragment() {
                 "        <br />\n" +
                 "        Everything that you input is stored on your device alone." +
                 "           <br/>For more information go to the privacy policy in settings" +
-                "       <br/> If you need help in using Nimaz, checkout the help section in Settings\n" +
-                "    </p>\n" +
-                "<br/>\n" +
-                "    <p>\n" +
-                "        <b>Nimaz</b> needs the name of your city to get prayer times.\n" +
-                "        <br />\n" +
-                "        Press <b>CONTINUE</b> to Enter now.\n" +
-                "    </p>"
+                "       <br/> If you need help in using Nimaz, checkout the help section in More page\n" +
+                "    </p>\n"
 
         IntroductoryText.text = Html.fromHtml(IntroductoryTextHtml, Html.FROM_HTML_MODE_COMPACT)
 

@@ -12,6 +12,8 @@ import androidx.navigation.findNavController
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.activities.HomeActivity
+import com.arshadshah.nimaz.helperClasses.fusedLocations.LocationFinderAuto
+import com.arshadshah.nimaz.helperClasses.utils.locationFinder
 
 class LocationSelectionFragment : Fragment() {
 
@@ -38,10 +40,14 @@ class LocationSelectionFragment : Fragment() {
         }
         auto.setOnClickListener {
 
+            LocationFinderAuto().getLocations(requireContext(), 12345)
+
+
             with(sharedPreferences.edit()) {
                 putBoolean("locationType", true)
                 putBoolean("isFirstInstall", false)
                 putBoolean("channelLock", false)
+                putBoolean("autoLocationInit", true)
                 apply()
             }
 

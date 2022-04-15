@@ -15,10 +15,11 @@ import com.arshadshah.nimaz.arabicReshaper.ArabicUtilities
 import com.arshadshah.nimaz.helperClasses.database.BookmarkDatabaseAccessHelper
 import java.text.NumberFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
-internal class AyaListCustomAdapterSurah(
+internal class AyaListCustomAdapterSearch(
     var context: Context,
-    private var arrayList: ArrayList<AyaObject?>
+    private var arrayList: ArrayList<SearchAyaObject?>
 ) :
     ListAdapter {
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -80,7 +81,7 @@ internal class AyaListCustomAdapterSurah(
             convertView?.findViewById(R.id.bookmarkButton2)
         }
 
-        bookmark!!.isVisible = helperBookmarkDatabase.isAyaBookmarkedSurah(
+        bookmark!!.isVisible = helperBookmarkDatabase.isAyaBookmarkedJuz(
             AyaObject!!.ayaNumber,
             AyaObject.ayaEnglish, AyaObject.ayaArabic
         )

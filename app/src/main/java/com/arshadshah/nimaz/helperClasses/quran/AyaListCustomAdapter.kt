@@ -15,6 +15,7 @@ import com.arshadshah.nimaz.arabicReshaper.ArabicUtilities
 import com.arshadshah.nimaz.helperClasses.database.BookmarkDatabaseAccessHelper
 import java.text.NumberFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 internal class AyaListCustomAdapter(
     var context: Context,
@@ -90,17 +91,17 @@ internal class AyaListCustomAdapter(
         //take AyaObject!!.ayaNumber and append it at the end of AyaObject.ayaArabic inside an ayat end unicode
         val unicodeAyaEndEnd = "\uFD3E"
         val unicodeAyaEndStart = "\uFD3F"
-        val nf: NumberFormat = NumberFormat.getInstance(Locale.forLanguageTag("AR"))
-        val endOfAyaWithNumber = (nf.format(AyaObject.ayaNumber.toInt())).toString()
+
+        val number = AyaObject.ayaNumber.toInt()
+        val arabicLocal = Locale.forLanguageTag("AR")
+        val nf: NumberFormat = NumberFormat.getInstance(arabicLocal)
+        val endOfAyaWithNumber = nf.format(number)
 
         val unicodeWithNumber = unicodeAyaEndStart + endOfAyaWithNumber + unicodeAyaEndEnd
-        //remove comma from the the unicodeWithNumber
-        val unicodeWithNumberWithoutComma = unicodeWithNumber.replace("'", "")
-
 
         EnglishName?.text = AyaObject.ayaEnglish
         ArabicName?.text =
-            ArabicUtilities.reshape(AyaObject.ayaArabic + " " + unicodeWithNumberWithoutComma)
+            ArabicUtilities.reshape(AyaObject.ayaArabic + " " + unicodeWithNumber)
 
         return convertView
     }

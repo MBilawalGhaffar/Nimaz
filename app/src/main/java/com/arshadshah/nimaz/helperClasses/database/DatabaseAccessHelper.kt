@@ -5,6 +5,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.helperClasses.quran.AyaObject
+import com.arshadshah.nimaz.helperClasses.quran.SearchAyaObject
 
 /**
  * A class that provides methods to access the database
@@ -63,9 +64,8 @@ class DatabaseAccessHelper(context: Context) {
     fun getJuzStartAyaInQuran(juznumber: Int): Int {
         //if the juznumber is 31 then the juzStartAyaInQuran is 6236
         //return 6236
-        val ayaNumber: Int
-        if (juznumber == 31) {
-            ayaNumber = 6236
+        val ayaNumber: Int = if (juznumber == 31) {
+            6236
         } else {
             //the cursor
             val cursor = db!!.rawQuery(
@@ -74,7 +74,7 @@ class DatabaseAccessHelper(context: Context) {
             )
             //returns the juz object
             cursor.moveToFirst()
-            ayaNumber = cursor.getInt(0)
+            cursor.getInt(0)
         }
 
         return ayaNumber
@@ -293,8 +293,7 @@ class DatabaseAccessHelper(context: Context) {
      * @param query the query to search for
      * @return an arraylist of AyaObjects
      */
-    fun searchForAya(query: String, tableName: String, columnName: String): ArrayList<AyaObject?> {
-        //find the ayas that have the query in the table
+    fun searchForAya(query: String, tableName: String, columnName: String): ArrayList<SearchAyaObject?> {
         val cursor =
             db!!.rawQuery("SELECT * FROM $tableName WHERE $columnName LIKE '%$query%'", null)
 
@@ -307,17 +306,34 @@ class DatabaseAccessHelper(context: Context) {
         //aya number array
         val ayaNumber = ArrayList<String?>()
 
+        val surahNumber = ArrayList<String?>()
+
         //loop through the cursor and add the ayanumbers for the ayas to the table quran_text
         while (cursor.moveToNext()) {
             //add the ayaNumber at index 0 to the ayaNumber array
-            ayaNumber.add(cursor.getString(0))
+            ayaNumber.add(cursor.getString(2))
+            surahNumber.add(cursor.getString(1))
         }
 
         cursor.close()
 
+        val surahNames = ArrayList<String?>()
+        lateinit var cursorOfSurahNames: Cursor
+        for (i in 0 until surahNumber.size) {
+            cursorOfSurahNames = db!!.rawQuery(
+                "SELECT * FROM suras WHERE suranumberdata = ${surahNumber[i]}",
+                null
+            )
+            while (cursorOfSurahNames.moveToNext()) {
+                surahNames.add(cursorOfSurahNames.getString(3))
+            }
+        }
+        cursorOfSurahNames.close()
+
+
 
         //arraylist of AyaObjects
-        val ayas = ArrayList<AyaObject?>()
+        val ayas = ArrayList<SearchAyaObject?>()
 
 
         //initialize the cursors for the tables
@@ -326,40 +342,48 @@ class DatabaseAccessHelper(context: Context) {
         lateinit var cursorOfAyasFromUrdu: Cursor
 
         //find the ayas that have the ayanumberiquran in the table using arrayList ayaNumber
+        //and also find which surah they are in
         for (i in 0 until ayaNumber.size) {
-            //get a cursor to the table quran_text
+            //the cursor
             cursorOfAyasFromArabic = db!!.rawQuery(
                 "SELECT * FROM quran_text WHERE ayaNumberInQuran = ${ayaNumber[i]}",
                 null
             )
+            cursorOfAyasFromEnglish = db!!.rawQuery(
+                "SELECT * FROM en_sahih WHERE ayaNumberInQuranEnglish = ${ayaNumber[i]}",
+                null
+            )
+            cursorOfAyasFromUrdu = db!!.rawQuery(
+                "SELECT * FROM urdu_text WHERE ayaNumberInQuranUrdu = ${ayaNumber[i]}",
+                null
+            )
+
+            //add the arabic text at index 3 to the arabicText array
             while (cursorOfAyasFromArabic.moveToNext()) {
-                //add the arabic text at index 3 to the arabicText array
                 arabicText.add(cursorOfAyasFromArabic.getString(3))
             }
 
-            //if the user is in english
-            if (sharedPreferences.getBoolean("isEnglish", true)) {
-                cursorOfAyasFromEnglish = db!!.rawQuery(
-                    "SELECT * FROM en_sahih WHERE ayaNumberInQuranEnglish = ${ayaNumber[i]}",
-                    null
-                )
-                while (cursorOfAyasFromEnglish.moveToNext()) {
-                    //add the english text at index 3 to the englishText array
-                    translationText.add(cursorOfAyasFromEnglish.getString(3))
-                }
-            } else {
-                cursorOfAyasFromUrdu = db!!.rawQuery(
-                    "SELECT * FROM urdu_text WHERE ayaNumberInQuranUrdu = ${ayaNumber[i]}",
-                    null
-                )
-                while (cursorOfAyasFromUrdu.moveToNext()) {
-                    //add the english text at index 3 to the englishText array
-                    translationText.add(cursorOfAyasFromUrdu.getString(3))
-                }
+            //add the english text at index 3 to the englishText array
+            while (cursorOfAyasFromEnglish.moveToNext()) {
+                translationText.add(cursorOfAyasFromEnglish.getString(3))
             }
 
-            ayas.add(AyaObject(ayaNumber[i]!!, translationText[i]!!, arabicText[i]!!))
+            //add the english text at index 3 to the englishText array
+            while (cursorOfAyasFromUrdu.moveToNext()) {
+                translationText.add(cursorOfAyasFromUrdu.getString(3))
+            }
+
+            //add the ayaObject to the arraylist
+            ayas.add(
+                SearchAyaObject(
+                    ayaNumber[i]!!,
+                    surahNames[i]!!,
+                    translationText[i]!!,
+                    arabicText[i]!!
+                )
+            )
         }
+
 
         if (sharedPreferences.getBoolean("isEnglish", true)) {
             cursorOfAyasFromEnglish.close()
@@ -367,8 +391,6 @@ class DatabaseAccessHelper(context: Context) {
             cursorOfAyasFromUrdu.close()
         }
         cursorOfAyasFromArabic.close()
-
-
         return ayas
     }
 
@@ -400,7 +422,7 @@ class DatabaseAccessHelper(context: Context) {
 
         while (cursor!!.moveToNext()) {
             //add the ayaNumber at index 2 to the ayaNumber array
-            ayaNumber.add(cursor.getString(2))
+            ayaNumber.add(cursor.getString(0))
         }
         cursor.close()
 
