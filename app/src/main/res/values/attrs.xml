@@ -24,9 +24,4 @@
         <attr name="arabicName" format="color" />
     </declare-styleable>
 
-    <declare-styleable name="customCardLines">
-        <attr name="dividerLight" format="color" />
-        <attr name="dividerDark" format="color" />
-    </declare-styleable>
-
 </resources>

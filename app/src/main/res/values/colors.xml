@@ -10,12 +10,10 @@
     <color name="secondaryTextColor">#000000</color>
     <color name="background">#FFECB3</color>
     <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
     <color name="cardBackground">#FFFFFF</color>
+    <color name="highlight">#6100FF0C</color>
+    <color name="highlightDark">#005B1E</color>
+    <color name="black">#000000</color>
     <color name="cardDark">#424242</color>
-    <color name="highlight">#F7CD49</color>
-    <color name="highlightDark">#8c6e00</color>
-    <color name="bookmark">#8c6e00</color>
-    <color name="dividerLight">#C8A0A0A0</color>
-    <color name="dividerDark">#636363</color>
+    <color name="bookmark">#009933</color>
 </resources>

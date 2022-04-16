@@ -70,7 +70,7 @@
                 android:layout_height="68dp"
                 android:background="@drawable/finecontrol"
                 android:padding="10dp"
-                android:src="@drawable/ic_tasbeeh"
+                android:src="@drawable/ic_tasbih"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

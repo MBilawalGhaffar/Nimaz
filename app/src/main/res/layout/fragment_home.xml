@@ -48,6 +48,7 @@
                     android:text="@string/prayer_times"
                     android:textAlignment="center"
                     android:textSize="36sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -62,10 +63,10 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="10dp"
             app:cardCornerRadius="10dp"
-            app:cardElevation="5dp"
+            app:cardElevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +74,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:padding="8dp">
 
                 <TextView
                     android:id="@+id/cityName"
@@ -85,6 +87,7 @@
                     android:padding="8dp"
                     android:text="@string/city"
                     android:textSize="20sp"
+                    android:textStyle="bold"
                     android:tooltipText="Current Location"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/view"
@@ -95,7 +98,7 @@
                     android:id="@+id/view"
                     android:layout_width="1.5dp"
                     android:layout_height="match_parent"
-                    android:background="?attr/divider"
+                    android:background="@android:drawable/divider_horizontal_bright"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -111,6 +114,7 @@
                     android:format24Hour=" H : mm : ss "
                     android:gravity="center"
                     android:textSize="20sp"
+                    android:textStyle="bold"
                     android:tooltipText="Current Time"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -141,9 +145,7 @@
                 android:id="@+id/prayerTimes"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:divider="?attr/divider"
-                android:dividerHeight="1.5dp" />
+                android:layout_gravity="center" />
         </androidx.cardview.widget.CardView>
 
 
@@ -155,10 +157,10 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             app:cardCornerRadius="10dp"
-            app:cardElevation="5dp"
+            app:cardElevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
@@ -171,11 +173,11 @@
                     android:id="@+id/editTextDate"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:fontFamily="@font/nunito"
                     android:padding="8dp"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
                     android:tooltipText="Current Date"
                     app:layout_constraintBottom_toTopOf="@+id/view3"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -186,7 +188,7 @@
                     android:id="@+id/view3"
                     android:layout_width="match_parent"
                     android:layout_height="1.5dp"
-                    android:background="?attr/divider"
+                    android:background="@android:drawable/divider_horizontal_bright"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -197,10 +199,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
                     android:fontFamily="@font/nunito"
                     android:padding="8dp"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
                     android:tooltipText="Current Hijri Date"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
