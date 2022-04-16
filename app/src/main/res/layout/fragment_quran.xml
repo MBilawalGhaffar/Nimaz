@@ -44,7 +44,6 @@
                 android:text="@string/quran"
                 android:textAlignment="center"
                 android:textSize="36sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/moreButton"
                 app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +70,8 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/quranTabLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></com.google.android.material.tabs.TabLayout>
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="?attr/colorSecondary"></com.google.android.material.tabs.TabLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.viewpager2.widget.ViewPager2

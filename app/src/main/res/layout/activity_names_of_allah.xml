@@ -44,7 +44,6 @@
                 android:text="@string/allah"
                 android:textAlignment="center"
                 android:textSize="36sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/namesOfAllahAudio"
                 app:layout_constraintStart_toEndOf="@+id/backButton4"

@@ -30,4 +30,9 @@
         android:name="com.arshadshah.nimaz.fragments.intro.LocationSelectionFragment"
         android:label="fragment_location_selection"
         tools:layout="@layout/fragment_location_selection" />
+    <fragment
+        android:id="@+id/serviceInitFragment"
+        android:name="com.arshadshah.nimaz.fragments.intro.ServiceInitFragment"
+        android:label="fragment_service_init"
+        tools:layout="@layout/fragment_service_init" />
 </navigation>

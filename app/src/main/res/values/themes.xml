@@ -21,6 +21,7 @@
         <item name="whiteLinesCompass">@color/white</item>
         <item name="highlight">@color/highlight</item>
         <item name="arabicName">@color/background</item>
+        <item name="divider">@color/dividerLight</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">

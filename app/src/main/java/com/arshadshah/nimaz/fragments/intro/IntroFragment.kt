@@ -23,28 +23,6 @@ class IntroFragment : Fragment() {
         //buttons
         val introContinue: Button = root.findViewById(R.id.introContinue)
 
-        val IntroductoryText: TextView = root.findViewById(R.id.IntroductoryText)
-
-
-        val IntroductoryTextHtml = "<b>In the name of Allah, Most Gracious,Most Merciful</b>\n" +
-                "    <br />" +
-                "    <b>As-salamu alaykum</b>\n" +
-                "    <p>\n" +
-                "        <b>Nimaz</b> is created with the help of <b>Allah</b> for the Sake of <b>Allah</b> and his Prophet <b>Muhammad (S.A.W)</b>.\n" +
-                "        <br />\n" +
-                "        Please keep me and my family in your dua.\n" +
-                "    </p>\n" +
-                "<br/>\n" +
-                "    <p>\n" +
-                "        <b>Nimaz</b> Does not collect any Personal data,\n" +
-                "        <br />\n" +
-                "        Everything that you input is stored on your device alone." +
-                "           <br/>For more information go to the privacy policy in settings" +
-                "       <br/> If you need help in using Nimaz, checkout the help section in More page\n" +
-                "    </p>\n"
-
-        IntroductoryText.text = Html.fromHtml(IntroductoryTextHtml, Html.FROM_HTML_MODE_COMPACT)
-
         introContinue.setOnClickListener {
             val navcontroller = requireActivity().findNavController(R.id.fragmentContainerView)
             navcontroller.navigate(R.id.introTandCFragment)

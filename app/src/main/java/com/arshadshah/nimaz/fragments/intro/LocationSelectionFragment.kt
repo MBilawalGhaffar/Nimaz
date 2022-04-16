@@ -39,28 +39,17 @@ class LocationSelectionFragment : Fragment() {
         }
         auto.setOnClickListener {
 
-            LocationFinderAuto().getLocations(requireContext(), 12345)
-
-
             with(sharedPreferences.edit()) {
                 putBoolean("locationType", true)
-                putBoolean("isFirstInstall", false)
                 putBoolean("channelLock", false)
-                putBoolean("autoLocationInit", true)
                 apply()
             }
 
-            val intent = Intent(requireContext(), HomeActivity::class.java)
-            startActivity(intent)
-            activity?.finish()
+            val navcontroller = requireActivity().findNavController(R.id.fragmentContainerView)
+            navcontroller.navigate(R.id.serviceInitFragment)
         }
         //if skipped
         locationSkip.setOnClickListener {
-            with(sharedPreferences.edit()) {
-                putBoolean("isFirstInstall", false)
-                putBoolean("channelLock", false)
-                apply()
-            }
             createDialog()
         }
 
@@ -72,6 +61,7 @@ class LocationSelectionFragment : Fragment() {
      * create a dialog to add a reminder
      */
     private fun createDialog() {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         // Create the object of
         // AlertDialog Builder class
         val builder = AlertDialog.Builder(requireContext())
@@ -87,9 +77,17 @@ class LocationSelectionFragment : Fragment() {
         // Show the Alert Dialog box
         alertDialog.show()
         dialogYes.setOnClickListener { view: View? ->
+            with(sharedPreferences.edit()) {
+                putBoolean("isFirstInstall", false)
+                putBoolean("channelLock", false)
+                putBoolean("locationType", false)
+                apply()
+            }
+            //navigate to homeactivity and finish this activity
             val intent = Intent(requireContext(), HomeActivity::class.java)
             startActivity(intent)
-            activity?.finish()
+            requireActivity().finish()
+            alertDialog.cancel()
         }
         dialogNo.setOnClickListener { view: View? ->
             alertDialog.cancel()

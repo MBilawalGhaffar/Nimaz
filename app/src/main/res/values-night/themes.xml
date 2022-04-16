@@ -21,6 +21,7 @@
     <item name="whiteLinesCompass">@color/white</item>
     <item name="highlight">@color/highlightDark</item>
     <item name="arabicName">@color/black</item>
+    <item name="divider">@color/dividerDark</item>
 </style>
 
     <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight">
