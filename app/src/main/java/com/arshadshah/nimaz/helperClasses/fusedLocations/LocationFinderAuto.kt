@@ -50,7 +50,7 @@ class LocationFinderAuto {
     }
 
     fun getLocations(context: Context, requestCode: Int) {
-        when {
+         when{
             PermissionUtils.checkAccessLocationGranted(context) -> {
                 when {
                     PermissionUtils.isLocationEnabled(context) -> {

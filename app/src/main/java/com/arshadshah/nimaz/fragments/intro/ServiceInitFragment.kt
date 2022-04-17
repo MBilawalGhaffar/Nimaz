@@ -17,7 +17,9 @@ import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.activities.HomeActivity
 import com.arshadshah.nimaz.fragments.settings.CalcMethodAdapter
+import com.arshadshah.nimaz.helperClasses.alarms.CreateAlarms
 import com.arshadshah.nimaz.helperClasses.fusedLocations.LocationFinderAuto
+import com.arshadshah.nimaz.helperClasses.prayertimes.prayerTimeThread
 import com.arshadshah.nimaz.helperClasses.utils.locationFinder
 import com.google.android.material.switchmaterial.SwitchMaterial
 
@@ -31,13 +33,16 @@ class ServiceInitFragment : Fragment() {
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val locationTypeValue = sharedPreferences.getBoolean("locationType", true)
-        val latitude = sharedPreferences.getString("latitude", "0.0")!!.toDouble()
-        val longitude = sharedPreferences.getString("longitude", "0.0")!!.toDouble()
+
+        val locationFinish: Button = root.findViewById(R.id.locationFinish)
+
         if (locationTypeValue) {
             LocationFinderAuto().getLocations(requireContext(), 12345)
-
-            locationFinder().findCityName(requireContext(), latitude, longitude)
         }
+        
+        val latitude = sharedPreferences.getString("latitude", "0.0")!!.toDouble()
+        val longitude = sharedPreferences.getString("longitude", "0.0")!!.toDouble()
+        locationFinder().findCityName(requireContext(), latitude, longitude)
 
         val batteryOpt: SwitchMaterial = root.findViewById(R.id.batteryOpt)
         val pm: PowerManager =
@@ -56,7 +61,6 @@ class ServiceInitFragment : Fragment() {
             }
         }
 
-        val locationFinish: Button = root.findViewById(R.id.locationFinish)
         locationFinish.setOnClickListener {
             with(sharedPreferences.edit()) {
                 putBoolean("isFirstInstall", false)

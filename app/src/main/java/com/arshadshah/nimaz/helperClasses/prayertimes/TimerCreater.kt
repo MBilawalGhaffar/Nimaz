@@ -2,20 +2,13 @@ package com.arshadshah.nimaz.helperClasses.prayertimes
 
 import android.content.Context
 import android.content.res.Resources
-import android.os.Build
 import android.os.CountDownTimer
-import android.util.Log
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.fragments.HomeFragment
-import com.arshadshah.nimaz.helperClasses.utils.DateConvertor
-import com.arshadshah.nimaz.prayerTimeApi.Prayer
-import com.arshadshah.nimaz.prayerTimeApi.PrayerTimes
 
 /**
  * class for timer creation
@@ -23,7 +16,7 @@ import com.arshadshah.nimaz.prayerTimeApi.PrayerTimes
  * */
 class TimerCreater {
 
-    fun getTimer(context: Context, endTime: Long, teller: TextView){
+    fun getTimer(context: Context, endTime: Long, teller: TextView, nextPrayerName: String){
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
         if(sharedPreferences.getBoolean("ishaaTimeLonger", false)){
@@ -31,7 +24,7 @@ class TimerCreater {
         }
         else
         {
-            createTimer(context,endTime, teller)
+            createTimer(context,endTime, teller, nextPrayerName)
         }
     }
 
@@ -41,7 +34,7 @@ class TimerCreater {
      * @param endTime end time of the timer
      * @param textView textview to display the timer
      */
-    fun createTimer(context: Context, endTime: Long, textView: TextView) {
+    fun createTimer(context: Context, endTime: Long, textView: TextView, nextPrayerName: String) {
         // countdown timer for prayers
          var countDownTimer: CountDownTimer? = null
          // declare and initialize variables
@@ -71,28 +64,46 @@ class TimerCreater {
                      val elapsedSeconds = diff / secondsInMilli
                      diff %= secondsInMilli
 
-                     val res: Resources = context.resources
-                     val text = res.getString(R.string.timer)
-                     val filledText =
-                         String.format(text, elapsedHours, elapsedMinutes, elapsedSeconds)
+                    val res: Resources = context.resources
+                    val filledText = when {
+                        elapsedHours >= 1 && elapsedMinutes.toInt() != 0 -> {
+                             val text = res.getString(R.string.timerWithText)
+                             String.format(text, elapsedHours, elapsedMinutes,nextPrayerName)
+                         }
+                        elapsedHours.toInt() == 1 && elapsedMinutes.toInt() == 0 -> {
+                            val text = res.getString(R.string.timerSeconds)
+                            String.format(text, elapsedHours, "hrs",nextPrayerName)
+                        }
+                        elapsedHours.toInt() == 0 -> {
+                            val text = res.getString(R.string.timerSeconds)
+                            String.format(text, elapsedMinutes, "mins",nextPrayerName)
+                        }
+                        elapsedMinutes in 1..59 -> {
+                             val text = res.getString(R.string.timerSeconds)
+                             String.format(text, elapsedMinutes, "mins",nextPrayerName)
+                         }
+                         //if there is less than 1 minute left
+                         else -> {
+                             val text = res.getString(R.string.timerSeconds)
+                             String.format(text, elapsedSeconds, "seconds",nextPrayerName)
+                         }
+                     }
                      textView.text = filledText
                  }
 
                  override fun onFinish() {
-                    //if activity is not destroyed or paused
-                    if (HomeFragment().activity != null && !HomeFragment().requireActivity().isFinishing && !HomeFragment().requireActivity().isDestroyed) {
-                        //refresh fragment
-                        val fragment = HomeFragment()
-                        val fragmentManager = (context as AppCompatActivity).supportFragmentManager
-                        val fragmentTransaction = fragmentManager.beginTransaction()
-                        fragmentTransaction.replace(R.id.nav_host_fragment, fragment)
-                        fragmentTransaction.commit()
-                    }
+                     if(countDownTimer != null) {
+                         //refresh fragment
+                         val fragment = HomeFragment()
+                         val fragmentManager = (context as AppCompatActivity).supportFragmentManager
+                         val fragmentTransaction = fragmentManager.beginTransaction()
+                         fragmentTransaction.replace(R.id.nav_host_fragment, fragment)
+                         fragmentTransaction.commit()
 
-                     //cancel the countdown timer
-                     countDownTimer?.cancel()
+                         countDownTimer?.cancel()
 
-                     textView.isVisible = false
+                         textView.isVisible = false
+                     }
                  }
              }.start()
     }

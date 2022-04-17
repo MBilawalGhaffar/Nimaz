@@ -149,9 +149,9 @@ class NotificationHelper {
                 if (title == "Test Adhan") {
                     setContentText("This is a test Adhan")
                 } else if (title == "Sunrise" || title == "شروق") {
-                    setContentText("The sun has risen!!")
+                    setContentText("The sun is rising!!")
                 } else {
-                    setContentText("Time to Offer $title salat")
+                    setContentText("It is time to pray $title")
                 }
                 priority = NotificationCompat.PRIORITY_HIGH
                 setContentIntent(notificationPendingIntent)

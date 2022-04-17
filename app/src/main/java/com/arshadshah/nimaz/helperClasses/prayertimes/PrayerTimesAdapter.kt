@@ -1,10 +1,7 @@
 package com.arshadshah.nimaz.helperClasses.prayertimes
 
 import android.content.Context
-import android.content.res.Resources
 import android.database.DataSetObserver
-import android.graphics.drawable.Drawable
-import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -20,7 +17,7 @@ import java.util.*
 internal class PrayerTimesAdapter(
     var context: Context,
     private var arrayList: ArrayList<PrayerTimeObject?>,
-    private var prayerTimes: PrayerTimes
+    private var highlightPosition: Int
 ) :
     ListAdapter {
 
@@ -66,34 +63,8 @@ internal class PrayerTimesAdapter(
 
         val PrayerName = convertView?.findViewById<TextView>(R.id.PrayerName)
         val PrayerTime = convertView?.findViewById<TextView>(R.id.PrayerTime)
-        val timer = convertView?.findViewById<TextView>(R.id.timer)
 
         PrayerName?.text = PrayerTimeObject?.prayerName
-
-        //current time
-        val currentTime = System.currentTimeMillis()
-
-        //using DateConvertor().convertTimeToLong to convert time to long
-        val prayerfajr = DateConvertor().convertTimeToLong(prayerTimes.fajr.toString())
-        //sunrise
-        val sunrise = DateConvertor().convertTimeToLong(prayerTimes.sunrise.toString())
-        //dhuhr
-        val dhuhr = DateConvertor().convertTimeToLong(prayerTimes.dhuhr.toString())
-        //asr
-        val asr = DateConvertor().convertTimeToLong(prayerTimes.asr.toString())
-        //maghrib
-        val maghrib = DateConvertor().convertTimeToLong(prayerTimes.maghrib.toString())
-        //isha
-        val isha = DateConvertor().convertTimeToLong(prayerTimes.isha.toString())
-
-        val fajrTommorow = prayerfajr + 86400000
-
-
-        val nextPrayerName = prayerTimes.nextPrayer()
-
-        val nextPrayerTime = prayerTimes.timeForPrayer(nextPrayerName).toString()
-
-        val nextPrayerTimeInLong = DateConvertor().convertTimeToLong(nextPrayerTime)
 
         val typedValue = TypedValue()
         val theme = context.theme
@@ -105,52 +76,37 @@ internal class PrayerTimesAdapter(
 
         val highlight = context.getColor(typedValue.resourceId)
 
-        if (currentTime in isha..fajrTommorow && position == 0) {
+        if (highlightPosition == 5 && position == 5) {
 
             convertView?.setBackgroundColor(highlight)
-            timer?.isVisible = true
-            TimerCreater().getTimer(context, fajrTommorow, timer!!)
 
-        } else if (currentTime < prayerfajr && position == 0) {
+        } else if (highlightPosition == 5 && position == 5) {
 
             convertView?.setBackgroundColor(highlight)
-            timer?.isVisible = true
-            TimerCreater().getTimer(context, nextPrayerTimeInLong, timer!!)
 
-        }else if (currentTime in prayerfajr..sunrise && position == 1) {
+        }else if (highlightPosition == 0 && position == 0) {
 
             //change the background color of position 0
             convertView?.setBackgroundColor(highlight)
-            timer?.isVisible = true
-            TimerCreater().getTimer(context, nextPrayerTimeInLong, timer!!)
 
-        } else if (currentTime in sunrise..dhuhr && position == 2) {
+        } else if (highlightPosition == 1 && position == 1) {
 
             convertView?.setBackgroundColor(highlight)
-            timer?.isVisible = true
-            TimerCreater().getTimer(context, nextPrayerTimeInLong, timer!!)
 
-        } else if (currentTime in dhuhr..asr && position == 3) {
+        } else if (highlightPosition == 2 && position == 2) {
 
             convertView?.setBackgroundColor(highlight)
-            timer?.isVisible = true
-            TimerCreater().getTimer(context, nextPrayerTimeInLong, timer!!)
 
-        } else if (currentTime in asr..maghrib && position == 4) {
+        } else if (highlightPosition == 3 && position == 3) {
 
             convertView?.setBackgroundColor(highlight)
-            timer?.isVisible = true
-            TimerCreater().getTimer(context, nextPrayerTimeInLong, timer!!)
 
-        } else if (currentTime in maghrib..isha && position == 5) {
+        } else if (highlightPosition == 4 && position == 4) {
 
             convertView?.setBackgroundColor(highlight)
-            timer?.isVisible = true
-            TimerCreater().getTimer(context, nextPrayerTimeInLong, timer!!)
 
         } else {
             convertView?.setBackgroundColor(defaultColor)
-            timer?.isVisible = false
         }
         
         PrayerTime?.text = PrayerTimeObject?.prayerTime

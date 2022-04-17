@@ -13,6 +13,7 @@ import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.utils.NotificationHelper
 import com.arshadshah.nimaz.recievers.AlarmResetReceiver
 import com.arshadshah.nimaz.recievers.ReminderReciever
+import java.text.DateFormat
 
 /**
  * functions to create alarms
@@ -42,6 +43,13 @@ class CreateAlarms {
         ishaaAlarm: Long
     ) {
 
+        //change the long values to time
+        val fajrTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(fajrAlarm)
+        val zuharTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(zuharAlarm)
+        val asarTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(asarAlarm)
+        val maghribTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(maghribAlarm)
+        val ishaaTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(ishaaAlarm)
+
 
         // notification channelid
         val CHANNEL_ID = "channel_id_01"
@@ -52,12 +60,12 @@ class CreateAlarms {
         val CHANNEL_ID5 = "Channel_id_06"
 
         // notification title
-        val channelFajr = context.getString(R.string.fajr)
+        val channelFajr = "Fajr at $fajrTime"
         val channelSunrise = context.getString(R.string.sunrise)
-        val channelZuhar = context.getString(R.string.zuhar)
-        val channelAsar = context.getString(R.string.asar)
-        val channelMaghrib = context.getString(R.string.maghrib)
-        val channelIshaa = context.getString(R.string.ishaa)
+        val channelZuhar = "Dhuhr at $zuharTime"
+        val channelAsar = "Asr at $asarTime"
+        val channelMaghrib = "Maghrib at $maghribTime"
+        val channelIshaa = "Isha at $ishaaTime"
 
         //shared preferences
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Nimaz</string>
-    <string name="title_home" translatable="false">Prayer Times</string>
+    <string name="title_home" translatable="false">Prayer</string>
     <string name="title_tasbeeh" translatable="false">Tasbeeh</string>
     <string name="title_about" translatable="false">About</string>
 
@@ -9,8 +9,8 @@
     <string name="city" translatable="false">city</string>
     <string name="fajr">Fajr</string>
     <string name="sunrise">Sunrise</string>
-    <string name="zuhar">Zuhar</string>
-    <string name="asar">Asar</string>
+    <string name="zuhar">Dhuhr</string>
+    <string name="asar">Asr</string>
     <string name="maghrib">Maghrib</string>
     <string name="ishaa">Isha</string>
     <string name="fajr_time" translatable="false">00.00</string>
@@ -126,7 +126,8 @@
     <string name="email_account_of_arshad_shah" translatable="false">email account of arshad shah</string>
     <string name="github_account_of_arshad_shah" translatable="false">Github account of arshad shah</string>
     <string name="linkedin_account_of_arshad_shah" translatable="false">linkedin account of arshad shah</string>
-    <string name="timer" translatable="false"> - %1$s <b>:</b> %2$s <b>:</b> %3$s </string>
+    <string name="timerWithText" translatable="false"> %1$s hrs %2$s mins until %3$s </string>
+    <string name="timerSeconds" translatable="false"> %1$s %2$s until %3$s </string>
     <string name="permissionRational" translatable="false">Location is needed to calculate prayer times</string>
     <string name="ok" translatable="false">OK</string>
     <string name="permission_denied_explanation" translatable="false">Location permission denied, to calculate prayer times please go to Nimaz settings and use manual location</string>

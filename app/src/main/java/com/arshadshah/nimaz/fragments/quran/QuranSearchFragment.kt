@@ -44,7 +44,7 @@ class QuranSearchFragment : Fragment() {
             //create an instance of a cardview to the fragment
             val progressBarContainer = root.findViewById<CardView>(R.id.progressContainer)
 
-            val progressBar = root.findViewById<ProgressBar>(R.id.progressBar)
+            val progressBar = root.findViewById<ProgressBar>(R.id.sunPositionProgressBar)
 
             activity?.runOnUiThread {
                 progressBarContainer.isVisible = true
