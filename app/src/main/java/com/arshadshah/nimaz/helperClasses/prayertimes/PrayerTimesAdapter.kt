@@ -8,11 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListAdapter
 import android.widget.TextView
-import androidx.core.view.isVisible
 import com.arshadshah.nimaz.R
-import com.arshadshah.nimaz.helperClasses.utils.DateConvertor
-import com.arshadshah.nimaz.prayerTimeApi.PrayerTimes
-import java.util.*
 
 internal class PrayerTimesAdapter(
     var context: Context,
@@ -84,7 +80,7 @@ internal class PrayerTimesAdapter(
 
             convertView?.setBackgroundColor(highlight)
 
-        }else if (highlightPosition == 0 && position == 0) {
+        } else if (highlightPosition == 0 && position == 0) {
 
             //change the background color of position 0
             convertView?.setBackgroundColor(highlight)
@@ -108,7 +104,7 @@ internal class PrayerTimesAdapter(
         } else {
             convertView?.setBackgroundColor(defaultColor)
         }
-        
+
         PrayerTime?.text = PrayerTimeObject?.prayerTime
 
         return convertView

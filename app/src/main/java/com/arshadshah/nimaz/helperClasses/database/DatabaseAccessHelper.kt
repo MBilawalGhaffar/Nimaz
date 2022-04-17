@@ -1,6 +1,7 @@
 package com.arshadshah.nimaz.helperClasses.database
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import androidx.preference.PreferenceManager
@@ -13,7 +14,8 @@ import com.arshadshah.nimaz.helperClasses.quran.SearchAyaObject
  * Created by Arshad Shah
  */
 class DatabaseAccessHelper(context: Context) {
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    val sharedPreferences: SharedPreferences =
+        PreferenceManager.getDefaultSharedPreferences(context)
 
     /**
      * The database helper
@@ -48,16 +50,14 @@ class DatabaseAccessHelper(context: Context) {
 
     fun getAllJuzs(): Cursor? {
         //the cursor
-        val cursor = db!!.rawQuery("SELECT * FROM juzs WHERE juznumberdata", null)
         //returns the juz object
-        return cursor
+        return db!!.rawQuery("SELECT * FROM juzs WHERE juznumberdata", null)
     }
 
     fun getAllSuras(): Cursor? {
         //the cursor
-        val cursor = db!!.rawQuery("SELECT * FROM suras WHERE suranumberdata", null)
         //returns the juz object
-        return cursor
+        return db!!.rawQuery("SELECT * FROM suras WHERE suranumberdata", null)
     }
 
     //function that returns the juzStartAyaInQuran for a given juznumber
@@ -83,34 +83,31 @@ class DatabaseAccessHelper(context: Context) {
     //function to get all the ayas from quran_text between two numbers and return them as a cursor
     fun getAyaFromQuranText(startAya: Int, endAya: Int): Cursor? {
         //the cursor
-        val cursor1 = db!!.rawQuery(
+        //returns the juz object
+        return db!!.rawQuery(
             "SELECT * FROM quran_text WHERE ayaNumberInQuran BETWEEN $startAya AND $endAya",
             null
         )
-        //returns the juz object
-        return cursor1
     }
 
     //function to get all the ayas from quran_text between two numbers and return them as a cursor
     fun getAyaFromUrduText(startAya: Int, endAya: Int): Cursor? {
         //the cursor
-        val cursor1 = db!!.rawQuery(
+        //returns the juz object
+        return db!!.rawQuery(
             "SELECT * FROM urdu_text WHERE ayaNumberInQuranUrdu BETWEEN $startAya AND $endAya",
             null
         )
-        //returns the juz object
-        return cursor1
     }
 
     //function to get all the ayas from en_sahih between two numbers and return them as a cursor
     fun getAyaFromEnSahih(startAya: Int, endAya: Int): Cursor? {
         //the cursor
-        val cursor2 = db!!.rawQuery(
+        //returns the juz object
+        return db!!.rawQuery(
             "SELECT * FROM en_sahih WHERE ayaNumberInQuranEnglish BETWEEN $startAya AND $endAya",
             null
         )
-        //returns the juz object
-        return cursor2
     }
 
     //function that returns all the aya based on the juz number given to it
@@ -219,7 +216,7 @@ class DatabaseAccessHelper(context: Context) {
     }
 
     //function that returns all aya from en_sahih for given surahNumberInQuran and returns it in an array
-    private fun getAllAyaFromUrdu_TextForSurah(surahNumberInQuran: Int): ArrayList<String?> {
+    private fun getAllAyaFromUrduTextForSurah(surahNumberInQuran: Int): ArrayList<String?> {
         //the cursor
         val cursor = db!!.rawQuery(
             "SELECT * FROM urdu_text WHERE suraNumberInQuranUrdu = $surahNumberInQuran",
@@ -266,7 +263,7 @@ class DatabaseAccessHelper(context: Context) {
         val arrayOfTranslationtext: ArrayList<String?> = if (isEnglish) {
             getAllAyaFromEnSahihForSurah(surahNumber)
         } else {
-            getAllAyaFromUrdu_TextForSurah(surahNumber)
+            getAllAyaFromUrduTextForSurah(surahNumber)
         }
 
         val arrayOfAyaNumber = getAllAyaNumberInSurahFromQuranText(surahNumber)

@@ -9,8 +9,8 @@ import androidx.annotation.RequiresApi
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.helperClasses.alarms.CreateAlarms
 import com.arshadshah.nimaz.helperClasses.utils.DateConvertor
+import com.arshadshah.nimaz.helperClasses.utils.LocationFinder
 import com.arshadshah.nimaz.helperClasses.utils.NetworkChecker
-import com.arshadshah.nimaz.helperClasses.utils.locationFinder
 import com.arshadshah.nimaz.prayerTimeApi.*
 import com.arshadshah.nimaz.prayerTimeApi.data.DateComponents
 import java.util.*
@@ -20,7 +20,7 @@ import kotlin.properties.Delegates
  * A BroadcastReceiver that Resets the Alarms on Device bootup
  * @author Arshad Shah
  */
-class bootReceiver : BroadcastReceiver() {
+class BootReceiver : BroadcastReceiver() {
 
     var latitude by Delegates.notNull<Double>()
     var longitude by Delegates.notNull<Double>()
@@ -69,7 +69,7 @@ class bootReceiver : BroadcastReceiver() {
                 if (!locationTypeValue) {
                     //location finder class
                     //location finder class
-                    val lonAndLat = locationFinder()
+                    val lonAndLat = LocationFinder()
                     lonAndLat.findLongAndLan(context, name!!)
                 }
                 latitude = sharedPreferences.getString("latitude", "0.0")!!.toDouble()

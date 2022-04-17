@@ -13,8 +13,8 @@ import androidx.annotation.RequiresApi
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.MainActivity
 import com.arshadshah.nimaz.R
+import com.arshadshah.nimaz.helperClasses.utils.LocationFinder
 import com.arshadshah.nimaz.helperClasses.utils.NetworkChecker
-import com.arshadshah.nimaz.helperClasses.utils.locationFinder
 import com.arshadshah.nimaz.prayerTimeApi.*
 import com.arshadshah.nimaz.prayerTimeApi.data.DateComponents
 import java.text.DateFormat
@@ -99,7 +99,7 @@ internal fun updateAppWidget(
     if (isNetworkAvailable) {
         if (!locationTypeValue) {
             //location finder class
-            val lonAndLat = locationFinder()
+            val lonAndLat = LocationFinder()
             lonAndLat.findLongAndLan(context, name!!)
         }
         latitude = sharedPreferences.getString("latitude", "0.0")!!.toDouble()

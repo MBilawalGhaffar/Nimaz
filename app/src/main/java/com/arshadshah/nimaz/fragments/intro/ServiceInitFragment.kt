@@ -1,26 +1,20 @@
 package com.arshadshah.nimaz.fragments.intro
 
-import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.os.PowerManager
 import android.provider.Settings
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
+import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.activities.HomeActivity
-import com.arshadshah.nimaz.fragments.settings.CalcMethodAdapter
-import com.arshadshah.nimaz.helperClasses.alarms.CreateAlarms
 import com.arshadshah.nimaz.helperClasses.fusedLocations.LocationFinderAuto
-import com.arshadshah.nimaz.helperClasses.prayertimes.prayerTimeThread
-import com.arshadshah.nimaz.helperClasses.utils.locationFinder
+import com.arshadshah.nimaz.helperClasses.utils.LocationFinder
 import com.google.android.material.switchmaterial.SwitchMaterial
 
 class ServiceInitFragment : Fragment() {
@@ -39,10 +33,10 @@ class ServiceInitFragment : Fragment() {
         if (locationTypeValue) {
             LocationFinderAuto().getLocations(requireContext(), 12345)
         }
-        
+
         val latitude = sharedPreferences.getString("latitude", "0.0")!!.toDouble()
         val longitude = sharedPreferences.getString("longitude", "0.0")!!.toDouble()
-        locationFinder().findCityName(requireContext(), latitude, longitude)
+        LocationFinder().findCityName(requireContext(), latitude, longitude)
 
         val batteryOpt: SwitchMaterial = root.findViewById(R.id.batteryOpt)
         val pm: PowerManager =

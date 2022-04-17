@@ -22,10 +22,10 @@ import androidx.preference.*
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.alarms.Alarms
 import com.arshadshah.nimaz.helperClasses.fusedLocations.LocationFinderAuto
-import com.arshadshah.nimaz.helperClasses.prayertimes.prayerTimeThread
+import com.arshadshah.nimaz.helperClasses.prayertimes.PrayerTimeThread
+import com.arshadshah.nimaz.helperClasses.utils.LocationFinder
 import com.arshadshah.nimaz.helperClasses.utils.NetworkChecker
 import com.arshadshah.nimaz.helperClasses.utils.NotificationHelper
-import com.arshadshah.nimaz.helperClasses.utils.locationFinder
 import com.arshadshah.nimaz.recievers.ReminderReciever
 
 class MainPage : PreferenceFragmentCompat() {
@@ -152,7 +152,7 @@ class MainPage : PreferenceFragmentCompat() {
         forceReset!!.setOnPreferenceClickListener {
 
             //**********************************************************************
-            val prayerThread = prayerTimeThread(requireContext())
+            val prayerThread = PrayerTimeThread(requireContext())
             prayerThread.start()
             //**********************************************************************
 
@@ -226,7 +226,7 @@ class MainPage : PreferenceFragmentCompat() {
         location.setOnPreferenceChangeListener { preference, newValue: Any? ->
             val value = newValue as String
             if (value != lat) {
-                locationFinder().findLongAndLan(requireContext(), value)
+                LocationFinder().findLongAndLan(requireContext(), value)
                 //write lock to storage
                 with(sharedPreferences.edit()) {
                     putBoolean("alarmLock", false)

@@ -1,21 +1,17 @@
 package com.arshadshah.nimaz.fragments
 
-import android.animation.ObjectAnimator
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.provider.Settings
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.DecelerateInterpolator
-import android.widget.*
-import androidx.annotation.RequiresApi
+import android.widget.AdapterView
+import android.widget.ListView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
@@ -23,9 +19,8 @@ import com.arshadshah.nimaz.helperClasses.prayertimes.PrayerTimeObject
 import com.arshadshah.nimaz.helperClasses.prayertimes.PrayerTimesAdapter
 import com.arshadshah.nimaz.helperClasses.prayertimes.TimerCreater
 import com.arshadshah.nimaz.helperClasses.utils.DateConvertor
+import com.arshadshah.nimaz.helperClasses.utils.LocationFinder
 import com.arshadshah.nimaz.helperClasses.utils.NetworkChecker
-import com.arshadshah.nimaz.helperClasses.utils.locationFinder
-import com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils.SunMoonCalc
 import com.arshadshah.nimaz.prayerTimeApi.*
 import com.arshadshah.nimaz.prayerTimeApi.data.DateComponents
 import java.text.DateFormat
@@ -74,7 +69,6 @@ class HomeFragment : Fragment() {
         Hijridate.text = islamDate.toString()
 
 
-
         val cityName: TextView = root.findViewById(R.id.cityName)
 
         // Retrieve values given in the settings activity
@@ -105,7 +99,7 @@ class HomeFragment : Fragment() {
         if (isNetworkAvailable) {
             if (!locationTypeValue) {
                 //location finder class
-                val lonAndLat = locationFinder()
+                val lonAndLat = LocationFinder()
                 lonAndLat.findLongAndLan(requireContext(), name!!)
             }
             cityName.text = sharedPreferences.getString("location_input", "Portlaoise").toString()
@@ -234,18 +228,48 @@ class HomeFragment : Fragment() {
 
         //add the times to an array list of PrayerTimeObjects
         val prayerTimesArrayList = ArrayList<PrayerTimeObject?>()
-        prayerTimesArrayList.add(PrayerTimeObject(getString(R.string.fajr),formatter.format(prayerTimes.fajr!!)))
-        prayerTimesArrayList.add(PrayerTimeObject(getString(R.string.sunrise), formatter.format(prayerTimes.sunrise!!)))
-        prayerTimesArrayList.add(PrayerTimeObject(getString(R.string.zuhar), formatter.format(prayerTimes.dhuhr!!)))
-        prayerTimesArrayList.add(PrayerTimeObject(getString(R.string.asar), formatter.format(prayerTimes.asr!!)))
-        prayerTimesArrayList.add(PrayerTimeObject(getString(R.string.maghrib), formatter.format(prayerTimes.maghrib!!)))
-        prayerTimesArrayList.add(PrayerTimeObject(getString(R.string.ishaa), formatter.format(prayerTimes.isha!!)))
+        prayerTimesArrayList.add(
+            PrayerTimeObject(
+                getString(R.string.fajr),
+                formatter.format(prayerTimes.fajr!!)
+            )
+        )
+        prayerTimesArrayList.add(
+            PrayerTimeObject(
+                getString(R.string.sunrise),
+                formatter.format(prayerTimes.sunrise!!)
+            )
+        )
+        prayerTimesArrayList.add(
+            PrayerTimeObject(
+                getString(R.string.zuhar),
+                formatter.format(prayerTimes.dhuhr!!)
+            )
+        )
+        prayerTimesArrayList.add(
+            PrayerTimeObject(
+                getString(R.string.asar),
+                formatter.format(prayerTimes.asr!!)
+            )
+        )
+        prayerTimesArrayList.add(
+            PrayerTimeObject(
+                getString(R.string.maghrib),
+                formatter.format(prayerTimes.maghrib!!)
+            )
+        )
+        prayerTimesArrayList.add(
+            PrayerTimeObject(
+                getString(R.string.ishaa),
+                formatter.format(prayerTimes.isha!!)
+            )
+        )
 
         //get the listView
         val prayerTimesList: ListView = root.findViewById(R.id.prayerTimes)
 
         //get custom adapter
-        val adapter = PrayerTimesAdapter(requireContext(), prayerTimesArrayList,highlightPosition)
+        val adapter = PrayerTimesAdapter(requireContext(), prayerTimesArrayList, highlightPosition)
         prayerTimesList.adapter = adapter
 
         //add the channel ids to an array list
@@ -260,10 +284,11 @@ class HomeFragment : Fragment() {
 
         //for each of the items in the list
         //on click listener to open channel settings
-        prayerTimesList.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
-           vibrate(30)
-           openNotificationChannel(channelIds[position])
-        }
+        prayerTimesList.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, view, position, id ->
+                vibrate(30)
+                openNotificationChannel(channelIds[position])
+            }
 
         val nextPrayerName = prayerTimes.nextPrayer()
         val nextPrayerTime = prayerTimes.timeForPrayer(nextPrayerName).toString()
@@ -286,13 +311,28 @@ class HomeFragment : Fragment() {
 
         when {
             currentTime in isha..fajrTommorow -> {
-                TimerCreater().getTimer(requireContext(), fajrTommorow, timerToNextPrayer, nextPrayerNameCleaned)
+                TimerCreater().getTimer(
+                    requireContext(),
+                    fajrTommorow,
+                    timerToNextPrayer,
+                    nextPrayerNameCleaned
+                )
             }
             currentTime < prayerfajr -> {
-                TimerCreater().getTimer(requireContext(), nextPrayerTimeInLong, timerToNextPrayer, nextPrayerNameCleaned)
+                TimerCreater().getTimer(
+                    requireContext(),
+                    nextPrayerTimeInLong,
+                    timerToNextPrayer,
+                    nextPrayerNameCleaned
+                )
             }
             else -> {
-                TimerCreater().getTimer(requireContext(), nextPrayerTimeInLong, timerToNextPrayer, nextPrayerNameCleaned)
+                TimerCreater().getTimer(
+                    requireContext(),
+                    nextPrayerTimeInLong,
+                    timerToNextPrayer,
+                    nextPrayerNameCleaned
+                )
             }
         }
 
@@ -308,7 +348,7 @@ class HomeFragment : Fragment() {
 //        val sunPositionProgressBar: ProgressBar = root.findViewById(R.id.sunPositionProgressBar)
 //        sunPositionProgressBar.progress = progress
 
-        
+
         // end of main code
         return root
     }

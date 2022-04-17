@@ -4,13 +4,10 @@ import com.arshadshah.nimaz.prayerTimeApi.internals.QiblaUtil.calculateQiblaDire
 
 
 class Qibla(coordinates: Coordinates?) {
-    val direction: Double
+    val direction: Double = calculateQiblaDirection(coordinates!!)
 
     companion object {
         private val MAKKAH = Coordinates(21.4225241, 39.8261818)
     }
 
-    init {
-        direction = calculateQiblaDirection(coordinates!!)
-    }
 }

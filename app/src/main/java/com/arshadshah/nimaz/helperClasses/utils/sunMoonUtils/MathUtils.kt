@@ -195,7 +195,7 @@ internal object MathUtils {
         var closest = value
 
         values.forEach {
-            val diff = Math.abs(it - value)
+            val diff = abs(it - value)
 
             if (diff < min) {
                 min = diff

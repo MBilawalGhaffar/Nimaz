@@ -21,7 +21,8 @@ internal class AyaListCustomAdapterSurah(
     private var arrayList: ArrayList<AyaObject?>
 ) :
     ListAdapter {
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    val sharedPreferences: SharedPreferences =
+        PreferenceManager.getDefaultSharedPreferences(context)
 
     override fun areAllItemsEnabled(): Boolean {
         return false

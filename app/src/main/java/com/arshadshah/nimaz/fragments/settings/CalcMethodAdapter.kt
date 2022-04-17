@@ -46,7 +46,7 @@ internal class CalcMethodAdapter(
         return false
     }
 
-    override fun getView(position: Int, ConvertView: View?, parent: ViewGroup): View? {
+    override fun getView(position: Int, ConvertView: View?, parent: ViewGroup): View {
         var convertView: View? = ConvertView
         val methodAtPosition = arrayList[position]
 

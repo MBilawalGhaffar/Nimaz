@@ -1,6 +1,7 @@
 package com.arshadshah.nimaz.helperClasses.quran
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.database.DataSetObserver
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +22,8 @@ internal class AyaListCustomAdapter(
     private var arrayList: ArrayList<AyaObject?>
 ) :
     ListAdapter {
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    val sharedPreferences: SharedPreferences =
+        PreferenceManager.getDefaultSharedPreferences(context)
 
     override fun areAllItemsEnabled(): Boolean {
         return false

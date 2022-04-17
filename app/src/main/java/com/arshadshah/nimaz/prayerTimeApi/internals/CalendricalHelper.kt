@@ -20,15 +20,7 @@ internal object CalendricalHelper {
             calendar[Calendar.HOUR_OF_DAY] + calendar[Calendar.MINUTE] / 60.0
         )
     }
-    /**
-     * The Julian Day for a given Gregorian date
-     *
-     * @param year  the year
-     * @param month the month
-     * @param day   the day
-     * @param hours hours
-     * @return the julian day
-     */
+
     /**
      * The Julian Day for a given Gregorian date
      *

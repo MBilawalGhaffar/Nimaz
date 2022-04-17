@@ -263,7 +263,7 @@ class CreateAlarms {
                 )
 
             NotificationHelper()
-                .NotificationChannelSilent(
+                .notificationChannelSilent(
                     context,
                     NotificationManagerCompat.IMPORTANCE_DEFAULT,
                     false,

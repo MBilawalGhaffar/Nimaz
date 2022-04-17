@@ -402,19 +402,16 @@ class TasbeehFragment : Fragment() {
 
     private fun english(indexNo: Int): String {
         val array = resources.getStringArray(R.array.tasbeehTransliteration)
-        val output = array[indexNo]
-        return output
+        return array[indexNo]
     }
 
     private fun arabic(indexNo: Int): String {
         val array = resources.getStringArray(R.array.tasbeeharabic)
-        val output = array[indexNo]
-        return output
+        return array[indexNo]
     }
 
     private fun translation(indexNo: Int): String {
         val array = resources.getStringArray(R.array.tasbeehTranslation)
-        val output = array[indexNo]
-        return output
+        return array[indexNo]
     }
 }

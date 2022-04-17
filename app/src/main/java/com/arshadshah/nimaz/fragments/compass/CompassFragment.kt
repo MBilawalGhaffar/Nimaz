@@ -21,8 +21,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
+import com.arshadshah.nimaz.helperClasses.utils.LocationFinder
 import com.arshadshah.nimaz.helperClasses.utils.NetworkChecker
-import com.arshadshah.nimaz.helperClasses.utils.locationFinder
 import com.arshadshah.nimaz.prayerTimeApi.Coordinates
 import com.arshadshah.nimaz.prayerTimeApi.Qibla
 import com.google.android.material.snackbar.Snackbar
@@ -85,7 +85,7 @@ open class CompassFragment : Fragment(), SensorEventListener {
         if (isNetworkAvailable) {
             if (!locationTypeValue) {
                 //location finder class
-                val lonAndLat = locationFinder()
+                val lonAndLat = LocationFinder()
                 lonAndLat.findLongAndLan(requireContext(), name!!)
             }
             location.text = sharedPreferences.getString("location_input", "Portlaoise").toString()

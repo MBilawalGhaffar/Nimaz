@@ -89,7 +89,7 @@ class NotificationHelper {
      * @param channel_id The id of the Channel Creates a Channel
      */
     @RequiresApi(Build.VERSION_CODES.O)
-    fun NotificationChannelSilent(
+    fun notificationChannelSilent(
         context: Context,
         importance: Int,
         showBadge: Boolean,
