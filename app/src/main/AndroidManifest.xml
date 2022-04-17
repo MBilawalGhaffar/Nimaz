@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.arshadshah.nimaz"
-    android:versionCode="56"
-    android:versionName="1.4.79">
+    android:versionCode="57"
+    android:versionName="1.4.80">
     <!-- Permissions -->
-    <!-- Always include this permission -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Include only if your app benefits from precise location access. -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
@@ -27,20 +26,20 @@
         android:theme="@style/Theme.Nimaz">
         <activity
             android:name=".activities.more.HelpActivity"
-            android:exported="false" />
+            android:exported="false" android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.more.ShahadahActivity"
-            android:exported="false" />
+            android:exported="false" android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.tasbeeh.TasbeehActivity"
-            android:exported="false" />
+            android:exported="false" android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.quran.QuranMainList"
-            android:exported="true" />
+            android:exported="true" android:screenOrientation="portrait" />
         <activity
             android:name=".activities.more.NamesOfAllahActivity"
-            android:exported="true" />
-        <activity android:name=".IntroductionActivity" />
+            android:exported="true" android:screenOrientation="portrait"/>
+        <activity android:name=".IntroductionActivity" android:screenOrientation="portrait"/>
 
         <receiver
             android:name=".recievers.AlarmResetReceiver"
