@@ -17,9 +17,9 @@ import com.arshadshah.nimaz.helperClasses.database.BookmarkDatabaseAccessHelper
 import java.text.NumberFormat
 import java.util.*
 
-internal class AyaListCustomAdapterSurah(
+internal class AyaListCustomAdapterSearch(
     var context: Context,
-    private var arrayList: ArrayList<AyaObject?>
+    private var arrayList: ArrayList<SearchAyaObject?>
 ) :
     ListAdapter {
     val sharedPreferences: SharedPreferences =
@@ -82,7 +82,7 @@ internal class AyaListCustomAdapterSurah(
             convertView?.findViewById(R.id.bookmarkButton2)
         }
 
-        bookmark!!.isVisible = helperBookmarkDatabase.isAyaBookmarkedSurah(
+        bookmark!!.isVisible = helperBookmarkDatabase.isAyaBookmarkedJuz(
             AyaObject!!.ayaNumber,
             AyaObject.ayaEnglish, AyaObject.ayaArabic
         )

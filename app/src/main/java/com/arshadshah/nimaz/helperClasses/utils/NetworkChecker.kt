@@ -55,7 +55,6 @@ class NetworkChecker {
      * Check if there is internet connection
      *
      * @param context the context of the Application
-     * @param view The view to show snackbar on
      * */
     fun networkCheck(context: Context): Boolean {
         val networkCheck = isNetworkAvailable(context)

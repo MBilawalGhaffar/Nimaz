@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -106,10 +105,6 @@ class AyaListSurahFragment : Fragment() {
                             }
                             //change the tint color of the bookmark button
                             bookmark!!.isVisible = false
-
-                            //toast that the bookmark has been removed
-                            Toast.makeText(requireContext(), "Bookmark Removed", Toast.LENGTH_SHORT)
-                                .show()
                         }
                     }
                 } else {
@@ -129,10 +124,6 @@ class AyaListSurahFragment : Fragment() {
                             }
                             //change the tint color of the bookmark button
                             bookmark!!.isVisible = true
-
-                            //toast that the bookmark has been added
-                            Toast.makeText(requireContext(), "Bookmark Added", Toast.LENGTH_SHORT)
-                                .show()
                         }
                     }
                 }

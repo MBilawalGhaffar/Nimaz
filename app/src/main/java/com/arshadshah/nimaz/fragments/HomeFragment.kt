@@ -1,9 +1,7 @@
 package com.arshadshah.nimaz.fragments
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
@@ -11,19 +9,18 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import android.widget.ImageView
+import android.widget.AdapterView
+import android.widget.ListView
 import android.widget.TextView
-import androidx.annotation.RequiresApi
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
+import com.arshadshah.nimaz.helperClasses.prayertimes.PrayerTimeObject
+import com.arshadshah.nimaz.helperClasses.prayertimes.PrayerTimesAdapter
 import com.arshadshah.nimaz.helperClasses.prayertimes.TimerCreater
 import com.arshadshah.nimaz.helperClasses.utils.DateConvertor
+import com.arshadshah.nimaz.helperClasses.utils.LocationFinder
 import com.arshadshah.nimaz.helperClasses.utils.NetworkChecker
-import com.arshadshah.nimaz.helperClasses.utils.locationFinder
 import com.arshadshah.nimaz.prayerTimeApi.*
 import com.arshadshah.nimaz.prayerTimeApi.data.DateComponents
 import java.text.DateFormat
@@ -46,15 +43,11 @@ import kotlin.properties.Delegates
  * */
 class HomeFragment : Fragment() {
 
-    @RequiresApi(Build.VERSION_CODES.O)
     val currentDate: LocalDate = LocalDate.now()
-
 
     var latitude by Delegates.notNull<Double>()
     var longitude by Delegates.notNull<Double>()
 
-    @SuppressLint("NewApi")
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -64,35 +57,18 @@ class HomeFragment : Fragment() {
 
         // Gregorian Date
         val date: TextView = root.findViewById(R.id.editTextDate)
-        val Gregformat = DateTimeFormatter.ofPattern(" EEEE , dd - MMMM - yyyy ")
+        val Gregformat = DateTimeFormatter.ofPattern(" EEEE, dd - MMMM - yyyy")
         val GregDate = Gregformat.format(currentDate)
         date.text = GregDate.toString()
 
         // hijri date
         val Hijridate: TextView = root.findViewById(R.id.hijri_date)
         val islamicDate = HijrahDate.now()
-        val islamformat = DateTimeFormatter.ofPattern(" dd - MMMM - yyyy ")
+        val islamformat = DateTimeFormatter.ofPattern(" dd - MMMM - yyyy G")
         val islamDate = islamformat.format(islamicDate)
         Hijridate.text = islamDate.toString()
 
-        // Text views where the prayer times are displayed
-        val fajr_time: TextView = root.findViewById(R.id.Fajr_time)
-        val sunrise_time: TextView = root.findViewById(R.id.sunrise_time)
-        val zuhar_time: TextView = root.findViewById(R.id.Zuhar_time)
-        val asar_time: TextView = root.findViewById(R.id.Asar_time)
-        val maghrib_time: TextView = root.findViewById(R.id.Maghrib_time)
-        val ishaa_time: TextView = root.findViewById(R.id.Ishaa_time)
 
-
-        //buttons for notifications
-        val fajrSound: ImageView = root.findViewById(R.id.fajrSound)
-        val sunriseSound: ImageView = root.findViewById(R.id.sunriseSound)
-        val zuharSound: ImageView = root.findViewById(R.id.zuharSound)
-        val asarSound: ImageView = root.findViewById(R.id.asarSound)
-        val maghribSound: ImageView = root.findViewById(R.id.maghribSound)
-        val ishaaSound: ImageView = root.findViewById(R.id.ishaaSound)
-
-        //cityName
         val cityName: TextView = root.findViewById(R.id.cityName)
 
         // Retrieve values given in the settings activity
@@ -123,7 +99,7 @@ class HomeFragment : Fragment() {
         if (isNetworkAvailable) {
             if (!locationTypeValue) {
                 //location finder class
-                val lonAndLat = locationFinder()
+                val lonAndLat = LocationFinder()
                 lonAndLat.findLongAndLan(requireContext(), name!!)
             }
             cityName.text = sharedPreferences.getString("location_input", "Portlaoise").toString()
@@ -169,12 +145,6 @@ class HomeFragment : Fragment() {
 
         val prayerTimes = PrayerTimes(coordinates, calcdate, parameters)
 
-        // display prayerTimes to the screen
-        fajr_time.text = formatter.format(prayerTimes.fajr!!)
-        sunrise_time.text = formatter.format(prayerTimes.sunrise!!)
-        zuhar_time.text = formatter.format(prayerTimes.dhuhr!!)
-        asar_time.text = formatter.format(prayerTimes.asr!!)
-        maghrib_time.text = formatter.format(prayerTimes.maghrib!!)
 
         //check if ishaa time is too far away
         val ishaaTime = DateConvertor().convertTimeToLong(prayerTimes.isha.toString())
@@ -186,105 +156,198 @@ class HomeFragment : Fragment() {
         }
 
         if (ishaaTime > elevenOClock.timeInMillis && latitude > 50.0) {
-            val Maghrib_Text = getString(R.string.maghrib)
-            ishaa_time.text = Maghrib_Text
             with(sharedPreferences.edit()) {
                 putBoolean("ishaaTimeLonger", true)
                 apply()
             }
         } else {
-            ishaa_time.text = formatter.format(prayerTimes.isha!!)
             with(sharedPreferences.edit()) {
                 putBoolean("ishaaTimeLonger", false)
                 apply()
             }
         }
 
-        // Display the countdown timers
-        val Tofajr: TextView = root.findViewById(R.id.Tofajr)
-        val Tosunrise: TextView = root.findViewById(R.id.Tosunrise)
-        val ToZuhar: TextView = root.findViewById(R.id.ToZuhar)
-        val ToAsar: TextView = root.findViewById(R.id.ToAsar)
-        val ToMaghrib: TextView = root.findViewById(R.id.ToMaghrib)
-        val ToIshaa: TextView = root.findViewById(R.id.ToIshaa)
 
-        // places to highlight per timer instance
-        val fajrhighlight: ConstraintLayout = root.findViewById(R.id.fajrhighlight)
-        val sunrisehighlight: ConstraintLayout = root.findViewById(R.id.sunrisehighlight)
-        val zuharhighlight: ConstraintLayout = root.findViewById(R.id.zuharhighlight)
-        val asarhighlight: ConstraintLayout = root.findViewById(R.id.asarhighlight)
-        val maghribhighlight: ConstraintLayout = root.findViewById(R.id.maghribhighlight)
-        val ishaahighlight: ConstraintLayout = root.findViewById(R.id.ishaahighlight)
+        //current time
+        val currentTime = System.currentTimeMillis()
 
-        //create timers
-        TimerCreater().createTimer(
-            requireContext(),
-            prayerTimes,
-            Tofajr, fajrhighlight,
-            Tosunrise, sunrisehighlight,
-            ToZuhar, zuharhighlight,
-            ToAsar, asarhighlight,
-            ToMaghrib, maghribhighlight,
-            ToIshaa, ishaahighlight
+        //using DateConvertor().convertTimeToLong to convert time to long
+        val prayerfajr = DateConvertor().convertTimeToLong(prayerTimes.fajr.toString())
+        //sunrise
+        val sunrise = DateConvertor().convertTimeToLong(prayerTimes.sunrise.toString())
+        //dhuhr
+        val dhuhr = DateConvertor().convertTimeToLong(prayerTimes.dhuhr.toString())
+        //asr
+        val asr = DateConvertor().convertTimeToLong(prayerTimes.asr.toString())
+        //maghrib
+        val maghrib = DateConvertor().convertTimeToLong(prayerTimes.maghrib.toString())
+        //isha
+        val isha = DateConvertor().convertTimeToLong(prayerTimes.isha.toString())
+
+        val fajrTommorow = prayerfajr + 86400000
+
+        var highlightPosition by Delegates.notNull<Int>()
+
+        when {
+            currentTime in isha..fajrTommorow -> {
+
+                highlightPosition = 5
+
+            }
+            currentTime < prayerfajr -> {
+
+                highlightPosition = 5
+
+            }
+            currentTime in prayerfajr..sunrise -> {
+
+                highlightPosition = 0
+
+            }
+            currentTime in sunrise..dhuhr -> {
+
+                highlightPosition = 1
+
+            }
+            currentTime in dhuhr..asr -> {
+
+                highlightPosition = 2
+
+            }
+            currentTime in asr..maghrib -> {
+
+                highlightPosition = 3
+
+            }
+            currentTime in maghrib..isha -> {
+
+                highlightPosition = 4
+
+            }
+        }
+
+        //add the times to an array list of PrayerTimeObjects
+        val prayerTimesArrayList = ArrayList<PrayerTimeObject?>()
+        prayerTimesArrayList.add(
+            PrayerTimeObject(
+                getString(R.string.fajr),
+                formatter.format(prayerTimes.fajr!!)
+            )
+        )
+        prayerTimesArrayList.add(
+            PrayerTimeObject(
+                getString(R.string.sunrise),
+                formatter.format(prayerTimes.sunrise!!)
+            )
+        )
+        prayerTimesArrayList.add(
+            PrayerTimeObject(
+                getString(R.string.zuhar),
+                formatter.format(prayerTimes.dhuhr!!)
+            )
+        )
+        prayerTimesArrayList.add(
+            PrayerTimeObject(
+                getString(R.string.asar),
+                formatter.format(prayerTimes.asr!!)
+            )
+        )
+        prayerTimesArrayList.add(
+            PrayerTimeObject(
+                getString(R.string.maghrib),
+                formatter.format(prayerTimes.maghrib!!)
+            )
+        )
+        prayerTimesArrayList.add(
+            PrayerTimeObject(
+                getString(R.string.ishaa),
+                formatter.format(prayerTimes.isha!!)
+            )
         )
 
+        //get the listView
+        val prayerTimesList: ListView = root.findViewById(R.id.prayerTimes)
 
-        // notification channelid
-        val CHANNEL_ID = "channel_id_01"
-        val CHANNEL_ID1 = "channel_id_02"
-        val CHANNEL_ID2 = "channel_id_03"
-        val CHANNEL_ID3 = "channel_id_04"
-        val CHANNEL_ID4 = "channel_id_05"
-        val CHANNEL_ID5 = "Channel_id_06"
+        //get custom adapter
+        val adapter = PrayerTimesAdapter(requireContext(), prayerTimesArrayList, highlightPosition)
+        prayerTimesList.adapter = adapter
 
-        //mute functions
-        fajrSound.setOnClickListener {
-            val expandIn: Animation =
-                AnimationUtils.loadAnimation(requireContext(), R.anim.expand_in)
-            fajrSound.startAnimation(expandIn)
-            vibrate(30)
-            openNotificationChannel(CHANNEL_ID)
+        //add the channel ids to an array list
+        val channelIds = ArrayList<String>()
+        channelIds.add("channel_id_01")
+        channelIds.add("channel_id_02")
+        channelIds.add("channel_id_03")
+        channelIds.add("channel_id_04")
+        channelIds.add("channel_id_05")
+        channelIds.add("Channel_id_06")
+
+
+        //for each of the items in the list
+        //on click listener to open channel settings
+        prayerTimesList.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, view, position, id ->
+                vibrate(30)
+                openNotificationChannel(channelIds[position])
+            }
+
+        val nextPrayerName = prayerTimes.nextPrayer()
+        val nextPrayerTime = prayerTimes.timeForPrayer(nextPrayerName).toString()
+        val nextPrayerTimeInLong = DateConvertor().convertTimeToLong(nextPrayerTime)
+        val timerToNextPrayer: TextView = root.findViewById(R.id.timeToNextPrayer)
+
+        var nextPrayerNameCleaned = ""
+
+        //sentence case the prayer name
+        //if the prayer name is FAJR then change it to Fajr
+        //get the strings from the strings.xml file
+        when (nextPrayerName) {
+            Prayer.FAJR -> nextPrayerNameCleaned = getString(R.string.fajr)
+            Prayer.SUNRISE -> nextPrayerNameCleaned = getString(R.string.sunrise)
+            Prayer.DHUHR -> nextPrayerNameCleaned = getString(R.string.zuhar)
+            Prayer.ASR -> nextPrayerNameCleaned = getString(R.string.asar)
+            Prayer.MAGHRIB -> nextPrayerNameCleaned = getString(R.string.maghrib)
+            Prayer.ISHA -> nextPrayerNameCleaned = getString(R.string.ishaa)
         }
 
-        sunriseSound.setOnClickListener {
-            val expandIn: Animation =
-                AnimationUtils.loadAnimation(requireContext(), R.anim.expand_in)
-            sunriseSound.startAnimation(expandIn)
-            vibrate(30)
-            openNotificationChannel(CHANNEL_ID1)
+        when {
+            currentTime in isha..fajrTommorow -> {
+                TimerCreater().getTimer(
+                    requireContext(),
+                    fajrTommorow,
+                    timerToNextPrayer,
+                    nextPrayerNameCleaned
+                )
+            }
+            currentTime < prayerfajr -> {
+                TimerCreater().getTimer(
+                    requireContext(),
+                    nextPrayerTimeInLong,
+                    timerToNextPrayer,
+                    nextPrayerNameCleaned
+                )
+            }
+            else -> {
+                TimerCreater().getTimer(
+                    requireContext(),
+                    nextPrayerTimeInLong,
+                    timerToNextPrayer,
+                    nextPrayerNameCleaned
+                )
+            }
         }
 
-        zuharSound.setOnClickListener {
-            val expandIn: Animation =
-                AnimationUtils.loadAnimation(requireContext(), R.anim.expand_in)
-            zuharSound.startAnimation(expandIn)
-            vibrate(30)
-            openNotificationChannel(CHANNEL_ID2)
-        }
+        //for position of sun
+//        val sunPosition = SunMoonCalc(latitude, longitude, requireContext())
+//        //phase of moon
+//
+//        //update the sun position every minute
+//        val sunCurrentPosition = sunPosition.getSunPosition()
+//        val azimuth = sunCurrentPosition.azimuth * 180 / Math.PI
+//        val altitude = sunCurrentPosition.altitude * 180 / Math.PI
+//        val progress = 100 - altitude.toInt()
+//        val sunPositionProgressBar: ProgressBar = root.findViewById(R.id.sunPositionProgressBar)
+//        sunPositionProgressBar.progress = progress
 
-        asarSound.setOnClickListener {
-            val expandIn: Animation =
-                AnimationUtils.loadAnimation(requireContext(), R.anim.expand_in)
-            asarSound.startAnimation(expandIn)
-            vibrate(30)
-            openNotificationChannel(CHANNEL_ID3)
-        }
-
-        maghribSound.setOnClickListener {
-            val expandIn: Animation =
-                AnimationUtils.loadAnimation(requireContext(), R.anim.expand_in)
-            maghribSound.startAnimation(expandIn)
-            vibrate(30)
-            openNotificationChannel(CHANNEL_ID4)
-        }
-
-        ishaaSound.setOnClickListener {
-            val expandIn: Animation =
-                AnimationUtils.loadAnimation(requireContext(), R.anim.expand_in)
-            ishaaSound.startAnimation(expandIn)
-            vibrate(30)
-            openNotificationChannel(CHANNEL_ID5)
-        }
 
         // end of main code
         return root

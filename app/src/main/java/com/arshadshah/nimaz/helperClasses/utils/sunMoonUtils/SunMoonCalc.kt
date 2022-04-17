@@ -235,32 +235,46 @@ class SunMoonCalc @JvmOverloads constructor(
         rp = MathUtils.normalize((jd - 2451555.8) / 27.321582241)
         longitude = 360 * rp + 6.3 * sin(dp) + 1.3 * sin(2 * ip - dp) + 0.7 * sin(2 * ip)
 
-        return if (longitude < 33.18) {
-            ZodiacSign.ARIES
-        } else if (longitude < 51.16) {
-            ZodiacSign.CANCER
-        } else if (longitude < 93.44) {
-            ZodiacSign.GEMINI
-        } else if (longitude < 119.48) {
-            ZodiacSign.CANCER
-        } else if (longitude < 135.30) {
-            ZodiacSign.LEO
-        } else if (longitude < 173.34) {
-            ZodiacSign.VIRGO
-        } else if (longitude < 224.17) {
-            ZodiacSign.LIBRA
-        } else if (longitude < 242.57) {
-            ZodiacSign.SCORPIO
-        } else if (longitude < 271.26) {
-            ZodiacSign.SAGITTARIUS
-        } else if (longitude < 302.49) {
-            ZodiacSign.CAPRICORN
-        } else if (longitude < 311.72) {
-            ZodiacSign.AQUARIUS
-        } else if (longitude < 348.58) {
-            ZodiacSign.PISCES
-        } else {
-            ZodiacSign.ARIES
+        return when {
+            longitude < 33.18 -> {
+                ZodiacSign.ARIES
+            }
+            longitude < 51.16 -> {
+                ZodiacSign.CANCER
+            }
+            longitude < 93.44 -> {
+                ZodiacSign.GEMINI
+            }
+            longitude < 119.48 -> {
+                ZodiacSign.CANCER
+            }
+            longitude < 135.30 -> {
+                ZodiacSign.LEO
+            }
+            longitude < 173.34 -> {
+                ZodiacSign.VIRGO
+            }
+            longitude < 224.17 -> {
+                ZodiacSign.LIBRA
+            }
+            longitude < 242.57 -> {
+                ZodiacSign.SCORPIO
+            }
+            longitude < 271.26 -> {
+                ZodiacSign.SAGITTARIUS
+            }
+            longitude < 302.49 -> {
+                ZodiacSign.CAPRICORN
+            }
+            longitude < 311.72 -> {
+                ZodiacSign.AQUARIUS
+            }
+            longitude < 348.58 -> {
+                ZodiacSign.PISCES
+            }
+            else -> {
+                ZodiacSign.ARIES
+            }
         }
     }
 
@@ -305,11 +319,11 @@ class SunMoonCalc @JvmOverloads constructor(
             roots = 0
 
             if (d >= 0) {
-                dx = Math.sqrt(d) / (Math.abs(a) * 2)
+                dx = sqrt(d) / (abs(a) * 2)
                 x1 = xe - dx
                 x2 = xe + dx
-                if (Math.abs(x1) <= 1) roots++
-                if (Math.abs(x2) <= 1) roots++
+                if (abs(x1) <= 1) roots++
+                if (abs(x2) <= 1) roots++
                 if (x1 < -1) x1 = x2
             }
 

@@ -1,6 +1,7 @@
 package com.arshadshah.nimaz.helperClasses.quran
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.database.DataSetObserver
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +22,8 @@ internal class AyaListCustomAdapter(
     private var arrayList: ArrayList<AyaObject?>
 ) :
     ListAdapter {
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    val sharedPreferences: SharedPreferences =
+        PreferenceManager.getDefaultSharedPreferences(context)
 
     override fun areAllItemsEnabled(): Boolean {
         return false
@@ -90,17 +92,17 @@ internal class AyaListCustomAdapter(
         //take AyaObject!!.ayaNumber and append it at the end of AyaObject.ayaArabic inside an ayat end unicode
         val unicodeAyaEndEnd = "\uFD3E"
         val unicodeAyaEndStart = "\uFD3F"
-        val nf: NumberFormat = NumberFormat.getInstance(Locale.forLanguageTag("AR"))
-        val endOfAyaWithNumber = (nf.format(AyaObject.ayaNumber.toInt())).toString()
+
+        val number = AyaObject.ayaNumber.toInt()
+        val arabicLocal = Locale.forLanguageTag("AR")
+        val nf: NumberFormat = NumberFormat.getInstance(arabicLocal)
+        val endOfAyaWithNumber = nf.format(number)
 
         val unicodeWithNumber = unicodeAyaEndStart + endOfAyaWithNumber + unicodeAyaEndEnd
-        //remove comma from the the unicodeWithNumber
-        val unicodeWithNumberWithoutComma = unicodeWithNumber.replace("'", "")
-
 
         EnglishName?.text = AyaObject.ayaEnglish
         ArabicName?.text =
-            ArabicUtilities.reshape(AyaObject.ayaArabic + " " + unicodeWithNumberWithoutComma)
+            ArabicUtilities.reshape(AyaObject.ayaArabic + " " + unicodeWithNumber)
 
         return convertView
     }

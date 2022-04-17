@@ -38,8 +38,8 @@ class LocationFinderAuto {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
         // for getting the current location update after every 2 seconds with high accuracy
         val locationRequest = LocationRequest().apply {
-            interval = 2000
-            fastestInterval = 1000
+            interval = 7200000
+            fastestInterval = 3600000
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         }
         fusedLocationProviderClient!!.requestLocationUpdates(

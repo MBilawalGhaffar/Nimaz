@@ -11,7 +11,7 @@ import java.util.*
  * Finds the location from a string using Geocoder
  * @author Arshad Shah
  */
-class locationFinder {
+class LocationFinder {
 
     // coordinates for the calculation of prayer time
     var latitudeValue = 0.0
@@ -102,7 +102,6 @@ class locationFinder {
      * Finds the longitude and latitude from city name
      * @author Arshad Shah
      * @param context context of the application
-     * @param name Name of the city
      */
     fun findCityName(context: Context, latitude: Double, longitude: Double) {
         // city name

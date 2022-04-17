@@ -169,9 +169,8 @@ class QuranFragment : Fragment() {
         quranFragmentAdapter = QuranFragmentAdapter(fragmentManager, lifecycle)
         quranViewPager.adapter = quranFragmentAdapter
 
-
-        val tab1 = quranTabLayout.newTab().setText(R.string.juz)
-        val tab2 = quranTabLayout.newTab().setText(R.string.surah)
+        val tab1 = quranTabLayout.newTab().setText(R.string.surah)
+        val tab2 = quranTabLayout.newTab().setText(R.string.juz)
         quranTabLayout.addTab(tab1)
         quranTabLayout.addTab(tab2)
 

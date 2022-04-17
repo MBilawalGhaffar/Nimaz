@@ -225,8 +225,7 @@ class PrayerTimeAdjustFragment : PreferenceFragmentCompat() {
 
         //default values based on method selected
         calcMethod.setOnPreferenceChangeListener { preference, newValue ->
-            val newvalue = newValue as String
-            when (newvalue) {
+            when (newValue as String) {
                 "MUSLIM_WORLD_LEAGUE" -> {
                     ishaaAngle.isVisible = true
                     fajrAngle.value = "18.0"

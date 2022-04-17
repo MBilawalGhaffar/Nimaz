@@ -10,8 +10,8 @@ import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.alarms.CreateAlarms
 import com.arshadshah.nimaz.helperClasses.fusedLocations.LocationFinderAuto
-import com.arshadshah.nimaz.helperClasses.prayertimes.prayerTimeThread
-import com.arshadshah.nimaz.helperClasses.utils.locationFinder
+import com.arshadshah.nimaz.helperClasses.prayertimes.PrayerTimeThread
+import com.arshadshah.nimaz.helperClasses.utils.LocationFinder
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -30,7 +30,7 @@ class HomeActivity : AppCompatActivity() {
         if (locationTypeValue) {
             LocationFinderAuto().getLocations(this, 12345)
 
-            locationFinder().findCityName(this, latitude, longitude)
+            LocationFinder().findCityName(this, latitude, longitude)
         }
     }
 
@@ -114,7 +114,7 @@ class HomeActivity : AppCompatActivity() {
         //alarm lock
         val alarmLock = sharedPreferences.getBoolean("alarmLock", false)
         if (!alarmLock) {
-            val prayerThread = prayerTimeThread(this.applicationContext)
+            val prayerThread = PrayerTimeThread(this.applicationContext)
             prayerThread.start()
         }
     } // end of oncreate

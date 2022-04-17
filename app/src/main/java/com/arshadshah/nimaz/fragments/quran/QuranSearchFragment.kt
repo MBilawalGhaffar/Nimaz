@@ -12,8 +12,8 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.database.DatabaseAccessHelper
-import com.arshadshah.nimaz.helperClasses.quran.AyaListCustomAdapter
-import com.arshadshah.nimaz.helperClasses.quran.AyaObject
+import com.arshadshah.nimaz.helperClasses.quran.AyaListCustomAdapterSearch
+import com.arshadshah.nimaz.helperClasses.quran.SearchAyaObject
 
 class QuranSearchFragment : Fragment() {
     override fun onCreateView(
@@ -31,10 +31,10 @@ class QuranSearchFragment : Fragment() {
         val ayaList: ListView = root.findViewById(R.id.ayaList)
 
         //create a custom adapter
-        lateinit var ayaListCustomAdapter: AyaListCustomAdapter
+        lateinit var ayaListCustomAdapter: AyaListCustomAdapterSearch
 
 
-        lateinit var ayaFound: ArrayList<AyaObject?>
+        lateinit var ayaFound: ArrayList<SearchAyaObject?>
 
         //create a separate thread to get the data from the database
         val thread = Thread {
@@ -44,7 +44,7 @@ class QuranSearchFragment : Fragment() {
             //create an instance of a cardview to the fragment
             val progressBarContainer = root.findViewById<CardView>(R.id.progressContainer)
 
-            val progressBar = root.findViewById<ProgressBar>(R.id.progressBar)
+            val progressBar = root.findViewById<ProgressBar>(R.id.sunPositionProgressBar)
 
             activity?.runOnUiThread {
                 progressBarContainer.isVisible = true
@@ -57,7 +57,7 @@ class QuranSearchFragment : Fragment() {
                 progressBarContainer.isVisible = false
                 progressBar.isVisible = false
                 ayaList.divider = null
-                ayaListCustomAdapter = AyaListCustomAdapter(requireContext(), ayaFound)
+                ayaListCustomAdapter = AyaListCustomAdapterSearch(requireContext(), ayaFound)
                 ayaList.adapter = ayaListCustomAdapter
             }
             helper.close()

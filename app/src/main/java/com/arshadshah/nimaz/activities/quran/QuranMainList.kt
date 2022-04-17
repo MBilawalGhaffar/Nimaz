@@ -27,8 +27,8 @@ class QuranMainList : AppCompatActivity() {
     var fragmentToUse = ""
     var query = ""
 
-    private lateinit var helperBookmarkDatabase : BookmarkDatabaseAccessHelper
-    private lateinit var helperQuranDatabase :DatabaseAccessHelper
+    private lateinit var helperBookmarkDatabase: BookmarkDatabaseAccessHelper
+    private lateinit var helperQuranDatabase: DatabaseAccessHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +63,8 @@ class QuranMainList : AppCompatActivity() {
 
         val moreButton: ImageView = findViewById(R.id.moreButton2)
 
+        moreButton.isVisible = fragmentToUse != "search"
+
         moreButton.setOnClickListener {
             val expandIn: Animation =
                 AnimationUtils.loadAnimation(this, R.anim.expand_in)
@@ -75,12 +77,6 @@ class QuranMainList : AppCompatActivity() {
             val menu = PopupMenu(this, moreButton)
             menu.inflate(R.menu.quran_menu_ayat)
 
-            if (fragmentToUse == "search") {
-                //disable the bookmark and gotoaya options
-                menu.menu.findItem(R.id.bookmark).isVisible = false
-                menu.menu.findItem(R.id.gotoAyat).isVisible = false
-            }
-
             val isBookmark = checkForBookmark(number)
             menu.menu.findItem(R.id.bookmark).isVisible = isBookmark
 
@@ -91,7 +87,8 @@ class QuranMainList : AppCompatActivity() {
         if (fragmentToUse == "search") {
             query = intent.getStringExtra("query").toString()
 
-            val numberOfAyas = helperQuranDatabase.searchForAyaAmountFound(query, "en_sahih", "text")
+            val numberOfAyas =
+                helperQuranDatabase.searchForAyaAmountFound(query, "en_sahih", "text")
 
             if (numberOfAyas != 0) {
                 val bundle = Bundle()
@@ -186,80 +183,6 @@ class QuranMainList : AppCompatActivity() {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         menu.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.translation -> {
-                    // Create the object of
-                    // AlertDialog Builder class
-                    val builder: AlertDialog.Builder = AlertDialog.Builder(context)
-                    //get layout inflater
-                    val inflater: LayoutInflater =
-                        context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-                    val moreDialog = inflater.inflate(R.layout.moredialog, null)
-                    val englishTranslation: RadioButton =
-                        moreDialog.findViewById(R.id.englishTranslation)
-                    val urduTranslation: RadioButton = moreDialog.findViewById(R.id.urduTranslation)
-                    val submitBtn: Button = moreDialog.findViewById(R.id.dialogSubmit)
-                    val cancelbtn: Button = moreDialog.findViewById(R.id.dialogCancel)
-
-                    val isEnglish = sharedPreferences.getBoolean("isEnglish", true)
-                    builder.setView(moreDialog)
-
-                    // Set Cancelable false
-                    // for when the user clicks on the outside
-                    // the Dialog Box then it will remain show
-                    builder.setCancelable(false)
-                    // Create the Alert dialog
-                    val alertDialog: AlertDialog = builder.create()
-                    // Show the Alert Dialog box
-                    alertDialog.show()
-
-                    var translationSelected = ""
-                    if (isEnglish) {
-                        englishTranslation.isChecked = true
-                    } else {
-                        urduTranslation.isChecked = true
-                    }
-
-                    englishTranslation.setOnClickListener {
-                        translationSelected = "english"
-                    }
-
-                    urduTranslation.setOnClickListener {
-                        translationSelected = "urdu"
-                    }
-
-                    submitBtn.setOnClickListener {
-                        if (translationSelected == "english") {
-                            with(sharedPreferences.edit()) {
-                                putBoolean("isEnglish", true)
-                                apply()
-                            }
-                        } else {
-                            with(sharedPreferences.edit()) {
-                                putBoolean("isEnglish", false)
-                                apply()
-                            }
-                        }
-
-                        alertDialog.cancel()
-
-                        if (fragmentToUse == "search") {
-                            val bundle = Bundle()
-                            bundle.putString("query", query)
-                            supportFragmentManager.commit {
-                                setReorderingAllowed(true)
-                                //add new fragment
-                                add<QuranSearchFragment>(R.id.fragmentContainerView3, args = bundle)
-                            }
-                        } else {
-                            //swap the fragment using fragmentSelecterForListDisplay()
-                            fragmentSelecterForListDisplay(name, number)
-                        }
-                    }
-
-                    cancelbtn.setOnClickListener {
-                        alertDialog.cancel()
-                    }
-                }
                 R.id.bookmark -> {
                     checkForBookmark(number)
                     fragmentSelecterForListDisplay(name, number)
@@ -279,19 +202,18 @@ class QuranMainList : AppCompatActivity() {
                     val submitBtn: Button = gotoayadialog.findViewById(R.id.dialogSubmit)
                     val cancelbtn: Button = gotoayadialog.findViewById(R.id.dialogCancel)
 
-                    val helper = DatabaseAccessHelper(this)
-                    helper.open()
+                    helperQuranDatabase.open()
 
                     val aya = if (fragmentToUse == "juz") {
-                        helper.getNumberOfAyatJuz(number + 1)
+                        helperQuranDatabase.getNumberOfAyatJuz(number + 1)
                     } else {
-                        helper.getNumberOfAyatSurah(number + 1)
+                        helperQuranDatabase.getNumberOfAyatSurah(number + 1)
                     }
 
-                    helper.close()
+                    helperQuranDatabase.close()
 
                     //get the start index of the aya list and not the value
-                    val startAyat = aya[0]
+                    val startAyat = (aya.indexOf(aya.first())) + 1
 
                     val endAyat = aya.size
 
@@ -335,7 +257,7 @@ class QuranMainList : AppCompatActivity() {
         menu.show()
     }
 
-    private fun checkForBookmark(number: Int): Boolean{
+    private fun checkForBookmark(number: Int): Boolean {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         helperBookmarkDatabase.open()
         helperQuranDatabase.open()

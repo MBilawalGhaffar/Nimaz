@@ -182,7 +182,7 @@ class ArabicReshaper(unshapedWord: String) {
             stripedRegularLetters = CharArray(wordLength - harakatesCount)
             harakatesCount = 0
             var letterCount = 0
-            for (index in 0 until unshapedWord.length) {
+            for (index in unshapedWord.indices) {
                 if (isHaraka(unshapedWord[index])) {
                     harakatesPositions[harakatesCount] = index
                     stripedHarakates[harakatesCount] = unshapedWord[index]

@@ -125,8 +125,7 @@ object ArabicUtilities {
         if (tempWord != "") {
             finalWords.add(tempWord)
         }
-        val theWords: Array<String?> = finalWords.toTypedArray()
-        return theWords
+        return finalWords.toTypedArray()
     }
 
     fun reshape(allText: String?): String? {
@@ -148,7 +147,7 @@ object ArabicUtilities {
 
     /**
      * The Main Reshaping Function to be Used in Android Program
-     * @param allText The text to be Reshaped
+     * @param sentence The text to be Reshaped
      * @return the Reshaped Text
      */
     fun reshapeSentence(sentence: String?): String {

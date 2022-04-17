@@ -5,7 +5,7 @@ package com.arshadshah.nimaz.helperClasses.quran
  * @param ayaNumber the aya number of the bookmark
  * @param ayaText the aya text of the bookmark
  * @param arabicText the arabic text of the bookmark
- * @param Number the juz number of the bookmark
+ * @param typeNumber the juz number of the bookmark
  */
 data class Bookmark(
     val ayaNumber: String,

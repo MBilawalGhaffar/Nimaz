@@ -4,7 +4,7 @@ package com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils
  * Represents the moon position
  * @property altitude Moon altitude above the horizon in radians
  * @property azimuth Moon azimuth in radians
- * @property distance Distance to moon in kilometers
+ * @property distanceKm Distance to moon in kilometers
  * @property parallacticAngle Parallactic angle of the moon in radians
  */
 data class MoonPosition(

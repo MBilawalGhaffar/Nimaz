@@ -117,19 +117,16 @@ class NamesOfAllahActivity : AppCompatActivity() {
 
     private fun englishName(indexNo: Int): String {
         val array = resources.getStringArray(R.array.English)
-        val output = array[indexNo]
-        return output
+        return array[indexNo]
     }
 
     private fun arabicName(indexNo: Int): String {
         val array = resources.getStringArray(R.array.Arabic)
-        val output = array[indexNo]
-        return output
+        return array[indexNo]
     }
 
     private fun translation(indexNo: Int): String {
         val array = resources.getStringArray(R.array.translation)
-        val output = array[indexNo]
-        return output
+        return array[indexNo]
     }
 }

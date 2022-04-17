@@ -4,14 +4,14 @@ import android.content.Context
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.helperClasses.alarms.CreateAlarms
 import com.arshadshah.nimaz.helperClasses.utils.DateConvertor
+import com.arshadshah.nimaz.helperClasses.utils.LocationFinder
 import com.arshadshah.nimaz.helperClasses.utils.NetworkChecker
-import com.arshadshah.nimaz.helperClasses.utils.locationFinder
 import com.arshadshah.nimaz.prayerTimeApi.*
 import com.arshadshah.nimaz.prayerTimeApi.data.DateComponents
 import java.util.*
 import kotlin.properties.Delegates
 
-class prayerTimeThread(context: Context) : Thread() {
+class PrayerTimeThread(context: Context) : Thread() {
 
     var lati by Delegates.notNull<Double>()
     var longi by Delegates.notNull<Double>()
@@ -56,7 +56,7 @@ class prayerTimeThread(context: Context) : Thread() {
         if (isNetworkAvailable) {
             if (!locationTypeValue) {
                 //location finder class
-                val lonAndLat = locationFinder()
+                val lonAndLat = LocationFinder()
                 lonAndLat.findLongAndLan(applicationContextVal, name!!)
             }
             lati = sharedPreferences.getString("latitude", "0.0")!!.toDouble()
