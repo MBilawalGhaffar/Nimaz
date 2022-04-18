@@ -56,6 +56,7 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/quran_font"
                 android:text="Arabic"
+                android:textAlignment="textEnd"
                 android:textSize="24sp"
                 app:layout_constraintStart_toEndOf="@+id/JuzNumber"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -65,7 +66,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
-                android:layout_marginBottom="4dp"
                 android:fontFamily="@font/nunito"
                 android:text="English"
                 android:textSize="16sp"
