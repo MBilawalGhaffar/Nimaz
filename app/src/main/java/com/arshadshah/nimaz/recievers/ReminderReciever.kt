@@ -29,7 +29,13 @@ class ReminderReciever : BroadcastReceiver() {
         if (diff in 1 until graceP) {
             Log.i("Alarms for Adhan", "Notification for $title is being executed!")
             Toast.makeText(context, "Time to pray $title", Toast.LENGTH_LONG).show()
-            NotificationHelper().createNotification(context, CHANNEL_ID, title, Notify_Id, Time_of_alarm)
+            NotificationHelper().createNotification(
+                context,
+                CHANNEL_ID,
+                title,
+                Notify_Id,
+                Time_of_alarm
+            )
 
             Log.i("Alarms for Adhan", "Alarm for $title is Successfully executed!")
         } // end of if
