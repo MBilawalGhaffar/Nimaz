@@ -18,6 +18,8 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.arshadshah.nimaz.MainActivity
 import com.arshadshah.nimaz.R
+import java.text.DateFormat
+import java.util.*
 
 /**
  * A Helper class that creates both the Notifications and the notification channels
@@ -129,7 +131,8 @@ class NotificationHelper {
         context: Context,
         channel_id: String,
         title: String,
-        notification_id: Int
+        notification_id: Int,
+        Time_of_alarm: Long
     ) {
         // Create an explicit intent for an Activity in your app
         val notificationIntent =
@@ -142,10 +145,16 @@ class NotificationHelper {
         val notificationPendingIntent: PendingIntent =
             PendingIntent.getActivity(context, 8, notificationIntent, FLAG_IMMUTABLE)
 
+        val time = Date(Time_of_alarm)
+        //convert the time to a date
+        val formatter = DateFormat.getTimeInstance((DateFormat.SHORT))
+        val timeFormated = formatter.format(time)
+
+
         val builder =
             NotificationCompat.Builder(context, channel_id).apply {
                 setSmallIcon(R.drawable.ic_prayer)
-                setContentTitle(title)
+                setContentTitle("$title at $timeFormated")
                 if (title == "Test Adhan") {
                     setContentText("This is a test Adhan")
                 } else if (title == "Sunrise" || title == "شروق") {

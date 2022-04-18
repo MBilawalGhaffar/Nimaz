@@ -348,6 +348,23 @@ class HomeFragment : Fragment() {
 //        val sunPositionProgressBar: ProgressBar = root.findViewById(R.id.sunPositionProgressBar)
 //        sunPositionProgressBar.progress = progress
 
+        val nameOfCurrentPrayer: TextView = root.findViewById(R.id.nameOfCurrentPrayer)
+        val currentPrayerName = prayerTimes.currentPrayer()
+        var currentrayerNameCleaned = ""
+
+        //sentence case the prayer name
+        //if the prayer name is FAJR then change it to Fajr
+        //get the strings from the strings.xml file
+        when (currentPrayerName) {
+            Prayer.FAJR -> currentrayerNameCleaned = getString(R.string.fajr)
+            Prayer.SUNRISE -> currentrayerNameCleaned = getString(R.string.sunrise)
+            Prayer.DHUHR -> currentrayerNameCleaned = getString(R.string.zuhar)
+            Prayer.ASR -> currentrayerNameCleaned = getString(R.string.asar)
+            Prayer.MAGHRIB -> currentrayerNameCleaned = getString(R.string.maghrib)
+            Prayer.ISHA -> currentrayerNameCleaned = getString(R.string.ishaa)
+        }
+
+        nameOfCurrentPrayer.text = currentrayerNameCleaned
 
         // end of main code
         return root

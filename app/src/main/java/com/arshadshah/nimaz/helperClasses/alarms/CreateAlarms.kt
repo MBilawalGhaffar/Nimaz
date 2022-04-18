@@ -4,7 +4,9 @@ import android.app.PendingIntent
 import android.app.PendingIntent.FLAG_IMMUTABLE
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Build
+import android.provider.Settings.Global.getString
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationManagerCompat
@@ -58,14 +60,13 @@ class CreateAlarms {
         val CHANNEL_ID3 = "channel_id_04"
         val CHANNEL_ID4 = "channel_id_05"
         val CHANNEL_ID5 = "Channel_id_06"
-
         // notification title
-        val channelFajr = "Fajr at $fajrTime"
+        val channelFajr = context.getString(R.string.fajr)
         val channelSunrise = context.getString(R.string.sunrise)
-        val channelZuhar = "Dhuhr at $zuharTime"
-        val channelAsar = "Asr at $asarTime"
-        val channelMaghrib = "Maghrib at $maghribTime"
-        val channelIshaa = "Isha at $ishaaTime"
+        val channelZuhar = context.getString(R.string.zuhar)
+        val channelAsar = context.getString(R.string.asar)
+        val channelMaghrib = context.getString(R.string.maghrib)
+        val channelIshaa = context.getString(R.string.ishaa)
 
         //shared preferences
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)

@@ -363,14 +363,16 @@ class DatabaseAccessHelper(context: Context) {
                 arabicText.add(cursorOfAyasFromArabic.getString(3))
             }
 
-            //add the english text at index 3 to the englishText array
-            while (cursorOfAyasFromEnglish.moveToNext()) {
-                translationText.add(cursorOfAyasFromEnglish.getString(3))
-            }
-
-            //add the english text at index 3 to the englishText array
-            while (cursorOfAyasFromUrdu.moveToNext()) {
-                translationText.add(cursorOfAyasFromUrdu.getString(3))
+            if (sharedPreferences.getBoolean("isEnglish", true)) {
+                //add the english text at index 3 to the englishText array
+                while (cursorOfAyasFromEnglish.moveToNext()) {
+                    translationText.add(cursorOfAyasFromEnglish.getString(3))
+                }
+            } else {
+                //add the english text at index 3 to the englishText array
+                while (cursorOfAyasFromUrdu.moveToNext()) {
+                    translationText.add(cursorOfAyasFromUrdu.getString(3))
+                }
             }
 
             //add the ayaObject to the arraylist
