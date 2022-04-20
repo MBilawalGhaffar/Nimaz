@@ -357,7 +357,7 @@ class HomeFragment : Fragment() {
         //get the strings from the strings.xml file
         when (currentPrayerName) {
             Prayer.FAJR -> currentrayerNameCleaned = getString(R.string.fajr)
-            Prayer.SUNRISE -> currentrayerNameCleaned = getString(R.string.sunrise)
+            Prayer.SUNRISE -> currentrayerNameCleaned = "Doha"
             Prayer.DHUHR -> currentrayerNameCleaned = getString(R.string.zuhar)
             Prayer.ASR -> currentrayerNameCleaned = getString(R.string.asar)
             Prayer.MAGHRIB -> currentrayerNameCleaned = getString(R.string.maghrib)

@@ -27,6 +27,7 @@ class PrayerTimes(
 
     @JvmOverloads
     fun currentPrayer(time: Date = Date()): Prayer {
+        val fajrTommorow = fajr!!.time + 86400000
         val `when` = time.time
         return when {
             isha!!.time - `when` <= 0 -> {
@@ -52,15 +53,21 @@ class PrayerTimes(
             fajr!!.time - `when` <= 0 -> {
                 Prayer.FAJR
             }
-
+            `when` in isha!!.time..fajrTommorow -> {
+                Prayer.ISHA
+            }
+            `when` < fajr!!.time -> {
+                Prayer.ISHA
+            }
             else -> {
-                Prayer.FAJR
+                Prayer.NONE
             }
         }
     }
 
     @JvmOverloads
     fun nextPrayer(time: Date = Date()): Prayer {
+
         val `when` = time.time
         return when {
             isha!!.time - `when` <= 0 -> {
@@ -86,7 +93,6 @@ class PrayerTimes(
             fajr!!.time - `when` <= 0 -> {
                 Prayer.SUNRISE
             }
-
             else -> {
                 Prayer.FAJR
             }
