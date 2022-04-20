@@ -3,7 +3,7 @@
     <item>
         <shape android:shape="rectangle" android:tint="?attr/cardBackground">
             <size android:height="20dp" android:width="20dp"/>
-            <corners android:radius="10dp"/>
+            <corners android:radius="5dp"/>
             <padding android:padding="10dp"/>
         </shape>
     </item>

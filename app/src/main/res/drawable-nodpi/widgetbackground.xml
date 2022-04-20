@@ -3,7 +3,7 @@
     <item>
         <shape android:shape="rectangle" android:tint="?attr/lines">
             <size android:height="50dp" android:width="100dp"/>
-            <corners android:radius="10dp"/>
+            <corners android:radius="5dp"/>
         </shape>
     </item>
 </layer-list>
