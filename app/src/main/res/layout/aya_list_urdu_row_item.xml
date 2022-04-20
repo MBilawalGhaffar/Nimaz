@@ -34,7 +34,7 @@
                 android:lineSpacingExtra="2sp"
                 android:text="TextView"
                 android:textAlignment="viewEnd"
-                android:textSize="24sp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/bookmarkButton2"
                 app:layout_constraintStart_toStartOf="parent"

@@ -94,7 +94,7 @@ class TasbeehFragment : Fragment() {
 
         // variables for the counter
         val main_display: TextView = root.findViewById(R.id.Display)
-        val Add_button: ImageView = root.findViewById(R.id.plus)
+        val Add_button: ConstraintLayout = root.findViewById(R.id.plus)
         val remove_button: ImageView = root.findViewById(R.id.minus)
         val reset_button: ImageButton = root.findViewById(R.id.reset)
         val Vibrate_button: ImageButton = root.findViewById(R.id.vibrate)
@@ -260,9 +260,6 @@ class TasbeehFragment : Fragment() {
         Add_button.setOnClickListener {
             val shouldVibrate = sharedPreferences.getBoolean("shouldvibrate", true)
             val currentAmount: Int = amount.text.toString().toInt()
-            val expandIn: Animation =
-                AnimationUtils.loadAnimation(requireContext(), R.anim.expand_in)
-            Add_button.startAnimation(expandIn)
             count++
             lapCounterOfCount++
             if (shouldVibrate) {
