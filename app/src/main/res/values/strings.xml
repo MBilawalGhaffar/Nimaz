@@ -129,6 +129,7 @@
     <string name="timerWithText" translatable="false"> %1$s hrs %2$s mins until %3$s </string>
     <string name="timerWithTextSingle" translatable="false"> %1$s hr %2$s mins until %3$s </string>
     <string name="timerWithTextSingleMin" translatable="false"> %1$s hr %2$s min until %3$s </string>
+    <string name="timerWithTextSingleMinAndSec" translatable="false"> %1$s min %2$s second until %3$s </string>
     <string name="timerSeconds" translatable="false"> %1$s %2$s until %3$s </string>
     <string name="permissionRational" translatable="false">Location is needed to calculate prayer times</string>
     <string name="ok" translatable="false">OK</string>

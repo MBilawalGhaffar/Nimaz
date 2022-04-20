@@ -88,8 +88,8 @@ class TimerCreater {
                             String.format(text, elapsedMinutes, "mins", nextPrayerName)
                         }
                         elapsedHours.toInt() == 0 && elapsedMinutes < 2 && elapsedMinutes > 0 -> {
-                            val text = res.getString(R.string.timerSeconds)
-                            String.format(text, elapsedMinutes, "min", nextPrayerName)
+                            val text = res.getString(R.string.timerWithTextSingleMinAndSec)
+                            String.format(text, elapsedMinutes, elapsedSeconds, nextPrayerName)
                         }
                         elapsedHours.toInt() == 0 && elapsedMinutes.toInt() == 0 -> {
                             val text = res.getString(R.string.timerSeconds)
