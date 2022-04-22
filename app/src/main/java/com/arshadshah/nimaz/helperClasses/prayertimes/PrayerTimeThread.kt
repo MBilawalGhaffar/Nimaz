@@ -1,6 +1,7 @@
 package com.arshadshah.nimaz.helperClasses.prayertimes
 
 import android.content.Context
+import android.os.Looper
 import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.helperClasses.alarms.CreateAlarms
 import com.arshadshah.nimaz.helperClasses.utils.DateConvertor
@@ -19,7 +20,7 @@ class PrayerTimeThread(context: Context) : Thread() {
     val applicationContextVal = context
 
     override fun run() {
-
+        Looper.prepare()
         //code to reset the alarm
         //shared preferences
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(applicationContextVal)

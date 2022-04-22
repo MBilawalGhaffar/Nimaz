@@ -62,7 +62,6 @@ class NetworkChecker {
             Log.i("Network", "Network is Successfully connected")
             true
         } else {
-            Toast.makeText(context, "No internet connection detected", Toast.LENGTH_SHORT).show()
             Log.i("Network", "Network is not connected")
             false
         }

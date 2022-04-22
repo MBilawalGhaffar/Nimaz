@@ -3,6 +3,7 @@ package com.arshadshah.nimaz.fragments.intro
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.os.Looper
 import android.os.PowerManager
 import android.provider.Settings
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
@@ -19,6 +21,8 @@ import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.activities.HomeActivity
 import com.arshadshah.nimaz.helperClasses.fusedLocations.LocationFinderAuto
 import com.arshadshah.nimaz.helperClasses.fusedLocations.PermissionUtils
+import com.arshadshah.nimaz.helperClasses.utils.LocationFinder
+import com.arshadshah.nimaz.helperClasses.utils.NetworkChecker
 import com.google.android.material.switchmaterial.SwitchMaterial
 
 class LocationSelectionFragment : Fragment() {
@@ -37,10 +41,18 @@ class LocationSelectionFragment : Fragment() {
 
         val locationPref: SwitchMaterial = root.findViewById(R.id.locationPref)
 
+        val isNetworkAvailable = NetworkChecker().networkCheck(requireContext())
+
         if(!locationPref.isChecked){
             with(sharedPreferences.edit()) {
                 putBoolean("locationType", false)
                 apply()
+            }
+            if (isNetworkAvailable){
+                locationFinish.text = "NEXT"
+            }
+            else{
+                locationFinish.text = "FINISH"
             }
         }
 
@@ -52,12 +64,21 @@ class LocationSelectionFragment : Fragment() {
                 }
                 locationPref.text = "Automatic"
                 PermissionUtils.askAccessLocationPermission(requireActivity() as AppCompatActivity,12345)
+
+                locationFinish.text = "FINISH"
             }else {
                 with(sharedPreferences.edit()) {
                     putBoolean("locationType", false)
                     apply()
                 }
                 locationPref.text = "Manual"
+
+                if (isNetworkAvailable){
+                    locationFinish.text = "NEXT"
+                }
+                else{
+                    locationFinish.text = "FINISH"
+                }
             }
         }
 
@@ -88,41 +109,71 @@ class LocationSelectionFragment : Fragment() {
         val mainCard: CardView = root.findViewById(R.id.mainCard)
 
         locationFinish.setOnClickListener {
-            with(sharedPreferences.edit()) {
-                putBoolean("isFirstInstall", false)
-                putBoolean("navigateToHome", true)
-                putBoolean("channelLock", false)
-                apply()
-            }
-            if (locationTypeValue) {
-                LocationFinderAuto().getLocations(requireContext(), 12345)
-            }
-
-            //create a thread to show the progress bar
-            //while the longitude and latitude values are "0.0" hide mainCard and show a progress bar
-            //then when the values are set navigate to HomeActivity
-            //wait for the longitude and latitude values to not be null then continue
-            //show the progress bar and hide the mainCard
-            progressContainer.visibility = View.VISIBLE
-            mainCard.visibility = View.GONE
-            val thread = Thread {
-                while (true) {
-                    if (sharedPreferences.getString("longitude", "0.0") != "0.0" && sharedPreferences.getString(
-                            "latitude",
-                            "0.0"
-                        ) != "0.0"
-                    ) {
-                        //on ui thread
-                        activity?.runOnUiThread {
-                            val intent = Intent(requireContext(), HomeActivity::class.java)
-                            startActivity(intent)
-                            requireActivity().finish()
-                        }
-                        break
+            val locationTypeValueAfter = sharedPreferences.getBoolean("locationType", true)
+            if (isNetworkAvailable) {
+                if(!locationTypeValueAfter){
+                    val navcontroller = requireActivity().findNavController(R.id.fragmentContainerView)
+                    navcontroller.navigate(R.id.locationInputFragment)
+                }else{
+                    with(sharedPreferences.edit()) {
+                        putBoolean("isFirstInstall", false)
+                        putBoolean("navigateToHome", true)
+                        putBoolean("channelLock", false)
+                        apply()
                     }
+                    if (locationTypeValue) {
+                        LocationFinderAuto().getLocations(requireContext(), 12345)
+                    }
+
+                    //create a thread to show the progress bar
+                    //while the longitude and latitude values are "0.0" hide mainCard and show a progress bar
+                    //then when the values are set navigate to HomeActivity
+                    //wait for the longitude and latitude values to not be null then continue
+                    //show the progress bar and hide the mainCard
+                    progressContainer.visibility = View.VISIBLE
+                    mainCard.visibility = View.GONE
+                    val thread = Thread {
+                        Looper.prepare()
+                        while (true) {
+                            if (sharedPreferences.getString("longitude", "0.0") != "0.0"
+                                && sharedPreferences.getString("latitude", "0.0") != "0.0") {
+                                //on ui thread
+                                activity?.runOnUiThread {
+                                    val intent = Intent(requireContext(), HomeActivity::class.java)
+                                    startActivity(intent)
+                                    requireActivity().finish()
+                                }
+                                break
+                            }
+                        }
+                    }
+                    thread.start()
+                }
+            } else {
+                if(locationTypeValueAfter){
+                    with(sharedPreferences.edit()) {
+                        putBoolean("navigateToHome", true)
+                        putBoolean("channelLock", false)
+                        putBoolean("locationType", false)
+                        apply()
+                    }
+                    val intent = Intent(requireContext(), HomeActivity::class.java)
+                    startActivity(intent)
+                    requireActivity().finish()
+                }else{
+                    with(sharedPreferences.edit()) {
+                        putBoolean("navigateToHome", true)
+                        putBoolean("channelLock", false)
+                        putBoolean("locationType", false)
+                        apply()
+                    }
+                    val intent = Intent(requireContext(), HomeActivity::class.java)
+                    startActivity(intent)
+                    requireActivity().finish()
                 }
             }
-            thread.start()
+
+
         }
 
         //if skipped

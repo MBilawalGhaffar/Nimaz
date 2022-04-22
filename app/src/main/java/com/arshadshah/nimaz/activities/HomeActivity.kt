@@ -1,7 +1,9 @@
 package com.arshadshah.nimaz.activities
 
+import android.app.AlertDialog
 import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +14,7 @@ import com.arshadshah.nimaz.helperClasses.alarms.CreateAlarms
 import com.arshadshah.nimaz.helperClasses.fusedLocations.LocationFinderAuto
 import com.arshadshah.nimaz.helperClasses.prayertimes.PrayerTimeThread
 import com.arshadshah.nimaz.helperClasses.utils.LocationFinder
+import com.arshadshah.nimaz.helperClasses.utils.NetworkChecker
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -67,6 +70,25 @@ class HomeActivity : AppCompatActivity() {
 
         // Retrieve values given in the settings activity
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val isFirstInstall = sharedPreferences.getBoolean("isFirstInstall", true)
+        val isNetworkAvailable = NetworkChecker().networkCheck(this)
+        if(!isNetworkAvailable && isFirstInstall){
+            with(sharedPreferences.edit()) {
+                putBoolean("isFirstInstall", false)
+                apply()
+            }
+            //show a dialog
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("No Internet Connection")
+            builder.setMessage("Please connect to the internet to get Prayer Times or Enter Your coordinates in Settings.")
+            builder.setPositiveButton("OK") { _, _ ->
+                //dismiss the dialog
+                builder.create().dismiss()
+                Toast.makeText(this, "Using default Values for Prayer times", Toast.LENGTH_SHORT).show()
+            }
+            builder.create().show()
+        }
+
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
 
