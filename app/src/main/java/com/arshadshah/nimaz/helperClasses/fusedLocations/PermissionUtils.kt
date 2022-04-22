@@ -23,9 +23,6 @@ object PermissionUtils {
             if (ActivityCompat.shouldShowRequestPermissionRationale(
                     activity,
                     Manifest.permission.ACCESS_COARSE_LOCATION
-                ) || ActivityCompat.shouldShowRequestPermissionRationale(
-                    activity,
-                    Manifest.permission.ACCESS_FINE_LOCATION
                 )
             ) {
                 //show dialog
@@ -35,7 +32,6 @@ object PermissionUtils {
                 ActivityCompat.requestPermissions(
                     activity,
                     arrayOf(
-                        Manifest.permission.ACCESS_FINE_LOCATION,
                         Manifest.permission.ACCESS_COARSE_LOCATION
                     ),
                     requestId
@@ -46,11 +42,6 @@ object PermissionUtils {
 
     fun checkAccessLocationGranted(context: Context): Boolean {
         var isGranted = false
-        val fineperms = ContextCompat
-            .checkSelfPermission(
-                context,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
 
         val coarsePerms = ContextCompat
             .checkSelfPermission(
@@ -58,7 +49,7 @@ object PermissionUtils {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
 
-        if (fineperms || coarsePerms) {
+        if (coarsePerms) {
             isGranted = true
         }
 
