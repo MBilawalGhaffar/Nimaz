@@ -8,7 +8,7 @@
     tools:context=".fragments.intro.LocationInputFragment">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView3"
+        android:id="@+id/mainCard"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
