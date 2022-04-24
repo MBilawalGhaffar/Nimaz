@@ -4,7 +4,6 @@
         <attr name="topText" format="string" />
         <attr name="bottomText" format="string" />
         <attr name="android:ems" />
-
     </declare-styleable>
 
     <declare-styleable name="customDrawablesAttr">

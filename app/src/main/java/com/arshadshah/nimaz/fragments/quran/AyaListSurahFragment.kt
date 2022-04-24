@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.ListView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
@@ -98,7 +99,7 @@ class AyaListSurahFragment : Fragment() {
                     if (bookmarkRemoved) {
                         //run on ui thread
                         activity?.runOnUiThread {
-                            val bookmark: ConstraintLayout? = if (isEnglish) {
+                            val bookmark: ImageView? = if (isEnglish) {
                                 view?.findViewById(R.id.bookmarkButton)
                             } else {
                                 view?.findViewById(R.id.bookmarkButton2)
@@ -117,7 +118,7 @@ class AyaListSurahFragment : Fragment() {
                     if (bookmarkAdded) {
                         //run on ui thread
                         activity?.runOnUiThread {
-                            val bookmark: ConstraintLayout? = if (isEnglish) {
+                            val bookmark: ImageView? = if (isEnglish) {
                                 view?.findViewById(R.id.bookmarkButton)
                             } else {
                                 view?.findViewById(R.id.bookmarkButton2)
