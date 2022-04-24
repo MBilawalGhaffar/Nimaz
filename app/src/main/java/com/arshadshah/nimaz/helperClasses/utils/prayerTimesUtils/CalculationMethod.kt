@@ -1,4 +1,4 @@
-package com.arshadshah.nimaz.prayerTimeApi
+package com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils
 
 /**
  * Standard calculation methods for calculating prayer times
@@ -142,17 +142,8 @@ enum class CalculationMethod {
             IRELAND -> {
                 CalculationParameters(
                     14.0,
-                    13.0,
+                    14.0,
                     this
-                ).withMethodAdjustments(
-                    PrayerAdjustments(
-                        1,
-                        -2,
-                        2,
-                        0,
-                        0,
-                        -2
-                    )
                 )
             }
 

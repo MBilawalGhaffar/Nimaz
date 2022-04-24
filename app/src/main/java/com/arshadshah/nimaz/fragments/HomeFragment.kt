@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,13 +22,18 @@ import com.arshadshah.nimaz.helperClasses.prayertimes.TimerCreater
 import com.arshadshah.nimaz.helperClasses.utils.DateConvertor
 import com.arshadshah.nimaz.helperClasses.utils.LocationFinder
 import com.arshadshah.nimaz.helperClasses.utils.NetworkChecker
-import com.arshadshah.nimaz.prayerTimeApi.*
-import com.arshadshah.nimaz.prayerTimeApi.data.DateComponents
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.*
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.data.DateComponents
+import com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils.SunMoonCalc
+import com.arshadshah.nimaz.helperClasses.utils.sunMoonUtils.roundToFloat
 import java.text.DateFormat
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.chrono.HijrahDate
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.math.ceil
+import kotlin.math.roundToInt
 import kotlin.properties.Delegates
 
 
@@ -81,7 +87,7 @@ class HomeFragment : Fragment() {
 
         // angle input from settings
         val fajr_angle = sharedPreferences.getString("fajrAngle", "14.0")
-        val ishaa_angle = sharedPreferences.getString("ishaaAngle", "13.0")
+        val ishaa_angle = sharedPreferences.getString("ishaaAngle", "14.0")
 
         // time adjustments
         val fajr_adjust = sharedPreferences.getString("fajr", "0")
@@ -336,35 +342,23 @@ class HomeFragment : Fragment() {
             }
         }
 
-        //for position of sun
-//        val sunPosition = SunMoonCalc(latitude, longitude, requireContext())
-//        //phase of moon
-//
-//        //update the sun position every minute
-//        val sunCurrentPosition = sunPosition.getSunPosition()
-//        val azimuth = sunCurrentPosition.azimuth * 180 / Math.PI
-//        val altitude = sunCurrentPosition.altitude * 180 / Math.PI
-//        val progress = 100 - altitude.toInt()
-//        val sunPositionProgressBar: ProgressBar = root.findViewById(R.id.sunPositionProgressBar)
-//        sunPositionProgressBar.progress = progress
-
         val nameOfCurrentPrayer: TextView = root.findViewById(R.id.nameOfCurrentPrayer)
         val currentPrayerName = prayerTimes.currentPrayer()
-        var currentrayerNameCleaned = ""
+        var currentPrayerNameCleaned = ""
 
         //sentence case the prayer name
         //if the prayer name is FAJR then change it to Fajr
         //get the strings from the strings.xml file
         when (currentPrayerName) {
-            Prayer.FAJR -> currentrayerNameCleaned = getString(R.string.fajr)
-            Prayer.SUNRISE -> currentrayerNameCleaned = "Doha"
-            Prayer.DHUHR -> currentrayerNameCleaned = getString(R.string.zuhar)
-            Prayer.ASR -> currentrayerNameCleaned = getString(R.string.asar)
-            Prayer.MAGHRIB -> currentrayerNameCleaned = getString(R.string.maghrib)
-            Prayer.ISHA -> currentrayerNameCleaned = getString(R.string.ishaa)
+            Prayer.FAJR -> currentPrayerNameCleaned = getString(R.string.fajr)
+            Prayer.SUNRISE -> currentPrayerNameCleaned = "Doha"
+            Prayer.DHUHR -> currentPrayerNameCleaned = getString(R.string.zuhar)
+            Prayer.ASR -> currentPrayerNameCleaned = getString(R.string.asar)
+            Prayer.MAGHRIB -> currentPrayerNameCleaned = getString(R.string.maghrib)
+            Prayer.ISHA -> currentPrayerNameCleaned = getString(R.string.ishaa)
         }
 
-        nameOfCurrentPrayer.text = currentrayerNameCleaned
+        nameOfCurrentPrayer.text = currentPrayerNameCleaned
 
         // end of main code
         return root

@@ -1,4 +1,4 @@
-package com.arshadshah.nimaz.prayerTimeApi.data
+package com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.data
 
 import java.util.*
 

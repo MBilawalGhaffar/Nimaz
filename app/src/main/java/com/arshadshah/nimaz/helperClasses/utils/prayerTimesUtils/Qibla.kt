@@ -1,6 +1,6 @@
-package com.arshadshah.nimaz.prayerTimeApi
+package com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils
 
-import com.arshadshah.nimaz.prayerTimeApi.internals.QiblaUtil.calculateQiblaDirection
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.internals.QiblaUtil.calculateQiblaDirection
 
 
 class Qibla(coordinates: Coordinates?) {

@@ -6,6 +6,7 @@ import android.location.Geocoder
 import android.util.Log
 import androidx.preference.PreferenceManager
 import java.util.*
+import kotlin.math.ceil
 
 /**
  * Finds the location from a string using Geocoder
@@ -29,7 +30,7 @@ class LocationFinder {
      */
     fun findLongAndLan(context: Context, name: String) {
         // city name
-        if (name == null || name == "No Network") {
+        if (name == "No Network") {
             val isNetworkAvailable = NetworkChecker().networkCheck(context)
             if (isNetworkAvailable) {
                 val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -58,8 +59,8 @@ class LocationFinder {
                         latitudeValue = addresses[0].latitude
                         longitudeValue = addresses[0].longitude
                         with(sharedPreferences.edit()) {
-                            putString("latitude", latitudeValue.toString())
-                            putString("longitude", longitudeValue.toString())
+                            putString("latitude", ceil(latitudeValue).toString())
+                            putString("longitude", ceil(longitudeValue).toString())
                             putString("location_input", cityName)
                             apply()
                         }
@@ -81,11 +82,7 @@ class LocationFinder {
                     val cityNameFromStorage =
                         sharedPreferences.getString("location_input", "Portlaoise").toString()
 
-                    cityName = if (cityNameFromStorage != null) {
-                        sharedPreferences.getString("location_input", "Portlaoise").toString()
-                    } else {
-                        "Not Found"
-                    }
+                    cityName = sharedPreferences.getString("location_input", "Portlaoise").toString()
                     Log.i("Location", "Location Found From Storage $cityName")
                 }
             } else {
@@ -133,11 +130,7 @@ class LocationFinder {
                 val cityNameFromStorage =
                     sharedPreferences.getString("location_input", "Portlaoise").toString()
 
-                cityName = if (cityNameFromStorage != null) {
-                    sharedPreferences.getString("location_input", "Portlaoise").toString()
-                } else {
-                    "Not Found"
-                }
+                cityName = sharedPreferences.getString("location_input", "Portlaoise").toString()
                 Log.i("Location", "Location Found From value $latitude, and $longitude")
             }
         } else {

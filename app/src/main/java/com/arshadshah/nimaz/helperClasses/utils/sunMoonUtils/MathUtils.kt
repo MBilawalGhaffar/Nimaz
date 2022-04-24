@@ -48,7 +48,7 @@ internal object MathUtils {
     }
 
     fun astroRefraction(h: Double): Double {
-        var hChecked =
+        val hChecked =
             if (h < 0) h else h // the following formula works for positive altitudes only.
 
         // formula 16.4 of "Astronomical Algorithms" 2nd edition by Jean Meeus (Willmann-Bell, Richmond) 1998.
@@ -98,7 +98,7 @@ internal object MathUtils {
     }
 
     fun eclipticLongitude(M: Double): Double {
-        var C =
+        val C =
             rad * (1.9148 * sin(M) + 0.02 * sin(2 * M) + 0.0003 * sin(3 * M)) // equation of center
         val P = rad * 102.9372 // perihelion of the Earth
 

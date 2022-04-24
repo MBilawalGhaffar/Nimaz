@@ -1,4 +1,4 @@
-package com.arshadshah.nimaz.prayerTimeApi.data
+package com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.data
 
 import java.util.*
 import kotlin.math.roundToInt
@@ -17,12 +17,14 @@ object CalendarUtil {
     /**
      * Date and time with a rounded minute
      * This returns a date with the seconds rounded and added to the minute
-     * @param when the date and time
+     * @param dateAndTime the date and time to be rounded
      * @return the date and time with 0 seconds and minutes including rounded seconds
      */
-    fun roundedMinute(`when`: Date?): Date {
+    fun roundedMinute(dateAndTime: Date?): Date {
         val calendar = GregorianCalendar.getInstance(TimeZone.getTimeZone("UTC"))
-        calendar.time = `when`
+        if (dateAndTime != null) {
+            calendar.time = dateAndTime
+        }
         val minute = calendar[Calendar.MINUTE].toDouble()
         val second = calendar[Calendar.SECOND].toDouble()
         calendar[Calendar.MINUTE] = (minute + (second / 60).roundToInt()).toInt()
@@ -41,14 +43,16 @@ object CalendarUtil {
 
     /**
      * Add the specified amount of a unit of time to a particular date
-     * @param when the original date
+     * @param dateToBeAddedTo the original date
      * @param amount the amount to add
      * @param field the field to add it to (from [java.util.Calendar]'s fields).
      * @return the date with the offset added
      */
-    fun add(`when`: Date?, amount: Int, field: Int): Date {
+    fun add(dateToBeAddedTo: Date?, amount: Int, field: Int): Date {
         val calendar = GregorianCalendar.getInstance(TimeZone.getTimeZone("UTC"))
-        calendar.time = `when`
+        if (dateToBeAddedTo != null) {
+            calendar.time = dateToBeAddedTo
+        }
         calendar.add(field, amount)
         return calendar.time
     }

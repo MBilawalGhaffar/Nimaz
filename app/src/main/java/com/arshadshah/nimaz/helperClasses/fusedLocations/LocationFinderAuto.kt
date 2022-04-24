@@ -6,6 +6,7 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 import com.google.android.gms.location.*
+import kotlin.math.ceil
 
 class LocationFinderAuto {
 
@@ -19,11 +20,10 @@ class LocationFinderAuto {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(p0: LocationResult) {
-                p0
                 for (location in p0.locations) {
                     with(sharedPreferences.edit()) {
-                        putString("latitude", location.latitude.toString())
-                        putString("longitude", location.longitude.toString())
+                        putString("latitude", ceil(location.latitude).toString())
+                        putString("longitude", ceil(location.longitude).toString())
                         apply()
                     }
                 }

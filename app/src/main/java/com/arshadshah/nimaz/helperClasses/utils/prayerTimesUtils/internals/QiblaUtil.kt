@@ -1,7 +1,7 @@
-package com.arshadshah.nimaz.prayerTimeApi.internals
+package com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.internals
 
-import com.arshadshah.nimaz.prayerTimeApi.Coordinates
-import com.arshadshah.nimaz.prayerTimeApi.internals.DoubleUtil.unwindAngle
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.Coordinates
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.internals.DoubleUtil.unwindAngle
 import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.sin

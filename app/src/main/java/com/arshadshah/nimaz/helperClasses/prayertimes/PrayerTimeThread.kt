@@ -7,8 +7,8 @@ import com.arshadshah.nimaz.helperClasses.alarms.CreateAlarms
 import com.arshadshah.nimaz.helperClasses.utils.DateConvertor
 import com.arshadshah.nimaz.helperClasses.utils.LocationFinder
 import com.arshadshah.nimaz.helperClasses.utils.NetworkChecker
-import com.arshadshah.nimaz.prayerTimeApi.*
-import com.arshadshah.nimaz.prayerTimeApi.data.DateComponents
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.*
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.data.DateComponents
 import java.util.*
 import kotlin.properties.Delegates
 
@@ -39,7 +39,7 @@ class PrayerTimeThread(context: Context) : Thread() {
 
         // angle input from settings
         val fajr_angle = sharedPreferences.getString("fajrAngle", "14.0")
-        val ishaa_angle = sharedPreferences.getString("ishaaAngle", "13.0")
+        val ishaa_angle = sharedPreferences.getString("ishaaAngle", "14.0")
 
         // time adjustments
         val fajr_adjust = sharedPreferences.getString("fajr", "0")

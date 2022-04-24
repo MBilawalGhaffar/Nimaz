@@ -3,8 +3,8 @@ package com.arshadshah.nimaz.fragments.compass
 import androidx.fragment.app.testing.launchFragment
 import androidx.lifecycle.Lifecycle
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.arshadshah.nimaz.prayerTimeApi.Coordinates
-import com.arshadshah.nimaz.prayerTimeApi.Qibla
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.Coordinates
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.Qibla
 import junit.framework.TestCase
 import org.junit.Test
 import org.junit.runner.RunWith

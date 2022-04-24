@@ -11,7 +11,7 @@ import java.time.LocalDateTime
 import java.time.ZoneId
 import kotlin.math.*
 
-class SunMoonCalc @JvmOverloads constructor(
+class SunMoonCalc constructor(
     private val latitude: Double,
     private val longitude: Double,
     private val context: Context
@@ -39,10 +39,28 @@ class SunMoonCalc @JvmOverloads constructor(
     }
 
     /**
+     * Returns the sun position for a given date
+     * @return {@link SunPosition} which represents the Sun position
+     */
+    fun getSunPositionForDate(dateToShowPositionFor: LocalDateTime): SunPosition {
+        val lw = rad * -longitude
+        val phi = rad * latitude
+        val d = MathUtils.toDays(dateToShowPositionFor)
+
+        val c = MathUtils.getSunCoords(d)
+        val H = MathUtils.siderealTime(d, lw) - c.ra
+
+        return SunPosition(
+            azimuth(H, phi, c.dec),
+            MathUtils.altitude(H, phi, c.dec)
+        )
+    }
+
+    /**
      * Returns the sun & moon times
      * @return {@link SunTimes} which represents the sun & moon times
      */
-    fun getTimes(date: LocalDateTime = this.date, height: Double = 0.0): SunTimes {
+    fun getTimes(date: LocalDateTime = this.date, height: Double = 1.0): SunTimes {
         val solarNoonAndNadir = MathUtils.getSolarNoonAndNadir(latitude, longitude, date, height)
         val sunriseAndSunset =
             MathUtils.getTimeAndEndingByValue(latitude, longitude, date, height, -0.833f)
