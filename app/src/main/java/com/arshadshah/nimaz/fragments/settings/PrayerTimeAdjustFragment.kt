@@ -39,7 +39,7 @@ class PrayerTimeAdjustFragment : PreferenceFragmentCompat() {
 
         // angle input from settings
         val fajr_angle = sharedPreferences.getString("fajrAngle", "14.0")
-        val ishaa_angle = sharedPreferences.getString("ishaaAngle", "13.0")
+        val ishaa_angle = sharedPreferences.getString("ishaaAngle", "14.0")
 
         // time adjustments
         val fajr_adjust = sharedPreferences.getString("fajr", "0")

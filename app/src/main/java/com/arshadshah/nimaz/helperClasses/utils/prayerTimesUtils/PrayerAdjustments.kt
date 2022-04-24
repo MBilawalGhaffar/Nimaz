@@ -1,4 +1,4 @@
-package com.arshadshah.nimaz.prayerTimeApi
+package com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils
 
 /**
  * Adjustment value for prayer times, in minutes These values are added (or

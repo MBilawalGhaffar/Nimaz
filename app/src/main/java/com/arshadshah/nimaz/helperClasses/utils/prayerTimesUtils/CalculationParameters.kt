@@ -1,4 +1,4 @@
-package com.arshadshah.nimaz.prayerTimeApi
+package com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils
 
 /**
  * Parameters used for PrayerTime calculation customization

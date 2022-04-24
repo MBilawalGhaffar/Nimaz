@@ -1,4 +1,4 @@
-package com.arshadshah.nimaz.prayerTimeApi.internals
+package com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.internals
 
 enum class ShadowLength(val shadowLength: Double) {
 

@@ -23,8 +23,8 @@ import androidx.preference.PreferenceManager
 import com.arshadshah.nimaz.R
 import com.arshadshah.nimaz.helperClasses.utils.LocationFinder
 import com.arshadshah.nimaz.helperClasses.utils.NetworkChecker
-import com.arshadshah.nimaz.prayerTimeApi.Coordinates
-import com.arshadshah.nimaz.prayerTimeApi.Qibla
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.Coordinates
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.Qibla
 import com.google.android.material.snackbar.Snackbar
 import kotlin.math.ceil
 import kotlin.properties.Delegates

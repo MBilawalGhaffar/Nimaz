@@ -1,13 +1,13 @@
-package com.arshadshah.nimaz.prayerTimeApi
+package com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils
 
-import com.arshadshah.nimaz.prayerTimeApi.data.CalendarUtil.add
-import com.arshadshah.nimaz.prayerTimeApi.data.CalendarUtil.isLeapYear
-import com.arshadshah.nimaz.prayerTimeApi.data.CalendarUtil.resolveTime
-import com.arshadshah.nimaz.prayerTimeApi.data.CalendarUtil.roundedMinute
-import com.arshadshah.nimaz.prayerTimeApi.data.DateComponents
-import com.arshadshah.nimaz.prayerTimeApi.data.DateComponents.Companion.fromUTC
-import com.arshadshah.nimaz.prayerTimeApi.data.TimeComponents.Companion.fromDouble
-import com.arshadshah.nimaz.prayerTimeApi.internals.SolarTime
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.data.CalendarUtil.add
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.data.CalendarUtil.isLeapYear
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.data.CalendarUtil.resolveTime
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.data.CalendarUtil.roundedMinute
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.data.DateComponents
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.data.DateComponents.Companion.fromUTC
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.data.TimeComponents.Companion.fromDouble
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.internals.SolarTime
 import java.util.*
 import kotlin.math.abs
 import kotlin.math.roundToInt

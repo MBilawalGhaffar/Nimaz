@@ -1,11 +1,11 @@
-package com.arshadshah.nimaz.prayerTimeApi.internals
+package com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.internals
 
-import com.arshadshah.nimaz.prayerTimeApi.Coordinates
-import com.arshadshah.nimaz.prayerTimeApi.data.DateComponents
-import com.arshadshah.nimaz.prayerTimeApi.internals.Astronomical.approximateTransit
-import com.arshadshah.nimaz.prayerTimeApi.internals.Astronomical.correctedHourAngle
-import com.arshadshah.nimaz.prayerTimeApi.internals.Astronomical.correctedTransit
-import com.arshadshah.nimaz.prayerTimeApi.internals.CalendricalHelper.julianDay
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.Coordinates
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.data.DateComponents
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.internals.Astronomical.approximateTransit
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.internals.Astronomical.correctedHourAngle
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.internals.Astronomical.correctedTransit
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.internals.CalendricalHelper.julianDay
 import kotlin.math.abs
 import kotlin.math.atan
 import kotlin.math.tan

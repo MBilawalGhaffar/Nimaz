@@ -1,6 +1,6 @@
-package com.arshadshah.nimaz.prayerTimeApi
+package com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils
 
-import com.arshadshah.nimaz.prayerTimeApi.internals.ShadowLength
+import com.arshadshah.nimaz.helperClasses.utils.prayerTimesUtils.internals.ShadowLength
 
 /**
  * Madhab for determining how Asr is calculated
