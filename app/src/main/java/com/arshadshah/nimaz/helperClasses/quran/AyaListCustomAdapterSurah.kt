@@ -6,6 +6,7 @@ import android.database.DataSetObserver
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.ListAdapter
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -76,7 +77,7 @@ internal class AyaListCustomAdapterSurah(
         val EnglishName = convertView?.findViewById<TextView>(R.id.TranslationAya)
         val ArabicName = convertView?.findViewById<TextView>(R.id.ArabicAya)
 
-        val bookmark: ConstraintLayout? = if (isEnglish) {
+        val bookmark: ImageView? = if (isEnglish) {
             convertView?.findViewById(R.id.bookmarkButton)
         } else {
             convertView?.findViewById(R.id.bookmarkButton2)
