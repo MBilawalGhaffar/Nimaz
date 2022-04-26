@@ -160,7 +160,7 @@
     <string name="go_to_ayat_dialog_label" translatable="false">Go to Ayat</string>
     <string name="please_enter_ayat_number_to_go_to" translatable="false">Please enter ayat number to go to</string>
     <string name="ayatNotFound" translatable="false">Not Found</string>
-    <string name="ayatNotFoundMessage" translatable="false">No Results Found for the Keyword: $1%s</string>
+    <string name="ayatNotFoundMessage" translatable="false">No Results Found for the Keyword: %1$s</string>
 
     <!--    location-->
 
